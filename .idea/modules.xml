@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AuthServer/AuthServer.iml" filepath="$PROJECT_DIR$/AuthServer/AuthServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EurekaServer/EurekaServer.iml" filepath="$PROJECT_DIR$/EurekaServer/EurekaServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GateWayService/GateWayService.iml" filepath="$PROJECT_DIR$/GateWayService/GateWayService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/HandleSystem.iml" filepath="$PROJECT_DIR$/.idea/HandleSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JWTServer/JWTServer.iml" filepath="$PROJECT_DIR$/JWTServer/JWTServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrgServer/OrgServer.iml" filepath="$PROJECT_DIR$/OrgServer/OrgServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserServer/UserServer.iml" filepath="$PROJECT_DIR$/UserServer/UserServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserService/UserService.iml" filepath="$PROJECT_DIR$/UserService/UserService.iml" />
+    </modules>
+  </component>
+</project>

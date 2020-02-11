@@ -12,6 +12,10 @@
         <module>UserService</module>
         <module>GateWayService</module>
         <module>EurekaServer</module>
+        <module>AuthServer</module>
+        <module>UserServer</module>
+        <module>OrgServer</module>
+        <module>JWTServer</module>
     </modules>
 
     <parent>
@@ -26,6 +30,7 @@
         <lomobok.version>1.18.10</lomobok.version>
         <alibaba.json.version>1.2.62</alibaba.json.version>
         <spring.cloud.version>Hoxton.RC1</spring.cloud.version>
+        <swagger.version>2.9.2</swagger.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -40,6 +45,17 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -66,6 +82,10 @@
             <version>${spring.cloud.version}</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
     </dependencies>
 
