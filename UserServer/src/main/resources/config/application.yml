@@ -30,3 +30,5 @@ spring:
     test-on-borrow: false
     test-while-idle: true
     time-between-eviction-runs-millis: 18800
+jwt:
+  secret: zgySecret

@@ -1,10 +1,12 @@
 package com.zgy.handle.userService.controller;
 
+import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.authority.RoleDTO;
-import com.zgy.handle.userService.response.ResponseCode;
+/*import com.zgy.handle.userService.response.ResponseCode;*/
 import com.zgy.handle.userService.service.authority.RoleService;
 import com.zgy.handle.userService.service.authority.RoleSpecificationsService;
+import com.zgy.handle.userService.util.context.UserContext;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,11 +33,16 @@ public class RoleController {
     private RoleService roleService;
     @Autowired
     private RoleSpecificationsService roleSpecificationsService;
+    @Autowired
+    private HttpServletRequest request;
 
     @GetMapping(value = "list")
-    public ResponseCode<List<RoleDTO>> getRoleList(@PageableDefault(page = 1,size = 10)Pageable pageable,Role roleQuery){
+    public ResponseCode<List<RoleDTO>> getRoleList(@PageableDefault(page = 1,size = 10)Pageable pageable, Role roleQuery){
         pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize());
         ResponseCode<List<RoleDTO>> responseCode = ResponseCode.sucess();
+
+        log.info("获取到的用户名为: " + request.getHeader(UserContext.USER_NAME));
+
 
         //Page<Role> roleList = roleService.findAllByExample(roleQuery,pageable);
         Page<Role> roleList = roleSpecificationsService.findAllByDynamicQuery(roleQuery,pageable);

@@ -16,6 +16,7 @@
         <module>UserServer</module>
         <module>OrgServer</module>
         <module>JWTServer</module>
+        <module>Common</module>
     </modules>
 
     <parent>

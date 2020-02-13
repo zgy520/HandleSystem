@@ -7,17 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JWTServer" />
-        <module name="AuthServer" />
-        <module name="OrgServer" />
         <module name="UserService" />
-        <module name="EurekaServer" />
-        <module name="UserServer" />
         <module name="GateWayService" />
+        <module name="AuthServer" />
+        <module name="UserServer" />
+        <module name="EurekaServer" />
+        <module name="JWTServer" />
+        <module name="OrgServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AuthServer" target="1.11" />
+      <module name="Common" target="1.11" />
       <module name="EurekaServer" target="1.11" />
       <module name="GateWayService" target="1.11" />
       <module name="HandleSystem" target="1.11" />

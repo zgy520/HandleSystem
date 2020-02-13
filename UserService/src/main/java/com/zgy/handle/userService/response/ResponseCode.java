@@ -24,7 +24,7 @@ public class ResponseCode<T> {
 
 
 
-    public static ResponseCode sucess(){
+    /*public static ResponseCode sucess(){
         ResponseCode responseCode = new ResponseCode<>();
         responseCode.setCode(20000);
         responseCode.setSuccess(true);
@@ -63,5 +63,5 @@ public class ResponseCode<T> {
     }
     public ResponseCode(T data){
         this.data = data;
-    }
+    }*/
 }
