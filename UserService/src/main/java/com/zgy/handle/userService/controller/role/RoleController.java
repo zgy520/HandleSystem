@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.controller;
+package com.zgy.handle.userService.controller.role;
 
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.zuul.context.UserContext;
@@ -37,13 +37,18 @@ public class RoleController {
     @Autowired
     private HttpServletRequest request;
 
+    /**
+     * 获取角色列表
+     * @param pageable
+     * @param roleQuery
+     * @return
+     */
     @GetMapping(value = "list")
     public ResponseCode<List<RoleDTO>> getRoleList(@PageableDefault(page = 1,size = 10)Pageable pageable, Role roleQuery){
         pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize());
         ResponseCode<List<RoleDTO>> responseCode = ResponseCode.sucess();
 
         log.info("获取到的用户名为: " + request.getHeader(UserContext.USER_NAME));
-
 
         //Page<Role> roleList = roleService.findAllByExample(roleQuery,pageable);
         Page<Role> roleList = roleSpecificationsService.findAllByDynamicQuery(roleQuery,pageable);
@@ -60,11 +65,6 @@ public class RoleController {
         responseCode.setPageInfo(roleList);
         responseCode.setData(roleDTOList);
         return responseCode;
-    }
-
-    @GetMapping("listTest")
-    public List<Role> getRoleListTest(Pageable pageable){
-        return roleService.findAll(pageable).getContent();
     }
 
     @PostMapping(value = "update")

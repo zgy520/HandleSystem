@@ -3,13 +3,19 @@ package com.zgy.handle.gateway.config.security;
 import java.io.Serializable;
 
 public class JwtResponse implements Serializable {
-    private final String jwttoken;
+    private final String data;
+    private final int code;
 
     public JwtResponse(String jwttoken){
-        this.jwttoken = jwttoken;
+        this.data = jwttoken;
+        this.code = 2000;
     }
 
-    public String getToken(){
-        return this.jwttoken;
+    public String getData(){
+        return this.data;
+    }
+
+    public int getCode() {
+        return code;
     }
 }
