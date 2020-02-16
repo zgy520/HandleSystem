@@ -8,12 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="UserService" />
-        <module name="GateWayService" />
-        <module name="AuthServer" />
-        <module name="UserServer" />
         <module name="EurekaServer" />
-        <module name="JWTServer" />
-        <module name="OrgServer" />
+        <module name="GateWayService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
