@@ -19,6 +19,9 @@ public class UserContextInterceptor implements ClientHttpRequestInterceptor {
         headers.add(UserContext.CORRELATION_ID, UserContextHolder.getContext().getCorrelationId());
         headers.add(UserContext.AUTH_TOKEN, UserContextHolder.getContext().getAuthToken());
         headers.add(UserContext.USER_NAME, UserContextHolder.getContext().getUserName());
+        headers.add(UserContext.POST_ID,UserContextHolder.getContext().getPostId());
+        headers.add(UserContext.ORG_ID,UserContextHolder.getContext().getOrgId());
+        headers.add(UserContext.USER_ID,UserContextHolder.getContext().getUserId());
 
 
         return execution.execute(request, body);

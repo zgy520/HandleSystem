@@ -1,16 +1,17 @@
 package com.zgy.handle.gateway.config.filter;
 
 import com.netflix.zuul.context.RequestContext;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.zgy.handle.gateway.model.UserDetails;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class FilterUtils {
-    public static final String CORRELATION_ID = "tmx-correlation-id";
+    public static final String CORRELATION_ID = "correlation-id";
     public static final String AUTH_TOKEN     = "Authorization";
-    public static final String USER_ID        = "tmx-user-id";
-    public static final String ORG_ID         = "tmx-org-id";
+    public static final String USER_ID        = "user-id";
+    public static final String ORG_ID         = "org-id";
+    public static final String POST_ID        = "post-id";
     public static final String USER_INFO      = "username";
     public static final String PRE_FILTER_TYPE = "pre";
     public static final String POST_FILTER_TYPE = "post";
@@ -35,6 +36,9 @@ public class FilterUtils {
     public void setUserInfo(UserDetails userDetails){
         RequestContext ctx = RequestContext.getCurrentContext();
         ctx.addZuulRequestHeader(USER_INFO, userDetails.getUsername());
+        ctx.addZuulRequestHeader(ORG_ID,userDetails.getOrgId());
+        ctx.addZuulRequestHeader(POST_ID,userDetails.getPostId());
+        ctx.addZuulRequestHeader(USER_ID,userDetails.getUserId());
     }
 
     public final String getUserInfo(){
@@ -59,6 +63,19 @@ public class FilterUtils {
     public void setOrgId(String orgId){
         RequestContext ctx = RequestContext.getCurrentContext();
         ctx.addZuulRequestHeader(ORG_ID,  orgId);
+    }
+
+    public final String getPostId(){
+        RequestContext ctx = RequestContext.getCurrentContext();
+        if (ctx.getRequest().getHeader(POST_ID) != null){
+            return ctx.getRequest().getHeader(POST_ID);
+        }else {
+            return ctx.getZuulRequestHeaders().get(POST_ID);
+        }
+    }
+    public void setPostId(String postId){
+        RequestContext ctx = RequestContext.getCurrentContext();
+        ctx.addZuulRequestHeader(POST_ID,postId);
     }
 
     public final String getUserId(){

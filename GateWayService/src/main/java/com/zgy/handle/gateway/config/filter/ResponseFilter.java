@@ -40,6 +40,7 @@ public class ResponseFilter extends ZuulFilter {
         logger.info("Adding the correlation id to the outbound headers.");
         ctx.getResponse().addHeader(FilterUtils.CORRELATION_ID, filterUtils.getCorrelationId());
         ctx.getResponse().addHeader(FilterUtils.USER_INFO, filterUtils.getUserInfo());
+        ctx.getResponse().addHeader(FilterUtils.USER_ID,filterUtils.getUserId());
 
         logger.info("Completing outgoing request for {}." + ctx.getRequest().getRequestURI());
 

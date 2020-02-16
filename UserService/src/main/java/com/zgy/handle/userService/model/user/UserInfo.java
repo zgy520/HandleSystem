@@ -16,6 +16,9 @@ import java.util.Set;
 public class UserInfo {
     private String userName;
     private String pasword;
+    private String userId;
+    private String orgId;
+    private String postId;
     private Set<String> roleSet = new HashSet<>();
     public UserInfo(){
 

@@ -27,21 +27,32 @@ public class JwtUserDetailsService implements UserDetailsService {
         //log.info(userFeignClient.getUserInfo(username).getUserName());
         UserInfo userInfo = userFeignClient.getUserInfo(username);
         if (userInfo != null){
-            Set<String> roleSet = userInfo.getRoleSet();
-            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-            for (String role : roleSet){
-                SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role);
-                grantedAuthorities.add(simpleGrantedAuthority);
-            }
-            return new User(userInfo.getUserName(),userInfo.getPasword(),grantedAuthorities);
+
+            //return new User(userInfo.getUserName(),userInfo.getPasword(),getGrantedAuthority(userInfo));
+            com.zgy.handle.gateway.model.UserDetails userDetails = new com.zgy.handle.gateway.model.UserDetails(userInfo.getUserName(),
+                    userInfo.getPasword(),getGrantedAuthority(userInfo));
+            userDetails.setUserId(userInfo.getUserId());
+            userDetails.setOrgId(userInfo.getOrgId());
+            userDetails.setPostId(userInfo.getPostId());
+            return userDetails;
+
         }else {
             throw new UsernameNotFoundException("User not found with username : " + username);
         }
-        /*if ("zgy".equals(username)){
-            return new User("zgy","$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-                    new ArrayList<>());
-        }else {
-            throw new UsernameNotFoundException("User not found with username : " + username);
-        }*/
+    }
+
+    /**
+     * 获取授权信息
+     * @param userInfo
+     * @return
+     */
+    private List<GrantedAuthority> getGrantedAuthority(UserInfo userInfo){
+        Set<String> roleSet = userInfo.getRoleSet();
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        for (String role : roleSet){
+            SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role);
+            grantedAuthorities.add(simpleGrantedAuthority);
+        }
+        return grantedAuthorities;
     }
 }

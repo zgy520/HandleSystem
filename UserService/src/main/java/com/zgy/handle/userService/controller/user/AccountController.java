@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 用户验证的类
+ */
 @RestController
 @Slf4j
 @RequestMapping(value = "account")
@@ -21,12 +24,17 @@ public class AccountController {
     }
     @PostMapping(value = "findAccountByLoginName")
     public UserInfo findByLoginName(@RequestBody String loginName){
-        log.info("请求的用户名称为:" + loginName);
         Account account = this.accountService.findByLoginName(loginName);
         if (account == null){
             return null;
         }
-        UserInfo userInfo = new UserInfo(account.getLoginName(),account.getPassword(),null);
+        UserInfo userInfo = UserInfo.builder()
+                .userName(account.getLoginName())
+                .pasword(account.getPassword())
+                .userId(account.getId().toString())
+                .orgId("222")
+                .postId("333")
+                .build();
         Set<String> roleSet = new HashSet<>();
         roleSet.add("admin");
         roleSet.add("general");

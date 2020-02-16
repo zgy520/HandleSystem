@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.util.hibernate;
+package com.zgy.handle.common.hibernate;
 
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;

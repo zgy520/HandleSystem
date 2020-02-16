@@ -3,10 +3,10 @@ package com.zgy.handle.gateway.config.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import com.zgy.handle.gateway.model.UserDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -47,6 +47,17 @@ public class TrackingFilter extends ZuulFilter {
     }
 
     /**
+     * 使用已经存储了用户信息
+     * @return
+     */
+    private boolean isUserInfoPresent(){
+        if (filterUtils.getUserInfo() != null){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 是否存在token
      * @return
      */
@@ -68,17 +79,18 @@ public class TrackingFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         if(isCorrelationIdPresent()) {
-            log.info("tmx-correlation-id found in tracking filter: " + filterUtils.getCorrelationId());
+            //log.info("tmx-correlation-id found in tracking filter: " + filterUtils.getCorrelationId());
         }else {
             filterUtils.setCorrelationId(generateCorrelationId());
-            log.info("tmx-correlation-id generated in tracking filter: " + filterUtils.getCorrelationId());
+            //log.info("tmx-correlation-id generated in tracking filter: " + filterUtils.getCorrelationId());
         }
-        RequestContext ctx = RequestContext.getCurrentContext();
-        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        filterUtils.setUserInfo(userDetails);
-        log.info("获取到的用户信息为: " + userDetails.getUsername());
-        log.info("Processing incoming request for: ",
-                ctx.getRequest().getRequestURI());
+        if (!isUserInfoPresent()){
+            UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            filterUtils.setUserInfo(userDetails);
+            //log.info("setting user info: " + userDetails.getUsername());
+        }else {
+            //log.info("get user info:" + filterUtils.getUserInfo() + ":" + filterUtils.getUserInfo() + ":" + filterUtils.getOrgId());
+        }
         return null;
     }
 }

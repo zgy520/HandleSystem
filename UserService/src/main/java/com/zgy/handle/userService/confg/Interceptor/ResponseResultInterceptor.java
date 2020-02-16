@@ -1,6 +1,5 @@
 package com.zgy.handle.userService.confg.Interceptor;
 
-import com.zgy.handle.userService.response.ResponseResult;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,11 +19,11 @@ public class ResponseResultInterceptor implements HandlerInterceptor {
             final HandlerMethod handlerMethod = (HandlerMethod)handler;
             final Class<?> clazz = handlerMethod.getBeanType();
             final Method method = handlerMethod.getMethod();
-            if (clazz.isAnnotationPresent(ResponseResult.class)){
+            /*if (clazz.isAnnotationPresent(Reponse.class)){
                 request.setAttribute(RESPONSE_RESULT,clazz.getAnnotation(ResponseResult.class));
             }else if (method.isAnnotationPresent(ResponseResult.class)){
                 request.setAttribute(RESPONSE_RESULT,method.getAnnotation(ResponseResult.class));
-            }
+            }*/
         }
         return true;
     }

@@ -1,12 +1,11 @@
 package com.zgy.handle.userService.controller;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.common.zuul.context.UserContext;
 import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.authority.RoleDTO;
-/*import com.zgy.handle.userService.response.ResponseCode;*/
 import com.zgy.handle.userService.service.authority.RoleService;
 import com.zgy.handle.userService.service.authority.RoleSpecificationsService;
-import com.zgy.handle.userService.util.context.UserContext;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+/*import com.zgy.handle.userService.response.ResponseCode;*/
 
 @RestController
 @Api("角色相关的接口信息")

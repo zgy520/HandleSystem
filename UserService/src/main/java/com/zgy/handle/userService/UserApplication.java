@@ -1,6 +1,6 @@
 package com.zgy.handle.userService;
 
-import com.zgy.handle.userService.util.context.UserContextInterceptor;
+import com.zgy.handle.common.zuul.context.UserContextInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -9,7 +9,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
 //@EnableResourceServer
