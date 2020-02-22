@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.confg.security.cros;
+package com.zgy.handle.gateway.config.cros;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
