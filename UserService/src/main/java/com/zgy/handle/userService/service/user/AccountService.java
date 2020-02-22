@@ -1,9 +1,13 @@
 package com.zgy.handle.userService.service.user;
 
 import com.zgy.handle.userService.model.user.Account;
+import com.zgy.handle.userService.model.user.AccountDTO;
 import com.zgy.handle.userService.repository.user.AccountRepository;
 import com.zgy.handle.userService.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.EnumSet;
@@ -21,7 +25,10 @@ public class AccountService extends SystemService<Account> {
         return this.accountRepository.findByLoginName(loginName);
     }
 
-    public void test(){
-
+    public Page<Account> findAllByDynamicQuery(Pageable pageable, AccountDTO accountDTO){
+        Specification<Account> specification = Specification
+                .where(accountDTO.getName() == null? null : AccountRepository.nameContains(accountDTO.getName()));
+        return accountRepository.findAll(specification,pageable);
     }
+    
 }
