@@ -2,6 +2,7 @@ package com.zgy.handle.userService.service;
 
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -27,6 +28,7 @@ public abstract class SystemService<T> {
     public Optional<T> findById(Long id){
         return systemRepository.findById(id);
     }
+
 
     /**
      * 根据分页获取数据

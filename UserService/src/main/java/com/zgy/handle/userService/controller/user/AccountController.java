@@ -4,11 +4,17 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.user.convert.AccountMapper;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
+import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.model.user.UserInfo;
+import com.zgy.handle.userService.model.user.cross.RolePostDTO;
+import com.zgy.handle.userService.service.authority.RoleService;
+import com.zgy.handle.userService.service.authority.post.PostService;
 import com.zgy.handle.userService.service.user.AccountService;
+import com.zgy.handle.userService.util.Str.StrUtils;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,10 +23,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 用户验证的类
@@ -32,6 +35,9 @@ import java.util.Set;
 public class AccountController {
     private final AccountService accountService;
     private final AccountMapper accountMapper;
+    private final RoleService roleService;
+    private final PostService postService;
+    //private final SelectAccountMapper selectAccountMapper;
 
     @PostMapping(value = "findAccountByLoginName")
     public UserInfo findByLoginName(@RequestBody String loginName){
@@ -74,10 +80,15 @@ public class AccountController {
     }
 
     @PostMapping(value = "update")
-    public ResponseCode<AccountDTO> update(AccountDTO accountDTO){
+    public ResponseCode<AccountDTO> update(@RequestBody AccountDTO accountDTO){
         ResponseCode<AccountDTO> responseCode = ResponseCode.sucess();
         log.info("获取到的数据为:" + accountDTO);
-        accountService.update(Long.valueOf(accountDTO.getId()),accountMapper.toAccount(accountDTO));
+        Account account = accountMapper.toAccount(accountDTO);
+        List<Long> roleIdList = StrUtils.transformList(accountDTO.getRoleList(),Long::parseLong);
+        List<Long> postIdList = StrUtils.transformList(accountDTO.getPostList(),Long::parseLong);
+        account.setRoleSet(roleService.findByRoleIdIn(roleIdList));
+        account.setPostSet(postService.findByPostIdIn(postIdList));
+        accountService.update(StringUtils.isBlank(accountDTO.getId())? null : Long.valueOf(accountDTO.getId()),account);
         responseCode.setData(accountDTO);
         return responseCode;
     }
@@ -105,5 +116,24 @@ public class AccountController {
             throw new EntityNotFoundException("找不到id对应为:" + id.toString() + "的值");
         accountService.delete(id);
         return responseCode;
+    }
+
+    @GetMapping(value = "getAccountList")
+    public ResponseCode<List<SelectDTO>> getAccountList(){
+        ResponseCode<List<SelectDTO>> responseCode = ResponseCode.sucess();
+        List<Account> accounts = accountService.findAllAccounts();
+        List<SelectDTO> accountSelectDTOList = new ArrayList<>();
+        accounts.stream().forEach(account -> {
+            SelectDTO accountSelectDTO = new SelectDTO(account.getId().toString(),account.getName());
+            accountSelectDTOList.add(accountSelectDTO);
+        });
+        responseCode.setData(accountSelectDTOList);
+        return responseCode;
+    }
+
+
+    @GetMapping(value = "getRolePostListById/{id}")
+    public ResponseCode<RolePostDTO> getRolePostListById(@PathVariable(value = "id") Long id){
+        return accountService.fetchRolePostListByUserId(id);
     }
 }

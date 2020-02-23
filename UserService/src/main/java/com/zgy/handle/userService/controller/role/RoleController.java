@@ -5,12 +5,17 @@ import com.zgy.handle.common.zuul.context.UserContext;
 import com.zgy.handle.userService.controller.role.convert.RoleMapper;
 import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.authority.RoleDTO;
+import com.zgy.handle.userService.model.user.Account;
+import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.authority.RoleService;
 import com.zgy.handle.userService.service.authority.RoleSpecificationsService;
+import com.zgy.handle.userService.service.user.AccountService;
+import com.zgy.handle.userService.util.Str.StrUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,8 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @Api("角色相关的接口信息")
@@ -34,6 +38,7 @@ public class RoleController {
     private final RoleSpecificationsService roleSpecificationsService;
     private final HttpServletRequest request;
     private final RoleMapper roleMapper;
+    private final AccountService accountService;
 
     /**
      * 获取角色列表
@@ -52,17 +57,21 @@ public class RoleController {
         Page<Role> roleList = roleSpecificationsService.findAllByDynamicQuery(roleQuery,pageable);
         List<Role> roles = roleList.getContent();
         List<RoleDTO> roleDTOList = roleMapper.toRoleDTOs(roles);
+        roleService.fetchAccountByRole(roleDTOList);
         responseCode.setPageInfo(roleList);
         responseCode.setData(roleDTOList);
         return responseCode;
     }
 
     @PostMapping(value = "update")
-    public ResponseCode<String> update(@RequestBody Role role){
-        ResponseCode<String> responseCode = new ResponseCode<>();
-        log.info("获取到的数据为:" + role);
-        roleService.update(role.getId(),role);
-        responseCode.setCode(20000);
+    public ResponseCode<String> update(@RequestBody RoleDTO roleDTO){
+        ResponseCode<String> responseCode = ResponseCode.sucess();
+        log.info("获取到的数据为:" + roleDTO);
+        Role role = roleMapper.toRoleDTO(roleDTO);
+        List<Long> userIdList = StrUtils.transformList(roleDTO.getUserList(),Long::parseLong);
+        Set<Account> accountSet = accountService.findByIdIn(userIdList);
+        role.setAccountSet(accountSet);
+        roleService.update(StringUtils.isBlank(roleDTO.getId()) ? null : Long.valueOf(roleDTO.getId()),role);
         return responseCode;
     }
 
@@ -88,6 +97,18 @@ public class RoleController {
         else
             throw new EntityNotFoundException("找不到id对应为:" + id.toString() + "的值");
         roleService.delete(id);
+        return responseCode;
+    }
+    @GetMapping(value = "getRoleList")
+    public ResponseCode<List<SelectDTO>> getRoleList(){
+        ResponseCode<List<SelectDTO>> responseCode = ResponseCode.sucess();
+        List<Role> roleList = roleService.findAll();
+        List<SelectDTO> selectDTOS = new ArrayList<>();
+        roleList.stream().forEach(role -> {
+            SelectDTO selectDTO = new SelectDTO(role.getId().toString(),role.getName());
+            selectDTOS.add(selectDTO);
+        });
+        responseCode.setData(selectDTOS);
         return responseCode;
     }
 }

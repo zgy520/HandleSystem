@@ -8,10 +8,19 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.text.MessageFormat;
+import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface AccountRepository extends SystemRepository<Account>, JpaSpecificationExecutor<Account> {
     Account findByLoginName(String loginName);
+
+    /**
+     * 根据id列表获取所有的账户信息
+     * @param idList
+     * @return
+     */
+    Set<Account> findAllByIdIn(List<Long> idList);
 
     static Specification<Account> nameContains(String name){
         return fieldContains("name",name);
