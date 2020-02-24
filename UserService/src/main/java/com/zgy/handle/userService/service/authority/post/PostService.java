@@ -30,10 +30,6 @@ public class PostService extends SystemService<Post> {
         return this.postRepository.findByName(postName);
     }
 
-    public List<Post> findAll(){
-        return postRepository.findAll();
-    }
-
     public Page<Post> findAllByDynamicQuery(Pageable pageable, PostDTO postD){
         Specification<Post> specification = Specification
                 .where(postD.getName() == null? null : PostRepository.fieldContains("name",postD.getName()))

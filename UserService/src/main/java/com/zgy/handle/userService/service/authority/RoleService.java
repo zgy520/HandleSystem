@@ -66,7 +66,4 @@ public class RoleService extends SystemService {
         });
     }
 
-    public List<Role> findAll(){
-        return roleRepository.findAll();
-    }
 }
