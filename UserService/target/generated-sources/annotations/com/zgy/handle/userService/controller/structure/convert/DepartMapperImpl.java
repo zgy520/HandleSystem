@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-02-24T21:10:34+0800",
+    date = "2020-02-27T17:26:28+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.4 (Oracle Corporation)"
 )
 @Component
@@ -26,6 +26,7 @@ public class DepartMapperImpl implements DepartMapper {
         if ( industryDTO.getId() != null ) {
             department.setId( Long.parseLong( industryDTO.getId() ) );
         }
+        department.setNote( industryDTO.getNote() );
         department.setCode( industryDTO.getCode() );
         department.setName( industryDTO.getName() );
         department.setType( industryDTO.getType() );
@@ -47,6 +48,7 @@ public class DepartMapperImpl implements DepartMapper {
         departmentDTO.setName( department.getName() );
         departmentDTO.setCode( department.getCode() );
         departmentDTO.setType( department.getType() );
+        departmentDTO.setNote( department.getNote() );
 
         return departmentDTO;
     }

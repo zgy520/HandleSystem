@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-02-23T17:09:02+0800",
+    date = "2020-02-27T17:26:28+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.4 (Oracle Corporation)"
 )
 @Component
@@ -48,7 +48,7 @@ public class RoleMapperImpl implements RoleMapper {
     }
 
     @Override
-    public Role toRoleDTO(RoleDTO roleDTO) {
+    public Role toRole(RoleDTO roleDTO) {
         if ( roleDTO == null ) {
             return null;
         }

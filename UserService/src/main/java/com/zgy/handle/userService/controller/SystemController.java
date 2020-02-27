@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@RestController
 public abstract class SystemController<T,U> {
     private final SystemRefactorService systemRefactorService;
 
@@ -56,9 +55,18 @@ public abstract class SystemController<T,U> {
         Page<T> page = systemRefactorService.findByDynamicQuery(pageable,dto);
         List<T> contentList = page.getContent();
         List<U> dtoList = convertTtoU(contentList);
+        responseCode.setPageInfo(page);
+        fillList(contentList,dtoList);
         responseCode.setData(dtoList);
         return responseCode;
     }
+
+    /**
+     * 获取到列表后，对列表进行最后的完善
+     * @param entityList
+     * @param dtoList
+     */
+    public void fillList(List<T> entityList,List<U> dtoList){}
 
     /**
      * 根据id获取对象信息

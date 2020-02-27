@@ -13,5 +13,5 @@ import java.util.List;
 public interface RoleMapper {
     RoleDTO toRoleDTO(Role role);
     List<RoleDTO> toRoleDTOs(List<Role> roles);
-    Role toRoleDTO(RoleDTO roleDTO);
+    Role toRole(RoleDTO roleDTO);
 }

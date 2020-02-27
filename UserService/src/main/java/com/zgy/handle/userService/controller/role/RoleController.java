@@ -16,7 +16,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -67,7 +66,7 @@ public class RoleController {
     public ResponseCode<String> update(@RequestBody RoleDTO roleDTO){
         ResponseCode<String> responseCode = ResponseCode.sucess();
         log.info("获取到的数据为:" + roleDTO);
-        Role role = roleMapper.toRoleDTO(roleDTO);
+        Role role = roleMapper.toRole(roleDTO);
         List<Long> userIdList = StrUtils.transformList(roleDTO.getUserList(),Long::parseLong);
         Set<Account> accountSet = accountService.findByIdIn(userIdList);
         role.setAccountSet(accountSet);
