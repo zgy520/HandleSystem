@@ -2,10 +2,12 @@ package com.zgy.handle.userService.service.structure;
 
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.structure.DepartmentDTO;
+import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.repository.structure.DepartmentRepository;
-import com.zgy.handle.userService.service.SystemService;
+import com.zgy.handle.userService.service.SystemRefactorService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -13,12 +15,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @Slf4j
-public class DepartmentService extends SystemService<Department> {
+public class DepartmentService extends SystemRefactorService<Department,DepartmentDTO> {
     private DepartmentRepository departmentRepository;
+    @Autowired
+    private EnterpriseService enterpriseService;
     public DepartmentService(DepartmentRepository departmentRepository) {
         super(departmentRepository);
         this.departmentRepository = departmentRepository;
@@ -39,7 +44,7 @@ public class DepartmentService extends SystemService<Department> {
      * @param pageable
      * @return
      */
-    public Page<Department> findByDynamicQuery(DepartmentDTO departmentDTO, Pageable pageable){
+    public Page<Department> findByDynamicQuery(Pageable pageable, DepartmentDTO departmentDTO){
         return departmentRepository.findAll(getSpecification(departmentDTO),pageable);
     }
 
@@ -74,6 +79,7 @@ public class DepartmentService extends SystemService<Department> {
             departmentDTO.setCode(department.getCode());
             departmentDTO.setName(department.getName());
             departmentDTO.setId(department.getId().toString());
+            departmentDTO.setNote(department.getNote());
             departmentDTO.setType(department.getType());
             departmentDTO.setParentId(department.getParent()==null?"":department.getParent().getId().toString());
             departmentDTO.setEnterpriseId(department.getEnterprise()==null?"":department.getEnterprise().getId().toString());
@@ -91,5 +97,21 @@ public class DepartmentService extends SystemService<Department> {
     private List<DepartmentDTO> getChildrenEnterprise(Long parentId){
         List<Department> chidrenEnterprise = departmentRepository.findByParentId(parentId);
         return getDepartmentDtoList(chidrenEnterprise);
+    }
+
+    @Override
+    public void beforeUpdate(DepartmentDTO departmentDTO, Department department) {
+        if (StringUtils.isNotBlank(departmentDTO.getParentId())){
+            Optional<Department> parentOptional = this.findById(Long.valueOf(departmentDTO.getParentId()));
+            if (parentOptional.isPresent()){
+                department.setParent(parentOptional.get());
+            }
+        }
+        if (StringUtils.isNotBlank(departmentDTO.getEnterpriseId())){
+            Optional<Enterprise> enterpriseOptional = enterpriseService.findById(Long.valueOf(departmentDTO.getEnterpriseId()));
+            if (enterpriseOptional.isPresent()){
+                department.setEnterprise(enterpriseOptional.get());
+            }
+        }
     }
 }

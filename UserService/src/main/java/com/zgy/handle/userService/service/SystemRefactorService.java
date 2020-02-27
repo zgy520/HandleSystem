@@ -75,11 +75,12 @@ public abstract class SystemRefactorService<T,U> {
     public T update(U u,T t){
         beforeUpdate(u,t);
         t = (T) systemRepository.save(t);
-        postUpdate(t);
+        postUpdate(t,u);
         return t;
     }
     public void beforeUpdate(U u,T t){}
 
+    public void postUpdate(T t,U u){}
 
 
     public void delete(Long id){

@@ -5,7 +5,10 @@ import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.PostDTO;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.authority.PostRepository;
+import com.zgy.handle.userService.service.SystemRefactorService;
 import com.zgy.handle.userService.service.SystemService;
+import com.zgy.handle.userService.service.user.AccountService;
+import com.zgy.handle.userService.util.Str.StrUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +21,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class PostService extends SystemService<Post> {
+public class PostService extends SystemRefactorService<Post,PostDTO> {
     private PostRepository postRepository;
+    @Autowired
+    private AccountService accountService;
     @Autowired
     public PostService(PostRepository postRepository){
         super(postRepository);
@@ -30,11 +35,19 @@ public class PostService extends SystemService<Post> {
         return this.postRepository.findByName(postName);
     }
 
-    public Page<Post> findAllByDynamicQuery(Pageable pageable, PostDTO postD){
+    @Override
+    public Page<Post> findByDynamicQuery(Pageable pageable, PostDTO postD){
         Specification<Post> specification = Specification
                 .where(postD.getName() == null? null : PostRepository.fieldContains("name",postD.getName()))
                 .and(postD.getCode() == null? null : PostRepository.fieldContains("code",postD.getCode()));
         return postRepository.findAll(specification,pageable);
+    }
+
+    @Override
+    public void beforeUpdate(PostDTO postDTO, Post post) {
+        List<Long> userIdList = StrUtils.transformList(postDTO.getUserList(),Long::parseLong);
+        Set<Account> accountSet = accountService.findByIdIn(userIdList);
+        post.setAccountSet(accountSet);
     }
 
     @Transactional(readOnly = true)

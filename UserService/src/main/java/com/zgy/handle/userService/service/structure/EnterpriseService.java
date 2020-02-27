@@ -2,10 +2,13 @@ package com.zgy.handle.userService.service.structure;
 
 import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.model.structure.EnterpriseDTO;
+import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.repository.structure.EnterpriseRepository;
+import com.zgy.handle.userService.service.SystemRefactorService;
 import com.zgy.handle.userService.service.SystemService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -13,12 +16,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @Slf4j
-public class EnterpriseService extends SystemService<Enterprise> {
+public class EnterpriseService extends SystemRefactorService<Enterprise,EnterpriseDTO> {
     private EnterpriseRepository enterpriseRepository;
+    @Autowired
+    private IndustryService industryService;
     public EnterpriseService(EnterpriseRepository enterpriseRepository) {
         super(enterpriseRepository);
         this.enterpriseRepository = enterpriseRepository;
@@ -42,6 +48,7 @@ public class EnterpriseService extends SystemService<Enterprise> {
             enterpriseDTO.setCode(parent.getCode());
             enterpriseDTO.setName(parent.getName());
             enterpriseDTO.setId(parent.getId().toString());
+            enterpriseDTO.setNote(parent.getNote());
             enterpriseDTO.setShortName(parent.getShortName());
             enterpriseDTO.setParentId(parent.getParent()==null?"":parent.getParent().getId().toString());
             enterpriseDTO.setIndustryId(parent.getIndustry()==null?"":parent.getIndustry().getId().toString());
@@ -77,12 +84,30 @@ public class EnterpriseService extends SystemService<Enterprise> {
      * @param pageable
      * @return
      */
-    public Page<Enterprise> findByDynamicQuery(EnterpriseDTO enterpriseDTO, Pageable pageable){
+    @Override
+    public Page<Enterprise> findByDynamicQuery(Pageable pageable, EnterpriseDTO enterpriseDTO){
         Specification<Enterprise> specification = Specification
                 .where(StringUtils.isBlank(enterpriseDTO.getName())? null : enterpriseRepository.blurStrQuery("name",enterpriseDTO.getName()))
                 .and(StringUtils.isBlank(enterpriseDTO.getCode())?null : enterpriseRepository.blurStrQuery("code",enterpriseDTO.getCode()))
                 .and(StringUtils.isBlank(enterpriseDTO.getShortName())?null: enterpriseRepository.blurStrQuery("shortName",enterpriseDTO.getShortName()))
                 ;
         return enterpriseRepository.findAll(specification,pageable);
+    }
+
+    @Override
+    public void beforeUpdate(EnterpriseDTO enterpriseDTO, Enterprise enterprise) {
+        if (StringUtils.isNotBlank(enterpriseDTO.getParentId())){
+            Optional<Enterprise> parentOptional = this.findById(Long.valueOf(enterpriseDTO.getParentId()));
+            if (parentOptional.isPresent()){
+                enterprise.setParent(parentOptional.get());
+            }
+        }
+        if (StringUtils.isNotBlank(enterpriseDTO.getIndustryId())){
+            Optional<Industry> industryOptional = industryService.findById(Long.valueOf(enterpriseDTO.getIndustryId()));
+            if (industryOptional.isPresent()){
+                enterprise.setIndustry(industryOptional.get());
+            }
+        }
+        enterprise.setNote(enterpriseDTO.getNote());
     }
 }

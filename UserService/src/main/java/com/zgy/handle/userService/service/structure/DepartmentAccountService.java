@@ -6,7 +6,7 @@ import com.zgy.handle.userService.model.structure.DepartmentAccount;
 import com.zgy.handle.userService.model.structure.DepartmentAccountPK;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.structure.DepartmentAccountRepository;
-import com.zgy.handle.userService.service.SystemService;
+import com.zgy.handle.userService.service.SystemRefactorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class DepartmentAccountService extends SystemService<DepartmentAccount> {
+public class DepartmentAccountService extends SystemRefactorService<DepartmentAccount,DepartmentAccount> {
     private DepartmentAccountRepository departmentAccountRepository;
     public DepartmentAccountService(DepartmentAccountRepository departmentAccountRepository) {
         super(departmentAccountRepository);
@@ -48,4 +48,7 @@ public class DepartmentAccountService extends SystemService<DepartmentAccount> {
         return null;
     }
 
+    public int deleteByAccountId(Long accountId){
+        return departmentAccountRepository.deleteByAccountId(accountId);
+    }
 }

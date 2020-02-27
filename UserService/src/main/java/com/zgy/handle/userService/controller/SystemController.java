@@ -49,7 +49,7 @@ public abstract class SystemController<T,U> {
      * @return
      */
     @GetMapping(value = "list")
-    public ResponseCode<List<U>> getRoleList(@PageableDefault(page = 1,size = 10) Pageable pageable, U dto){
+    public ResponseCode<List<U>> list(@PageableDefault(page = 1,size = 10) Pageable pageable, U dto){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
         pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), Sort.Direction.DESC,getSortedField());
         Page<T> page = systemRefactorService.findByDynamicQuery(pageable,dto);
