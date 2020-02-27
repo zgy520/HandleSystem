@@ -17,6 +17,8 @@ public class EnterpriseDTO {
     private String code;
     private String name;
     private String shortName;
-    private Long parentId;
+    private String note;
+    private String parentId;
+    private String industryId;
     private List<EnterpriseDTO> children = new ArrayList<>();
 }

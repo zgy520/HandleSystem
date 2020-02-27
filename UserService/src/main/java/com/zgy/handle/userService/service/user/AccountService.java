@@ -4,11 +4,14 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.authority.RoleDTO;
+import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
 import com.zgy.handle.userService.model.user.cross.RolePostDTO;
+import com.zgy.handle.userService.repository.structure.DepartmentAccountRepository;
 import com.zgy.handle.userService.repository.user.AccountRepository;
 import com.zgy.handle.userService.service.SystemService;
+import com.zgy.handle.userService.service.structure.DepartmentAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -23,6 +26,8 @@ import java.util.stream.Collectors;
 @Service
 public class AccountService extends SystemService<Account> {
     private AccountRepository accountRepository;
+    @Autowired
+    private DepartmentAccountService departmentAccountService;
     @Autowired
     public AccountService(AccountRepository accountRepository){
         super(accountRepository);
@@ -69,9 +74,23 @@ public class AccountService extends SystemService<Account> {
         Account account = this.accountRepository.findById(userId).get();
         List<String> roleList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.toList());
-        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList);
+        Department department = departmentAccountService.getByAccountId(userId);
+        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString());
         responseCode.setData(rolePostDTO);
         return responseCode;
+    }
+
+    @Transactional(readOnly = true)
+    public String fetchPostIdListByAccountId(Long userId){
+        Account account = this.accountRepository.findById(userId).get();
+        String postList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.joining(","));
+        return postList;
+    }
+    @Transactional(readOnly = true)
+    public Set<String> fetchRoleCodeListByAccountId(Long userId){
+        Account account = this.accountRepository.findById(userId).get();
+        Set<String> roleList = account.getRoleSet().stream().map(Role::getCode).collect(Collectors.toSet());
+        return roleList;
     }
     
 }

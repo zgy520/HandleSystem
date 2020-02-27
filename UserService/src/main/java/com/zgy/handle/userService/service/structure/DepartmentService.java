@@ -63,7 +63,7 @@ public class DepartmentService extends SystemService<Department> {
         List<Department> parentEnterpriseList = departmentRepository.findByParentIdIsNull();
         // 遍历顶级企业下的所有子企业
         departmentDTOList = getDepartmentDtoList(parentEnterpriseList);
-        log.info("获取到的最终数据为: " + departmentDTOList.toString());
+        //log.info("获取到的最终数据为: " + departmentDTOList.toString());
         return departmentDTOList;
     }
 
@@ -75,6 +75,8 @@ public class DepartmentService extends SystemService<Department> {
             departmentDTO.setName(department.getName());
             departmentDTO.setId(department.getId().toString());
             departmentDTO.setType(department.getType());
+            departmentDTO.setParentId(department.getParent()==null?"":department.getParent().getId().toString());
+            departmentDTO.setEnterpriseId(department.getEnterprise()==null?"":department.getEnterprise().getId().toString());
             departmentDTO.setChildren(getChildrenEnterprise(department.getId()));
             enterpriseDTOList.add(departmentDTO);
         }

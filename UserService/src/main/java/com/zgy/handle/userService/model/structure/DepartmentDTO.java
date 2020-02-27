@@ -13,6 +13,8 @@ public class DepartmentDTO {
     private String name;
     private String code;
     private String type;
-    private Long parentId;
+    private String note;
+    private String parentId;
+    private String enterpriseId;
     private List<DepartmentDTO> children = new ArrayList<>();
 }

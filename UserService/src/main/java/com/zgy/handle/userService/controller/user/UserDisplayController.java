@@ -34,7 +34,8 @@ public class UserDisplayController {
 
     @GetMapping(value = "info")
     public ResponseCode<UserDisplayInfo> getUserInfo(){
-        log.info("获取的userId的值为:" + request.getHeader(UserContext.USER_ID));
+        log.info("获取的userId的值为:" + request.getHeader(UserContext.USER_ID)
+        + ",postId为: " + request.getHeader(UserContext.POST_ID) + ",机构id为:" + request.getHeader(UserContext.ORG_ID));
         ResponseCode<UserDisplayInfo> responseCode = ResponseCode.sucess();
         Optional<Account> accountOptional = accountService.findById(Long.valueOf(request.getHeader(UserContext.USER_ID)));
         if (accountOptional.isPresent()){
@@ -43,9 +44,7 @@ public class UserDisplayController {
             userDisplayInfo.setName(account.getName());
             userDisplayInfo.setIntroduction(account.getNote());
             userDisplayInfo.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
-            Set<String> roleSet = new HashSet<>();
-            roleSet.add("admin");
-            roleSet.add("editor");
+            Set<String> roleSet = accountService.fetchRoleCodeListByAccountId(account.getId());
             userDisplayInfo.setRoleSet(roleSet);
             responseCode.setData(userDisplayInfo);
         }else {

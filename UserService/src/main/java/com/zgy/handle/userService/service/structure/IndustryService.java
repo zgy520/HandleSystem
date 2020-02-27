@@ -58,7 +58,7 @@ public class IndustryService extends SystemService<Industry> {
         List<Industry> parentEnterpriseList = industryRepository.findByParentIdIsNull();
         // 遍历顶级企业下的所有子企业
         industryDTOList = getDepartmentDtoList(parentEnterpriseList);
-        log.info("获取到的最终数据为: " + industryDTOList.toString());
+        //log.info("获取到的最终数据为: " + industryDTOList.toString());
         return industryDTOList;
     }
 
@@ -68,7 +68,9 @@ public class IndustryService extends SystemService<Industry> {
             IndustryDTO industryDTO = new IndustryDTO();
             industryDTO.setCode(industry.getCode());
             industryDTO.setName(industry.getName());
+            industryDTO.setNote(industry.getNote());
             industryDTO.setId(industry.getId().toString());
+            industryDTO.setParentId(industry.getParent()==null?"":industry.getParent().getId().toString());
             industryDTO.setChildren(getChildrenEnterprise(industry.getId()));
             industryDTOList.add(industryDTO);
         }

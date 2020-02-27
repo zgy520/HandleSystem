@@ -31,7 +31,7 @@ public class EnterpriseService extends SystemService<Enterprise> {
         List<Enterprise> parentEnterpriseList = enterpriseRepository.findByParentIdIsNull();
         // 遍历顶级企业下的所有子企业
         enterpriseDTOList = getEnterpriseDtoList(parentEnterpriseList);
-        log.info("获取到的最终数据为: " + enterpriseDTOList.toString());
+        //log.info("获取到的最终数据为: " + enterpriseDTOList.toString());
         return enterpriseDTOList;
     }
 
@@ -43,6 +43,8 @@ public class EnterpriseService extends SystemService<Enterprise> {
             enterpriseDTO.setName(parent.getName());
             enterpriseDTO.setId(parent.getId().toString());
             enterpriseDTO.setShortName(parent.getShortName());
+            enterpriseDTO.setParentId(parent.getParent()==null?"":parent.getParent().getId().toString());
+            enterpriseDTO.setIndustryId(parent.getIndustry()==null?"":parent.getIndustry().getId().toString());
             enterpriseDTO.setChildren(getChildrenEnterprise(parent.getId()));
             enterpriseDTOList.add(enterpriseDTO);
         }

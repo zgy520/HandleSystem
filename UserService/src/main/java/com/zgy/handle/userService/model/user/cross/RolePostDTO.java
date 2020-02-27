@@ -13,4 +13,5 @@ import java.util.List;
 public class RolePostDTO {
     private List<String> roleList = new ArrayList<>();
     private List<String> postList = new ArrayList<>();
+    private String departId;
 }

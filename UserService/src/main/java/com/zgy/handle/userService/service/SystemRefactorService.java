@@ -2,19 +2,20 @@ package com.zgy.handle.userService.service;
 
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class SystemService<T> {
+public abstract class SystemRefactorService<T,U> {
     private SystemRepository systemRepository;
+    @Autowired
+    private HttpServletRequest request;
 
     @Autowired
-    public SystemService(SystemRepository systemRepository){
+    public SystemRefactorService(SystemRepository systemRepository){
         this.systemRepository = systemRepository;
     }
 
@@ -41,6 +42,16 @@ public abstract class SystemService<T> {
     }
 
     /**
+     * 动态查询
+     * 子类需要重载改方法，否则将返回findAll的查询结果
+     * @param pageable
+     * @param dto
+     * @return
+     */
+    public Page<T> findByDynamicQuery(Pageable pageable,U dto){
+        return this.findAll(pageable);
+    }
+    /**
      * 更新操作之前执行
      * 可根据需要进行重载
      * @param t
@@ -60,6 +71,16 @@ public abstract class SystemService<T> {
         postUpdate(t);
         return t;
     }
+
+    public T update(U u,T t){
+        beforeUpdate(u,t);
+        t = (T) systemRepository.save(t);
+        postUpdate(t);
+        return t;
+    }
+    public void beforeUpdate(U u,T t){}
+
+
 
     public void delete(Long id){
         systemRepository.deleteById(id);

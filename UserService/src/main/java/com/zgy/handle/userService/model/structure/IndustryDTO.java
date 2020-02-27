@@ -15,6 +15,7 @@ public class IndustryDTO {
     private String name;
     private String code;
     private String shortName;
-    private Long parentId;
+    private String parentId;
+    private String note;
     private List<IndustryDTO> children = new ArrayList<>();
 }
