@@ -35,6 +35,16 @@ public class PostController extends SystemController<Post,PostDTO> {
     }
 
     @Override
+    public List<SelectDTO> convertTtoSelectDTOList(List<Post> posts) {
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        posts.stream().forEach(post -> {
+            SelectDTO selectDTO = new SelectDTO(post.getId().toString(),post.getName());
+            selectDTOList.add(selectDTO);
+        });
+        return selectDTOList;
+    }
+
+    @Override
     public List<PostDTO> convertTtoU(List<Post> posts) {
         return postMapper.toPostDTOs(posts);
     }

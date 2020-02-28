@@ -5,6 +5,7 @@ import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.structure.convert.DepartMapper;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.structure.DepartmentDTO;
+import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,16 @@ public class DepartmentController extends SystemController<Department,Department
     @Override
     public Department convertUtoT(DepartmentDTO departmentDTO) {
         return departMapper.toDepartment(departmentDTO);
+    }
+
+    @Override
+    public List<SelectDTO> convertTtoSelectDTOList(List<Department> departmentList) {
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        departmentList.stream().forEach(department -> {
+            SelectDTO selectDTO = new SelectDTO(department.getId().toString(),department.getName());
+            selectDTOList.add(selectDTO);
+        });
+        return selectDTOList;
     }
 
     /**

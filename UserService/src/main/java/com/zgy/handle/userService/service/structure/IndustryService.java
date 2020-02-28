@@ -1,12 +1,10 @@
 package com.zgy.handle.userService.service.structure;
 
-import com.zgy.handle.userService.model.structure.Department;
-import com.zgy.handle.userService.model.structure.DepartmentDTO;
 import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.repository.structure.IndustryRepository;
 import com.zgy.handle.userService.service.SystemRefactorService;
-import com.zgy.handle.userService.service.SystemService;
+import com.zgy.handle.userService.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,13 +53,23 @@ public class IndustryService extends SystemRefactorService<Industry,IndustryDTO>
         return industryRepository.findAll(specification,pageable);
     }
 
+    public List<IndustryDTO> getIndustryDtoList(List<IndustryDTO> industryDTOList){
+        TreeConvert treeUtils = new TreeConvert(industryDTOList);
+        try {
+            List<IndustryDTO> industryDTOS = treeUtils.toJsonArray(IndustryDTO.class);
+            return industryDTOS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<IndustryDTO> getIndustryDtoList(){
-        List<IndustryDTO> industryDTOList = new ArrayList<>();
         // 获取所有的上级机构
         List<Industry> parentEnterpriseList = industryRepository.findByParentIdIsNull();
         // 遍历顶级企业下的所有子企业
-        industryDTOList = getDepartmentDtoList(parentEnterpriseList);
-        //log.info("获取到的最终数据为: " + industryDTOList.toString());
+        List<IndustryDTO> industryDTOList = getDepartmentDtoList(parentEnterpriseList);
+        // log.info("获取到的最终数据为: " + industryDTOList.toString());
         return industryDTOList;
     }
 

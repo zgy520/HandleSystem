@@ -8,14 +8,12 @@ import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.IndustryService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "industry")
@@ -35,6 +33,24 @@ public class IndustryController extends SystemController<Industry,IndustryDTO> {
         ResponseCode<List<IndustryDTO>> responseCode = ResponseCode.sucess();
         responseCode.setData(industryService.getIndustryDtoList());
         return responseCode;
+    }
+
+    @GetMapping(value = "convertToTreeList")
+    public List<IndustryDTO> convertToTreeList(){
+        List<Industry> industryList = industryService.findAll();
+        List<IndustryDTO> industryDTOList = industryMapper.toIndustryDTOs(industryList);
+
+        return industryService.getIndustryDtoList(industryDTOList);
+    }
+
+    @Override
+    public List<SelectDTO> convertTtoSelectDTOList(List<Industry> industries) {
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        industries.stream().forEach(industry -> {
+            SelectDTO selectDTO = new SelectDTO(industry.getId().toString(),industry.getName());
+            selectDTOList.add(selectDTO);
+        });
+        return selectDTOList;
     }
 
     @Override

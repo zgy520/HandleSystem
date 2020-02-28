@@ -1,6 +1,8 @@
 package com.zgy.handle.userService.controller;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.userService.model.authority.Role;
+import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.SystemRefactorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,10 +38,8 @@ public abstract class SystemController<T,U> {
      */
     @PostMapping(value = "update")
     public ResponseCode<U> update(@RequestBody U u){
-        ResponseCode<U> responseCode = ResponseCode.sucess();
-        log.info("获取到的数据为:" + u);
         T t = convertUtoT(u);
-        systemRefactorService.update(u,t);
+        ResponseCode<U> responseCode = systemRefactorService.update(u,t);
         return responseCode;
     }
 
@@ -58,6 +59,19 @@ public abstract class SystemController<T,U> {
         responseCode.setPageInfo(page);
         fillList(contentList,dtoList);
         responseCode.setData(dtoList);
+        return responseCode;
+    }
+
+    /**
+     * 获取所有的数据
+     * @return
+     */
+    @GetMapping(value = "all")
+    public ResponseCode<List<U>> all(){
+        ResponseCode<List<U>> responseCode = ResponseCode.sucess();
+        List<T> tList = systemRefactorService.findAll();
+        List<U> uList = convertTtoU(tList);
+        responseCode.setData(uList);
         return responseCode;
     }
 
@@ -100,6 +114,27 @@ public abstract class SystemController<T,U> {
         systemRefactorService.delete(id);
         return responseCode;
     }
+
+    /**
+     * 获取下拉框的列表信息
+     * 即：id和text
+     * @return
+     */
+    @GetMapping(value = "getSelectList")
+    public ResponseCode<List<SelectDTO>> getSelectList(){
+        ResponseCode<List<SelectDTO>> responseCode = ResponseCode.sucess();
+        List<T> tList = systemRefactorService.findAll();
+        List<SelectDTO> selectDTOS = convertTtoSelectDTOList(tList);
+        responseCode.setData(selectDTOS);
+        return responseCode;
+    }
+
+    /**
+     * 将实体列表转化为id和text列表
+     * @param tList
+     * @return
+     */
+    public abstract List<SelectDTO> convertTtoSelectDTOList(List<T> tList);
 
     /**
      * 实体列表转化为dto列表

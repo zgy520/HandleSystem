@@ -1,9 +1,11 @@
 package com.zgy.handle.userService.service;
 
+import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -51,39 +53,58 @@ public abstract class SystemRefactorService<T,U> {
     public Page<T> findByDynamicQuery(Pageable pageable,U dto){
         return this.findAll(pageable);
     }
-    /**
-     * 更新操作之前执行
-     * 可根据需要进行重载
-     * @param t
-     */
-    public void beforeUpdate(Long id,T t){}
 
     /**
-     * 更新操作之后执行
-     * 可对更新后的对象进行操作
+     * 唯一性检查
+     * 返回true表明重复，false不重复，为默认值
+     * @param u
      * @param t
+     * @return
      */
-    public void postUpdate(T t){}
-
-    public T update(Long id,T t){
-        beforeUpdate(id,t);
-        systemRepository.save(t);
-        postUpdate(t);
-        return t;
+    public boolean checkUnique(U u, T t){
+        return false;
     }
 
-    public T update(U u,T t){
-        beforeUpdate(u,t);
-        t = (T) systemRepository.save(t);
-        postUpdate(t,u);
-        return t;
+    @Transactional
+    public ResponseCode<T> update(U u, T t){
+        ResponseCode<T> responseCode = ResponseCode.sucess();
+        if (checkUnique(u,t)){
+            responseCode.setSuccess(false);
+            responseCode.setMsg("违反了唯一性原则!");
+        }else {
+            beforeUpdate(u,t);
+            t = (T) systemRepository.save(t);
+            postUpdate(t,u);
+            responseCode.setData(t);
+        }
+        return responseCode;
     }
     public void beforeUpdate(U u,T t){}
 
     public void postUpdate(T t,U u){}
 
 
-    public void delete(Long id){
-        systemRepository.deleteById(id);
+    public ResponseCode<T> delete(Long id){
+        ResponseCode<T> responseCode = ResponseCode.sucess();
+        if (id == null){
+            responseCode.setSuccess(false);
+            responseCode.setMsg("删除的id不能为空!");
+        }else {
+            Optional<T>  optionalT = this.findById(id);
+            if (optionalT.isPresent()){
+                responseCode.setData(optionalT.get());
+                try {
+                    systemRepository.deleteById(id);
+                }catch (Exception ex){
+                    responseCode.setSuccess(false);
+                    responseCode.setMsg(ex.getMessage());
+                }
+            }else {
+                responseCode.setSuccess(false);
+                responseCode.setMsg("不存在id为:{" + id.toString() + "的数据");
+            }
+        }
+
+        return responseCode;
     }
 }

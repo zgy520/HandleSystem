@@ -52,6 +52,16 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
         return enterpriseMapper.toEnterprise(enterpriseDTO);
     }
 
+    @Override
+    public List<SelectDTO> convertTtoSelectDTOList(List<Enterprise> enterpriseList) {
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        enterpriseList.stream().forEach(enterprise -> {
+            SelectDTO selectDTO = new SelectDTO(enterprise.getId().toString(),enterprise.getName());
+            selectDTOList.add(selectDTO);
+        });
+        return selectDTOList;
+    }
+
     /**
      * 获取所有的企业列表，用于下拉框
      * @return

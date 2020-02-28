@@ -4,6 +4,7 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.user.convert.AccountMapper;
 import com.zgy.handle.userService.model.structure.Department;
+import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
@@ -75,6 +76,16 @@ public class AccountController extends SystemController<Account,AccountDTO> {
     @Override
     public Account convertUtoT(AccountDTO accountDTO) {
         return accountMapper.toAccount(accountDTO);
+    }
+
+    @Override
+    public List<SelectDTO> convertTtoSelectDTOList(List<Account> accountList) {
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        accountList.stream().forEach(account -> {
+            SelectDTO selectDTO = new SelectDTO(account.getId().toString(),account.getName());
+            selectDTOList.add(selectDTO);
+        });
+        return selectDTOList;
     }
 
     @GetMapping(value = "getAccountList")
