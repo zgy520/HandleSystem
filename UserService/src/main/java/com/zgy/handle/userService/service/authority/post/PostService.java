@@ -5,7 +5,6 @@ import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.PostDTO;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.authority.PostRepository;
-import com.zgy.handle.userService.service.SystemRefactorService;
 import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.service.user.AccountService;
 import com.zgy.handle.userService.util.Str.StrUtils;
@@ -21,7 +20,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class PostService extends SystemRefactorService<Post,PostDTO> {
+public class PostService extends SystemService<Post,PostDTO> {
     private PostRepository postRepository;
     @Autowired
     private AccountService accountService;

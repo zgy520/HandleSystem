@@ -8,7 +8,7 @@ import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
 import com.zgy.handle.userService.model.user.cross.RolePostDTO;
 import com.zgy.handle.userService.repository.user.AccountRepository;
-import com.zgy.handle.userService.service.SystemRefactorService;
+import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.service.authority.RoleService;
 import com.zgy.handle.userService.service.authority.post.PostService;
 import com.zgy.handle.userService.service.structure.DepartmentAccountService;
@@ -32,7 +32,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class AccountService extends SystemRefactorService<Account,AccountDTO> {
+public class AccountService extends SystemService<Account,AccountDTO> {
     private AccountRepository accountRepository;
     @Autowired
     private DepartmentAccountService departmentAccountService;

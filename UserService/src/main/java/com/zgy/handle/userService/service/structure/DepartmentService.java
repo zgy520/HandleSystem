@@ -4,7 +4,8 @@ import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.structure.DepartmentDTO;
 import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.repository.structure.DepartmentRepository;
-import com.zgy.handle.userService.service.SystemRefactorService;
+import com.zgy.handle.userService.service.SystemService;
+import com.zgy.handle.userService.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @Service
 @Slf4j
-public class DepartmentService extends SystemRefactorService<Department,DepartmentDTO> {
+public class DepartmentService extends SystemService<Department,DepartmentDTO> {
     private DepartmentRepository departmentRepository;
     @Autowired
     private EnterpriseService enterpriseService;
@@ -62,42 +62,18 @@ public class DepartmentService extends SystemRefactorService<Department,Departme
         return specification;
     }
 
-    public List<DepartmentDTO> getDepartmentDtoList(){
-        List<DepartmentDTO> departmentDTOList = new ArrayList<>();
-        // 获取所有的上级机构
-        List<Department> parentEnterpriseList = departmentRepository.findByParentIdIsNull();
-        // 遍历顶级企业下的所有子企业
-        departmentDTOList = getDepartmentDtoList(parentEnterpriseList);
-        //log.info("获取到的最终数据为: " + departmentDTOList.toString());
-        return departmentDTOList;
-    }
-
-    private List<DepartmentDTO> getDepartmentDtoList(List<Department> departmentList){
-        List<DepartmentDTO> enterpriseDTOList = new ArrayList<>();
-        for (Department department : departmentList){
-            DepartmentDTO departmentDTO = new DepartmentDTO();
-            departmentDTO.setCode(department.getCode());
-            departmentDTO.setName(department.getName());
-            departmentDTO.setId(department.getId().toString());
-            departmentDTO.setNote(department.getNote());
-            departmentDTO.setType(department.getType());
-            departmentDTO.setParentId(department.getParent()==null?"":department.getParent().getId().toString());
-            departmentDTO.setEnterpriseId(department.getEnterprise()==null?"":department.getEnterprise().getId().toString());
-            departmentDTO.setChildren(getChildrenEnterprise(department.getId()));
-            enterpriseDTOList.add(departmentDTO);
+    public List<DepartmentDTO> getDepartmentDtoList(List<DepartmentDTO> departmentDTOList){
+        TreeConvert treeUtils = new TreeConvert(departmentDTOList);
+        try {
+            List<DepartmentDTO> departmentDTOS = treeUtils.toJsonArray(DepartmentDTO.class);
+            return departmentDTOS;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return enterpriseDTOList;
+        return null;
     }
 
-    /**
-     * 获取某一企业下的所有子企业列表
-     * @param parentId
-     * @return
-     */
-    private List<DepartmentDTO> getChildrenEnterprise(Long parentId){
-        List<Department> chidrenEnterprise = departmentRepository.findByParentId(parentId);
-        return getDepartmentDtoList(chidrenEnterprise);
-    }
+
 
     @Override
     public void beforeUpdate(DepartmentDTO departmentDTO, Department department) {

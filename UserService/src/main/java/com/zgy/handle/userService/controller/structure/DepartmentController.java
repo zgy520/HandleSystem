@@ -6,6 +6,7 @@ import com.zgy.handle.userService.controller.structure.convert.DepartMapper;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.structure.DepartmentDTO;
 import com.zgy.handle.userService.model.structure.Industry;
+import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,9 @@ public class DepartmentController extends SystemController<Department,Department
     @Override
     public ResponseCode<List<DepartmentDTO>> list(Pageable pageable, DepartmentDTO dto) {
         ResponseCode<List<DepartmentDTO>> responseCode = ResponseCode.sucess();
-        responseCode.setData(departmentService.getDepartmentDtoList());
+        List<Department> departmentList = departmentService.findAll();
+        List<DepartmentDTO> departmentDTOList = departMapper.toDepartmentDTOs(departmentList);
+        responseCode.setData(departmentService.getDepartmentDtoList(departmentDTOList));
         return responseCode;
     }
 

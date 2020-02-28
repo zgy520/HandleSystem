@@ -1,9 +1,8 @@
 package com.zgy.handle.userService.controller;
 
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.user.SelectDTO;
-import com.zgy.handle.userService.service.SystemRefactorService;
+import com.zgy.handle.userService.service.SystemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,18 +13,17 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 public abstract class SystemController<T,U> {
-    private final SystemRefactorService systemRefactorService;
+    private final SystemService systemRefactorService;
 
     private String sortedField = "updateTime"; // 排序字段，默认为更新时间
 
     @Autowired
-    public SystemController(SystemRefactorService systemRefactorService){
+    public SystemController(SystemService systemRefactorService){
         this.systemRefactorService = systemRefactorService;
     }
 
@@ -170,8 +168,5 @@ public abstract class SystemController<T,U> {
     public String getSortedField(){
         return this.sortedField;
     }
-
-
-
 
 }

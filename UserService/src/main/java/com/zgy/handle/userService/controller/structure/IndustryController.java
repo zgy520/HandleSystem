@@ -31,7 +31,9 @@ public class IndustryController extends SystemController<Industry,IndustryDTO> {
     @Override
     public ResponseCode<List<IndustryDTO>> list(Pageable pageable, IndustryDTO dto) {
         ResponseCode<List<IndustryDTO>> responseCode = ResponseCode.sucess();
-        responseCode.setData(industryService.getIndustryDtoList());
+        List<Industry> industryList = industryService.findAll();
+        List<IndustryDTO> industryDTOList = industryMapper.toIndustryDTOs(industryList);
+        responseCode.setData(industryService.getIndustryDtoList(industryDTOList));
         return responseCode;
     }
 

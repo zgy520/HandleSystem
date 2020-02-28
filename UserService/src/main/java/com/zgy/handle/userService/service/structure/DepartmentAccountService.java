@@ -6,7 +6,7 @@ import com.zgy.handle.userService.model.structure.DepartmentAccount;
 import com.zgy.handle.userService.model.structure.DepartmentAccountPK;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.structure.DepartmentAccountRepository;
-import com.zgy.handle.userService.service.SystemRefactorService;
+import com.zgy.handle.userService.service.SystemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class DepartmentAccountService extends SystemRefactorService<DepartmentAccount,DepartmentAccount> {
+public class DepartmentAccountService extends SystemService<DepartmentAccount,DepartmentAccount> {
     private DepartmentAccountRepository departmentAccountRepository;
     public DepartmentAccountService(DepartmentAccountRepository departmentAccountRepository) {
         super(departmentAccountRepository);

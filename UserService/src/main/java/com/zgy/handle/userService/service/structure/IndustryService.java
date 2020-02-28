@@ -3,7 +3,7 @@ package com.zgy.handle.userService.service.structure;
 import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.repository.structure.IndustryRepository;
-import com.zgy.handle.userService.service.SystemRefactorService;
+import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -13,14 +13,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @Service
 @Slf4j
-public class IndustryService extends SystemRefactorService<Industry,IndustryDTO> {
+public class IndustryService extends SystemService<Industry,IndustryDTO> {
     private IndustryRepository industryRepository;
     @Autowired
     public IndustryService(IndustryRepository industryRepository) {
@@ -64,44 +63,10 @@ public class IndustryService extends SystemRefactorService<Industry,IndustryDTO>
         return null;
     }
 
-    public List<IndustryDTO> getIndustryDtoList(){
-        // 获取所有的上级机构
-        List<Industry> parentEnterpriseList = industryRepository.findByParentIdIsNull();
-        // 遍历顶级企业下的所有子企业
-        List<IndustryDTO> industryDTOList = getDepartmentDtoList(parentEnterpriseList);
-        // log.info("获取到的最终数据为: " + industryDTOList.toString());
-        return industryDTOList;
-    }
-
-    private List<IndustryDTO> getDepartmentDtoList(List<Industry> industryList){
-        List<IndustryDTO> industryDTOList = new ArrayList<>();
-        for (Industry industry : industryList){
-            IndustryDTO industryDTO = new IndustryDTO();
-            industryDTO.setCode(industry.getCode());
-            industryDTO.setName(industry.getName());
-            industryDTO.setNote(industry.getNote());
-            industryDTO.setId(industry.getId().toString());
-            industryDTO.setParentId(industry.getParent()==null?"":industry.getParent().getId().toString());
-            industryDTO.setChildren(getChildrenEnterprise(industry.getId()));
-            industryDTOList.add(industryDTO);
-        }
-        return industryDTOList;
-    }
-
-    /**
-     * 获取某一企业下的所有子企业列表
-     * @param parentId
-     * @return
-     */
-    private List<IndustryDTO> getChildrenEnterprise(Long parentId){
-        List<Industry> chidrenEnterprise = industryRepository.findByParentId(parentId);
-        return getDepartmentDtoList(chidrenEnterprise);
-    }
-
     @Override
     public void beforeUpdate(IndustryDTO industryDTO, Industry industry) {
         industry.setNote(industryDTO.getNote());
-        if (industryDTO.getParentId() != null){
+        if (StringUtils.isNotBlank(industryDTO.getParentId())){
             Optional<Industry> parentOptional = this.findById(Long.valueOf(industryDTO.getParentId()));
             if (parentOptional.isPresent()){
                 industry.setParent(parentOptional.get());

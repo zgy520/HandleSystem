@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-02-27T17:26:28+0800",
+    date = "2020-02-28T14:44:51+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.4 (Oracle Corporation)"
 )
 @Component
@@ -42,6 +42,10 @@ public class DepartMapperImpl implements DepartMapper {
 
         DepartmentDTO departmentDTO = new DepartmentDTO();
 
+        Long id = departmentParentId( department );
+        if ( id != null ) {
+            departmentDTO.setParentId( String.valueOf( id ) );
+        }
         if ( department.getId() != null ) {
             departmentDTO.setId( String.valueOf( department.getId() ) );
         }
@@ -65,5 +69,20 @@ public class DepartMapperImpl implements DepartMapper {
         }
 
         return list;
+    }
+
+    private Long departmentParentId(Department department) {
+        if ( department == null ) {
+            return null;
+        }
+        Department parent = department.getParent();
+        if ( parent == null ) {
+            return null;
+        }
+        Long id = parent.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }

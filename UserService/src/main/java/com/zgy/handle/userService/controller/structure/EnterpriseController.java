@@ -5,6 +5,8 @@ import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.structure.convert.EnterpriseMapper;
 import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.model.structure.EnterpriseDTO;
+import com.zgy.handle.userService.model.structure.Industry;
+import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.EnterpriseService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +35,9 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
     @Override
     public ResponseCode<List<EnterpriseDTO>> list(Pageable pageable, EnterpriseDTO dto) {
         ResponseCode<List<EnterpriseDTO>> responseCode = ResponseCode.sucess();
-        responseCode.setData(enterpriseService.getEnterpriseDtoList());
+        List<Enterprise> enterpriseList = enterpriseService.findAll();
+        List<EnterpriseDTO> enterpriseDTOList = enterpriseMapper.toEnterpriseDTOs(enterpriseList);
+        responseCode.setData(enterpriseService.getEnterpriseDtoList(enterpriseDTOList));
         return responseCode;
     }
 
