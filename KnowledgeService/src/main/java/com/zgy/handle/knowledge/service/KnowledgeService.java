@@ -1,7 +1,7 @@
-package com.zgy.handle.userService.service;
+package com.zgy.handle.knowledge.service;
 
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userService.repository.SystemRepository;
+import com.zgy.handle.knowledge.repository.KnowledgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class SystemService<T,U> {
-    private SystemRepository systemRepository;
+public abstract class KnowledgeService<T,U> {
+    private KnowledgeRepository knowledgeRepository;
     @Autowired
     private HttpServletRequest request;
 
     @Autowired
-    public SystemService(SystemRepository systemRepository){
-        this.systemRepository = systemRepository;
+    public KnowledgeService(KnowledgeRepository knowledgeRepository){
+        this.knowledgeRepository = knowledgeRepository;
     }
 
     /**
@@ -26,11 +26,11 @@ public abstract class SystemService<T,U> {
      * @return
      */
     public List<T> findAll(){
-        return systemRepository.findAll();
+        return knowledgeRepository.findAll();
     }
 
     public Optional<T> findById(Long id){
-        return systemRepository.findById(id);
+        return knowledgeRepository.findById(id);
     }
 
 
@@ -40,7 +40,7 @@ public abstract class SystemService<T,U> {
      * @return
      */
     public Page<T> findAll(Pageable pageable){
-        return systemRepository.findAll(pageable);
+        return knowledgeRepository.findAll(pageable);
     }
 
     /**
@@ -73,7 +73,7 @@ public abstract class SystemService<T,U> {
             responseCode.setMsg("违反了唯一性原则!");
         }else {
             beforeUpdate(u,t);
-            t = (T) systemRepository.save(t);
+            t = (T) knowledgeRepository.save(t);
             postUpdate(t,u);
             responseCode.setData(t);
         }
@@ -93,7 +93,7 @@ public abstract class SystemService<T,U> {
             if (optionalT.isPresent()){
                 responseCode.setData(optionalT.get());
                 try {
-                    systemRepository.deleteById(id);
+                    knowledgeRepository.deleteById(id);
                 }catch (Exception ex){
                     responseCode.setSuccess(false);
                     responseCode.setMsg(ex.getMessage());
