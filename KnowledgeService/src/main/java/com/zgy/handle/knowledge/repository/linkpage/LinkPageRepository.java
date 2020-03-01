@@ -1,7 +1,6 @@
 package com.zgy.handle.knowledge.repository.linkpage;
 
 import com.zgy.handle.knowledge.model.linkpage.LinkPage;
-import com.zgy.handle.knowledge.model.solution.Solution;
 import com.zgy.handle.knowledge.repository.KnowledgeRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

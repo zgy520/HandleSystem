@@ -11,6 +11,9 @@ import java.text.MessageFormat;
 @Repository
 public interface FileRepository extends KnowledgeRepository<File>, JpaSpecificationExecutor<File> {
 
+    static Specification<File> findByCatalogName(String catalogName){
+        return (root,query,builder) -> builder.like(root.get("catalog").get("name"),contains(catalogName));
+    }
     /**
      * 字符串模糊查询
      * @param filed  查询字段
