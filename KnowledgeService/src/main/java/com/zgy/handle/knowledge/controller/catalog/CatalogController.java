@@ -33,7 +33,8 @@ public class CatalogController extends KnowledgeController<Catalog, CatalogDTO> 
     public ResponseCode<List<CatalogDTO>> list(Pageable pageable, CatalogDTO dto) {
         ResponseCode<List<CatalogDTO>> responseCode = ResponseCode.sucess();
         try {
-            responseCode.setData(catalogService.getCatalogDTOTreeList(catalogService.findAll()));
+            List<Catalog> catalogList = catalogService.findAll();
+            responseCode.setData(catalogService.getCatalogDTOTreeList(catalogMapper.toCatalogDTOS(catalogList)));
         } catch (Exception e) {
             e.printStackTrace();
         }

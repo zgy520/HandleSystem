@@ -1,7 +1,6 @@
 package com.zgy.handle.knowledge.controller.catalog.convert;
 
 import com.zgy.handle.knowledge.model.catalog.Catalog;
-import com.zgy.handle.knowledge.model.catalog.Catalog.CatalogBuilder;
 import com.zgy.handle.knowledge.model.catalog.CatalogDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-02-29T21:46:26+0800",
+    date = "2020-03-01T21:35:29+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.4 (Oracle Corporation)"
 )
 @Component
@@ -58,12 +57,16 @@ public class CatalogMapperImpl implements CatalogMapper {
             return null;
         }
 
-        CatalogBuilder catalog = Catalog.builder();
+        Catalog catalog = new Catalog();
 
-        catalog.name( catalogDTO.getName() );
-        catalog.description( catalogDTO.getDescription() );
+        if ( catalogDTO.getId() != null ) {
+            catalog.setId( Long.parseLong( catalogDTO.getId() ) );
+        }
+        catalog.setNote( catalogDTO.getNote() );
+        catalog.setName( catalogDTO.getName() );
+        catalog.setDescription( catalogDTO.getDescription() );
 
-        return catalog.build();
+        return catalog;
     }
 
     private Long catalogParentId(Catalog catalog) {

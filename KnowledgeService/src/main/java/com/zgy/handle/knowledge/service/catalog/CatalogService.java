@@ -27,7 +27,7 @@ public class CatalogService extends KnowledgeService<Catalog, CatalogDTO> {
      * @return
      * @throws Exception
      */
-    public List<CatalogDTO> getCatalogDTOTreeList(List<Catalog> catalogList) throws Exception {
+    public List<CatalogDTO> getCatalogDTOTreeList(List<CatalogDTO> catalogList) throws Exception {
         TreeConvert treeConvert = new TreeConvert(catalogList);
         return treeConvert.toJsonArray(CatalogDTO.class);
     }

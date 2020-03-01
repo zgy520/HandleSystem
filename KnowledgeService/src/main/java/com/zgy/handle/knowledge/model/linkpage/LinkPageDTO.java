@@ -14,6 +14,7 @@ public class LinkPageDTO {
     private String title; // 标题
     private String keywords;  // 关键字
     private String linkUrl; // 链接地址
+    private String note; // 备注
     private String catalogName;
     private String catalogId;
 }

@@ -21,7 +21,6 @@ import javax.persistence.ManyToOne;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Solution extends KnowledgeModel {
     private String question; // 问题
     private String measure; // 解决措施

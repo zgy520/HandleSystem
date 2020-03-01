@@ -21,7 +21,6 @@ import javax.persistence.ManyToOne;
 @Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class LinkPage extends KnowledgeModel {
     private String title; // 标题
     private String keywords;  // 关键字

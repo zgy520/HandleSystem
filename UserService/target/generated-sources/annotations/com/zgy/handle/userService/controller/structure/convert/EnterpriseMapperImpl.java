@@ -1,7 +1,6 @@
 package com.zgy.handle.userService.controller.structure.convert;
 
 import com.zgy.handle.userService.model.structure.Enterprise;
-import com.zgy.handle.userService.model.structure.Enterprise.EnterpriseBuilder;
 import com.zgy.handle.userService.model.structure.EnterpriseDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-02-28T14:44:51+0800",
+    date = "2020-03-01T18:14:37+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.4 (Oracle Corporation)"
 )
 @Component
@@ -22,13 +21,17 @@ public class EnterpriseMapperImpl implements EnterpriseMapper {
             return null;
         }
 
-        EnterpriseBuilder enterprise = Enterprise.builder();
+        Enterprise enterprise = new Enterprise();
 
-        enterprise.code( enterpriseDTO.getCode() );
-        enterprise.name( enterpriseDTO.getName() );
-        enterprise.shortName( enterpriseDTO.getShortName() );
+        if ( enterpriseDTO.getId() != null ) {
+            enterprise.setId( Long.parseLong( enterpriseDTO.getId() ) );
+        }
+        enterprise.setNote( enterpriseDTO.getNote() );
+        enterprise.setCode( enterpriseDTO.getCode() );
+        enterprise.setName( enterpriseDTO.getName() );
+        enterprise.setShortName( enterpriseDTO.getShortName() );
 
-        return enterprise.build();
+        return enterprise;
     }
 
     @Override

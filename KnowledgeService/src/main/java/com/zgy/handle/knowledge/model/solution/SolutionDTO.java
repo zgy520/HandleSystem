@@ -10,9 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SolutionDTO {
+    private String id;
     private String question; // 问题
     private String measure; // 解决措施
     private String thinking; // 解决思路
+    private String note; // 备注
     private String url; // 外部链接
     private String catalogName;
     private String catalogId;

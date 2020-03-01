@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CatalogRepository extends KnowledgeRepository<Catalog> {
+
 }
