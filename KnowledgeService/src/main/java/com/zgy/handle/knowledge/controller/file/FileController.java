@@ -1,5 +1,6 @@
 package com.zgy.handle.knowledge.controller.file;
 
+import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.knowledge.controller.KnowledgeController;
 import com.zgy.handle.knowledge.controller.file.convert.FileMapper;
 import com.zgy.handle.knowledge.model.SelectDTO;
@@ -9,6 +10,8 @@ import com.zgy.handle.knowledge.service.KnowledgeService;
 import com.zgy.handle.knowledge.service.file.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +27,12 @@ public class FileController extends KnowledgeController<File, FileDTO> {
     public FileController(FileService fileService) {
         super(fileService);
         this.fileService = fileService;
+    }
+
+    @PostMapping(value = "batchUpdate")
+    public ResponseCode<List<FileDTO>> updatex(@RequestBody FileDTO fileDTO){
+        ResponseCode<List<FileDTO>> responseCode = fileService.batchUpdate(fileDTO);
+        return responseCode;
     }
 
     @Override

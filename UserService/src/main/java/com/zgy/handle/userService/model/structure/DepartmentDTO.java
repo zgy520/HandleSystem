@@ -16,5 +16,6 @@ public class DepartmentDTO {
     private String note;
     private String parentId;
     private String enterpriseId;
+    private String enterpriseName;
     private List<DepartmentDTO> children = new ArrayList<>();
 }

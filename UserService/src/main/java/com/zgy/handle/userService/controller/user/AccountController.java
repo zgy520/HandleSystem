@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 用户验证的类
@@ -35,11 +36,23 @@ public class AccountController extends SystemController<Account,AccountDTO> {
     private AccountMapper accountMapper;
     @Autowired
     private DepartmentAccountService departmentAccountService;
+    @Autowired
+    private DepartmentService departmentService;
 
 
     public AccountController(AccountService accountService) {
         super(accountService);
         this.accountService = accountService;
+    }
+
+    @Override
+    public void fillList(List<Account> entityList, List<AccountDTO> dtoList) {
+        dtoList.stream().forEach(dto->{
+            RolePostDTO rolePostDTO = accountService.fetchRolePostName(Long.valueOf(dto.getId()));
+            dto.setRoleList(rolePostDTO.getRoleList());
+            dto.setPostList(rolePostDTO.getPostList());
+            dto.setDepartName(rolePostDTO.getDepartName());
+        });
     }
 
     @PostMapping(value = "findAccountByLoginName")
@@ -55,7 +68,9 @@ public class AccountController extends SystemController<Account,AccountDTO> {
                 .pasword(account.getPassword())
                 .userId(account.getId().toString())
                 .orgId(department == null?"":department.getId().toString())
+                .enterpriseId(department == null?"":departmentService.fetchIndustry(department.getId()).getId().toString())
                 .postId(accountService.fetchPostIdListByAccountId(account.getId()))
+                .postName(accountService.fetchPostCodeListByAccountId(account.getId()).stream().collect(Collectors.joining(",")))
                 .build();
         Set<String> roleSet = accountService.fetchRoleCodeListByAccountId(account.getId());
         userInfo.setRoleSet(roleSet);

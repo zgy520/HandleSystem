@@ -11,7 +11,9 @@ public class FilterUtils {
     public static final String AUTH_TOKEN     = "Authorization";
     public static final String USER_ID        = "user-id";
     public static final String ORG_ID         = "org-id";
+    public static final String ENTERPRISE_ID  = "enterprise-id";
     public static final String POST_ID        = "post-id";
+    public static final String POST_NAME      =  "post-name";
     public static final String USER_INFO      = "username";
     public static final String PRE_FILTER_TYPE = "pre";
     public static final String POST_FILTER_TYPE = "post";
@@ -39,6 +41,8 @@ public class FilterUtils {
         ctx.addZuulRequestHeader(ORG_ID,userDetails.getOrgId());
         ctx.addZuulRequestHeader(POST_ID,userDetails.getPostId());
         ctx.addZuulRequestHeader(USER_ID,userDetails.getUserId());
+        ctx.addZuulRequestHeader(POST_NAME,userDetails.getPostName());
+        ctx.addZuulRequestHeader(ENTERPRISE_ID,userDetails.getEnterpriseId());
     }
 
     public final String getUserInfo(){

@@ -18,7 +18,9 @@ public class UserInfo {
     private String pasword;
     private String userId;
     private String orgId;
+    private String enterpriseId; // 企业id
     private String postId;
+    private String postName;
     private Set<String> roleSet = new HashSet<>();
     public UserInfo(){
 

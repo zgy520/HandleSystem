@@ -9,14 +9,18 @@ public class UserContext {
     public static final String USER_NAME      =  "username";
     public static final String USER_ID        = "user-id";
     public static final String ORG_ID         = "org-id";
+    public static final String ENTERPRISE_ID  = "enterprise-id";
     public static final String POST_ID        = "post-id";
+    public static final String POST_NAME      = "post-name";
 
     private static final ThreadLocal<String> correlationId= new ThreadLocal<String>();
     private static final ThreadLocal<String> authToken= new ThreadLocal<String>();
     private static final ThreadLocal<String> userName= new ThreadLocal<String>();
     private static final ThreadLocal<String> userId = new ThreadLocal<String>();
     private static final ThreadLocal<String> orgId = new ThreadLocal<String>();
+    private static final ThreadLocal<String> enterpriseId = new ThreadLocal<String>();
     private static final ThreadLocal<String> postId = new ThreadLocal<String>();
+    private static final ThreadLocal<String> postName = new ThreadLocal<String>();
 
 
 
@@ -42,5 +46,19 @@ public class UserContext {
     public static String getPostId() {return postId.get();}
     public static void setPostId(String oPostId){
         postId.set(oPostId);
+    }
+
+    public static String getPostName(){
+        return postName.get();
+    }
+    public static void setPostName(String oPostName){
+        postName.set(oPostName);
+    }
+
+    public static String getEnterpriseId(){
+        return enterpriseId.get();
+    }
+    public static void setEnterpriseId(String oEnterpriseId){
+        enterpriseId.set(oEnterpriseId);
     }
 }

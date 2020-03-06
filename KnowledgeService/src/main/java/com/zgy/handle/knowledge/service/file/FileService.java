@@ -1,5 +1,6 @@
 package com.zgy.handle.knowledge.service.file;
 
+import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.knowledge.model.catalog.Catalog;
 import com.zgy.handle.knowledge.model.file.File;
 import com.zgy.handle.knowledge.model.file.FileDTO;
@@ -15,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,13 +41,31 @@ public class FileService extends KnowledgeService<File, FileDTO> {
         return fileRepository.findAll(specification,pageable);
     }
 
-    @Override
-    public void beforeUpdate(FileDTO fileDTO, File file) {
-        if (StringUtils.isNotBlank(fileDTO.getCatalogId())){
-            Optional<Catalog> catalogOptional = catalogService.findById(Long.valueOf(fileDTO.getCatalogId()));
-            if (catalogOptional.isPresent()){
-                file.setCatalog(catalogOptional.get());
+    public ResponseCode<List<FileDTO>> batchUpdate(FileDTO fileDTO){
+        ResponseCode<List<FileDTO>> responseCode = ResponseCode.sucess();
+        List<FileDTO> fileDTOS = new ArrayList<>();
+        if (fileDTO.getFileIdList().size() > 0){
+            Catalog catalog = null;
+            if (StringUtils.isNotBlank(fileDTO.getCatalogId())){
+                Optional<Catalog> catalogOptional = catalogService.findById(Long.valueOf(fileDTO.getCatalogId()));
+                if (catalogOptional.isPresent()){
+                    catalog = catalogOptional.get();
+                }
             }
+            for (String fileId : fileDTO.getFileIdList()){
+                Optional<File> optionalFile = this.findById(Long.valueOf(fileId));
+                if (optionalFile.isPresent()){
+                    File file = optionalFile.get();
+                    file.setNote(fileDTO.getNote());
+                    if (catalog != null)
+                        file.setCatalog(catalog);
+                    fileRepository.save(file);
+                }
+            }
+
         }
+        responseCode.setData(fileDTOS);
+        return responseCode;
     }
+
 }

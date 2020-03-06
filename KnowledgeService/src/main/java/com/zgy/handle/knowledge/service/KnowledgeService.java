@@ -1,6 +1,7 @@
 package com.zgy.handle.knowledge.service;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.common.zuul.context.UserContext;
 import com.zgy.handle.knowledge.repository.KnowledgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,35 @@ public abstract class KnowledgeService<T,U> {
     @Autowired
     public KnowledgeService(KnowledgeRepository knowledgeRepository){
         this.knowledgeRepository = knowledgeRepository;
+    }
+
+
+    public String getPostName(){
+        return request.getHeader(UserContext.POST_NAME);
+    }
+
+    /**
+     * 获取当前用户的企业id
+     * @return
+     */
+    public String getEnterpriseId(){
+        return request.getHeader(UserContext.ENTERPRISE_ID);
+    }
+
+    /**
+     * 获取当前用户的部门id
+     * @return
+     */
+    public String getDepartId(){
+        return request.getHeader(UserContext.ORG_ID);
+    }
+
+    /**
+     * 获取用户的个人id
+     * @return
+     */
+    public String getPersonalId(){
+        return request.getHeader(UserContext.USER_ID);
     }
 
     /**

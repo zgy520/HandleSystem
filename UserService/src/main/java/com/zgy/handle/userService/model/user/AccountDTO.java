@@ -24,4 +24,5 @@ public class AccountDTO {
     private List<String> roleList =  new ArrayList<>(); // 角色列表
     private List<String> postList = new ArrayList<>(); // 岗位列表
     private String departId; // 所属部门的id
+    private String departName;
 }

@@ -11,6 +11,12 @@ logging:
     org.hibernate.SQL: debug
     org.hibernate.type.description.sql: TRACE
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 500MB
+      max-request-size: 520MB
   jpa:
     properties:
       hibernate:
@@ -21,7 +27,7 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     open-in-view: false
   datasource:
-    url: jdbc:mysql://localhost:3306/handlesystem?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://localhost:3306/handlesystem?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false&&maxAllowedPacket=1073741824
     username: root
     password: TonFun!!
     driver-class-name: com.mysql.jdbc.Driver

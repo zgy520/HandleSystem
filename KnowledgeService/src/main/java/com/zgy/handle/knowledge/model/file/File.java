@@ -7,10 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Fetch;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * 文件管理
@@ -24,6 +23,9 @@ public class File extends KnowledgeModel {
     private String name;
     private String fileType; // 文件类型
     private String filePath; // 文件路径
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] data;
     @ManyToOne
     @JoinColumn(name = "catalogId")
     @JsonIgnore

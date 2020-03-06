@@ -95,9 +95,19 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         List<String> roleList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.toList());
         Department department = departmentAccountService.getByAccountId(userId);
-        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString());
+        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         responseCode.setData(rolePostDTO);
         return responseCode;
+    }
+
+    @Transactional(readOnly = true)
+    public RolePostDTO fetchRolePostName(Long userId){
+        Account account = this.accountRepository.findById(userId).get();
+        List<String> roleList = account.getRoleSet().stream().map(Role::getName).map(String::valueOf).collect(Collectors.toList());
+        List<String> postList = account.getPostSet().stream().map(Post::getName).map(String::valueOf).collect(Collectors.toList());
+        Department department = departmentAccountService.getByAccountId(userId);
+        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
+        return rolePostDTO;
     }
 
     @Transactional(readOnly = true)
@@ -111,6 +121,12 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         Account account = this.accountRepository.findById(userId).get();
         Set<String> roleList = account.getRoleSet().stream().map(Role::getCode).collect(Collectors.toSet());
         return roleList;
+    }
+    @Transactional(readOnly = true)
+    public Set<String> fetchPostCodeListByAccountId(Long userId){
+        Account account = this.accountRepository.findById(userId).get();
+        Set<String> postList = account.getPostSet().stream().map(Post::getCode).collect(Collectors.toSet());
+        return postList;
     }
 
     @Override

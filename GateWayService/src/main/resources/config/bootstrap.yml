@@ -12,12 +12,12 @@ eureka:
 zuul:
   sensitive-headers:
 ribbon:
-  ConnectTimeout: 1000
-  ReadTimeout: 5000
+  ConnectTimeout: 2000
+  ReadTimeout: 6000
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 9000
+            timeoutInMilliseconds: 12000
