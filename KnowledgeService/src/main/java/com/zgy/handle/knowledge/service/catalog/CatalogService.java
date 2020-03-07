@@ -5,8 +5,10 @@ import com.zgy.handle.knowledge.model.PostList;
 import com.zgy.handle.knowledge.model.catalog.Catalog;
 import com.zgy.handle.knowledge.model.catalog.CatalogDTO;
 import com.zgy.handle.knowledge.model.common.ResourceLevel;
+import com.zgy.handle.knowledge.model.common.ResourceType;
 import com.zgy.handle.knowledge.repository.catalog.CatalogRepository;
 import com.zgy.handle.knowledge.service.KnowledgeService;
+import com.zgy.handle.knowledge.service.dispatch.ResourceDispatchService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import java.util.Optional;
 @Slf4j
 public class CatalogService extends KnowledgeService<Catalog, CatalogDTO> {
     private CatalogRepository catalogRepository;
+    @Autowired
+    private ResourceDispatchService resourceDispatchService;
     @Autowired
     public CatalogService(CatalogRepository catalogRepository) {
         super(catalogRepository);
@@ -44,23 +48,10 @@ public class CatalogService extends KnowledgeService<Catalog, CatalogDTO> {
                 catalog.setParent(catalogOptional.get());
             }
         }
-        if (catalog.getId() == null){
-            String postCodeList = this.getPostName();
-            if (postCodeList.contains(PostList.Admin.toString())){
-                catalog.setResourceLevel(ResourceLevel.ENTERPRISE);
-                catalog.setBusinessId(Long.valueOf(this.getEnterpriseId()));
-            }else if (postCodeList.contains(PostList.departLeader.toString())){
-                catalog.setResourceLevel(ResourceLevel.DEPART);
-                catalog.setBusinessId(Long.valueOf(this.getDepartId()));
-            }else {
-                catalog.setResourceLevel(ResourceLevel.PERSONAL);
-                catalog.setBusinessId(Long.valueOf(this.getPersonalId()));
-            }
-        }else {
-            Catalog oldCatalog = catalogRepository.findById(catalog.getId()).get();
-            catalog.setBusinessId(oldCatalog.getBusinessId());
-            catalog.setResourceLevel(oldCatalog.getResourceLevel());
+    }
 
-        }
+    @Override
+    public void postUpdate(Catalog catalog, CatalogDTO catalogDTO) {
+        resourceDispatchService.addResourceDispatch(catalog.getId(), ResourceType.CATALOG);
     }
 }

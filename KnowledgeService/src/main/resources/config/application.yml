@@ -27,9 +27,9 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     open-in-view: false
   datasource:
-    url: jdbc:mysql://localhost:3306/handlesystem?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false&&maxAllowedPacket=1073741824
-    username: root
-    password: TonFun!!
+    url: jdbc:mysql://rm-2zen9dnoix990kl44fo.mysql.rds.aliyuncs.com:3306/handlesystem?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false&&maxAllowedPacket=1073741824
+    username: zgy
+    password: zgy@1234
     driver-class-name: com.mysql.jdbc.Driver
     max-idle: 5
     max-wait: 10000

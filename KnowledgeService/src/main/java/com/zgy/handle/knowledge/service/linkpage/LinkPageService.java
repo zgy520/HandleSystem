@@ -2,12 +2,14 @@ package com.zgy.handle.knowledge.service.linkpage;
 
 import com.netflix.discovery.converters.Auto;
 import com.zgy.handle.knowledge.model.catalog.Catalog;
+import com.zgy.handle.knowledge.model.common.ResourceType;
 import com.zgy.handle.knowledge.model.linkpage.LinkPage;
 import com.zgy.handle.knowledge.model.linkpage.LinkPageDTO;
 import com.zgy.handle.knowledge.repository.KnowledgeRepository;
 import com.zgy.handle.knowledge.repository.linkpage.LinkPageRepository;
 import com.zgy.handle.knowledge.service.KnowledgeService;
 import com.zgy.handle.knowledge.service.catalog.CatalogService;
+import com.zgy.handle.knowledge.service.dispatch.ResourceDispatchService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class LinkPageService extends KnowledgeService<LinkPage, LinkPageDTO> {
     private LinkPageRepository linkPageRepository;
     @Autowired
     private CatalogService catalogService;
+    @Autowired
+    private ResourceDispatchService resourceDispatchService;
     @Autowired
     public LinkPageService(LinkPageRepository linkPageRepository) {
         super(linkPageRepository);
@@ -49,5 +53,10 @@ public class LinkPageService extends KnowledgeService<LinkPage, LinkPageDTO> {
                 linkPage.setCatalog(catalogOptional.get());
             }
         }
+    }
+
+    @Override
+    public void postUpdate(LinkPage linkPage, LinkPageDTO linkPageDTO) {
+        resourceDispatchService.addResourceDispatch(linkPage.getId(), ResourceType.LINK);
     }
 }

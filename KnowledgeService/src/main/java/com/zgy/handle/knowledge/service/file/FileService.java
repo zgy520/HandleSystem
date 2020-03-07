@@ -2,12 +2,14 @@ package com.zgy.handle.knowledge.service.file;
 
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.knowledge.model.catalog.Catalog;
+import com.zgy.handle.knowledge.model.common.ResourceType;
 import com.zgy.handle.knowledge.model.file.File;
 import com.zgy.handle.knowledge.model.file.FileDTO;
 import com.zgy.handle.knowledge.repository.KnowledgeRepository;
 import com.zgy.handle.knowledge.repository.file.FileRepository;
 import com.zgy.handle.knowledge.service.KnowledgeService;
 import com.zgy.handle.knowledge.service.catalog.CatalogService;
+import com.zgy.handle.knowledge.service.dispatch.ResourceDispatchService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class FileService extends KnowledgeService<File, FileDTO> {
     private FileRepository fileRepository;
     @Autowired
     private CatalogService catalogService;
+    @Autowired
+    private ResourceDispatchService resourceDispatchService;
     @Autowired
     public FileService(FileRepository fileRepository) {
         super(fileRepository);
@@ -60,6 +64,7 @@ public class FileService extends KnowledgeService<File, FileDTO> {
                     if (catalog != null)
                         file.setCatalog(catalog);
                     fileRepository.save(file);
+                    resourceDispatchService.addResourceDispatch(file.getId(), ResourceType.FILE);
                 }
             }
 

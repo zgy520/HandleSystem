@@ -1,11 +1,13 @@
 package com.zgy.handle.knowledge.service.solution;
 
 import com.zgy.handle.knowledge.model.catalog.Catalog;
+import com.zgy.handle.knowledge.model.common.ResourceType;
 import com.zgy.handle.knowledge.model.solution.Solution;
 import com.zgy.handle.knowledge.model.solution.SolutionDTO;
 import com.zgy.handle.knowledge.repository.solution.SolutionRepository;
 import com.zgy.handle.knowledge.service.KnowledgeService;
 import com.zgy.handle.knowledge.service.catalog.CatalogService;
+import com.zgy.handle.knowledge.service.dispatch.ResourceDispatchService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class SolutionService extends KnowledgeService<Solution, SolutionDTO> {
     private SolutionRepository solutionRepository;
     @Autowired
     private CatalogService catalogService;
+    @Autowired
+    private ResourceDispatchService resourceDispatchService;
     @Autowired
     public SolutionService(SolutionRepository solutionRepository) {
         super(solutionRepository);
@@ -46,5 +50,10 @@ public class SolutionService extends KnowledgeService<Solution, SolutionDTO> {
                 solution.setCatalog(catalogOptional.get());
             }
         }
+    }
+
+    @Override
+    public void postUpdate(Solution solution, SolutionDTO solutionDTO) {
+        resourceDispatchService.addResourceDispatch(solution.getId(), ResourceType.SOLUTION);
     }
 }
