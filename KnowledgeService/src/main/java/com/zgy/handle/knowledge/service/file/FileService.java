@@ -17,10 +17,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -71,6 +74,12 @@ public class FileService extends KnowledgeService<File, FileDTO> {
         }
         responseCode.setData(fileDTOS);
         return responseCode;
+    }
+
+    @Transactional(readOnly = true)
+    public byte[] fetchFileData(Long fileId){
+        File file = this.findById(fileId).get();
+        return file.getData();
     }
 
 }

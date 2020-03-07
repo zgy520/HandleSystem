@@ -4,6 +4,7 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.knowledge.model.file.File;
 import com.zgy.handle.knowledge.model.file.FileDTO;
 import com.zgy.handle.knowledge.model.file.UploadFileResponse;
+import com.zgy.handle.knowledge.service.file.FileService;
 import com.zgy.handle.knowledge.service.file.FileStorageService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +31,8 @@ public class FileUploadController {
     private static final String filePath = "E:\\pad";
     @Autowired
     private FileStorageService fileStorageService;
+    @Autowired
+    private FileService fileService;
 
     @ApiOperation(value = "单文件上传")
     @PostMapping(value = "file")
@@ -63,12 +67,12 @@ public class FileUploadController {
 
     @GetMapping("/downloadFile/{fileId}")
     @ApiOperation("文件下载")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileId){
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileId) throws UnsupportedEncodingException {
         File file = fileStorageService.getFile(fileId);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(file.getFileType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + file.getName() + "\"")
-                .body(new ByteArrayResource(file.getData()));
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + new String(file.getName().getBytes("UTF-8"),"iso-8859-1") + "\"")
+                .body(new ByteArrayResource(fileService.fetchFileData(Long.valueOf(fileId))));
     }
 
 
