@@ -27,7 +27,7 @@ public class AccountDetail {
     private String code; // 人员编码
     private String name; // 姓名
     private String nickName; // 昵称
-    private String phoneNumber; // 邮箱
+    private String phoneNumber; // 手机号
     @Email
     private String email; // email地址
     private String identity; // 唯一编号

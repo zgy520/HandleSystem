@@ -3,6 +3,7 @@ package com.zgy.handle.gateway.controller;
 import com.zgy.handle.gateway.config.security.JwtResponse;
 import com.zgy.handle.gateway.config.security.JwtTokenUtil;
 import com.zgy.handle.gateway.config.security.JwtUserDetailsService;
+import com.zgy.handle.gateway.model.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,12 +27,14 @@ public class JwtAuthenticationController {
     private JwtUserDetailsService userDetailsService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(String userName,String password) throws Exception {
-        authenticate(userName,password);
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+    public ResponseCode<String> createAuthenticationToken(String username, String password) throws Exception {
+        ResponseCode<String> responseCode = ResponseCode.sucess();
+        authenticate(username,password);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+        responseCode.setData(token);
+        return responseCode;
     }
 
     private void authenticate(String userName,String password) throws Exception {

@@ -2,6 +2,11 @@ package com.zgy.handle.userService.model.structure;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.userService.model.BaseModel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,6 +15,11 @@ import java.util.Date;
 /**
  * 企业
  */
+@Data
+@Slf4j
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "system_enterprise")
 public class Enterprise extends BaseModel {

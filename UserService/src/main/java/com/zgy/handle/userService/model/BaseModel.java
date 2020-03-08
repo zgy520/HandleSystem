@@ -16,7 +16,7 @@ import java.util.Date;
 public class BaseModel {
     @Id
     @GeneratedValue(generator = "uuid_short")
-    @GenericGenerator(name = "uuid_short",strategy = "com.zgy.handle.common.hibernate.UUIDGenerator")
+    @GenericGenerator(name = "uuid_short",strategy = "com.zgy.handle.userService.model.hibernate.UUIDGenerator")
     @Column(name = "id",nullable = false)
     protected Long id;
 

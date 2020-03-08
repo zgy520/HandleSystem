@@ -1,7 +1,10 @@
 package com.zgy.handle.userService.model.structure;
 
 import com.zgy.handle.userService.model.user.Account;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
@@ -10,6 +13,9 @@ import javax.persistence.*;
 @Table(name = "system_department_account")
 @Data
 @Slf4j
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class DepartmentAccount {
     @EmbeddedId
     private DepartmentAccountPK id;

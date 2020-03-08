@@ -26,7 +26,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        final String requestTokenHeader = httpServletRequest.getHeader("Authorization");
+        String requestTokenHeader = httpServletRequest.getHeader("Authorization");
 
         String username = null;
         String jwtToken = null;
@@ -41,7 +41,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 log.error("JWT Token has expired");
             }
         }else {
-            log.error("JWT Token does not begin with Bearer String");
+            log.error("JWT Token does not begin with Bearer String" + requestTokenHeader);
         }
 
         // Once we get the token validate it
@@ -53,7 +53,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource()
-                    .buildDetails(httpServletRequest));
+                        .buildDetails(httpServletRequest));
                 // After setting the Authentication in the context, we specify that the current user is authenticated.
                 // So it passes the Spring Security Configurations successfully
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
@@ -61,4 +61,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(httpServletRequest,httpServletResponse);
     }
+
 }

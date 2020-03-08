@@ -26,6 +26,7 @@ public class UserContextFilter implements Filter {
         UserContextHolder.getContext().setOrgId(httpServletRequest.getHeader(UserContext.ORG_ID));
         UserContextHolder.getContext().setUserName(httpServletRequest.getHeader(UserContext.USER_NAME));
         UserContextHolder.getContext().setPostId(httpServletRequest.getHeader(UserContext.POST_ID));
+        UserContextHolder.getContext().setPostName(httpServletRequest.getHeader(UserContext.POST_NAME));
 
         filterChain.doFilter(httpServletRequest, servletResponse);
     }

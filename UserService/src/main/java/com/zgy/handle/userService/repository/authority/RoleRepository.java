@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.text.MessageFormat;
+import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface RoleRepository extends SystemRepository<Role>, JpaSpecificationExecutor<Role> {
 
+    Set<Role> findAllByIdIn(List<Long> roleIdList);
 
      static Specification<Role> nameContains(String name){
         return (root,query,builder) -> builder.like(root.get("name"),contains(name));
