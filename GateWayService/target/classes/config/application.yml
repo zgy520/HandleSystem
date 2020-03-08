@@ -1,0 +1,6 @@
+server:
+  port: 5555
+jwt:
+  secret: zgySecret
+mj:
+  token: Bear xxx
