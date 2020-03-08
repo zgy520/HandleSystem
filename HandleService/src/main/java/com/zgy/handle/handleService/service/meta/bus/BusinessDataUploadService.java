@@ -25,6 +25,8 @@ public class BusinessDataUploadService extends TemplateUploadService<BusPrimary>
     private MetaHeaderService metaHeaderService;
     @Autowired
     private MetaBodyService metaBodyService;
+    @Autowired
+    private BusPrimaryService busPrimaryService;
     @Override
     public JSONArray handleData(JSONArray jsonArray, String attachData) {
         JSONArray failArray = new JSONArray();
@@ -34,6 +36,7 @@ public class BusinessDataUploadService extends TemplateUploadService<BusPrimary>
             MetaHeader metaHeader = metaHeaderOptional.get();
             List<MetaBody> metaBodyList = metaBodyService.findByHeaderId(metaHeader.getId());
             JSONArray dataConvertedArray =convertOptionsToField(jsonArray,metaBodyList);
+            busPrimaryService.saveBusinessData(metaHeader,dataConvertedArray,metaBodyList);
             log.info("转化后的数据为: " + dataConvertedArray);
         }else {
             throw new EntityNotFoundException("不存在id为{" + attachData + "}的元数据标准");
@@ -57,7 +60,7 @@ public class BusinessDataUploadService extends TemplateUploadService<BusPrimary>
         for (int i = 1; i <= headerSize; i++){
             String title = headerJson.getString(ExcelImpl.ATTACH_OPTION + i);
             Optional<MetaBody> metaDataOptional = metaDataList.stream().filter(md->md.getBody().getName().equals(title)).findFirst();
-            if (metaDataOptional.isPresent()){
+            if (metaDataOptional.isPresent() && !metaDataOptional.isEmpty()){
                 //headerJson.put(title,metaDataOptional.get().getName());
                 convertedHeaderJson.put(ExcelImpl.ATTACH_OPTION + i,metaDataOptional.get().getBody().getName());
             }
@@ -68,7 +71,8 @@ public class BusinessDataUploadService extends TemplateUploadService<BusPrimary>
             JSONObject convertedJson = new JSONObject();
             for (int headerIndex = 1; headerIndex <= headerSize; headerIndex++){
                 String oldKey = ExcelImpl.ATTACH_OPTION + headerIndex;
-                convertedJson.put(convertedHeaderJson.getString(oldKey),jsonObject.getString(oldKey));
+                if (convertedHeaderJson.containsKey(oldKey))
+                    convertedJson.put(convertedHeaderJson.getString(oldKey),jsonObject.getString(oldKey));
             }
             convertedJsonArray.add(convertedJson);
         }
