@@ -23,11 +23,12 @@
           <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar" />
           <entry name="$MAVEN_REPOSITORY$/joda-time/joda-time/2.9/joda-time-2.9.jar" />
         </processorPath>
+        <module name="Common" />
+        <module name="EurekaServer" />
         <module name="KnowledgeService" />
         <module name="GateWayService" />
-        <module name="EurekaServer" />
+        <module name="HandleService" />
         <module name="UserService" />
-        <module name="Common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -35,6 +36,7 @@
       <module name="Common" target="11" />
       <module name="EurekaServer" target="11" />
       <module name="GateWayService" target="11" />
+      <module name="HandleService" target="11" />
       <module name="HandleSystem" target="11" />
       <module name="JWTServer" target="1.11" />
       <module name="KnowledgeService" target="11" />
@@ -49,6 +51,7 @@
       <module name="Common" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
       <module name="GateWayService" options="-parameters" />
+      <module name="HandleService" options="-parameters" />
       <module name="HandleSystem" options="" />
       <module name="JWTServer" options="-parameters" />
       <module name="KnowledgeService" options="-parameters" />

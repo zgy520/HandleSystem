@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import java.util.Set;
 @RestController
 @RequestMapping(value = "userInfo")
 @Slf4j
+@ApiIgnore
 public class UserDisplayController {
     @Autowired
     private AccountService accountService;

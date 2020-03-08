@@ -5,12 +5,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 
 @RestController
 @RequestMapping(value = "user")
 @Slf4j
-@Api(tags = "用户相关文档")
+@ApiIgnore
 public class UserController {
     @ApiOperation("新增用户接口")
     @PostMapping("add")

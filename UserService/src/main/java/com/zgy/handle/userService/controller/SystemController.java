@@ -3,6 +3,9 @@ package com.zgy.handle.userService.controller;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.SystemService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +16,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +39,8 @@ public abstract class SystemController<T,U> {
      * @return
      */
     @PostMapping(value = "update")
-    public ResponseCode<U> update(@RequestBody U u){
+    @ApiOperation(value = "新增和编辑信息")
+    public ResponseCode<U> update(@Valid @RequestBody U u){
         T t = convertUtoT(u);
         ResponseCode<U> responseCode = systemRefactorService.update(u,t);
         return responseCode;
@@ -48,6 +53,7 @@ public abstract class SystemController<T,U> {
      * @return
      */
     @GetMapping(value = "list")
+    @ApiOperation(value = "分页获取列表")
     public ResponseCode<List<U>> list(@PageableDefault(page = 1,size = 10) Pageable pageable, U dto){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
         pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), Sort.Direction.DESC,getSortedField());
@@ -65,6 +71,7 @@ public abstract class SystemController<T,U> {
      * @return
      */
     @GetMapping(value = "all")
+    @ApiOperation(value = "获取所有数据")
     public ResponseCode<List<U>> all(){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
         List<T> tList = systemRefactorService.findAll();
@@ -86,6 +93,7 @@ public abstract class SystemController<T,U> {
      * @return
      */
     @GetMapping(value = "find/{id}")
+    @ApiOperation(value = "根据id获取对应的数据")
     public ResponseCode<U> findById(@PathVariable(value = "id") Long id){
         ResponseCode<U> responseCode = ResponseCode.sucess();
         Optional<T> optionalT = systemRefactorService.findById(id);
@@ -101,6 +109,7 @@ public abstract class SystemController<T,U> {
      * @param id
      * @return
      */
+    @ApiOperation(value = "根据id删除数据")
     @DeleteMapping(value = "delete/{id}")
     public ResponseCode<U> delete(@PathVariable(value = "id") Long id){
         Optional<T> optionalT = systemRefactorService.findById(id);
@@ -119,6 +128,7 @@ public abstract class SystemController<T,U> {
      * @return
      */
     @GetMapping(value = "getSelectList")
+    @ApiOperation(value = "获取数据列表,用户下拉框选择时，返回字段未lable和value")
     public ResponseCode<List<SelectDTO>> getSelectList(){
         ResponseCode<List<SelectDTO>> responseCode = ResponseCode.sucess();
         List<T> tList = systemRefactorService.findAll();

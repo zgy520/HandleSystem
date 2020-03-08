@@ -7,6 +7,7 @@ import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.IndustryService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "industry")
 @Slf4j
+@Api(tags = "行业相关接口")
 public class IndustryController extends SystemController<Industry,IndustryDTO> {
     private IndustryService industryService;
     @Autowired

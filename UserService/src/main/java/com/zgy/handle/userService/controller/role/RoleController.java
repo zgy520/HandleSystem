@@ -7,6 +7,7 @@ import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.authority.RoleDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.authority.RoleService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RequestMapping(value = "role")
 @RestController
+@Api(tags = "角色相关的接口")
 public class RoleController extends SystemController<Role, RoleDTO> {
     private RoleService refactorService;
     @Autowired

@@ -15,6 +15,7 @@ import com.zgy.handle.userService.service.authority.post.PostService;
 import com.zgy.handle.userService.service.structure.DepartmentAccountService;
 import com.zgy.handle.userService.service.structure.DepartmentService;
 import com.zgy.handle.userService.service.user.AccountService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 @RequestMapping(value = "account")
+@Api(tags = "用户相关的接口文档")
 public class AccountController extends SystemController<Account,AccountDTO> {
     private final AccountService accountService;
     @Autowired

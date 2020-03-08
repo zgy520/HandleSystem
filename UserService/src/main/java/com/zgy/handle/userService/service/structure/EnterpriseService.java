@@ -78,7 +78,7 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
         if (StringUtils.isNotBlank(enterpriseDTO.getIndustryId())){
             Optional<Industry> industryOptional = industryService.findById(Long.valueOf(enterpriseDTO.getIndustryId()));
             if (industryOptional.isPresent()){
-                enterprise.setIndustry(industryOptional.get());
+                enterprise.setBelongIndustry(industryOptional.get());
             }
         }
         enterprise.setNote(enterpriseDTO.getNote());

@@ -30,6 +30,8 @@ public class Account extends BaseModel {
     private String salt;
     @Email
     private String email;
+    private String phoneNumber; // 手机号
+    private String handleUser;
     @JsonIgnore
     private boolean isExpired = false;
     @JsonIgnore

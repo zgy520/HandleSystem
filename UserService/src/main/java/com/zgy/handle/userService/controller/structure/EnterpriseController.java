@@ -9,6 +9,7 @@ import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.EnterpriseService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "enterprise")
 @Slf4j
+@Api(tags = "企业相关的信息维护")
 public class EnterpriseController extends SystemController<Enterprise,EnterpriseDTO> {
     private EnterpriseService enterpriseService;
     @Autowired

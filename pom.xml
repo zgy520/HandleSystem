@@ -14,7 +14,8 @@
         <module>EurekaServer</module>
 
         <module>Common</module>
-        <module>KnowledgeService</module>
+        <module>HandleService</module><!--<module>KnowledgeService</module>-->
+
     </modules>
 
     <parent>
