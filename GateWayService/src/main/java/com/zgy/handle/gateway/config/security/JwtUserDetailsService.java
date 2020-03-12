@@ -11,19 +11,26 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Slf4j
 public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private UserFeignClient userFeignClient;
+    private static Map<String,UserInfo> userInfoMap = new HashMap<>();
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserInfo userInfo = userFeignClient.getUserInfo(username);
+        UserInfo userInfo = null;
+        if (userInfoMap.containsKey(username)){
+            userInfo = userInfoMap.get(username);
+        }else {
+            userInfo = userFeignClient.getUserInfo(username);
+            userInfoMap.put(username,userInfo);
+        }
+
+
         if (userInfo != null){
 
             com.zgy.handle.gateway.model.UserDetails userDetails = new com.zgy.handle.gateway.model.UserDetails(userInfo.getUserName(),
