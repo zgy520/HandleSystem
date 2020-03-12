@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-08T10:34:08+0800",
+    date = "2020-03-08T16:33:23+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.4 (Oracle Corporation)"
 )
 @Component
@@ -28,6 +28,8 @@ public class AccountMapperImpl implements AccountMapper {
         }
         accountDTO.setName( account.getName() );
         accountDTO.setLoginName( account.getLoginName() );
+        accountDTO.setPhoneNumber( account.getPhoneNumber() );
+        accountDTO.setHandleUser( account.getHandleUser() );
         accountDTO.setEmail( account.getEmail() );
         accountDTO.setNote( account.getNote() );
 
@@ -63,6 +65,8 @@ public class AccountMapperImpl implements AccountMapper {
         account.setName( accountDTO.getName() );
         account.setLoginName( accountDTO.getLoginName() );
         account.setEmail( accountDTO.getEmail() );
+        account.setPhoneNumber( accountDTO.getPhoneNumber() );
+        account.setHandleUser( accountDTO.getHandleUser() );
 
         return account;
     }

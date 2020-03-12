@@ -29,7 +29,6 @@ E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\controller\SystemMapper.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\model\user\Account.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\service\authority\post\PostService.java
-E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\confg\Interceptor\ResponseResultInterceptor.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\controller\structure\convert\DepartMapper.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\repository\structure\DepartmentAccountRepository.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\model\menu\Menu.java
@@ -74,7 +73,6 @@ E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\repository\SystemRepository.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\service\user\AccountService.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\model\menu\RoleMenuButton.java
-E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\confg\Interceptor\InterceptorConfig.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\model\authority\DepartmentPost.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\model\structure\EnterpriseDTO.java
 E:\learning\git projects\refactor\HandleSystem\UserService\src\main\java\com\zgy\handle\userService\controller\user\convert\AccountMapper.java
