@@ -22,4 +22,6 @@ public interface MetaBodyMapper {
     @Mapping(source = "metaHeader.id",target = "headerId")
     MetaBodyDTO toMetaBodyDTO(MetaBody metaBody);
     List<MetaBodyDTO> toMetaBodyDTOS(List<MetaBody> metaBodies);
+
+    List<MetaBody> toMetaBodys(List<MetaBodyDTO> metaBodyDTOList);
 }
