@@ -21,9 +21,9 @@ public class DepartmentAccount {
     private DepartmentAccountPK id;
 
     @ManyToOne
-    @MapsId("departId")
-    @JoinColumn(name = "departId")
-    private Department department;
+    @MapsId("enterpriseId")
+    @JoinColumn(name = "enterpriseId")
+    private Enterprise enterprise;
 
     @ManyToOne
     @MapsId("accountId")

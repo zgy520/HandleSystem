@@ -9,7 +9,7 @@ import java.util.Objects;
 @Embeddable
 @Data
 public class DepartmentAccountPK implements Serializable {
-    private Long departId;
+    private Long enterpriseId;
     private Long accountId;
 
     @Override
@@ -17,12 +17,12 @@ public class DepartmentAccountPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DepartmentAccountPK that = (DepartmentAccountPK) o;
-        return Objects.equals(departId, that.departId) &&
+        return Objects.equals(enterpriseId, that.enterpriseId) &&
                 Objects.equals(accountId, that.accountId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(departId, accountId);
+        return Objects.hash(enterpriseId, accountId);
     }
 }

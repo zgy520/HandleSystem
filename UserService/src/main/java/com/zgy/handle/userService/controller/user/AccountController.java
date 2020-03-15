@@ -4,6 +4,7 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.user.convert.AccountMapper;
 import com.zgy.handle.userService.model.structure.Department;
+import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
@@ -54,6 +55,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
             dto.setRoleList(rolePostDTO.getRoleList());
             dto.setPostList(rolePostDTO.getPostList());
             dto.setDepartName(rolePostDTO.getDepartName());
+            dto.setDepartId(rolePostDTO.getDepartId());
         });
     }
 
@@ -63,7 +65,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         if (account == null) {
             return null;
         }
-        Department department = departmentAccountService.getByAccountId(account.getId());
+        Enterprise department = departmentAccountService.getByAccountId(account.getId());
         ResponseCode<RolePostDTO> responseCode = accountService.fetchRolePostListByUserId(account.getId());
         UserInfo userInfo = UserInfo.builder()
                 .userName(account.getLoginName())

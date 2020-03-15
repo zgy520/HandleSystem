@@ -4,6 +4,8 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.structure.Department;
+import com.zgy.handle.userService.model.structure.DepartmentAccount;
+import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
 import com.zgy.handle.userService.model.user.cross.RolePostDTO;
@@ -13,6 +15,7 @@ import com.zgy.handle.userService.service.authority.RoleService;
 import com.zgy.handle.userService.service.authority.post.PostService;
 import com.zgy.handle.userService.service.structure.DepartmentAccountService;
 import com.zgy.handle.userService.service.structure.DepartmentService;
+import com.zgy.handle.userService.service.structure.EnterpriseService;
 import com.zgy.handle.userService.util.Str.StrUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,8 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     private PostService postService;
     @Autowired
     private DepartmentService departmentService;
+    @Autowired
+    private EnterpriseService enterpriseService;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Bean
@@ -94,7 +99,7 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         Account account = this.accountRepository.findById(userId).get();
         List<String> roleList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.toList());
-        Department department = departmentAccountService.getByAccountId(userId);
+        Enterprise department = departmentAccountService.getByAccountId(userId);
         RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         responseCode.setData(rolePostDTO);
         return responseCode;
@@ -105,7 +110,7 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         Account account = this.accountRepository.findById(userId).get();
         List<String> roleList = account.getRoleSet().stream().map(Role::getName).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getName).map(String::valueOf).collect(Collectors.toList());
-        Department department = departmentAccountService.getByAccountId(userId);
+        Enterprise department = departmentAccountService.getByAccountId(userId);
         RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         return rolePostDTO;
     }
@@ -143,10 +148,10 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     @Override
     public void postUpdate(Account account,AccountDTO accountDTO) {
         if (StringUtils.isNotBlank(accountDTO.getDepartId())) {
-            Optional<Department> departmentOptional = departmentService.findById(Long.valueOf(accountDTO.getDepartId()));
+            Optional<Enterprise> departmentOptional = enterpriseService.findById(Long.valueOf(accountDTO.getDepartId()));
             if (departmentOptional.isPresent()) {
                 departmentAccountService.deleteByAccountId(account.getId());
-                Department department = departmentOptional.get();
+                Enterprise department = departmentOptional.get();
                 //log.info("获取到的部门信息为: " + department);
                 departmentAccountService.setDepartmentAccount(account, department);
             }

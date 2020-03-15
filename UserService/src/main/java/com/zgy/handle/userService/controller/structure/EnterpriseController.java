@@ -34,14 +34,14 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
         this.enterpriseService = enterpriseService;
     }
 
-    @Override
+    /*@Override
     public ResponseCode<List<EnterpriseDTO>> list(Pageable pageable, EnterpriseDTO dto) {
         ResponseCode<List<EnterpriseDTO>> responseCode = ResponseCode.sucess();
         List<Enterprise> enterpriseList = enterpriseService.findAll();
         List<EnterpriseDTO> enterpriseDTOList = enterpriseMapper.toEnterpriseDTOs(enterpriseList);
         responseCode.setData(enterpriseService.getEnterpriseDtoList(enterpriseDTOList));
         return responseCode;
-    }
+    }*/
 
     @Override
     public List<EnterpriseDTO> convertTtoU(List<Enterprise> enterpriseList) {
