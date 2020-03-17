@@ -22,5 +22,7 @@ public class MetaHeader extends BaseModel {
     @JoinColumn(name = "parentId")
     private MetaHeader parent; //上级节点
 
+    private String tableName; // 用于特殊情况处理，数据库内固定值
+
     private Long enterpriseId;
 }

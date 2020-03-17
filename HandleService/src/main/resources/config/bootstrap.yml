@@ -9,3 +9,6 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+parameter:
+  appId: wx3be72c762a1f1a46
+  appSecret: d0abc3ad5d7ee22d83eb0b17a03bcbf2

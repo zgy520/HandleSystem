@@ -5,10 +5,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.handleService.model.meta.bus.BusDetails;
 import com.zgy.handle.handleService.model.meta.bus.BusPrimary;
+import com.zgy.handle.handleService.model.meta.simulate.WLData;
+import com.zgy.handle.handleService.model.meta.simulate.XSData;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaBody;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaHeader;
 import com.zgy.handle.handleService.repository.meta.bus.BusDetailsRepository;
 import com.zgy.handle.handleService.repository.meta.bus.BusPrimaryRepository;
+import com.zgy.handle.handleService.repository.meta.structure.MetaBodyRepository;
+import com.zgy.handle.handleService.repository.meta.structure.MetaHeaderRepository;
 import com.zgy.handle.handleService.service.SystemService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
@@ -30,6 +34,10 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
     private BusPrimaryRepository busPrimaryRepository;
     @Autowired
     private BusDetailsRepository busDetailsRepository;
+    @Autowired
+    private MetaHeaderRepository metaHeaderRepository;
+    @Autowired
+    private MetaBodyRepository metaBodyRepository;
     @Autowired
     public BusPrimaryService(BusPrimaryRepository busPrimaryRepository) {
         super(busPrimaryRepository);
@@ -273,4 +281,160 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         //return restResponse;
     }
 
+
+
+    /*
+    -----------------------一下为特殊处理情况-------------------------------
+     */
+    public ResponseCode<BusPrimary> saveWLData(WLData wlData){
+        ResponseCode<BusPrimary> responseCode = ResponseCode.sucess();
+        BusPrimary busPrimary = null;
+        MetaHeader metaHeader = metaHeaderRepository.findByTableName("WL");
+        try{
+            if (metaHeader != null){
+                busPrimary = saveBusPrimary(metaHeader); // 保存主键
+                if (busPrimary == null){
+                    responseCode.setSuccess(false);
+                    responseCode.setMsg("主键保存失败");
+                }else {
+                    // 保存业务数据
+                    saveWLBusData(wlData,busPrimary,metaHeader.getId());
+                }
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+            responseCode.setSuccess(false);
+            responseCode.setMsg(ex.getLocalizedMessage());
+        }
+
+        return responseCode;
+    }
+    public ResponseCode<BusPrimary> saveXSData(XSData xsData){
+        ResponseCode<BusPrimary> responseCode = ResponseCode.sucess();
+        BusPrimary busPrimary = null;
+        MetaHeader metaHeader = metaHeaderRepository.findByTableName("XS");
+        try{
+            if (metaHeader != null){
+                busPrimary = saveBusPrimary(metaHeader); // 保存主键
+                if (busPrimary == null){
+                    responseCode.setSuccess(false);
+                    responseCode.setMsg("销售数据主键保存失败");
+                }else {
+                    // 保存业务数据
+                    saveXSBusData(xsData,busPrimary,metaHeader.getId());
+                }
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+            responseCode.setSuccess(false);
+            responseCode.setMsg(ex.getLocalizedMessage());
+        }
+
+        return responseCode;
+    }
+
+    /**
+     * 保存物流得具体业务数据
+     * @param wlData
+     * @param busPrimary
+     * @param metaHeaderId
+     */
+    private void saveWLBusData(WLData wlData,BusPrimary busPrimary,Long metaHeaderId){
+        List<MetaBody> metaBodyList = metaBodyRepository.findByMetaHeaderId(metaHeaderId);
+        List<BusDetails> busDetailsList = new ArrayList<>();
+        for (MetaBody metaBody : metaBodyList){
+            BusDetails busDetails = new BusDetails();
+            busDetails.setBusPrimary(busPrimary);
+            busDetails.setMetaBody(metaBody);
+            switch (metaBody.getBody().getName()){
+                case "orderNum":
+                    busDetails.setFieldValue(wlData.getOrderNum());
+                    break;
+                case "startLocation":
+                    busDetails.setFieldValue(wlData.getStartLocation());
+                    break;
+                case "endLocation":
+                    busDetails.setFieldValue(wlData.getEndLocation());
+                    break;
+                case "person":
+                    busDetails.setFieldValue(wlData.getPerson());
+                    break;
+                case "phoneNumber":
+                    busDetails.setFieldValue(wlData.getPhoneNumber());
+                    break;
+                default:
+                    log.info("未预期的字段信息");
+                    break;
+            }
+            busDetailsList.add(busDetails);
+        }
+        busDetailsRepository.saveAll(busDetailsList);
+    }
+
+    /**
+     * 保存销售得具体业务数据
+     * @param xsData
+     * @param busPrimary
+     * @param metaHeaderId
+     */
+    private void saveXSBusData(XSData xsData,BusPrimary busPrimary,Long metaHeaderId){
+        List<MetaBody> metaBodyList = metaBodyRepository.findByMetaHeaderId(metaHeaderId);
+        List<BusDetails> busDetailsList = new ArrayList<>();
+        for (MetaBody metaBody : metaBodyList){
+            BusDetails busDetails = new BusDetails();
+            busDetails.setBusPrimary(busPrimary);
+            busDetails.setMetaBody(metaBody);
+            switch (metaBody.getBody().getName()){
+                case "saleCustomer":
+                    busDetails.setFieldValue(xsData.getSaleCustomer());
+                    break;
+                case "salePerson":
+                    busDetails.setFieldValue(xsData.getSalePerson());
+                    break;
+                case "saleDate":
+                    busDetails.setFieldValue(xsData.getSaleDate());
+                    break;
+                case "saleMoney":
+                    busDetails.setFieldValue(xsData.getSaleMoney());
+                    break;
+                case "saleCount":
+                    busDetails.setFieldValue(xsData.getSaleCount());
+                    break;
+                default:
+                    log.info("未预期的字段信息");
+                    break;
+            }
+            busDetailsList.add(busDetails);
+        }
+        busDetailsRepository.saveAll(busDetailsList);
+    }
+
+    /**
+     * 保存主键数据
+     * @param metaHeader
+     * @return
+     */
+    private BusPrimary saveBusPrimary(MetaHeader metaHeader){
+        BusPrimary busPrimary = new BusPrimary();
+        busPrimary.setMetaHeader(metaHeader);
+        long maxPriamry = busPrimaryRepository.findByMetaHeaderId(metaHeader.getId())
+                .stream().mapToLong(BusPrimary::getPrimaryValue).max().orElse(0L) + 1;
+        busPrimary.setPrimaryValue(maxPriamry);
+        busPrimary.setHandleCode(metaHeader.getHeader().getIdentityNum() + "_" + maxPriamry);
+        busPrimaryRepository.save(busPrimary);
+        return busPrimary;
+    }
+
+    public ResponseCode updateDPRelate(Long busId,String ids){
+        ResponseCode responseCode = ResponseCode.sucess();
+        Optional<BusPrimary> busPrimaryOptional = busPrimaryRepository.findById(busId);
+        if (busPrimaryOptional.isPresent()){
+            BusPrimary busPrimary = busPrimaryOptional.get();
+            MetaHeader metaHeader = busPrimary.getMetaHeader();
+            List<MetaBody> metaBodyList = metaBodyRepository.findByMetaHeaderId(metaHeader.getId());
+            List<BusDetails> busDetailsList = busDetailsRepository.findByBusPrimaryId(busPrimary.getId());
+            // 保存handle和关联id之间的关系
+        }
+        return responseCode;
+    }
 }

@@ -42,6 +42,19 @@ public class MetaHeaderController extends SystemController<MetaHeader, MetaHeade
         return responseCode;
     }
 
+    @GetMapping(value = "getAlisa")
+    @ApiOperation(value = "元数据标准的handleCode和别名的对应关系")
+    public ResponseCode<List<SelectDTO>> getAlias(){
+        ResponseCode<List<SelectDTO>> responseCode = ResponseCode.sucess();
+        List<MetaHeader> metaHeaderList = metaHeaderService.findAll();
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        metaHeaderList.stream().forEach(metaHeader -> {
+            SelectDTO selectDTO = new SelectDTO(metaHeader.getHeader().getIdentityNum(),metaHeader.getHeader().getAlias());
+            selectDTOList.add(selectDTO);
+        });
+        return responseCode;
+    }
+
     @Override
     public ResponseCode<List<MetaHeaderDTO>> list(Pageable pageable, MetaHeaderDTO dto) {
         ResponseCode<List<MetaHeaderDTO>> responseCode = ResponseCode.sucess();
