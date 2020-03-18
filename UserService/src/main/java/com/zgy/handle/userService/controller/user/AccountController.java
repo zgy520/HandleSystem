@@ -73,6 +73,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
                 .userId(account.getId().toString())
                 .orgId(department == null?"":department.getId().toString())
                 .enterpriseId(department == null?"":departmentService.fetchIndustry(department.getId()).getId().toString())
+                .enterpriseName(department == null?"":departmentService.fetchIndustry(department.getId()).getIndustry())
                 .postId(accountService.fetchPostIdListByAccountId(account.getId()))
                 .postName(accountService.fetchPostCodeListByAccountId(account.getId()).stream().collect(Collectors.joining(",")))
                 .build();

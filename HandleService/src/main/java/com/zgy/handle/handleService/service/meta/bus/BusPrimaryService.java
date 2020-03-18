@@ -427,13 +427,27 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
 
     public ResponseCode updateDPRelate(Long busId,String ids){
         ResponseCode responseCode = ResponseCode.sucess();
+        String realHandleCode = "";
         Optional<BusPrimary> busPrimaryOptional = busPrimaryRepository.findById(busId);
         if (busPrimaryOptional.isPresent()){
             BusPrimary busPrimary = busPrimaryOptional.get();
+            List<BusPrimary> metaBusPrimaryList = new ArrayList<>();
+            metaBusPrimaryList.add(busPrimary);
             MetaHeader metaHeader = busPrimary.getMetaHeader();
             List<MetaBody> metaBodyList = metaBodyRepository.findByMetaHeaderId(metaHeader.getId());
             List<BusDetails> busDetailsList = busDetailsRepository.findByBusPrimaryId(busPrimary.getId());
             // 保存handle和关联id之间的关系
+            String[] idList = ids.split(",");
+            for (String id : idList){
+                BusPrimary dpMBP = busPrimaryRepository.findById(Long.valueOf(id)).get();
+                realHandleCode += dpMBP.getHandleCode() + ",";
+            }
+            realHandleCode = realHandleCode.substring(0,realHandleCode.length() - 1);
+            try{
+                createDownloadExcel(realHandleCode,metaHeader,metaBusPrimaryList,metaBodyList,busDetailsList);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
         }
         return responseCode;
     }
