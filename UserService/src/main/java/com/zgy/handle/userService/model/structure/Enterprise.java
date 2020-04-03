@@ -23,6 +23,8 @@ import java.util.Date;
 @Entity
 @Table(name = "system_enterprise")
 public class Enterprise extends BaseModel {
+    private String ip;
+    private String prefix;
     private String code;
     private String name;
     private String shortName; // 简称

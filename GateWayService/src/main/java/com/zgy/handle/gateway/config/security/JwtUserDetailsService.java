@@ -25,7 +25,6 @@ public class JwtUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = userFeignClient.getUserInfo(username);
         if (userInfo != null){
-
             com.zgy.handle.gateway.model.UserDetails userDetails = new com.zgy.handle.gateway.model.UserDetails(userInfo.getUserName(),
                     userInfo.getPasword(),getGrantedAuthority(userInfo));
             userDetails.setUserId(userInfo.getUserId());
@@ -49,6 +48,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         Set<String> roleSet = userInfo.getRoleSet();
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for (String role : roleSet){
+            if (role == null) continue;
             SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role);
             grantedAuthorities.add(simpleGrantedAuthority);
         }

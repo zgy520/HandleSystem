@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-03-19T07:53:29+0800",
+    date = "2020-03-22T22:11:09+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.4 (Oracle Corporation)"
 )
 @Component
@@ -27,6 +27,8 @@ public class EnterpriseMapperImpl implements EnterpriseMapper {
             enterprise.setId( Long.parseLong( enterpriseDTO.getId() ) );
         }
         enterprise.setNote( enterpriseDTO.getNote() );
+        enterprise.setIp( enterpriseDTO.getIp() );
+        enterprise.setPrefix( enterpriseDTO.getPrefix() );
         enterprise.setCode( enterpriseDTO.getCode() );
         enterprise.setName( enterpriseDTO.getName() );
         enterprise.setShortName( enterpriseDTO.getShortName() );
@@ -64,6 +66,8 @@ public class EnterpriseMapperImpl implements EnterpriseMapper {
         if ( id != null ) {
             enterpriseDTO.setParentId( String.valueOf( id ) );
         }
+        enterpriseDTO.setIp( enterprise.getIp() );
+        enterpriseDTO.setPrefix( enterprise.getPrefix() );
         if ( enterprise.getId() != null ) {
             enterpriseDTO.setId( String.valueOf( enterprise.getId() ) );
         }

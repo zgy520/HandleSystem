@@ -66,14 +66,15 @@ public class AccountController extends SystemController<Account,AccountDTO> {
             return null;
         }
         Enterprise department = departmentAccountService.getByAccountId(account.getId());
+        //Enterprise industry = departmentService.fetchIndustry(department.getId());
         ResponseCode<RolePostDTO> responseCode = accountService.fetchRolePostListByUserId(account.getId());
         UserInfo userInfo = UserInfo.builder()
                 .userName(account.getLoginName())
                 .pasword(account.getPassword())
                 .userId(account.getId().toString())
                 .orgId(department == null?"":department.getId().toString())
-                .enterpriseId(department == null?"":departmentService.fetchIndustry(department.getId()).getId().toString())
-                .enterpriseName(department == null?"":departmentService.fetchIndustry(department.getId()).getIndustry())
+                //.enterpriseId(department == null?"":departmentService.fetchIndustry(department.getId()).getId().toString())
+                //.enterpriseName(department == null?"":departmentService.fetchIndustry(department.getId()).getIndustry())
                 .postId(accountService.fetchPostIdListByAccountId(account.getId()))
                 .postName(accountService.fetchPostCodeListByAccountId(account.getId()).stream().collect(Collectors.joining(",")))
                 .build();

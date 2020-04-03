@@ -37,9 +37,11 @@ public abstract class SystemController<T,U> {
      */
     @PostMapping(value = "update")
     public ResponseCode<U> update(@Valid @RequestBody U u){
+        ResponseCode<U> uResponseCode = ResponseCode.sucess();
         T t = convertUtoT(u);
-        ResponseCode<U> responseCode = systemRefactorService.update(u,t);
-        return responseCode;
+        ResponseCode<T> responseCode = systemRefactorService.update(u,t);
+        uResponseCode.setData(convertTtoU(responseCode.getData()));
+        return uResponseCode;
     }
 
     /**

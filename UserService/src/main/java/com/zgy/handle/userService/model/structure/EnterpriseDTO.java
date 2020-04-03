@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnterpriseDTO {
+    private String ip;
+    private String prefix;
     private String id;
     private String code;
     private String name;

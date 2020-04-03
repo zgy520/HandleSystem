@@ -1,5 +1,7 @@
 package com.zgy.handle.handleService.service.meta.structure;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.zgy.handle.common.util.tree.TreeConvert;
 import com.zgy.handle.handleService.model.meta.dto.structure.MetaHeaderDTO;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaHeader;
@@ -22,6 +24,18 @@ public class MetaHeaderService extends SystemService<MetaHeader, MetaHeaderDTO> 
     public MetaHeaderService(MetaHeaderRepository metaHeaderRepository) {
         super(metaHeaderRepository);
         this.metaHeaderRepository = metaHeaderRepository;
+    }
+
+    public JSONArray getHandleCodeAlisa(){
+        JSONArray jsonArray = new JSONArray();
+        List<MetaHeader> metaNodeList = metaHeaderRepository.findAll();
+        for(MetaHeader metaNode : metaNodeList){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("handleCode",metaNode.getHeader().getIdentityNum());
+            jsonObject.put("alisa",metaNode.getHeader().getAlias());
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
     }
 
     /**

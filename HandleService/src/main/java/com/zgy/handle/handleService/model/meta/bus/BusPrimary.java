@@ -20,6 +20,7 @@ import javax.persistence.Table;
 @Slf4j
 @Data
 public class BusPrimary extends BaseModel {
+    private String strId;
     private String handleCode; // 业务数据的handle码
     private Long primaryValue; // 主键值
 

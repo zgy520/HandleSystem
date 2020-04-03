@@ -1,11 +1,13 @@
 package com.zgy.handle.handleService.controller.mobile;
 
+import com.alibaba.fastjson.JSONArray;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.handleService.controller.mobile.wx.WeixinToken;
 import com.zgy.handle.handleService.model.meta.bus.BusPrimary;
 import com.zgy.handle.handleService.model.meta.simulate.WLData;
 import com.zgy.handle.handleService.model.meta.simulate.XSData;
 import com.zgy.handle.handleService.service.meta.bus.BusPrimaryService;
+import com.zgy.handle.handleService.service.meta.structure.MetaHeaderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +24,19 @@ public class MobileController {
 
     @Autowired
     private BusPrimaryService busPrimaryService;
+    @Autowired
+    private MetaHeaderService metaHeaderService;
 
     @GetMapping(value = "getWXInfo")
     public Map<String,String> getWXInfo(String url){
         Map<String,String> map = Sign.sign(WeixinToken.jsapi_ticket,url);
         return map;
+    }
+
+    @GetMapping(value = "getAlisa")
+    @ResponseBody
+    public JSONArray getAlisa(){
+        return metaHeaderService.getHandleCodeAlisa();
     }
 
     @PostMapping(value = "saveWLData")

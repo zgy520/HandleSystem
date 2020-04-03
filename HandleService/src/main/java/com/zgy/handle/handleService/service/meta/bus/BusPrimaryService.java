@@ -44,6 +44,25 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         this.busPrimaryRepository = busPrimaryRepository;
     }
 
+    public ResponseCode<JSONArray> getBusData(Long metaHeaderId){
+        JSONArray jsonArray = new JSONArray();
+        ResponseCode<JSONArray> responseCode = ResponseCode.sucess();
+        List<BusPrimary> busPrimaryList = busPrimaryRepository.findByMetaHeaderId(metaHeaderId);
+        for (BusPrimary busPrimary : busPrimaryList){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("primaryValue",busPrimary.getPrimaryValue());
+            jsonObject.put("handleCode",busPrimary.getHandleCode());
+            jsonObject.put("primaryId",busPrimary.getId().toString());
+            List<BusDetails> busDetailsList = busDetailsRepository.findByBusPrimaryId(busPrimary.getId());
+            for (BusDetails busDetails : busDetailsList){
+                jsonObject.put(busDetails.getMetaBody().getBody().getName(),busDetails.getFieldValue());
+            }
+            jsonObject.put("enterpriseName","待确认");
+            jsonArray.add(jsonObject);
+        }
+        responseCode.setData(jsonArray);
+        return responseCode;
+    }
     public void saveBusinessData(MetaHeader metaHeader, JSONArray jsonArray, List<MetaBody> metaBodyList){
         long maxPriamry = busPrimaryRepository.findByMetaHeaderId(metaHeader.getId())
                 .stream().mapToLong(BusPrimary::getPrimaryValue).max().orElse(0L);
@@ -293,6 +312,7 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         try{
             if (metaHeader != null){
                 busPrimary = saveBusPrimary(metaHeader); // 保存主键
+                busPrimary.setStrId(String.valueOf(busPrimary.getId()));
                 if (busPrimary == null){
                     responseCode.setSuccess(false);
                     responseCode.setMsg("主键保存失败");
@@ -306,7 +326,7 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
             responseCode.setSuccess(false);
             responseCode.setMsg(ex.getLocalizedMessage());
         }
-
+        responseCode.setData(busPrimary);
         return responseCode;
     }
     public ResponseCode<BusPrimary> saveXSData(XSData xsData){
@@ -316,6 +336,7 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         try{
             if (metaHeader != null){
                 busPrimary = saveBusPrimary(metaHeader); // 保存主键
+                busPrimary.setStrId(String.valueOf(busPrimary.getId()));
                 if (busPrimary == null){
                     responseCode.setSuccess(false);
                     responseCode.setMsg("销售数据主键保存失败");
@@ -324,12 +345,13 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
                     saveXSBusData(xsData,busPrimary,metaHeader.getId());
                 }
             }
+            responseCode.setData(busPrimary);
         }catch (Exception ex){
             ex.printStackTrace();
             responseCode.setSuccess(false);
             responseCode.setMsg(ex.getLocalizedMessage());
         }
-
+        responseCode.setData(busPrimary);
         return responseCode;
     }
 
