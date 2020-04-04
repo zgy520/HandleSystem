@@ -51,6 +51,10 @@ public abstract class KnowledgeService<T,U> {
         return request.getHeader(UserContext.USER_ID);
     }
 
+    public String getCurUserName(){
+        return request.getHeader(UserContext.USER_NAME);
+    }
+
     /**
      * 获取所有的数据
      * @return
