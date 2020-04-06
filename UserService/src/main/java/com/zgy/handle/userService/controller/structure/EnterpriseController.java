@@ -3,15 +3,13 @@ package com.zgy.handle.userService.controller.structure;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.structure.convert.EnterpriseMapper;
-import com.zgy.handle.userService.model.structure.Enterprise;
-import com.zgy.handle.userService.model.structure.EnterpriseDTO;
-import com.zgy.handle.userService.model.structure.Industry;
-import com.zgy.handle.userService.model.structure.IndustryDTO;
+import com.zgy.handle.userService.model.structure.*;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.EnterpriseService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +30,31 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
     public EnterpriseController(EnterpriseService enterpriseService) {
         super(enterpriseService);
         this.enterpriseService = enterpriseService;
+    }
+
+
+    @GetMapping(value = "preList")
+    public ResponseCode<List<EnterpriseRegShortDTO>> getCheckList(Pageable pageable,EnterpriseRegShortDTO enterpriseRegShortDTO){
+        ResponseCode<List<EnterpriseDTO>> responseCode = ResponseCode.sucess();
+        ResponseCode<List<EnterpriseRegShortDTO>> shorResponseCode = ResponseCode.sucess();
+        EnterpriseDTO enterpriseDTO = new EnterpriseDTO();
+        enterpriseDTO.setPrefix(enterpriseRegShortDTO.getPrefix());
+        enterpriseDTO.setName(enterpriseRegShortDTO.getName());
+        enterpriseDTO.setCheckStatus(enterpriseRegShortDTO.getCheckStatus());
+        Page<Enterprise> page = enterpriseService.findByDynamicQuery(pageable,enterpriseDTO);
+        //List<EnterpriseDTO> enterpriseDTOList = enterpriseMapper.toEnterpriseDTOs(enterpriseList);
+        List<EnterpriseRegShortDTO> list = new ArrayList<>();
+        page.getContent().stream().forEach(content->{
+            EnterpriseRegShortDTO enterpriseRegShortDTO1 = new EnterpriseRegShortDTO();
+            enterpriseRegShortDTO1.setAuthorStatus(content.getAuthorStatus());
+            enterpriseRegShortDTO1.setCheckStatus(content.getCheckStatus());
+            enterpriseRegShortDTO1.setName(content.getName());
+            enterpriseRegShortDTO1.setPrefix(content.getPrefix());
+            list.add(enterpriseRegShortDTO1);
+        });
+        shorResponseCode.setPageInfo(page);
+        shorResponseCode.setData(list);
+        return shorResponseCode;
     }
 
     /*@Override
