@@ -3,7 +3,7 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for parent" enabled="true">
+      <profile name="Annotation profile for KnowledgeService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -24,10 +24,10 @@
           <entry name="$MAVEN_REPOSITORY$/joda-time/joda-time/2.9/joda-time-2.9.jar" />
         </processorPath>
         <module name="Common" />
-        <module name="EurekaServer" />
         <module name="KnowledgeService" />
-        <module name="GateWayService" />
         <module name="HandleService" />
+        <module name="GateWayService" />
+        <module name="EurekaServer" />
         <module name="UserService" />
       </profile>
     </annotationProcessing>
