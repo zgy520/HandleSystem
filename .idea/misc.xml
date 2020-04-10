@@ -13,6 +13,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/AuthServer/pom.xml" />
+        <option value="$PROJECT_DIR$/HandleService/pom.xml" />
         <option value="$PROJECT_DIR$/JWTServer/pom.xml" />
         <option value="$PROJECT_DIR$/OrgServer/pom.xml" />
         <option value="$PROJECT_DIR$/UserServer/pom.xml" />

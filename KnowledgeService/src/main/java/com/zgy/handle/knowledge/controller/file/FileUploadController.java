@@ -4,10 +4,14 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.knowledge.model.file.File;
 import com.zgy.handle.knowledge.model.file.FileDTO;
 import com.zgy.handle.knowledge.model.file.UploadFileResponse;
+import com.zgy.handle.knowledge.service.file.FastDFSService;
 import com.zgy.handle.knowledge.service.file.FileService;
 import com.zgy.handle.knowledge.service.file.FileStorageService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.csource.common.MyException;
+import org.csource.common.NameValuePair;
+import org.csource.fastdfs.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -19,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
@@ -34,17 +39,24 @@ public class FileUploadController {
     @Autowired
     private FileService fileService;
 
+    @Autowired
+    private FastDFSService fastDFSService;
+
+
     @ApiOperation(value = "单文件上传")
     @PostMapping(value = "file")
     public ResponseCode<UploadFileResponse> upload(MultipartFile file){
         ResponseCode<UploadFileResponse> responseCode = new ResponseCode<>();
-        responseCode.setData(uploadFileResponses(file));
+
+        // 上传到fastdfs服务器
+        String fileId = fastDFSService.uploadToFastDFS(file);
+        responseCode.setData(uploadFileResponses(file,fileId));
         return responseCode;
 
     }
 
-    private UploadFileResponse uploadFileResponses(MultipartFile file){
-        File file1 = fileStorageService.storeFile(file);
+    private UploadFileResponse uploadFileResponses(MultipartFile file,String filePath){
+        File file1 = fileStorageService.storeFile(file,filePath);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("downloadFile/")
                 .path(file1.getId().toString())
@@ -57,11 +69,15 @@ public class FileUploadController {
     @ApiOperation(value = "多文件上传")
     public ResponseCode<List<UploadFileResponse>> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files){
         ResponseCode<List<UploadFileResponse>> responseCode = ResponseCode.sucess();
-        List<UploadFileResponse> list = Arrays.asList(files)
+        /*List<UploadFileResponse> list = Arrays.asList(files)
                 .stream()
                 .map(file->uploadFileResponses(file))
                 .collect(Collectors.toList());
-        responseCode.setData(list);
+        responseCode.setData(list);*/
+        for (int i = 0; i < files.length; i++){
+            uploadFileResponses(files[i],fastDFSService.uploadToFastDFS(files[i]));
+        }
+
         return responseCode;
     }
 

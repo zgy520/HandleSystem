@@ -17,7 +17,8 @@ public class FileStorageService {
     @Autowired
     private FileRepository fileRepository;
 
-    public File storeFile(MultipartFile file){
+
+    public File storeFile(MultipartFile file,String filePath){
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {
@@ -27,7 +28,8 @@ public class FileStorageService {
             File file1 = new File();
             file1.setName(fileName);
             file1.setFileType(file.getContentType());
-            file1.setData(file.getBytes());
+            //file1.setData(file.getBytes());
+            file1.setFilePath(filePath);
             return fileRepository.save(file1);
         }catch (Exception ex){
             ex.printStackTrace();

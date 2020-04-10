@@ -10,6 +10,7 @@ import com.zgy.handle.knowledge.service.KnowledgeService;
 import com.zgy.handle.knowledge.service.file.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,11 @@ import java.util.List;
 @RequestMapping(value = "file")
 @Slf4j
 public class FileController extends KnowledgeController<File, FileDTO> {
+    @Value(value = "${fastDFS.url}")
+    private String fastUrl;
+    @Value(value = "${fastDFS.port}")
+    private String port;
+
     private FileService fileService;
     @Autowired
     private FileMapper fileMapper;
@@ -33,6 +39,13 @@ public class FileController extends KnowledgeController<File, FileDTO> {
     public ResponseCode<List<FileDTO>> updatex(@RequestBody FileDTO fileDTO){
         ResponseCode<List<FileDTO>> responseCode = fileService.batchUpdate(fileDTO);
         return responseCode;
+    }
+
+    @Override
+    public void fillList(List<File> entityList, List<FileDTO> dtoList) {
+        dtoList.stream().forEach(dto->{
+            dto.setFilePath(fastUrl + ":" + port + "/" + dto.getFilePath());
+        });
     }
 
     @Override

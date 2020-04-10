@@ -14,6 +14,7 @@ import java.util.Date;
 public class ResourceCommentDTO {
     private String id;
     private Long personalId;
+    private String note;
     private String content;
     private String creator;
     private Date createTime;

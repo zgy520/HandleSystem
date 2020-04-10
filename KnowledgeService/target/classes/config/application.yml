@@ -39,3 +39,6 @@ spring:
     test-on-borrow: false
     test-while-idle: true
     time-between-eviction-runs-millis: 18800
+fastDFS:
+  url: http://114.115.169.188
+  port: 8888
