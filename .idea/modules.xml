@@ -7,7 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/GateWayService/GateWayService.iml" filepath="$PROJECT_DIR$/GateWayService/GateWayService.iml" />
       <module fileurl="file://$PROJECT_DIR$/HandleService/HandleService.iml" filepath="$PROJECT_DIR$/HandleService/HandleService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/HandleSystem.iml" filepath="$PROJECT_DIR$/.idea/HandleSystem.iml" />
-      <module fileurl="file://$PROJECT_DIR$/KnowledgeService/KnowledgeService.iml" filepath="$PROJECT_DIR$/KnowledgeService/KnowledgeService.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserService/UserService.iml" filepath="$PROJECT_DIR$/UserService/UserService.iml" />
     </modules>
   </component>

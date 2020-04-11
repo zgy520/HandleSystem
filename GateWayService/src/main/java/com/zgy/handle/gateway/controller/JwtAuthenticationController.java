@@ -11,10 +11,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -34,6 +31,13 @@ public class JwtAuthenticationController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
         responseCode.setData(token);
+        return responseCode;
+    }
+
+    @PostMapping(value = "logout")
+    public ResponseCode<String> logout(){
+        ResponseCode<String> responseCode = ResponseCode.sucess();
+        responseCode.setData("sucess");
         return responseCode;
     }
 
