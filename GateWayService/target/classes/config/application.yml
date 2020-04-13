@@ -1,6 +1,0 @@
-server:
-  port: 6666
-jwt:
-  secret: zgySecret
-mj:
-  token: Bear xxx
