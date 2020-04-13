@@ -1,6 +1,7 @@
 package com.zgy.handle.userService.service;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.common.zuul.context.UserContext;
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,32 @@ public abstract class SystemService<T,U> {
         return systemRepository.findById(id);
     }
 
+    /**
+     * 获取当前用户的企业id
+     * @return
+     */
+    public String getEnterpriseId(){
+        return request.getHeader(UserContext.ENTERPRISE_ID);
+    }
+
+    /**
+     * 获取当前用户的部门id
+     * @return
+     */
+    public String getDepartId(){
+        return request.getHeader(UserContext.ORG_ID);
+    }
+
+    public String getPersonalName(){
+        return request.getHeader(UserContext.USER_NAME);
+    }
+    /**
+     * 获取用户的个人id
+     * @return
+     */
+    public String getPersonalId(){
+        return request.getHeader(UserContext.USER_ID);
+    }
 
     /**
      * 根据分页获取数据

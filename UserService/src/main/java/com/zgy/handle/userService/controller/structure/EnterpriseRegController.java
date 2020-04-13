@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.controller.structure;
 
+import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.UserController;
 import com.zgy.handle.userService.controller.structure.convert.EnterpriseRegMapper;
@@ -10,12 +11,16 @@ import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.service.structure.EnterpriseRegService;
 import com.zgy.handle.userService.service.structure.EnterpriseService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "enterprise/reg")
@@ -28,6 +33,24 @@ public class EnterpriseRegController extends SystemController<Enterprise, Enterp
     public EnterpriseRegController(EnterpriseRegService enterpriseService) {
         super(enterpriseService);
         this.enterpriseService = enterpriseService;
+    }
+
+    @ApiOperation("获取用户所在的企业信息")
+    @GetMapping(value = "getSelfEnterprise")
+    public ResponseCode<EnterpriseRegDTO> getSelfEnterprise(){
+        ResponseCode<EnterpriseRegDTO> regDTOResponseCode = ResponseCode.sucess();
+        Optional<Enterprise> optionalEnterprise = enterpriseService.getSelfEnterprise();
+        if (optionalEnterprise.isPresent()){
+            regDTOResponseCode.setData(enterpriseRegMapper.toEnterpriseRegDTO(optionalEnterprise.get()));
+        }
+        return regDTOResponseCode;
+    }
+    @ApiOperation("企业前缀填写")
+    @PostMapping(value = "fillEnterpriseFix")
+    public ResponseCode<EnterpriseRegDTO> fillEnterprisePrefix(Long enterpriseId,String prefix){
+        ResponseCode<EnterpriseRegDTO> regDTOResponseCode = ResponseCode.sucess();
+        regDTOResponseCode.setData(enterpriseRegMapper.toEnterpriseRegDTO(enterpriseService.fillEnterprisePrefix(enterpriseId,prefix)));
+        return regDTOResponseCode;
     }
 
     @Override

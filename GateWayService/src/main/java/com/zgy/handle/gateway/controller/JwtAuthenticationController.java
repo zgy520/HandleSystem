@@ -34,12 +34,7 @@ public class JwtAuthenticationController {
         return responseCode;
     }
 
-    @PostMapping(value = "logout")
-    public ResponseCode<String> logout(){
-        ResponseCode<String> responseCode = ResponseCode.sucess();
-        responseCode.setData("sucess");
-        return responseCode;
-    }
+
 
     private void authenticate(String userName,String password) throws Exception {
         try{

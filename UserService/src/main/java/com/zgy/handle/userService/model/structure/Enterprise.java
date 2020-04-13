@@ -57,6 +57,7 @@ public class Enterprise extends BaseModel {
     private String checkDate; // 审核时间
     private String preEffectiveDate; // 前缀有效期
     private String regDate; // 注册时间
+    
 
     @ManyToOne
     @JoinColumn(name = "paretnId",referencedColumnName = "id",nullable = true)

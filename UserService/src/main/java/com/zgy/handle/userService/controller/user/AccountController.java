@@ -128,4 +128,12 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         return accountService.fetchRolePostListByUserId(id);
     }
 
+    @PostMapping(value = "logout")
+    public ResponseCode<String> logout(){
+        ResponseCode<String> responseCode = ResponseCode.sucess();
+        responseCode.setData("sucess");
+        return responseCode;
+    }
+
+
 }

@@ -1,9 +1,7 @@
 package com.zgy.handle.userService.service.structure;
 
-import com.zgy.handle.userService.model.structure.Enterprise;
-import com.zgy.handle.userService.model.structure.EnterpriseDTO;
-import com.zgy.handle.userService.model.structure.EnterpriseRegDTO;
-import com.zgy.handle.userService.model.structure.Industry;
+import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.userService.model.structure.*;
 import com.zgy.handle.userService.repository.structure.EnterpriseRepository;
 import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.util.tree.TreeConvert;
@@ -15,6 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -30,6 +31,54 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
         this.enterpriseRepository = enterpriseRepository;
     }
 
+    /**
+     * 获取当前用户的企业信息
+     * @return
+     */
+    public Optional<Enterprise> getSelfEnterprise(){
+        Optional<Enterprise> enterpriseOptional =  enterpriseRepository.findById(Long.valueOf(getEnterpriseId()));
+        return enterpriseOptional;
+    }
+
+    /**
+     * 填充企业前缀
+     * @param enterpriseId
+     * @param prefix
+     * @return
+     */
+    public Enterprise fillEnterprisePrefix(Long enterpriseId,String prefix){
+        Optional<Enterprise> enterpriseOptional = enterpriseRepository.findById(enterpriseId);
+        if (enterpriseOptional.isPresent()){
+            Enterprise enterprise = enterpriseOptional.get();
+            enterprise.setPrefix(prefix);
+            enterpriseRepository.save(enterprise);
+            return enterprise;
+        }else {
+            throw new EntityNotFoundException("未发现id为:" + enterpriseId + "的企业");
+        }
+    }
+
+    public Enterprise statusChange(Long enterpriseId, StatusType statusType, String statusValue){
+        Optional<Enterprise> enterpriseOptional = enterpriseRepository.findById(enterpriseId);
+        if (enterpriseOptional.isPresent()){
+            Enterprise enterprise = enterpriseOptional.get();
+            if (statusType.equals(StatusType.SH)){
+                enterprise.setAuthorStatus(statusValue);
+            }else if (statusType.equals(StatusType.SQ)){
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                enterprise.setCheckStatus(statusValue);
+                Date now = new Date();
+                enterprise.setCheckDate(sdf.format(now));
+                enterprise.setCheckPerson(getPersonalName());
+            }else {
+                throw new EntityNotFoundException("请传入正确的状态类型");
+            }
+            enterpriseRepository.save(enterprise);
+            return enterprise;
+        }else {
+            throw new EntityNotFoundException("未发现id为:" + enterpriseId + "的企业");
+        }
+    }
 
     /**
      * 基于分页的动态查询
