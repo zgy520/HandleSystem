@@ -23,5 +23,7 @@ public interface MetaBodyMapper {
     MetaBodyDTO toMetaBodyDTO(MetaBody metaBody);
     List<MetaBodyDTO> toMetaBodyDTOS(List<MetaBody> metaBodies);
 
+    List<MetaBody> toMetaBodyList(List<MetaBodyDTO> metaBodyDTOList);
+
     List<MetaBody> toMetaBodys(List<MetaBodyDTO> metaBodyDTOList);
 }

@@ -3,10 +3,12 @@ package com.zgy.handle.handleService.service.meta.bus;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.handleService.client.EntepriseFeignClient;
 import com.zgy.handle.handleService.model.meta.bus.BusDetails;
 import com.zgy.handle.handleService.model.meta.bus.BusPrimary;
 import com.zgy.handle.handleService.model.meta.simulate.WLData;
 import com.zgy.handle.handleService.model.meta.simulate.XSData;
+import com.zgy.handle.handleService.model.meta.structure.enterprise.EnterprisePre;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaBody;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaHeader;
 import com.zgy.handle.handleService.repository.meta.bus.BusDetailsRepository;
@@ -32,6 +34,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
     private BusPrimaryRepository busPrimaryRepository;
+    @Autowired
+    private EntepriseFeignClient entepriseFeignClient;
     @Autowired
     private BusDetailsRepository busDetailsRepository;
     @Autowired
@@ -107,11 +111,12 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
     }
     private void createDownloadExcel(String realHandle,MetaHeader metaHeader, List<BusPrimary> busPrimaryList, List<MetaBody> metaBodyList, List<BusDetails> busDetailsList) throws IOException {
         Workbook workbook = new XSSFWorkbook();
+        EnterprisePre enterprisePre = entepriseFeignClient.getEnterpriseInfo(metaHeader.getEnterpriseId().toString());
         //Sheet sheet = workbook.createSheet(metaNode.getIdentityNum());
         Sheet sheet = workbook.createSheet("业务数据");
 
         //PrefixInfo prefixInfo = metaNode.getPrefixInfo();
-        //String prefixIdentifiy = metaNode.getDepartment().getPrefix() + "/";
+        String prefixIdentifiy = enterprisePre.getPrefix() + "/";
 
         // create a row
         Row headerRow = sheet.createRow(0);
@@ -141,7 +146,7 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
 
         workbook.write(fileOut);
         fileOut.close();
-        filePost(fileName,1,metaHeader.getHeader().getIdentityNum());
+        filePost(fileName,1,metaHeader.getHeader().getIdentityNum(),enterprisePre);
     }
 
     /**
@@ -204,10 +209,10 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         return cellIndex;
     }
 
-    public void filePost(String fileName,int type,String metaHandleCode){
+    public void filePost(String fileName,int type,String metaHandleCode,EnterprisePre enterprisePre){
         //String url = "http://114.115.215.119:8011/api/datadefine";
-        // String url = getDepartment().getIp();
-        String url = "114.115.215.119:8011";
+         String url = enterprisePre.getIp();
+        //String url = "114.115.215.119:8011";
         if (type == 0){
             // 元数据标准的注册
             url += "/api/datadefine";

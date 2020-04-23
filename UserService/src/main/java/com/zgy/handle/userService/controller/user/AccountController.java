@@ -53,6 +53,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         dtoList.stream().forEach(dto->{
             RolePostDTO rolePostDTO = accountService.fetchRolePostName(Long.valueOf(dto.getId()));
             dto.setRoleList(rolePostDTO.getRoleList());
+            dto.setRoleIdList(rolePostDTO.getRoleIdList());
             dto.setPostList(rolePostDTO.getPostList());
             dto.setDepartName(rolePostDTO.getDepartName());
             dto.setDepartId(rolePostDTO.getDepartId());

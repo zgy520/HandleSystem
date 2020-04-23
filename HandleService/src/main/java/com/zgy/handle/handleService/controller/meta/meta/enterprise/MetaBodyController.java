@@ -9,6 +9,7 @@ import com.zgy.handle.handleService.model.meta.dto.structure.MetaBodyDTO;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaBody;
 import com.zgy.handle.handleService.service.SystemService;
 import com.zgy.handle.handleService.service.meta.structure.MetaBodyService;
+import com.zgy.handle.handleService.service.meta.structure.MetaHeaderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,8 @@ public class MetaBodyController extends SystemController<MetaBody, MetaBodyDTO> 
     @Autowired
     private MetaBodyMapper metaBodyMapper;
     @Autowired
+    private MetaHeaderService metaHeaderService;
+    @Autowired
     public MetaBodyController(MetaBodyService metaBodyService) {
         super(metaBodyService);
         this.metaBodyService = metaBodyService;
@@ -46,6 +49,10 @@ public class MetaBodyController extends SystemController<MetaBody, MetaBodyDTO> 
             metaBodyDTOS.add(convertTtoU(metaBodyService.update(metaBodyDTO,convertUtoT(metaBodyDTO)).getData()));
         }
         responseCode.setData(metaBodyDTOS);
+        if (metaBodyDTOList.size() > 0){
+            metaBodyService.createRegisterMetaDataXml(metaHeaderService.findById(Long.valueOf(metaBodyDTOList.get(0).getHeaderId())).get(),metaBodyMapper.toMetaBodys(metaBodyDTOList));
+        }
+
         return responseCode;
     }
 

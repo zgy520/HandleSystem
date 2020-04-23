@@ -1,6 +1,8 @@
 package com.zgy.handle.handleService.service.meta.structure;
 
+import com.zgy.handle.handleService.client.EntepriseFeignClient;
 import com.zgy.handle.handleService.model.meta.dto.structure.MetaBodyDTO;
+import com.zgy.handle.handleService.model.meta.structure.enterprise.EnterprisePre;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaBody;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaHeader;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.xml.*;
@@ -24,6 +26,8 @@ import java.util.Optional;
 @Service
 public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
     private MetaBodyRepository metaBodyRepository;
+    @Autowired
+    EntepriseFeignClient entepriseFeignClient;
     @Autowired
     private MetaHeaderService metaHeaderService;
     @Autowired
@@ -49,10 +53,11 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
         }
     }
 
-    private void createRegisterMetaDataXml(MetaHeader metaHeader, List<MetaBody> metaBodyList){
+    public void createRegisterMetaDataXml(MetaHeader metaHeader, List<MetaBody> metaBodyList){
+        EnterprisePre enterprisePre = entepriseFeignClient.getEnterpriseInfo(metaHeader.getEnterpriseId().toString());
         //PrefixInfo prefixInfo = metaNode.getPrefixInfo();
-        //String prefixIdentifiy = metaHeader.getDepartment().getPrefix() + "/";
-        String prefixIdentifiy = "test/";
+        String prefixIdentifiy = enterprisePre.getPrefix() + "/";
+        //String prefixIdentifiy = "test/";
         try {
             JAXBContext contextObj = JAXBContext.newInstance(XmlMetaData.class);
 
@@ -75,16 +80,17 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
             FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             marshallerObj.marshal(xmlMetaData,fileOutputStream);
 
-            filePost(fileName,0,"");
+            filePost(fileName,0,"",enterprisePre);
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-    public void filePost(String fileName,int type,String metaHandleCode){
-        String url = "http://114.115.215.119:8011";
-        //String url = getDepartment().getIp();
+    public void filePost(String fileName,int type,String metaHandleCode,EnterprisePre enterprisePre){
+        //EnterprisePre enterprisePre = entepriseFeignClient.getEnterpriseInfo(metaHeader.getEnterpriseId().toString());
+        //String url = "http://114.115.215.119:8011";
+        String url = enterprisePre.getIp();
         if (type == 0){
             // 元数据标准的注册
             url += "/api/datadefine";

@@ -6,6 +6,7 @@ import com.zgy.handle.userService.controller.UserController;
 import com.zgy.handle.userService.controller.structure.convert.EnterpriseRegMapper;
 import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.model.structure.EnterpriseRegDTO;
+import com.zgy.handle.userService.model.structure.StatusType;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.service.structure.EnterpriseRegService;
@@ -53,6 +54,13 @@ public class EnterpriseRegController extends SystemController<Enterprise, Enterp
         return regDTOResponseCode;
     }
 
+    @ApiOperation("企业授权和审核")
+    @PostMapping(value = "stateChange")
+    public ResponseCode<EnterpriseRegDTO> stateChange(Long enterpriseId, StatusType statusType, String statusValue){
+        ResponseCode<EnterpriseRegDTO> regDTOResponseCode = ResponseCode.sucess();
+        regDTOResponseCode.setData(enterpriseRegMapper.toEnterpriseRegDTO(enterpriseService.statusChange(enterpriseId,statusType,statusValue)));
+        return regDTOResponseCode;
+    }
     @Override
     public List<SelectDTO> convertTtoSelectDTOList(List<Enterprise> enterpriseList) {
         return null;

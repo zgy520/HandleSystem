@@ -6,6 +6,7 @@
     <file url="file://$PROJECT_DIR$/EurekaServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GateWayService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/HandleService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/HandleService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/KnowledgeService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserService/src/main/java" charset="UTF-8" />
   </component>

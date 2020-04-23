@@ -36,8 +36,13 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
      * @return
      */
     public Optional<Enterprise> getSelfEnterprise(){
-        Optional<Enterprise> enterpriseOptional =  enterpriseRepository.findById(Long.valueOf(getEnterpriseId()));
-        return enterpriseOptional;
+        if(StringUtils.isNotBlank(getDepartId())){
+            Optional<Enterprise> enterpriseOptional =  enterpriseRepository.findById(Long.valueOf(getDepartId()));
+            return enterpriseOptional;
+        }else {
+            return Optional.empty();
+        }
+
     }
 
     /**

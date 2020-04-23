@@ -11,11 +11,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,6 +28,17 @@ public class IndustryMetaBodyController extends SystemController<IndustryMetaBod
     public IndustryMetaBodyController(IndustryMetaBodyService industryMetaBodyService) {
         super(industryMetaBodyService);
         this.industryMetaBodyService = industryMetaBodyService;
+    }
+
+    @PostMapping(value = "batchUpdate")
+    public ResponseCode<List<IndustryMetaBodyDTO>> update(@Valid @RequestBody List<IndustryMetaBodyDTO> metaBodyDTOList){
+        ResponseCode responseCode = ResponseCode.sucess();
+        List<IndustryMetaBodyDTO> metaBodyDTOS = new ArrayList<>();
+        for (IndustryMetaBodyDTO metaBodyDTO : metaBodyDTOList){
+            metaBodyDTOS.add(convertTtoU(industryMetaBodyService.update(metaBodyDTO,convertUtoT(metaBodyDTO)).getData()));
+        }
+        responseCode.setData(metaBodyDTOS);
+        return responseCode;
     }
 
     @GetMapping(value = "getBodyByHeaderId/{industryHeaderId}")

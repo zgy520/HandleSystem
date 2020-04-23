@@ -135,13 +135,13 @@ public abstract class SystemController<T,U> {
      * @param tList
      * @return
      */
-    public abstract List<SelectDTO> convertTtoSelectDTOList(List<T> tList);
 
     /**
      * 实体列表转化为dto列表
      * @param tList 实体列表
-     * @return  dto列表
-     */
+     * @return  dto列表 */
+    public abstract List<SelectDTO> convertTtoSelectDTOList(List<T> tList);
+
     public abstract List<U> convertTtoU(List<T> tList);
 
     /**

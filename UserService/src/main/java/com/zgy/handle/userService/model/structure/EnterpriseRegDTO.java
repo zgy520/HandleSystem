@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnterpriseRegDTO {
-    private Long id;
+    private String id;
     private String prefix;
     private String name;
     private String uec; // 企业统一代码
@@ -37,4 +37,9 @@ public class EnterpriseRegDTO {
     private String parentId;
     private String industryId;
     private String note;
+    private String checkStatus; // 审核状态
+    private String authorStatus; // 授权状态
+    private String checkPerson; // 审核人
+    private String checkDate; // 审核时间
+
 }

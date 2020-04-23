@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+    <ListRecord metadataStandard="86.CIC.1000.001" parseType="0">
+        <header>
+            <identifier>86.CIC.1000.002</identifier>
+            <reg-type>0</reg-type>
+            <parent-handle>86.CIC.1000.001</parent-handle>
+        </header>
+        <metadata>
+            <col>
+                <coltype>String</coltype>
+                <desc>sdfsdf</desc>
+                <length>10</length>
+                <name>sdfsdde</name>
+            </col>
+            <col>
+                <coltype>String</coltype>
+                <desc>sdfxxxxxxsdf</desc>
+                <length>10</length>
+                <name>sdfsxxxxxxxxxdde</name>
+            </col>
+        </metadata>
+    </ListRecord>
+</root>

@@ -98,9 +98,10 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         ResponseCode<RolePostDTO> responseCode = ResponseCode.sucess();
         Account account = this.accountRepository.findById(userId).get();
         List<String> roleList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
+        List<String> roleIdList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.toList());
         Enterprise department = departmentAccountService.getByAccountId(userId);
-        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
+        RolePostDTO rolePostDTO = new RolePostDTO(roleList,roleIdList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         responseCode.setData(rolePostDTO);
         return responseCode;
     }
@@ -109,9 +110,10 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     public RolePostDTO fetchRolePostName(Long userId){
         Account account = this.accountRepository.findById(userId).get();
         List<String> roleList = account.getRoleSet().stream().map(Role::getName).map(String::valueOf).collect(Collectors.toList());
+        List<String> roleIdList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getName).map(String::valueOf).collect(Collectors.toList());
         Enterprise department = departmentAccountService.getByAccountId(userId);
-        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
+        RolePostDTO rolePostDTO = new RolePostDTO(roleList,roleIdList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         return rolePostDTO;
     }
 

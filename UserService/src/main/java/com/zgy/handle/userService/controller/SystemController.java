@@ -76,6 +76,7 @@ public abstract class SystemController<T,U> {
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
         List<T> tList = systemRefactorService.findAll();
         List<U> uList = convertTtoU(tList);
+        fillList(tList,uList);
         responseCode.setData(uList);
         return responseCode;
     }
