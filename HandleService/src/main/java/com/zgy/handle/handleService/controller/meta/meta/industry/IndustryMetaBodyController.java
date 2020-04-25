@@ -3,7 +3,7 @@ package com.zgy.handle.handleService.controller.meta.meta.industry;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.handleService.controller.SystemController;
 import com.zgy.handle.handleService.controller.meta.meta.industry.convert.IndustryMetaBodyMapper;
-import com.zgy.handle.handleService.model.SelectDTO;
+import com.zgy.handle.handleService.model.common.SelectDTO;
 import com.zgy.handle.handleService.model.meta.dto.structure.IndustryMetaBodyDTO;
 import com.zgy.handle.handleService.model.meta.structure.industry.IndustryMetaBody;
 import com.zgy.handle.handleService.service.meta.structure.IndustryMetaBodyService;

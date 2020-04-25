@@ -1,7 +1,7 @@
 package com.zgy.handle.handleService.controller;
 
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.handleService.model.SelectDTO;
+import com.zgy.handle.handleService.model.common.SelectDTO;
 import com.zgy.handle.handleService.service.SystemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

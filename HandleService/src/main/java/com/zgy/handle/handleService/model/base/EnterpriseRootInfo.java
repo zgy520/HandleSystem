@@ -1,4 +1,4 @@
-package com.zgy.handle.handleService.model.node;
+package com.zgy.handle.handleService.model.base;
 
 import com.zgy.handle.handleService.model.common.BaseModel;
 import lombok.AllArgsConstructor;
@@ -10,14 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "handle_root_node")
+@Table(name = "handle_enterprise_root_info")
 @Data
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class RootNode extends BaseModel {
-    private String name;
-    private String prex;
-    private String ip;
-    private String location; // 位置
+public class EnterpriseRootInfo extends BaseModel {
+    private String nodePrex;
+    private String note;
 }

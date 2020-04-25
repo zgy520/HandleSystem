@@ -1,6 +1,6 @@
 package com.zgy.handle.handleService.model.meta.structure.enterprise;
 
-import com.zgy.handle.handleService.model.BaseModel;
+import com.zgy.handle.handleService.model.common.BaseModel;
 import com.zgy.handle.handleService.model.meta.structure.Header;
 import lombok.AllArgsConstructor;
 import lombok.Data;
