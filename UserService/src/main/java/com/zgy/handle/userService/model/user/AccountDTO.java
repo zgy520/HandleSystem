@@ -17,6 +17,7 @@ public class AccountDTO {
     private String loginName;
     private String phoneNumber; // 手机号
     private String handleUser;
+    private String password;
     @Email
     private String email; // email地址
     private String note;

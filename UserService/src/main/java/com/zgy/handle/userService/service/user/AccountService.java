@@ -143,7 +143,12 @@ public class AccountService extends SystemService<Account,AccountDTO> {
 
         account.setRoleSet(roleService.findByRoleIdIn(roleIdList));
         account.setPostSet(postService.findByPostIdIn(postIdList));
-        account.setPassword(passwordEncoder.encode("123456"));
+        if (StringUtils.isBlank(accountDTO.getPassword())){
+            account.setPassword(passwordEncoder.encode("123456"));
+        }else {
+            account.setPassword(passwordEncoder.encode(accountDTO.getPassword()));
+        }
+
 
     }
 
