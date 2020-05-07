@@ -2,8 +2,10 @@ package com.zgy.handle.userService.service.structure;
 
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.model.structure.*;
+import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.structure.EnterpriseRepository;
 import com.zgy.handle.userService.service.SystemService;
+import com.zgy.handle.userService.service.user.AccountService;
 import com.zgy.handle.userService.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -26,6 +28,10 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
     private EnterpriseRepository enterpriseRepository;
     @Autowired
     private IndustryService industryService;
+    @Autowired
+    private DepartmentAccountService departmentAccountService;
+    @Autowired
+    private AccountService accountService;
     public EnterpriseRegService(EnterpriseRepository enterpriseRepository) {
         super(enterpriseRepository);
         this.enterpriseRepository = enterpriseRepository;
@@ -114,5 +120,17 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
             }
         }
         enterprise.setNote(enterpriseDTO.getNote());
+    }
+
+    @Override
+    public void postUpdate(Enterprise enterprise, EnterpriseRegDTO enterpriseRegDTO) {
+        if (StringUtils.isNotBlank(getPersonalId())){
+            Optional<Account> accountOptional = accountService.findById(Long.valueOf(getPersonalId()));
+            if (accountOptional.isPresent()){
+                Account account = accountOptional.get();
+                departmentAccountService.deleteByAccountId(account.getId());
+                departmentAccountService.setDepartmentAccount(account, enterprise);
+            }
+        }
     }
 }
