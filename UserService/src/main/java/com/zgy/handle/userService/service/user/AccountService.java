@@ -126,7 +126,7 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     @Transactional(readOnly = true)
     public Set<String> fetchRoleCodeListByAccountId(Long userId){
         Account account = this.accountRepository.findById(userId).get();
-        Set<String> roleList = account.getRoleSet().stream().map(Role::getCode).collect(Collectors.toSet());
+        Set<String> roleList = account.getRoleSet().stream().map(Role::getName).collect(Collectors.toSet());
         return roleList;
     }
     @Transactional(readOnly = true)

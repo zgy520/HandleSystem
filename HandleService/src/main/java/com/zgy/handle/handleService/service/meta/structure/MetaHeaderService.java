@@ -72,5 +72,11 @@ public class MetaHeaderService extends SystemService<MetaHeader, MetaHeaderDTO> 
                 metaHeader.setParent(metaHeaderOptional.get());
             }
         }
+        log.info("获取到的企业id为：" + getDepartId());
+        if(metaHeader.getEnterpriseId() == null){
+            if (getDepartId() != null){
+                metaHeader.setEnterpriseId(Long.valueOf(getDepartId()));
+            }
+        }
     }
 }

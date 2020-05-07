@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+    <ListRecord metadataStandard="86.CIC.1000.001" parseType="0">
+        <header>
+            <identifier>86.CIC.1000.002/info</identifier>
+            <reg-type>0</reg-type>
+            <parent-handle>86.CIC.1000.002</parent-handle>
+        </header>
+        <metadata>
+            <col>
+                <coltype>Integer</coltype>
+                <desc>物流公司</desc>
+                <length>50</length>
+                <name>物流公司</name>
+            </col>
+            <col>
+                <coltype>Integer</coltype>
+                <desc>物流单号</desc>
+                <length>12</length>
+                <name>物流单号</name>
+            </col>
+            <col>
+                <coltype>String</coltype>
+                <desc>联系人</desc>
+                <length>20</length>
+                <name>联系人</name>
+            </col>
+            <col>
+                <coltype>String</coltype>
+                <desc>联系电话</desc>
+                <length>11</length>
+                <name>联系电话</name>
+            </col>
+        </metadata>
+    </ListRecord>
+</root>

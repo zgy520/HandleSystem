@@ -52,6 +52,7 @@ public class MetaHeaderController extends SystemController<MetaHeader, MetaHeade
             SelectDTO selectDTO = new SelectDTO(metaHeader.getHeader().getIdentityNum(),metaHeader.getHeader().getAlias());
             selectDTOList.add(selectDTO);
         });
+        responseCode.setData(selectDTOList);
         return responseCode;
     }
 

@@ -28,9 +28,11 @@ public class JwtUserDetailsService implements UserDetailsService {
             com.zgy.handle.gateway.model.UserDetails userDetails = new com.zgy.handle.gateway.model.UserDetails(userInfo.getUserName(),
                     userInfo.getPasword(),getGrantedAuthority(userInfo));
             userDetails.setUserId(userInfo.getUserId());
+            userDetails.setMenuSet(userInfo.getMenuSet());
             userDetails.setOrgId(userInfo.getOrgId());
             userDetails.setPostId(userInfo.getPostId());
             userDetails.setPostName(userInfo.getPostName());
+
             userDetails.setEnterpriseId(userInfo.getEnterpriseId());
             return userDetails;
 

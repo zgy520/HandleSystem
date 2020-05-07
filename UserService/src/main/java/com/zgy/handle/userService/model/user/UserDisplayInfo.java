@@ -16,4 +16,5 @@ public class UserDisplayInfo {
     private String introduction;
     private String avatar;
     private Set<String> roleSet = new HashSet<>();
+    private Set<String> menuSet = new HashSet<>();
 }

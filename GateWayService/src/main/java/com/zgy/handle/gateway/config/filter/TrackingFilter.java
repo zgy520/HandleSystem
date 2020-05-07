@@ -85,8 +85,11 @@ public class TrackingFilter extends ZuulFilter {
             //log.info("tmx-correlation-id generated in tracking filter: " + filterUtils.getCorrelationId());
         }
         if (!isUserInfoPresent()){
-            UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            filterUtils.setUserInfo(userDetails);
+            if (!"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getPrincipal())){
+                UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                filterUtils.setUserInfo(userDetails);
+            }
+
             //log.info("setting user info: " + userDetails.getUsername());
         }else {
             //log.info("get user info:" + filterUtils.getUserInfo() + ":" + filterUtils.getUserInfo() + ":" + filterUtils.getOrgId());

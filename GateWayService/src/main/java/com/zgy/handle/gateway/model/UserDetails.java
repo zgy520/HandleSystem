@@ -8,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Slf4j
 public class UserDetails extends User {
@@ -16,6 +18,7 @@ public class UserDetails extends User {
     private String postId;
     private String postName;
     private String enterpriseId;
+    private Set<String> menuSet = new HashSet<>();
     public UserDetails(String username, String password,
                     Collection<? extends GrantedAuthority> authorities) {
         super(username, password, true, true, true, true, authorities);
@@ -60,5 +63,13 @@ public class UserDetails extends User {
 
     public void setEnterpriseId(String enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public Set<String> getMenuSet() {
+        return menuSet;
+    }
+
+    public void setMenuSet(Set<String> menuSet) {
+        this.menuSet = menuSet;
     }
 }

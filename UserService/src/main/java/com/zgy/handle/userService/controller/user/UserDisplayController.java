@@ -17,6 +17,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -48,6 +49,27 @@ public class UserDisplayController {
             userDisplayInfo.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
             Set<String> roleSet = accountService.fetchRoleCodeListByAccountId(account.getId());
             userDisplayInfo.setRoleSet(roleSet);
+            Set<String> menuList = new HashSet<>();
+            if (roleSet.contains("管理员")){
+                menuList.add("Dashboard");
+                menuList.add("Metadata");
+                menuList.add("Business data");
+                menuList.add("Upload");
+                menuList.add("Code");
+                menuList.add("User");
+                menuList.add("Role");
+                menuList.add("Enterprise");
+                menuList.add("Enterprise information");
+                menuList.add("Enterprise prefix");
+                menuList.add("Node");
+                menuList.add("Analysis");
+                menuList.add("Function");
+                menuList.add("Library");
+                menuList.add("Interface");
+            }else {
+                menuList.add("Enterprise information");
+            }
+            userDisplayInfo.setMenuSet(menuList);
             responseCode.setData(userDisplayInfo);
         }else {
             throw new EntityNotFoundException("未找到对应的用户信息");

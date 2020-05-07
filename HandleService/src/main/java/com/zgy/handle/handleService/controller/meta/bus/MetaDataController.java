@@ -37,6 +37,13 @@ public class MetaDataController {
         jsonObject.put("responseCode",response);
         return responseCode;
     }
+
+    @PostMapping(value = "update")
+    @ApiOperation("更新业务数据")
+    public ResponseCode updateBusiness(Long headerId,String jsonData,String relaHandleCode){
+        return busPrimaryService.updateBusiness(headerId,jsonData,relaHandleCode);
+    }
+
     @GetMapping(value = "getBusData/{metaHeaderId}")
     public ResponseCode<JSONArray> getBusData(Long metaHeaderId){
         ResponseCode<JSONArray> responseCode = busPrimaryService.getBusData(metaHeaderId);

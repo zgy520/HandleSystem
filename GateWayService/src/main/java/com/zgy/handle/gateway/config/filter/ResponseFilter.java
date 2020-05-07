@@ -41,6 +41,7 @@ public class ResponseFilter extends ZuulFilter {
         ctx.getResponse().addHeader(FilterUtils.CORRELATION_ID, filterUtils.getCorrelationId());
         ctx.getResponse().addHeader(FilterUtils.USER_INFO, filterUtils.getUserInfo());
         ctx.getResponse().addHeader(FilterUtils.USER_ID,filterUtils.getUserId());
+        ctx.getResponse().addHeader(FilterUtils.ENTERPRISE_ID,filterUtils.getEnterpriseId());
 
         logger.info("Completing outgoing request for {}." + ctx.getRequest().getRequestURI());
 

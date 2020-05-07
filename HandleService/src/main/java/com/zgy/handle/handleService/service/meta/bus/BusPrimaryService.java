@@ -22,6 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -47,6 +48,26 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         super(busPrimaryRepository);
         this.busPrimaryRepository = busPrimaryRepository;
     }
+
+    public ResponseCode updateBusiness(Long headerId,String jsonData,String relaHandleCode){
+        ResponseCode responseCode = ResponseCode.sucess();
+        List<BusPrimary> busPrimaryList = new ArrayList<>(); // 主键列表
+        List<BusDetails> busDetailsList = new ArrayList<>(); // 业务数据列表
+
+        Optional<MetaHeader> metaHeaderOptional = metaHeaderRepository.findById(headerId);
+        if (metaHeaderOptional.isPresent()){
+            MetaHeader metaHeader = metaHeaderOptional.get();
+            busPrimaryRepository.deleteByMetaHeaderId(headerId);
+            List<MetaBody> metaBodyList = metaBodyRepository.findByMetaHeaderId(headerId);
+            JSONArray jsonArray = JSONArray.parseArray(jsonData);
+            saveBusinessData(metaHeader,jsonArray,metaBodyList);
+        }else {
+            throw new EntityNotFoundException("元数据id:" + headerId.toString()  + "不存在");
+        }
+
+        return responseCode;
+    }
+
 
     public ResponseCode<JSONArray> getBusData(Long metaHeaderId){
         JSONArray jsonArray = new JSONArray();
@@ -113,6 +134,8 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         Workbook workbook = new XSSFWorkbook();
         EnterprisePre enterprisePre = entepriseFeignClient.getEnterpriseInfo(metaHeader.getEnterpriseId().toString());
         //Sheet sheet = workbook.createSheet(metaNode.getIdentityNum());
+        if (enterprisePre == null)
+            throw new EntityNotFoundException("找不到对应的企业");
         Sheet sheet = workbook.createSheet("业务数据");
 
         //PrefixInfo prefixInfo = metaNode.getPrefixInfo();
@@ -211,7 +234,7 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
 
     public void filePost(String fileName,int type,String metaHandleCode,EnterprisePre enterprisePre){
         //String url = "http://114.115.215.119:8011/api/datadefine";
-         String url = enterprisePre.getIp();
+         String url = enterprisePre.getPrefix();
         //String url = "114.115.215.119:8011";
         if (type == 0){
             // 元数据标准的注册

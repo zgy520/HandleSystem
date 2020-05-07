@@ -92,6 +92,16 @@ public class FilterUtils {
         }
     }
 
+    public final String getEnterpriseId() {
+        RequestContext ctx = RequestContext.getCurrentContext();
+        if (ctx.getRequest().getHeader(ENTERPRISE_ID) !=null) {
+            return ctx.getRequest().getHeader(ENTERPRISE_ID);
+        }
+        else{
+            return  ctx.getZuulRequestHeaders().get(ENTERPRISE_ID);
+        }
+    }
+
     public void setUserId(String userId){
         RequestContext ctx = RequestContext.getCurrentContext();
         ctx.addZuulRequestHeader(USER_ID,  userId);

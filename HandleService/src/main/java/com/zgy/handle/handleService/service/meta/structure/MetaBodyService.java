@@ -55,6 +55,8 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
 
     public void createRegisterMetaDataXml(MetaHeader metaHeader, List<MetaBody> metaBodyList){
         EnterprisePre enterprisePre = entepriseFeignClient.getEnterpriseInfo(metaHeader.getEnterpriseId().toString());
+        if (enterprisePre == null)
+            throw new EntityNotFoundException("找不到对应的企业");
         //PrefixInfo prefixInfo = metaNode.getPrefixInfo();
         String prefixIdentifiy = enterprisePre.getPrefix() + "/";
         //String prefixIdentifiy = "test/";
@@ -90,7 +92,7 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
     public void filePost(String fileName,int type,String metaHandleCode,EnterprisePre enterprisePre){
         //EnterprisePre enterprisePre = entepriseFeignClient.getEnterpriseInfo(metaHeader.getEnterpriseId().toString());
         //String url = "http://114.115.215.119:8011";
-        String url = enterprisePre.getIp();
+        String url = enterprisePre.getPrefix();
         if (type == 0){
             // 元数据标准的注册
             url += "/api/datadefine";
@@ -193,11 +195,11 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
 
     private int getMetaNodeLevel(MetaHeader metaHeader){
         int level = 0;
-        if (metaHeader.getParent() != null && metaHeader.getParent().getParent() == null){
+        /*if (metaHeader.getParent() != null && metaHeader.getParent().getParent() == null){
             level = 0;
         }else {
             level = 2;
-        }
+        }*/
         return level;
     }
 }
