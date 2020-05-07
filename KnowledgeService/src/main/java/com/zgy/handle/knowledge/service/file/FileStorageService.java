@@ -1,6 +1,5 @@
 package com.zgy.handle.knowledge.service.file;
 
-import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.knowledge.model.file.File;
 import com.zgy.handle.knowledge.repository.file.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
-import java.io.IOException;
 import java.util.Optional;
 
 @Service
