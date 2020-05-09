@@ -1,12 +1,13 @@
 package com.zgy.handle.userService.service.structure;
 
-import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userService.model.structure.*;
+import com.zgy.handle.userService.model.structure.Enterprise;
+import com.zgy.handle.userService.model.structure.EnterpriseRegDTO;
+import com.zgy.handle.userService.model.structure.Industry;
+import com.zgy.handle.userService.model.structure.StatusType;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.structure.EnterpriseRepository;
 import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.service.user.AccountService;
-import com.zgy.handle.userService.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 @Slf4j
@@ -29,9 +28,9 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
     @Autowired
     private IndustryService industryService;
     @Autowired
-    private DepartmentAccountService departmentAccountService;
-    @Autowired
     private AccountService accountService;
+    @Autowired
+    private DepartmentAccountService departmentAccountService;
     public EnterpriseRegService(EnterpriseRepository enterpriseRepository) {
         super(enterpriseRepository);
         this.enterpriseRepository = enterpriseRepository;
@@ -124,12 +123,12 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
 
     @Override
     public void postUpdate(Enterprise enterprise, EnterpriseRegDTO enterpriseRegDTO) {
-        if (StringUtils.isNotBlank(getPersonalId())){
+        if (StringUtils.isNotBlank(getPersonalId())) {
             Optional<Account> accountOptional = accountService.findById(Long.valueOf(getPersonalId()));
-            if (accountOptional.isPresent()){
-                Account account = accountOptional.get();
-                departmentAccountService.deleteByAccountId(account.getId());
-                departmentAccountService.setDepartmentAccount(account, enterprise);
+            if (accountOptional.isPresent()) {
+                departmentAccountService.deleteByAccountId(Long.valueOf(getPersonalId()));
+                //log.info("获取到的部门信息为: " + department);
+                departmentAccountService.setDepartmentAccount(accountOptional.get(), enterprise);
             }
         }
     }

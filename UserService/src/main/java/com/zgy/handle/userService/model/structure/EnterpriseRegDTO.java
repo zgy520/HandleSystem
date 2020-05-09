@@ -41,5 +41,6 @@ public class EnterpriseRegDTO {
     private String authorStatus; // 授权状态
     private String checkPerson; // 审核人
     private String checkDate; // 审核时间
+    private String province; // 省份
 
 }
