@@ -55,8 +55,10 @@ public class Enterprise extends BaseModel {
     private String prePauseStatus; // 前缀暂停状态
     private String checkPerson; // 审核人
     private String checkDate; // 审核时间
+    private String authorDate; // 授权时间
     private String preEffectiveDate; // 前缀有效期
     private String regDate; // 注册时间
+    private String prefixDate; // 注册时间
     //private String curStatus; // 当前得审核状态：申请中、待审核、审核未通过、审核通过
     
 

@@ -29,6 +29,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -80,8 +82,12 @@ public class AccountService extends SystemService<Account,AccountDTO> {
 
     @Override
     public Page<Account> findByDynamicQuery(Pageable pageable, AccountDTO accountDTO){
+        if (accountDTO.getAccountType() == null){
+            throw new EntityNotFoundException("请传入用户类型");
+        }
         Specification<Account> specification = Specification
                 .where(accountDTO.getName() == null? null : AccountRepository.nameContains(accountDTO.getName()))
+                .and(AccountRepository.typeFilter(accountDTO.getAccountType()))
                 .and(accountDTO.getLoginName() == null? null : AccountRepository.fieldContains("loginName",accountDTO.getLoginName()));
         return accountRepository.findAll(specification,pageable);
     }
@@ -98,10 +104,10 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         ResponseCode<RolePostDTO> responseCode = ResponseCode.sucess();
         Account account = this.accountRepository.findById(userId).get();
         List<String> roleList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
-        List<String> roleIdList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
+        List<String> roleIdList = account.getRoleSet().stream().map(Role::getName).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.toList());
         Enterprise department = departmentAccountService.getByAccountId(userId);
-        RolePostDTO rolePostDTO = new RolePostDTO(roleList,roleIdList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
+        RolePostDTO rolePostDTO = new RolePostDTO(roleList.get(0),roleIdList.get(0),postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         responseCode.setData(rolePostDTO);
         return responseCode;
     }
@@ -113,7 +119,7 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         List<String> roleIdList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getName).map(String::valueOf).collect(Collectors.toList());
         Enterprise department = departmentAccountService.getByAccountId(userId);
-        RolePostDTO rolePostDTO = new RolePostDTO(roleList,roleIdList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
+        RolePostDTO rolePostDTO = new RolePostDTO(roleIdList.size() == 0?"":roleIdList.get(0),roleList.size() == 0?"":roleList.get(0),postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         return rolePostDTO;
     }
 
@@ -137,12 +143,34 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     }
 
     @Override
-    public void beforeUpdate(AccountDTO accountDTO, Account account) {
-        List<Long> roleIdList = StrUtils.transformList(accountDTO.getRoleList(), Long::parseLong);
-        List<Long> postIdList = StrUtils.transformList(accountDTO.getPostList(), Long::parseLong);
+    public boolean checkUnique(AccountDTO accountDTO, Account account) {
+        boolean flag = false;
+        if (StringUtils.isBlank(accountDTO.getId())){
+            if (accountRepository.findByLoginName(accountDTO.getLoginName()) != null){
+                flag = true;
+            }else if (accountRepository.findByEmail(accountDTO.getEmail()) != null){
+                flag = true;
+            }
+        }
 
-        account.setRoleSet(roleService.findByRoleIdIn(roleIdList));
-        account.setPostSet(postService.findByPostIdIn(postIdList));
+        return flag;
+    }
+
+    @Override
+    public void beforeUpdate(AccountDTO accountDTO, Account account) {
+        if (accountDTO.getAccountType() == null){
+            throw new EntityNotFoundException("请传入用户类型");
+        }
+
+        if (StringUtils.isNotBlank(accountDTO.getRoleId())){
+            List<Long> roleIdList = Arrays.asList(Long.valueOf(accountDTO.getRoleId()));
+            account.setRoleSet(roleService.findByRoleIdIn(roleIdList));
+        }
+
+        /*List<Long> postIdList = StrUtils.transformList(accountDTO.getPostList(), Long::parseLong);
+
+
+        account.setPostSet(postService.findByPostIdIn(postIdList));*/
         if (StringUtils.isBlank(accountDTO.getPassword())){
             account.setPassword(passwordEncoder.encode("123456"));
         }else {

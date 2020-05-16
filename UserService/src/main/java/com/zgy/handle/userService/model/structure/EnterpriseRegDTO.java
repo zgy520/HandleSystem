@@ -43,4 +43,20 @@ public class EnterpriseRegDTO {
     private String checkDate; // 审核时间
     private String province; // 省份
 
+    private String ip;
+    private String code;
+    private String shortName; // 简称
+    private String type; // 企业节点列别，二级节点和三级节点
+
+    private String regCatalogType; // 注册类别类型
+
+    private String uecDate; // 企业统一代码证数得有效期
+
+    private String preGQStatus; // 前缀过期状态
+    private String prePauseStatus; // 前缀暂停状态
+
+    private String authorDate; // 授权时间
+    private String preEffectiveDate; // 前缀有效期
+    private String prefixDate; // 注册时间
+
 }

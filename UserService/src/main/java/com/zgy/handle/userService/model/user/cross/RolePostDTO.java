@@ -11,8 +11,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RolePostDTO {
-    private List<String> roleList = new ArrayList<>();
-    private List<String> roleIdList = new ArrayList<>();
+    /*private List<String> roleList = new ArrayList<>();
+    private List<String> roleIdList = new ArrayList<>();*/
+    private String roleId;
+    private String roleName;
     private List<String> postList = new ArrayList<>();
     private String departId;
     private String departName;

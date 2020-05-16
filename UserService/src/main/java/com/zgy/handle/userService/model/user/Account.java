@@ -32,6 +32,8 @@ public class Account extends BaseModel {
     private String email;
     private String phoneNumber; // 手机号
     private String handleUser;
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType; // 用户类型
     @JsonIgnore
     private boolean isExpired = false;
     @JsonIgnore

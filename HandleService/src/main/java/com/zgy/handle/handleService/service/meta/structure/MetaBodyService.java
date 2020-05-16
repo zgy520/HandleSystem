@@ -8,6 +8,7 @@ import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaHeader;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.xml.*;
 import com.zgy.handle.handleService.repository.meta.structure.MetaBodyRepository;
 import com.zgy.handle.handleService.service.SystemService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
     private MetaBodyRepository metaBodyRepository;
     @Autowired
@@ -167,6 +169,7 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
                     System.out.println("Server returned non-OK code: " + resultCode );
                     BufferedReader errorReader = new BufferedReader(new InputStreamReader(con.getErrorStream(),"UTF-8"));
                     String errorResult = errorReader.readLine();
+                    log.info("注册元数据标准的错误代码为:" + errorResult);
                 }
 
             } catch (IOException e) {

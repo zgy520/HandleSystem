@@ -61,6 +61,7 @@ public class MetaHeaderController extends SystemController<MetaHeader, MetaHeade
         ResponseCode<List<MetaHeaderDTO>> responseCode = ResponseCode.sucess();
         List<MetaHeader> metaHeaderList = metaHeaderService.findAll();
         responseCode.setData(metaHeaderService.getMetaHeaderDTOList(metaHeaderMapper.toMetaHeaderDTOS(metaHeaderList)));
+
         return responseCode;
     }
 

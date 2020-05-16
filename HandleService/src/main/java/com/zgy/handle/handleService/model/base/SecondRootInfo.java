@@ -18,4 +18,6 @@ import javax.persistence.*;
 public class SecondRootInfo extends BaseModel {
     private String nodePrex; // 节点前缀
     private String note;
+    private String ip;
+    private String port;
 }

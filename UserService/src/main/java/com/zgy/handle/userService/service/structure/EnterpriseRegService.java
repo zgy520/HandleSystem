@@ -71,11 +71,14 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
     public Enterprise statusChange(Long enterpriseId, StatusType statusType, String statusValue){
         Optional<Enterprise> enterpriseOptional = enterpriseRepository.findById(enterpriseId);
         if (enterpriseOptional.isPresent()){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Enterprise enterprise = enterpriseOptional.get();
             if (statusType.equals(StatusType.SH)){
                 enterprise.setAuthorStatus(statusValue);
+                Date now = new Date();
+                enterprise.setAuthorDate(sdf.format(now));
             }else if (statusType.equals(StatusType.SQ)){
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
                 enterprise.setCheckStatus(statusValue);
                 Date now = new Date();
                 enterprise.setCheckDate(sdf.format(now));

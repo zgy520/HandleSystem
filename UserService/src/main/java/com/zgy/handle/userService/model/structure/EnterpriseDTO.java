@@ -40,4 +40,20 @@ public class EnterpriseDTO {
     private String note;
     private String parentId;
     private String industryId;
+
+    private String userName; // 用户名
+
+    private String frdb; // 法人代表
+    private String zjyxq; // 证件有效期
+    private String regLocation; // 注册地址
+    private String gssr; // 公司上年末收入
+    private String fzrq; // 发证日期
+    private String ybian; // 邮编
+
+    private String duty; // 职务
+    private String changeDate; // 变更时间
+    private String fixedPhone; // 固定电话
+
+    private String authorDate; // 授权时间
+    private String prefixDate; // 注册时间
 }

@@ -12,5 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RootInfoDTO {
     private String id;
     private String nodePrex;
+    private String ip;
+    private String port;
     private String note;
 }

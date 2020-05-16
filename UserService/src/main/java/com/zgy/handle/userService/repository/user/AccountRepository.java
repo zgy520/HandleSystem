@@ -1,6 +1,7 @@
 package com.zgy.handle.userService.repository.user;
 
 import com.zgy.handle.userService.model.user.Account;
+import com.zgy.handle.userService.model.user.AccountType;
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,8 @@ import java.util.Set;
 public interface AccountRepository extends SystemRepository<Account>, JpaSpecificationExecutor<Account> {
     Account findByLoginName(String loginName);
 
+    Account findByEmail(String email);
+
     /**
      * 根据id列表获取所有的账户信息
      * @param idList
@@ -24,6 +27,10 @@ public interface AccountRepository extends SystemRepository<Account>, JpaSpecifi
 
     static Specification<Account> nameContains(String name){
         return fieldContains("name",name);
+    }
+
+    static Specification<Account> typeFilter(AccountType accountType){
+        return (root,query,builder) -> builder.equal(root.get("accountType"),accountType);
     }
 
     static Specification<Account> fieldContains(String filed,String value){
