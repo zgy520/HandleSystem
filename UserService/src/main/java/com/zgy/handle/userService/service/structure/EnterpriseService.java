@@ -64,6 +64,7 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
                 .and(StringUtils.isBlank(enterpriseDTO.getCode())?null : enterpriseRepository.blurStrQuery("code",enterpriseDTO.getCode()))
                 .and(StringUtils.isBlank(enterpriseDTO.getPrefix())?null : enterpriseRepository.blurStrQuery("prefix",enterpriseDTO.getPrefix()))
                 .and(StringUtils.isBlank(enterpriseDTO.getCheckStatus())?null:enterpriseRepository.blurStrQuery("checkStatus",enterpriseDTO.getCheckStatus()))
+                .and(StringUtils.isBlank(enterpriseDTO.getAuthorStatus())?null:enterpriseRepository.blurStrQuery("authorStatus",enterpriseDTO.getAuthorStatus()))
                 .and(StringUtils.isBlank(enterpriseDTO.getShortName())?null: enterpriseRepository.blurStrQuery("shortName",enterpriseDTO.getShortName()))
                 ;
         return enterpriseRepository.findAll(specification,pageable);

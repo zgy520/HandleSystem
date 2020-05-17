@@ -58,9 +58,11 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
      */
     public Enterprise fillEnterprisePrefix(Long enterpriseId,String prefix){
         Optional<Enterprise> enterpriseOptional = enterpriseRepository.findById(enterpriseId);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         if (enterpriseOptional.isPresent()){
             Enterprise enterprise = enterpriseOptional.get();
             enterprise.setPrefix(prefix);
+            enterprise.setPrefixDate(sdf.format(new Date()));
             enterpriseRepository.save(enterprise);
             return enterprise;
         }else {

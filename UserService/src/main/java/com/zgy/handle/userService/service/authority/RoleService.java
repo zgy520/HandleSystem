@@ -49,6 +49,8 @@ public class RoleService extends SystemService<Role, RoleDTO> {
         return roleRepository.findAllByIdIn(roleIdList);
     }
 
+
+
     @Transactional(readOnly = true)
     public void fetchAccountByRole(List<RoleDTO> roleDTOList){
         roleDTOList.stream().forEach(role -> {

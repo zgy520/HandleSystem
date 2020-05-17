@@ -8,7 +8,9 @@ import com.zgy.handle.userService.model.structure.DepartmentAccount;
 import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
+import com.zgy.handle.userService.model.user.AccountType;
 import com.zgy.handle.userService.model.user.cross.RolePostDTO;
+import com.zgy.handle.userService.repository.authority.RoleRepository;
 import com.zgy.handle.userService.repository.user.AccountRepository;
 import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.service.authority.RoleService;
@@ -44,6 +46,8 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     @Autowired
     private RoleService roleService;
     @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
     private PostService postService;
     @Autowired
     private DepartmentService departmentService;
@@ -62,7 +66,11 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     }
 
     public Account findByLoginName(String loginName){
-        return this.accountRepository.findByLoginName(loginName);
+        List<Account> accounts = this.accountRepository.findByLoginName(loginName);
+        if (accounts.size() > 0)
+            return accounts.get(0);
+        return null;
+        //return this.accountRepository.findByLoginName(loginName);
     }
 
     /**
@@ -146,9 +154,11 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     public boolean checkUnique(AccountDTO accountDTO, Account account) {
         boolean flag = false;
         if (StringUtils.isBlank(accountDTO.getId())){
-            if (accountRepository.findByLoginName(accountDTO.getLoginName()) != null){
+            List<Account> loginNameList = accountRepository.findByLoginName(accountDTO.getLoginName());
+            List<Account> emailList = accountRepository.findByEmail(accountDTO.getEmail());
+            if (loginNameList != null && loginNameList.size() > 0){
                 flag = true;
-            }else if (accountRepository.findByEmail(accountDTO.getEmail()) != null){
+            }else if (emailList != null && emailList.size() > 0){
                 flag = true;
             }
         }
@@ -165,6 +175,15 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         if (StringUtils.isNotBlank(accountDTO.getRoleId())){
             List<Long> roleIdList = Arrays.asList(Long.valueOf(accountDTO.getRoleId()));
             account.setRoleSet(roleService.findByRoleIdIn(roleIdList));
+        }
+
+        if(accountDTO.getAccountType().equals(AccountType.Enterprise)){
+            List<Role> enterpriseRoleList = roleRepository.findByName("企业");
+            if (enterpriseRoleList == null || enterpriseRoleList.size() == 0){
+                throw new EntityNotFoundException("没有角色名为[企业】的角色");
+            }
+            account.setRoleSet(enterpriseRoleList.stream().collect(Collectors.toSet()));
+
         }
 
         /*List<Long> postIdList = StrUtils.transformList(accountDTO.getPostList(), Long::parseLong);

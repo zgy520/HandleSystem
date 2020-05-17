@@ -57,12 +57,14 @@ public class BusinessDataUploadService extends TemplateUploadService<BusPrimary>
         JSONObject convertedHeaderJson = new JSONObject();
         int headerSize = ExcelTools.getOptionCount(headerJson, ExcelImpl.ATTACH_OPTION);
         // 将头部的值转化为字段
-        for (int i = 1; i <= headerSize; i++){
+        for (int i = 1; i <= headerSize; i++) {
             String title = headerJson.getString(ExcelImpl.ATTACH_OPTION + i);
             Optional<MetaBody> metaDataOptional = metaDataList.stream().filter(md->md.getBody().getName().equals(title)).findFirst();
             if (metaDataOptional.isPresent() && !metaDataOptional.isEmpty()){
                 //headerJson.put(title,metaDataOptional.get().getName());
                 convertedHeaderJson.put(ExcelImpl.ATTACH_OPTION + i,metaDataOptional.get().getBody().getName());
+            }else if (title.equals("handle")){
+                convertedHeaderJson.put(ExcelImpl.ATTACH_OPTION + i,"handle");
             }
         }
         JSONArray convertedJsonArray = new JSONArray();
