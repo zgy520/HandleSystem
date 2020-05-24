@@ -17,6 +17,7 @@ import com.zgy.handle.handleService.repository.meta.structure.MetaBodyRepository
 import com.zgy.handle.handleService.repository.meta.structure.MetaHeaderRepository;
 import com.zgy.handle.handleService.service.SystemService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +100,13 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         List<BusPrimary> busPrimaryList = new ArrayList<>();
         for (int i = 0; i < size; i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            BusPrimary busPrimary = saveBusPrimary(metaHeader,++maxPriamry);
+            BusPrimary busPrimary = null;
+            if (!jsonObject.containsKey("handle")){
+                busPrimary = saveBusPrimary(metaHeader,++maxPriamry,"");
+            }else {
+                busPrimary = saveBusPrimary(metaHeader,++maxPriamry,jsonObject.getString("handle"));
+            }
+
             busPrimaryList.add(busPrimary);
             List<BusDetails> busDetails = getDetails(busPrimary,jsonObject,metaBodyList);
             detailsList.addAll(busDetails);
@@ -125,11 +132,16 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         return busDetailsList;
     }
 
-    private BusPrimary saveBusPrimary(MetaHeader header,Long primary){
+    private BusPrimary saveBusPrimary(MetaHeader header,Long primary,String importHandle){
         BusPrimary busPrimary = new BusPrimary();
         busPrimary.setMetaHeader(header);
         busPrimary.setPrimaryValue(primary);
-        busPrimary.setHandleCode(header.getHeader().getIdentityNum() + "_" + primary);
+        if (StringUtils.isBlank(importHandle)){
+            busPrimary.setHandleCode(header.getHeader().getIdentityNum() + "_" + primary);
+        }else {
+            busPrimary.setHandleCode(importHandle);
+        }
+
         busPrimaryRepository.save(busPrimary);
         return busPrimary;
     }
@@ -152,7 +164,11 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         // String enterpriseHandleCode = prefixIdentifiy;
         for (BusPrimary busPrimary : busPrimaryList){
             Row dataRow = sheet.createRow(rowIndex++);
-            String handleCodeOfData = metaHeader.getHeader().getIdentityNum() + "_" + busPrimary.getPrimaryValue();
+            String handleCodeOfData = busPrimary.getHandleCode();
+            if (StringUtils.isBlank(handleCodeOfData)){
+                handleCodeOfData = metaHeader.getHeader().getIdentityNum() + "_" + busPrimary.getPrimaryValue();
+            }
+
             dataRow.createCell(0).setCellValue(handleCodeOfData);
             // 获取改数据下的所有元数据信息
             int cellIndex = fillMetaDataInfo(dataRow,busPrimary,metaBodyList,busDetailsList);

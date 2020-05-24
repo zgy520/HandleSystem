@@ -15,6 +15,8 @@ public interface RoleRepository extends SystemRepository<Role>, JpaSpecification
 
     Set<Role> findAllByIdIn(List<Long> roleIdList);
 
+    List<Role> findByName(String name);
+
      static Specification<Role> nameContains(String name){
         return (root,query,builder) -> builder.like(root.get("name"),contains(name));
     }

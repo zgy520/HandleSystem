@@ -14,9 +14,9 @@ import java.util.Set;
 
 @Repository
 public interface AccountRepository extends SystemRepository<Account>, JpaSpecificationExecutor<Account> {
-    Account findByLoginName(String loginName);
+    List<Account> findByLoginName(String loginName);
 
-    Account findByEmail(String email);
+    List<Account> findByEmail(String email);
 
     /**
      * 根据id列表获取所有的账户信息
