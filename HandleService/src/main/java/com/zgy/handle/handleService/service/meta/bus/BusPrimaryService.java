@@ -21,6 +21,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.io.*;
@@ -88,6 +89,8 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         responseCode.setData(jsonArray);
         return responseCode;
     }
+
+    @Transactional
     public void saveBusinessData(MetaHeader metaHeader, JSONArray jsonArray, List<MetaBody> metaBodyList){
         long maxPriamry = busPrimaryRepository.findByMetaHeaderId(metaHeader.getId())
                 .stream().mapToLong(BusPrimary::getPrimaryValue).max().orElse(0L);
@@ -311,6 +314,7 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
                     BufferedReader errorReader = new BufferedReader(new InputStreamReader(con.getErrorStream(),"UTF-8"));
                     String errorResult = errorReader.readLine();
                     log.error("错误信息为:" + errorResult);
+                    throw new EntityNotFoundException(errorResult);
                 }
 
             } catch (IOException e) {

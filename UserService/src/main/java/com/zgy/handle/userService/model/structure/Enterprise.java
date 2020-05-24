@@ -31,6 +31,7 @@ public class Enterprise extends BaseModel {
     private String shortName; // 简称
     private String type; // 企业节点列别，二级节点和三级节点
     private String province; // 省份
+    private String city;
     private String frdb; // 法人代表
     private String zjyxq; // 证件有效期
     private String regLocation; // 注册地址

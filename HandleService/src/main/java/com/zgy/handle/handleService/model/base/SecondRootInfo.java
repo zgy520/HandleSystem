@@ -20,4 +20,7 @@ public class SecondRootInfo extends BaseModel {
     private String note;
     private String ip;
     private String port;
+    private String demoUrl; // demo 的url
+    private String parentIp;
+    private String parentPort;
 }

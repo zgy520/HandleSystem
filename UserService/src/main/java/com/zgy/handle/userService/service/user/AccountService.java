@@ -88,6 +88,8 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         Specification<Account> specification = Specification
                 .where(accountDTO.getName() == null? null : AccountRepository.nameContains(accountDTO.getName()))
                 .and(AccountRepository.typeFilter(accountDTO.getAccountType()))
+                .and(accountDTO.getHandleUser() == null? null : AccountRepository.fieldContains("handleUser",accountDTO.getHandleUser()))
+                .and(accountDTO.getEmail() == null? null : AccountRepository.fieldContains("email",accountDTO.getEmail()))
                 .and(accountDTO.getLoginName() == null? null : AccountRepository.fieldContains("loginName",accountDTO.getLoginName()));
         return accountRepository.findAll(specification,pageable);
     }

@@ -56,7 +56,7 @@ public abstract class SystemController<T,U> {
     @ApiOperation(value = "分页获取列表")
     public ResponseCode<List<U>> list(@PageableDefault(page = 1,size = 10) Pageable pageable, U dto){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
-        pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), Sort.Direction.DESC,getSortedField());
+        pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), pageable.getSort());
         Page<T> page = systemRefactorService.findByDynamicQuery(pageable,dto);
         List<T> contentList = page.getContent();
         List<U> dtoList = convertTtoU(contentList);

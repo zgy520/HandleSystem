@@ -42,6 +42,7 @@ public class EnterpriseRegDTO {
     private String checkPerson; // 审核人
     private String checkDate; // 审核时间
     private String province; // 省份
+    private String city;
 
     private String ip;
     private String code;

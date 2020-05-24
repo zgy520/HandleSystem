@@ -21,6 +21,7 @@ public class EnterpriseDTO {
     private String shortName; // 简称
     private String type; // 企业节点列别，二级节点和三级节点
     private String province; // 省份
+    private String city;
     private String regCatalog; //注册类别
     private String regCatalogType; // 注册类别类型
     private String person; // 联系人
