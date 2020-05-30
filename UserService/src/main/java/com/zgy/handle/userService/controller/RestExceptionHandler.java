@@ -1,6 +1,7 @@
 package com.zgy.handle.userService.controller;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.userService.exception.ParamException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         apiResponse.setDebugMessage(ex.getLocalizedMessage());
         return buildResponseEntity(apiResponse);*/
         ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.NOT_FOUND.value());
+        return buildResponse(responseCode);
+    }
+
+    @ExceptionHandler(ParamException.class)
+    protected ResponseEntity<Object> handleParamException(ParamException ex){
+        /*ApiResponse apiResponse = new ApiResponse(HttpStatus.NOT_FOUND);
+        apiResponse.setMessage(ex.getMessage());
+        apiResponse.setDebugMessage(ex.getLocalizedMessage());
+        return buildResponseEntity(apiResponse);*/
+        ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.BAD_REQUEST.value());
         return buildResponse(responseCode);
     }
 

@@ -1,6 +1,9 @@
 package com.zgy.handle.userService.service;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.common.service.RequestUserService;
+import com.zgy.handle.common.zuul.context.UserContext;
+import com.zgy.handle.userService.model.common.UniqueInfo;
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,15 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class SystemService<T,U> {
+public abstract class SystemService<T,U> extends RequestUserService {
     private SystemRepository systemRepository;
-    @Autowired
-    private HttpServletRequest request;
+
 
     @Autowired
     public SystemService(SystemRepository systemRepository){
         this.systemRepository = systemRepository;
     }
+
 
     /**
      * 获取所有的数据
@@ -61,16 +64,17 @@ public abstract class SystemService<T,U> {
      * @param t
      * @return
      */
-    public boolean checkUnique(U u, T t){
-        return false;
+    public UniqueInfo checkUnique(U u, T t){
+        return UniqueInfo.getDefaultUnique();
     }
 
     @Transactional
     public ResponseCode<T> update(U u, T t){
         ResponseCode<T> responseCode = ResponseCode.sucess();
-        if (checkUnique(u,t)){
+        UniqueInfo uniqueInfo = checkUnique(u,t);
+        if (uniqueInfo.isResult()){
             responseCode.setSuccess(false);
-            responseCode.setMsg("违反了唯一性原则!");
+            responseCode.setMsg(uniqueInfo.getMsg());
         }else {
             beforeUpdate(u,t);
             t = (T) systemRepository.save(t);

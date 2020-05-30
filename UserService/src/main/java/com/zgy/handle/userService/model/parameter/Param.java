@@ -12,4 +12,6 @@ import javax.persistence.Table;
 public class Param extends BaseModel {
     private String code;
     private String value;
+    private boolean visible; // 可见性
+    private ParamType paramType; // 参数类型
 }

@@ -1,11 +1,9 @@
 package com.zgy.handle.userService.controller.user;
 
-import com.netflix.discovery.converters.Auto;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.zuul.context.UserContext;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.UserDisplayInfo;
-import com.zgy.handle.userService.model.user.UserInfo;
 import com.zgy.handle.userService.service.user.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -45,7 +42,7 @@ public class UserDisplayController {
             userDisplayInfo.setIntroduction(account.getNote());
             userDisplayInfo.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
             Set<String> roleSet = accountService.fetchRoleCodeListByAccountId(account.getId());
-            userDisplayInfo.setRoleSet(roleSet);
+            userDisplayInfo.setRoles(roleSet);
             responseCode.setData(userDisplayInfo);
         }else {
             throw new EntityNotFoundException("未找到对应的用户信息");

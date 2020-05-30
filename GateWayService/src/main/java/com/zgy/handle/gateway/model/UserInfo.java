@@ -24,6 +24,6 @@ public class UserInfo{
     private String postId;
     private String postName;
     private String enterpriseId;
-    private Set<String> roleSet = new HashSet<>();
+    private Set<String> roles = new HashSet<>();
 
 }

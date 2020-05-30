@@ -36,4 +36,7 @@ public class BaseModel {
     @ApiModelProperty("备注")
     @Column(name = "note",columnDefinition = "text null")
     protected String note;
+
+    private String createdId; // 创建人的id
+    private String belongId; // 归属id  部门或者企业
 }

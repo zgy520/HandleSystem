@@ -4,14 +4,11 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.user.convert.AccountMapper;
 import com.zgy.handle.userService.model.structure.Department;
-import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.model.user.UserInfo;
 import com.zgy.handle.userService.model.user.cross.RolePostDTO;
-import com.zgy.handle.userService.service.authority.RoleService;
-import com.zgy.handle.userService.service.authority.post.PostService;
 import com.zgy.handle.userService.service.structure.DepartmentAccountService;
 import com.zgy.handle.userService.service.structure.DepartmentService;
 import com.zgy.handle.userService.service.user.AccountService;
@@ -73,7 +70,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
                 .postName(accountService.fetchPostCodeListByAccountId(account.getId()).stream().collect(Collectors.joining(",")))
                 .build();
         Set<String> roleSet = accountService.fetchRoleCodeListByAccountId(account.getId());
-        userInfo.setRoleSet(roleSet);
+        userInfo.setRoles(roleSet);
 
         return userInfo;
     }

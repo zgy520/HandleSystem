@@ -1,10 +1,1 @@
-com\zgy\handle\common\zuul\context\UserContextHolder.class
-com\zgy\handle\common\zuul\ZuulConfig.class
-com\zgy\handle\common\response\ResponseCode.class
-com\zgy\handle\common\zuul\context\UserContextFilter.class
-com\zgy\handle\common\zuul\context\UserContextInterceptor.class
-com\zgy\handle\common\util\tree\TreeConvert.class
-com\zgy\handle\common\zuul\context\UserContext.class
-com\zgy\handle\common\config.class
-com\zgy\handle\common\hibernate\UUIDGenerator.class
-com\zgy\handle\common\util\UtilConfig.class
+com\zgy\handle\common\service\RequestUserService.class

@@ -22,12 +22,12 @@ public class EnterpriseAccount {
 
     @ManyToOne
     @MapsId("enterpriseId")
-    @JoinColumn(name = "enterpriseId")
+    @JoinColumn(name = "enterpriseId",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     private Enterprise enterprise;
 
     @ManyToOne
     @MapsId("accountId")
-    @JoinColumn(name = "accountId")
+    @JoinColumn(name = "accountId",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     private Account account;
 
     @Enumerated(EnumType.STRING)
