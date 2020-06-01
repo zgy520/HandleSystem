@@ -213,4 +213,26 @@ public class AccountService extends SystemService<Account,AccountDTO> {
             }
         }
     }
+
+    public ResponseCode<String> modifyPwd(String oldPwd,String newPwd){
+        ResponseCode<String> responseCode = ResponseCode.sucess();
+        String userId = getPersonalId();
+        if (StringUtils.isBlank(userId)){
+            throw new EntityNotFoundException("请传入正确的token信息");
+        }
+        Optional<Account> accountOptional = accountRepository.findById(Long.valueOf(userId));
+        if (accountOptional.isPresent()){
+            Account account = accountOptional.get();
+            if (!account.getPassword().equals(passwordEncoder.encode(oldPwd))){
+                responseCode.setSuccess(false);
+                responseCode.setMsg("原密码不正确!");
+            }else {
+                account.setPassword(passwordEncoder.encode(newPwd));
+                accountRepository.save(account);
+            }
+        }else {
+            throw new EntityNotFoundException("当前token所代表的用户不存在");
+        }
+        return responseCode;
+    }
 }

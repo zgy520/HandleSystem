@@ -48,6 +48,11 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         this.accountService = accountService;
     }
 
+    @PostMapping(value = "modifyPwd")
+    public ResponseCode<String> modifyPwd(String oldPwd,String newPwd){
+        return accountService.modifyPwd(oldPwd,newPwd);
+    }
+
     @Override
     public void fillList(List<Account> entityList, List<AccountDTO> dtoList) {
         dtoList.stream().forEach(dto->{
