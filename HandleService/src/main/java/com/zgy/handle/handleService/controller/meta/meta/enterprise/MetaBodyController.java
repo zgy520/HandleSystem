@@ -12,6 +12,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -56,10 +60,12 @@ public class MetaBodyController extends SystemController<MetaBody, MetaBodyDTO> 
 
     @GetMapping(value = "getBodyByHeaderId/{headerId}")
     @ApiOperation(value = "根据元数据的头部id获取所有的字段内容")
-    public ResponseCode<List<MetaBodyDTO>> getBodyByHeaderId(@PathVariable Long headerId){
+    public ResponseCode<List<MetaBodyDTO>> getBodyByHeaderId(@PathVariable Long headerId,@PageableDefault(page = 1,size = 10) Pageable pageable){
         ResponseCode<List<MetaBodyDTO>> responseCode = ResponseCode.sucess();
-        List<MetaBody> metaBodyList = metaBodyService.findByHeaderId(headerId);
-        responseCode.setData(metaBodyMapper.toMetaBodyDTOS(metaBodyList));
+        pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), pageable.getSort());
+        Page<MetaBody> page = metaBodyService.findByHeaderId(headerId,pageable);
+        responseCode.setData(metaBodyMapper.toMetaBodyDTOS(page.getContent()));
+        responseCode.setPageInfo(page);
         return responseCode;
     }
 

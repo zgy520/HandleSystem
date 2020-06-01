@@ -13,6 +13,7 @@
 
     <properties>
         <okhttp.version>4.7.2</okhttp.version>
+
     </properties>
 
     <dependencies>
@@ -79,6 +80,8 @@
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
+
     </dependencies>
     <build>
         <plugins>

@@ -28,7 +28,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     protected ResponseEntity<Object> handleEntityConstrainVlilationException(ConstraintViolationException ex){
-        ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.NOT_FOUND.value());
+        ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.BAD_REQUEST.value());
         return buildResponse(responseCode);
     }
 

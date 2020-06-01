@@ -86,4 +86,9 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
         }
         enterprise.setNote(enterpriseDTO.getNote());
     }
+
+
+    public void sendEmail(){
+
+    }
 }

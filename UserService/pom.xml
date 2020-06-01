@@ -11,6 +11,10 @@
 
     <artifactId>UserService</artifactId>
 
+    <properties>
+        <spirng-boot-email-version>2.3.0.RELEASE</spirng-boot-email-version>
+    </properties>
+
 
     <dependencies>
         <dependency>
@@ -54,6 +58,11 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>${spirng-boot-email-version}</version>
         </dependency>
     </dependencies>
     <build>

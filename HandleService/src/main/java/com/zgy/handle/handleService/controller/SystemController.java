@@ -112,7 +112,9 @@ public abstract class SystemController<T,U> {
             responseCode.setData(convertTtoU(optionalT.get()));
         else
             throw new EntityNotFoundException("找不到id对应为:{" + id.toString() + "}的值");
+
         systemRefactorService.delete(id);
+
         return responseCode;
     }
 

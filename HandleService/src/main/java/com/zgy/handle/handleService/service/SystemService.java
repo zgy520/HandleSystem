@@ -1,14 +1,18 @@
 package com.zgy.handle.handleService.service;
 
+import com.mysql.jdbc.SQLError;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.zuul.context.UserContext;
 import com.zgy.handle.handleService.repository.SystemRepository;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -119,9 +123,8 @@ public abstract class SystemService<T,U> {
                 responseCode.setData(optionalT.get());
                 try {
                     systemRepository.deleteById(id);
-                }catch (Exception ex){
-                    responseCode.setSuccess(false);
-                    responseCode.setMsg(ex.getMessage());
+                } catch (Exception exception){
+                    throw new ConstraintViolationException("有关联数据，不能删除!",null,"");
                 }
             }else {
                 responseCode.setSuccess(false);
