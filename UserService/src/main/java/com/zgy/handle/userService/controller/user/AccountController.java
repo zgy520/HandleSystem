@@ -17,6 +17,7 @@ import com.zgy.handle.userService.service.structure.DepartmentAccountService;
 import com.zgy.handle.userService.service.structure.DepartmentService;
 import com.zgy.handle.userService.service.user.AccountService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +50,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
     }
 
     @PostMapping(value = "modifyPwd")
+    @ApiOperation(value = "密码修改")
     public ResponseCode<String> modifyPwd(String oldPwd,String newPwd){
         return accountService.modifyPwd(oldPwd,newPwd);
     }

@@ -11,11 +11,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "mdc")
@@ -47,6 +49,13 @@ public class MetaDataController {
     @GetMapping(value = "getBusData/{metaHeaderId}")
     public ResponseCode<JSONArray> getBusData(Long metaHeaderId){
         ResponseCode<JSONArray> responseCode = busPrimaryService.getBusData(metaHeaderId);
+        return responseCode;
+    }
+    @ApiOperation(value = "分页获取业务数据")
+    @GetMapping(value = "getBusPageData/{metaHeaderId}")
+    public ResponseCode<JSONObject> getBusDataByage(Long metaHeaderId, @PageableDefault(page = 1,size = 10) Pageable pageable){
+        pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), pageable.getSort());
+        ResponseCode<JSONObject> responseCode = busPrimaryService.getBusPageData(metaHeaderId,pageable);
         return responseCode;
     }
 }

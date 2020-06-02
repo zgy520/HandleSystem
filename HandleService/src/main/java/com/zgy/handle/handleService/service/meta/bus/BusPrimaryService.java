@@ -21,6 +21,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -90,6 +92,33 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         responseCode.setData(jsonArray);
         return responseCode;
     }
+
+    public ResponseCode<JSONObject> getBusPageData(Long metaHeaderId, Pageable pageable){
+        JSONArray jsonArray = new JSONArray();
+        JSONObject finalJson = new JSONObject();
+        ResponseCode<JSONObject> responseCode = ResponseCode.sucess();
+        Page<BusPrimary> page = busPrimaryRepository.findByMetaHeaderId(metaHeaderId,pageable);
+        List<BusPrimary> busPrimaryList = page.getContent();
+        for (BusPrimary busPrimary : busPrimaryList){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("primaryValue",busPrimary.getPrimaryValue());
+            jsonObject.put("handleCode",busPrimary.getHandleCode());
+            jsonObject.put("primaryId",busPrimary.getId().toString());
+            List<BusDetails> busDetailsList = busDetailsRepository.findByBusPrimaryId(busPrimary.getId());
+            for (BusDetails busDetails : busDetailsList){
+                jsonObject.put(busDetails.getMetaBody().getBody().getName(),busDetails.getFieldValue());
+            }
+            //jsonObject.put("enterpriseName","待确认");
+            jsonArray.add(jsonObject);
+        }
+        finalJson.put("data",jsonArray);
+        /*finalJson.put("totalElements",page.getTotalElements());
+        finalJson.put("totalPage",page.getTotalPages());*/
+        responseCode.setData(finalJson);
+        responseCode.setPageInfo(page);
+        return responseCode;
+    }
+
 
     @Transactional
     public void saveBusinessData(MetaHeader metaHeader, JSONArray jsonArray, List<MetaBody> metaBodyList){
