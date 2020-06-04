@@ -55,6 +55,7 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     private EnterpriseService enterpriseService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -223,7 +224,7 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         Optional<Account> accountOptional = accountRepository.findById(Long.valueOf(userId));
         if (accountOptional.isPresent()){
             Account account = accountOptional.get();
-            if (!account.getPassword().equals(passwordEncoder.encode(oldPwd))){
+            if (!passwordEncoder.matches(oldPwd,account.getPassword())){
                 responseCode.setSuccess(false);
                 responseCode.setMsg("原密码不正确!");
             }else {
