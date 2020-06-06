@@ -1,5 +1,7 @@
 package com.zgy.handle.userService.controller.structure;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.structure.convert.EnterpriseMapper;
@@ -7,6 +9,7 @@ import com.zgy.handle.userService.model.structure.*;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.EnterpriseService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -118,5 +121,23 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
         });
         responseCode.setData(selectDTOList);
         return responseCode;
+    }
+
+    @GetMapping(value = "getEnterpriseStatic")
+    @ApiOperation(value = "获取行业统计信息")
+    public JSONObject getEnterpriseStatic(){
+        return enterpriseService.industryStatic();
+    }
+
+    @GetMapping(value = "getEnterprisexxList")
+    @ApiOperation(value = "获取企业列表")
+    public JSONArray getEnterpriseList(){
+        return enterpriseService.getEnterpriseInfo();
+    }
+
+    @GetMapping(value = "getEnterpriseProvinceInfo")
+    @ApiOperation(value = "获取身份和城市对应的企业数量")
+    public JSONObject getEnterpriseProvinceInfo(){
+        return enterpriseService.getEnterpriseProvinceInfo();
     }
 }

@@ -65,6 +65,23 @@ public class MetaHeaderService extends SystemService<MetaHeader, MetaHeaderDTO> 
     }
 
     @Override
+    public boolean checkUnique(MetaHeaderDTO metaHeaderDTO, MetaHeader metaHeader) {
+        if (metaHeaderDTO.getId() == null){
+            Integer count = metaHeaderRepository.findAllByIdentityNum(metaHeaderDTO.getIdentityNum());
+            if (count != null && count > 0){
+                return true;
+            }
+        }else {
+            Integer count = metaHeaderRepository.findAllByIdentityNum(metaHeaderDTO.getIdentityNum(),metaHeaderDTO.getId());
+            if (count != null && count > 0){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
     public void beforeUpdate(MetaHeaderDTO metaHeaderDTO, MetaHeader metaHeader) {
         if (StringUtils.isNotBlank(metaHeaderDTO.getParentId())){
             Optional<MetaHeader> metaHeaderOptional = this.findById(Long.valueOf(metaHeaderDTO.getParentId()));

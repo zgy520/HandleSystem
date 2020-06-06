@@ -41,6 +41,8 @@ public abstract class SystemController<T,U> {
         T t = convertUtoT(u);
         ResponseCode<T> responseCode = systemRefactorService.update(u,t);
         uResponseCode.setData(convertTtoU(responseCode.getData()));
+        uResponseCode.setSuccess(responseCode.isSuccess());
+        uResponseCode.setMsg(responseCode.getMsg());
         return uResponseCode;
     }
 

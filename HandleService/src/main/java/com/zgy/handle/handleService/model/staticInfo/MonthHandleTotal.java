@@ -1,28 +1,26 @@
 package com.zgy.handle.handleService.model.staticInfo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zgy.handle.handleService.model.BaseModel;
+import com.zgy.handle.handleService.model.common.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "handle_static_day")
+@Table(name = "handle_static_month")
 @Data
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class HandleDailyCount extends BaseModel {
-    private LocalDate recordDate;
+public class MonthHandleTotal extends BaseModel {
     private Integer year;
     private Integer month;
-    private Integer day; // 当天
-    private Integer dailyCount;
     @Enumerated(EnumType.STRING)
     private HandleType handleType;
-
+    private Integer totalCount; // 总数量
 }
