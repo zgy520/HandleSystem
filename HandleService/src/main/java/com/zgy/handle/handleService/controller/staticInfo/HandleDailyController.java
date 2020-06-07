@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequestMapping(value = "static")
 @Slf4j
 @Api(tags = "大屏统计")
+@CrossOrigin(origins = "*")
 public class HandleDailyController {
     @Autowired
     HandleDailyCountService handleDailyCountService;

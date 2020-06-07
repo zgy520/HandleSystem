@@ -123,21 +123,5 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
         return responseCode;
     }
 
-    @GetMapping(value = "getEnterpriseStatic")
-    @ApiOperation(value = "获取行业统计信息")
-    public JSONObject getEnterpriseStatic(){
-        return enterpriseService.industryStatic();
-    }
 
-    @GetMapping(value = "getEnterprisexxList")
-    @ApiOperation(value = "获取企业列表")
-    public JSONArray getEnterpriseList(){
-        return enterpriseService.getEnterpriseInfo();
-    }
-
-    @GetMapping(value = "getEnterpriseProvinceInfo")
-    @ApiOperation(value = "获取身份和城市对应的企业数量")
-    public JSONObject getEnterpriseProvinceInfo(){
-        return enterpriseService.getEnterpriseProvinceInfo();
-    }
 }
