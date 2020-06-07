@@ -13,7 +13,9 @@
 
     <properties>
         <spirng-boot-email-version>2.3.0.RELEASE</spirng-boot-email-version>
+        <okhttp.version>4.7.2</okhttp.version>
     </properties>
+
 
 
     <dependencies>
@@ -33,6 +35,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>2.2.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

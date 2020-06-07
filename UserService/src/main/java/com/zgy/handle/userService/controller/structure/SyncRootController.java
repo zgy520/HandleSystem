@@ -1,0 +1,22 @@
+package com.zgy.handle.userService.controller.structure;
+
+import com.zgy.handle.userService.service.structure.SyncEnterpriseToRootService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RequestMapping(value = "syncRoot")
+@Slf4j
+@RestController
+public class SyncRootController {
+    @Autowired
+    private SyncEnterpriseToRootService syncEnterpriseToRootService;
+
+    @PostMapping(value = "enterprise")
+    public String syncRoot(String enterpriseInfo){
+        log.info(enterpriseInfo);
+        return "success";
+    }
+}
