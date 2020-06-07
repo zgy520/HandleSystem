@@ -7,6 +7,7 @@ import com.zgy.handle.userService.model.structure.StatusType;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.structure.EnterpriseRepository;
 import com.zgy.handle.userService.service.SystemService;
+import com.zgy.handle.userService.service.email.IMailService;
 import com.zgy.handle.userService.service.user.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -29,6 +30,8 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
     private IndustryService industryService;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private IMailService mailService;
     @Autowired
     private DepartmentAccountService departmentAccountService;
     public EnterpriseRegService(EnterpriseRepository enterpriseRepository) {
@@ -80,11 +83,18 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
                 Date now = new Date();
                 enterprise.setAuthorDate(sdf.format(now));
             }else if (statusType.equals(StatusType.SQ)){
-
                 enterprise.setCheckStatus(statusValue);
                 Date now = new Date();
                 enterprise.setCheckDate(sdf.format(now));
                 enterprise.setCheckPerson(getPersonalName());
+
+                if (statusValue.equals("授权失败")){
+                    mailService.sendSimpleMail(enterprise.getEmail(),"handles审核","审核失败：原因");
+                }else {
+                    // 将企业同步到根节点
+
+                }
+
             }else {
                 throw new EntityNotFoundException("请传入正确的状态类型");
             }

@@ -7,6 +7,7 @@ import com.zgy.handle.handleService.model.base.SecondRootInfo;
 import com.zgy.handle.handleService.model.common.SelectDTO;
 import com.zgy.handle.handleService.service.base.SecondRootInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,5 +43,13 @@ public class SecondRootInfoController extends SystemController<SecondRootInfo, R
     @Override
     public SecondRootInfo convertUtoT(RootInfoDTO rootInfoDTO) {
         return secondRootInfoMapper.convertToSecondRootInfo(rootInfoDTO);
+    }
+
+    @GetMapping(value = "getParentServer")
+    public String getParentServer(){
+        String serverInfo = "";
+        SecondRootInfo secondRootInfo = secondRootInfoService.findAll().get(0);
+        serverInfo = secondRootInfo.getParentIp() + ":" + secondRootInfo.getParentPort();
+        return serverInfo;
     }
 }
