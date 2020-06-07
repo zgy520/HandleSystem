@@ -8,6 +8,7 @@ import com.zgy.handle.userService.controller.structure.convert.EnterpriseMapper;
 import com.zgy.handle.userService.model.structure.*;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.EnterpriseService;
+import com.zgy.handle.userService.service.structure.SyncEnterpriseToRootService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,8 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
     private EnterpriseService enterpriseService;
     @Autowired
     private EnterpriseMapper enterpriseMapper;
+    @Autowired
+    private SyncEnterpriseToRootService syncEnterpriseToRootService;
 
     public EnterpriseController(EnterpriseService enterpriseService) {
         super(enterpriseService);
@@ -139,5 +142,10 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
     @ApiOperation(value = "获取身份和城市对应的企业数量")
     public JSONObject getEnterpriseProvinceInfo(){
         return enterpriseService.getEnterpriseProvinceInfo();
+    }
+
+    @GetMapping(value = "syncEnterprise")
+    public void  syncEnterprise(){
+        syncEnterpriseToRootService.syncEnterpriseInfo();
     }
 }
