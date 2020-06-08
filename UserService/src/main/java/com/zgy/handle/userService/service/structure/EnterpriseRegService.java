@@ -33,6 +33,8 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
     @Autowired
     private IMailService mailService;
     @Autowired
+    private SyncEnterpriseToRootService syncEnterpriseToRootService;
+    @Autowired
     private DepartmentAccountService departmentAccountService;
     public EnterpriseRegService(EnterpriseRepository enterpriseRepository) {
         super(enterpriseRepository);
@@ -92,7 +94,7 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
                     mailService.sendSimpleMail(enterprise.getEmail(),"handles审核","审核失败：原因");
                 }else {
                     // 将企业同步到根节点
-
+                    syncEnterpriseToRootService.syncEnterpriseInfo(enterpriseId);
                 }
 
             }else {
