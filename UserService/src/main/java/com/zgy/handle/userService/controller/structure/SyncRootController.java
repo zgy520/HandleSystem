@@ -1,6 +1,5 @@
 package com.zgy.handle.userService.controller.structure;
 
-import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zgy.handle.userService.model.structure.Enterprise;
