@@ -23,11 +23,11 @@
           <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar" />
           <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/joda-time/joda-time/2.9/joda-time-2.9.jar" />
         </processorPath>
-        <module name="EurekaServer" />
+        <module name="KnowledgeService" />
         <module name="GateWayService" />
         <module name="UserService" />
-        <module name="KnowledgeService" />
         <module name="Common" />
+        <module name="EurekaServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
