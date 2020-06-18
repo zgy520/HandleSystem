@@ -6,6 +6,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -35,7 +36,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.BAD_REQUEST.value());
         return buildResponse(responseCode);
     }
-
 
     private ResponseEntity<Object> buildResponse(ResponseCode responseCode){
         return ResponseEntity.badRequest().body(responseCode);

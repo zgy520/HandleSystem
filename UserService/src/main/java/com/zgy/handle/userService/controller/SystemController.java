@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +51,7 @@ public abstract class SystemController<T,U> {
     @GetMapping(value = "list")
     public ResponseCode<List<U>> list(@PageableDefault(page = 1,size = 10) Pageable pageable, U dto){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
-        pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), Sort.Direction.DESC,getSortedField());
+        pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), Sort.Direction.DESC, getSortedField());
         Page<T> page = systemRefactorService.findByDynamicQuery(pageable,dto);
         List<T> contentList = page.getContent();
         List<U> dtoList = convertTtoU(contentList);
@@ -103,13 +104,25 @@ public abstract class SystemController<T,U> {
      */
     @DeleteMapping(value = "delete/{id}")
     public ResponseCode<U> delete(@PathVariable(value = "id") Long id){
-        Optional<T> optionalT = systemRefactorService.findById(id);
+        ResponseCode<U> responseCode = ResponseCode.sucess();
+       /* Optional<T> optionalT = systemRefactorService.findById(id);
         ResponseCode<U> responseCode = ResponseCode.sucess();
         if (optionalT.isPresent())
             responseCode.setData(convertTtoU(optionalT.get()));
         else
-            throw new EntityNotFoundException("找不到id对应为:{" + id.toString() + "}的值");
+            throw new EntityNotFoundException("找不到id对应为:{" + id.toString() + "}的值");*/
+        systemRefactorService.getOne(id);
         systemRefactorService.delete(id);
+        return responseCode;
+    }
+
+    @DeleteMapping(value = "deleteList/{idList}")
+    public ResponseCode<String> deleteList(@PathVariable(value = "idList") String idList){
+        ResponseCode<String> responseCode = ResponseCode.sucess();
+        String[] ids = idList.split(",");
+        for (String id : ids){
+            systemRefactorService.delete(Long.valueOf(id));
+        }
         return responseCode;
     }
 

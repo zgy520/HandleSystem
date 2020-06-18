@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class AccountDTO {
     private String loginName;
     //private String code; // 人员编码
     //private String phoneNumber; // 手机号
+    @Email(message = "请输入正确的有限格式")
     private String email; // email地址
     private String note;
     //private String identity; // 唯一编号

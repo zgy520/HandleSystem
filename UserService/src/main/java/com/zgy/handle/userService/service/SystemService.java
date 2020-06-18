@@ -36,6 +36,10 @@ public abstract class SystemService<T,U> extends RequestUserService {
         return systemRepository.findById(id);
     }
 
+    public Object getOne(Long id){
+        return systemRepository.getOne(id);
+    }
+
 
     /**
      * 根据分页获取数据
