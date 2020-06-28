@@ -14,4 +14,6 @@ public interface DepartmentAccountRepository extends SystemRepository<Department
     @Transactional
     @Modifying
     int deleteByAccountId(Long accountId);
+
+
 }

@@ -48,6 +48,9 @@ public class AccountController extends SystemController<Account,AccountDTO> {
             RolePostDTO rolePostDTO = accountService.fetchRolePostName(Long.valueOf(dto.getId()));
             dto.setRoleList(rolePostDTO.getRoleList());
             dto.setPostList(rolePostDTO.getPostList());
+            dto.setRoleIdList(rolePostDTO.getRoleIdList());
+            dto.setPostIdList(rolePostDTO.getPostIdList());
+            dto.setDepartId(rolePostDTO.getDepartId());
             dto.setDepartName(rolePostDTO.getDepartName());
         });
     }

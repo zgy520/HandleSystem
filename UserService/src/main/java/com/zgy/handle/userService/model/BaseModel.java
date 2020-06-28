@@ -1,5 +1,7 @@
 package com.zgy.handle.userService.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,6 +20,7 @@ public class BaseModel {
     @GeneratedValue(generator = "uuid_short")
     @GenericGenerator(name = "uuid_short",strategy = "com.zgy.handle.userService.model.hibernate.UUIDGenerator")
     @Column(name = "id",nullable = false)
+    @JSONField(serializeUsing = ToStringSerializer.class)
     protected Long id;
 
     @JsonIgnore

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.userService.model.BaseModel;
 import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.Role;
+import com.zgy.handle.userService.model.structure.Department;
+import com.zgy.handle.userService.model.structure.DepartmentAccount;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Singular;
@@ -56,6 +58,9 @@ public class Account extends BaseModel {
     @ToString.Exclude
     @Singular("postSet")
     private Set<Post> postSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
+    private Set<DepartmentAccount> departmentAccounts = new HashSet<>();
 
     public void addRole(Role role){
         this.roleSet.add(role);

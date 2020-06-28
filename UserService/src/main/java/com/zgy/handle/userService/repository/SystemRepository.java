@@ -3,16 +3,15 @@ package com.zgy.handle.userService.repository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
-import java.util.List;
-import java.util.Set;
 
 @NoRepositoryBean
 @Primary
-public interface SystemRepository<T> extends JpaRepository<T, Serializable> {
+public interface SystemRepository<T> extends JpaRepository<T, Serializable>, JpaSpecificationExecutor<T> {
 
     /**
      * 字符串模糊查询

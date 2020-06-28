@@ -4,8 +4,12 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.structure.Department;
+import com.zgy.handle.userService.model.structure.DepartmentAccount;
+import com.zgy.handle.userService.model.structure.DepartmentAccount_;
+import com.zgy.handle.userService.model.structure.Department_;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.AccountDTO;
+import com.zgy.handle.userService.model.user.Account_;
 import com.zgy.handle.userService.model.user.cross.RolePostDTO;
 import com.zgy.handle.userService.repository.user.AccountRepository;
 import com.zgy.handle.userService.service.SystemService;
@@ -26,6 +30,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -77,9 +82,13 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     public Page<Account> findByDynamicQuery(Pageable pageable, AccountDTO accountDTO){
         Specification<Account> specification = Specification
                 .where(accountDTO.getName() == null? null : AccountRepository.nameContains(accountDTO.getName()))
-                .and(accountDTO.getLoginName() == null? null : AccountRepository.fieldContains("loginName",accountDTO.getLoginName()));
+                .and(accountDTO.getLoginName() == null? null : AccountRepository.fieldContains(Account_.LOGIN_NAME,accountDTO.getLoginName()))
+                .and(accountDTO.getDepartName() == null? null : AccountRepository.departNameLike(accountDTO.getDepartName()))
+                .and(accountDTO.getRoleName() == null? null : AccountRepository.roleLike(accountDTO.getRoleName()))
+                .and(StringUtils.isNotBlank(accountDTO.getPostName())?AccountRepository.postLike(accountDTO.getPostName()) : null);
         return accountRepository.findAll(specification,pageable);
     }
+
 
     public Optional<Account> findOne(Long id){
         Account account = new Account();
@@ -95,7 +104,7 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         List<String> roleList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.toList());
         Department department = departmentAccountService.getByAccountId(userId);
-        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
+        RolePostDTO rolePostDTO = new RolePostDTO(roleList,roleList,postList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         responseCode.setData(rolePostDTO);
         return responseCode;
     }
@@ -104,9 +113,11 @@ public class AccountService extends SystemService<Account,AccountDTO> {
     public RolePostDTO fetchRolePostName(Long userId){
         Account account = this.accountRepository.findById(userId).get();
         List<String> roleList = account.getRoleSet().stream().map(Role::getName).map(String::valueOf).collect(Collectors.toList());
+        List<String> roleIdList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getName).map(String::valueOf).collect(Collectors.toList());
+        List<String> postIdList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.toList());
         Department department = departmentAccountService.getByAccountId(userId);
-        RolePostDTO rolePostDTO = new RolePostDTO(roleList,postList,department==null?"":department.getId().toString(),department==null?"":department.getName());
+        RolePostDTO rolePostDTO = new RolePostDTO(roleList,roleIdList,postList,postIdList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         return rolePostDTO;
     }
 
