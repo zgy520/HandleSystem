@@ -1,8 +1,7 @@
-package com.zgy.handle.userService.controller.user.convert;
+package com.zgy.handle.userService.controller.user.update;
 
 import com.zgy.handle.userService.model.user.Account;
-import com.zgy.handle.userService.model.user.AccountDTO;
-import com.zgy.handle.userService.model.user.accountVo.AccountUpdateVo;
+import com.zgy.handle.userService.model.user.update.AccountUpdateVo;
 import org.mapstruct.Mapper;
 
 import java.util.List;

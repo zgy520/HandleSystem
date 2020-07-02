@@ -59,7 +59,8 @@ public class Account extends BaseModel {
     @Singular("postSet")
     private Set<Post> postSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,orphanRemoval = true)
+    @JsonIgnore
     private Set<DepartmentAccount> departmentAccounts = new HashSet<>();
 
     public void addRole(Role role){
