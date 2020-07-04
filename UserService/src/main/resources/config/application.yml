@@ -23,7 +23,7 @@ spring:
   datasource:
     url: jdbc:mysql://114.115.215.119:3306/handlesystem?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
-    password: root
+    password: Mepsoft123456@#
     driver-class-name: com.mysql.jdbc.Driver
     max-idle: 5
     max-wait: 10000
