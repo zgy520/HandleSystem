@@ -1,8 +1,10 @@
 package com.zgy.handle.userService.service.user.update;
 
+import com.zgy.handle.userService.model.common.UniqueInfo;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.update.AccountUpdateVo;
+import com.zgy.handle.userService.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userService.repository.user.update.AccountUpdateRepository;
 import com.zgy.handle.userService.service.authority.RoleService;
 import com.zgy.handle.userService.service.authority.post.PostService;
@@ -31,6 +33,8 @@ public class AccountUpdateServiceImpl extends UpdateServiceImpl<Account, Account
     private DepartmentService departmentService;
     @Autowired
     private DepartmentAccountService departmentAccountService;
+    @Autowired
+    private AccountQueryRepository accountQueryRepository;
 
     private final AccountUpdateRepository accountUpdateRepository;
     @Autowired
@@ -41,6 +45,7 @@ public class AccountUpdateServiceImpl extends UpdateServiceImpl<Account, Account
 
     @Override
     public void beforeUpdate(AccountUpdateVo accountUpdateVo, Account account) {
+
         if (accountUpdateVo.getPostIdList() != null && accountUpdateVo.getPostIdList().size() > 0){
             account.setPostSet(postService.findByPostIdIn(accountUpdateVo.getPostIdList()));
         }else {
@@ -63,5 +68,14 @@ public class AccountUpdateServiceImpl extends UpdateServiceImpl<Account, Account
                 departmentAccountService.setDepartmentAccount(account,departmentOptional.get());
             }
         }
+    }
+
+    @Override
+    public UniqueInfo checkUnique(AccountUpdateVo accountUpdateVo, Account account) {
+        Long count = StringUtils.isBlank(accountUpdateVo.getId())? accountQueryRepository.countByLoginName(accountUpdateVo.getLoginName()) : accountQueryRepository.countByLoginNameAndIdNot(accountUpdateVo.getLoginName(),Long.valueOf(accountUpdateVo.getId()));
+        if (count > 0){
+            return UniqueInfo.getUniqueInfo("登录名称重复");
+        }
+        return super.checkUnique(accountUpdateVo, account);
     }
 }

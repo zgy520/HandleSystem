@@ -1,6 +1,7 @@
 package com.zgy.handle.userService.service.base.impl;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.userService.model.BaseModel;
 import com.zgy.handle.userService.model.common.UniqueInfo;
 import com.zgy.handle.userService.repository.base.UpdateRepository;
 import com.zgy.handle.userService.service.base.UpdateService;
@@ -27,6 +28,8 @@ public abstract class UpdateServiceImpl<T,U> extends BaseServiceImpl<T> implemen
             responseCode.setMsg(uniqueInfo.getMsg());
         }else {
             beforeUpdate(u,t);
+            fillPartFields(t);
+
             t = (T) updateRepository.save(t);
             postUpdate(t,u);
             responseCode.setData(t);
@@ -72,5 +75,17 @@ public abstract class UpdateServiceImpl<T,U> extends BaseServiceImpl<T> implemen
     @Override
     public void postUpdate(T t, U u) {
 
+    }
+
+    /**
+     * 填充部分字段
+     * 包括创建者id和所属者id
+     * @param t
+     */
+    private void fillPartFields(T t){
+        if (t instanceof BaseModel){
+            ((BaseModel) t).setCreatedId(getPersonalId());
+            ((BaseModel) t).setBelongId(getDepartId());
+        }
     }
 }

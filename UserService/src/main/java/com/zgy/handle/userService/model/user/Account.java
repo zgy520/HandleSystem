@@ -11,10 +11,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Singular;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +26,10 @@ import java.util.Set;
 @Slf4j
 @Entity(name = "system_account")
 @EqualsAndHashCode(callSuper = true, of = {"id"})
+@SQLDelete(sql = "update system_account set isDeleted = true where id = ?")
+@Where(clause = BaseModel.SOFT_DELETED_CLAUSE)
 public class Account extends BaseModel {
+    /*@Size(min = 10, max = 20, message = "姓名必须在10到20个字符之间")*/
     private String name;
     private String loginName;
     @JsonIgnore

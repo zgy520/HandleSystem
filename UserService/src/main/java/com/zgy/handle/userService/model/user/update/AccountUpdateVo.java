@@ -3,8 +3,10 @@ package com.zgy.handle.userService.model.user.update;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AccountUpdateVo {
     private String id;
+
     private String name;
     private String loginName;
 

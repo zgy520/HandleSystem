@@ -8,13 +8,15 @@ logging:
     path: "./logs/"
   file.max-size: 10MB
   level:
-    org.hibernate.SQL: warn
-    org.hibernate.type.description.sql: error
+    org.hibernate.SQL: TRACE
+    org.hibernate.type.description.sql: TRACE
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 spring:
   jpa:
     properties:
       hibernate:
-        format_sql: false
+        format_sql: true
+        #integrator_provider: com.zgy.handle.userService.service.auto.InsertEventIntegratorProvider
     hibernate:
       ddl-auto: update
       naming:

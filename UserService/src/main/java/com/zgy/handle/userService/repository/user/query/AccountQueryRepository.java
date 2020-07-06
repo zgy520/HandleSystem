@@ -6,4 +6,26 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountQueryRepository extends QueryRepository<Account> {
+    /**
+     * 根据登录名称获取账号
+     * @param loginName
+     * @return
+     */
+    Account findByLoginName(String loginName);
+
+
+    /**
+     * 根据登录名称获取对应的数量
+     * @param loginName
+     * @return
+     */
+    Long countByLoginName(String loginName);
+
+    /**
+     * 获取特定id之外的对于登录名称的数量
+     * @param loginName
+     * @param id
+     * @return
+     */
+    Long countByLoginNameAndIdNot(String loginName,Long id);
 }
