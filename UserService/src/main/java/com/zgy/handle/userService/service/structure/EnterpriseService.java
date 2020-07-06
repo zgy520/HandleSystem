@@ -99,7 +99,7 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
     public JSONObject industryStatic(){
         JSONObject jsonObject = new JSONObject();
         List<Enterprise> enterpriseList = enterpriseRepository.findAll()
-                .stream().filter(enterprise -> enterprise.getAuthorStatus().equals("已授权"))
+                .stream().filter(enterprise -> enterprise.getAuthorStatus() != null && enterprise.getAuthorStatus().equals("已授权"))
                 .collect(Collectors.toList());
         int count = enterpriseList.size();
         Map<String,List<Enterprise>> groupByIndustry = enterpriseList.stream()
@@ -141,7 +141,9 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
             JSONArray jsonArray = new JSONArray();
             for (String city : cityMap.keySet()){
                 JSONObject cityJson = new JSONObject();
-                cityJson.put(city,cityMap.get(city).size());
+                //cityJson.put(city,cityMap.get(city).size());
+                cityJson.put("name",city);
+                cityJson.put("value",cityMap.get(city).size());
                 jsonArray.add(cityJson);
             }
             provinceJson.put("city",jsonArray);
