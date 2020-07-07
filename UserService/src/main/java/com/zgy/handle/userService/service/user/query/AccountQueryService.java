@@ -12,4 +12,6 @@ public interface AccountQueryService extends QueryService<Account, AccountQueryV
      * @return
      */
     RolePostDTO fetchRolePostName(Long userId);
+
+    Account getAccountWithRole(Long accountId);
 }

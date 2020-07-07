@@ -21,6 +21,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,5 +59,19 @@ public class AccountQueryServiceImpl extends QueryServiceImpl<Account, AccountQu
         Department department = departmentAccountService.getByAccountId(userId);
         RolePostDTO rolePostDTO = new RolePostDTO(roleList,roleIdList,postList,postIdList,department==null?"":department.getId().toString(),department==null?"":department.getName());
         return rolePostDTO;
+    }
+
+    /**
+     * 获取带有角色的账号信息
+     * @param accountId
+     * @return
+     */
+    @Override
+    public Account getAccountWithRole(Long accountId){
+        TypedQuery<Account> query = entityManager.createQuery(" select account from Account account JOIN FETCH account.roleSet where account.id = :accountId"
+                                ,Account.class);
+        query.setParameter("accountId",accountId);
+        Account account = query.getSingleResult();
+        return account;
     }
 }

@@ -2,6 +2,7 @@ package com.zgy.handle.userService.repository.user.query;
 
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.base.QueryRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -28,4 +29,7 @@ public interface AccountQueryRepository extends QueryRepository<Account> {
      * @return
      */
     Long countByLoginNameAndIdNot(String loginName,Long id);
+
+    /*@Query(value = "select account from Account account JOIN FETCH account.roleSet")
+    Account findByUserIdWithRole(Long accountId);*/
 }

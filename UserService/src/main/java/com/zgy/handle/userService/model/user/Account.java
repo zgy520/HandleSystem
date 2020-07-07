@@ -24,7 +24,8 @@ import java.util.Set;
 
 @Data
 @Slf4j
-@Entity(name = "system_account")
+@Entity
+@Table(name = "system_account")
 @EqualsAndHashCode(callSuper = true, of = {"id"})
 @SQLDelete(sql = "update system_account set isDeleted = true where id = ?")
 @Where(clause = BaseModel.SOFT_DELETED_CLAUSE)

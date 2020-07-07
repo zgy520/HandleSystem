@@ -24,10 +24,10 @@ public class JwtUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = null;
         if (userInfoMap.containsKey(username)){
-            log.info("通过静态变量获取用户名");
+            log.info("通过静态变量获取用户名" + username);
             userInfo = userInfoMap.get(username);
         }else {
-            log.info("根据用户名进行数据库查询");
+            log.info("根据用户名进行数据库查询" + username);
             userInfo = userFeignClient.getUserInfo(username);
             userInfoMap.put(username,userInfo);
         }

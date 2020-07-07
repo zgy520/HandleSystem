@@ -13,6 +13,7 @@ import java.util.Optional;
 @Slf4j
 public abstract class QueryServiceImpl<T,U> extends BaseServiceImpl<T> implements QueryService<T,U> {
 
+
     private final QueryRepository queryRepository;
     @Autowired
     public QueryServiceImpl(QueryRepository queryRepository) {
