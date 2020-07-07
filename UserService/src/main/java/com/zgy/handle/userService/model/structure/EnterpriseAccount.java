@@ -20,12 +20,12 @@ public class EnterpriseAccount {
     @EmbeddedId
     private EnterpriseAccountPK id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("enterpriseId")
     @JoinColumn(name = "enterpriseId",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     private Enterprise enterprise;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("accountId")
     @JoinColumn(name = "accountId",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     private Account account;

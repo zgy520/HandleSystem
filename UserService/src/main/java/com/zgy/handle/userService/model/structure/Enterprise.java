@@ -35,11 +35,11 @@ public class Enterprise extends BaseModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date initorDate; // 成立日期
     private String address;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "paretnId",referencedColumnName = "id")
     @JsonIgnore
     private Enterprise parent; // 上级企业
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "industryId",referencedColumnName = "id")
     @JsonIgnore
     private Industry industry; // 所属行业

@@ -5,10 +5,7 @@ import com.zgy.handle.userService.model.BaseModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "system_industry")
@@ -18,7 +15,7 @@ public class Industry extends BaseModel {
     private String code;
     private String name;
     private String shortName;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parentId",referencedColumnName = "id")
     @JsonIgnore
     private Industry parent;

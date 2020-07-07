@@ -49,14 +49,15 @@ public class Account extends BaseModel {
     @Temporal(TemporalType.DATE)
     private Date expiredDate;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "system_role_personal",
             joinColumns = {@JoinColumn(name = "accountId")},
             inverseJoinColumns = { @JoinColumn(name = "roleId")})
     @ToString.Exclude
     @Singular("roleSet")
+    @JsonIgnore
     private Set<Role> roleSet = new HashSet<>();
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "system_post_personal",
             joinColumns = {@JoinColumn(name = "accountId")},
             inverseJoinColumns = { @JoinColumn(name = "postId")})
