@@ -107,8 +107,10 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
         for (String key : groupByIndustry.keySet()){
             int keyCount = groupByIndustry.get(key).size();
             log.info("行业:" + key + ",对应的数量为:" + keyCount + "个");
-            Float bl = (float) keyCount / count * 100;
-            jsonObject.put(key,String.format("%.2f", bl ) + "%");
+            //Float bl = (float) keyCount / count * 100;
+            //jsonObject.put(key,String.format("%.2f", bl ) + "%");
+            jsonObject.put("name",key);
+            jsonObject.put("value",keyCount);
         }
         return jsonObject;
     }
