@@ -61,6 +61,8 @@ public class Account extends BaseModel {
     @Singular("postSet")
     private Set<Post> postSet = new HashSet<>();
 
+    private String sessionId; // sessionId
+
     public void addRole(Role role){
         this.roleSet.add(role);
         //role.getAccountSet().add(this);

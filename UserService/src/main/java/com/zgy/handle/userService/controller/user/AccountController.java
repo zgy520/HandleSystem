@@ -146,4 +146,10 @@ public class AccountController extends SystemController<Account,AccountDTO> {
     }
 
 
+    @PostMapping(value = "recordSesionId")
+    @ApiOperation(value = "记录SessionId,必须通过登录测试")
+    public ResponseCode<String> recordSessionId(String sessionId){
+        return accountService.recordSessionId(sessionId);
+    }
+
 }

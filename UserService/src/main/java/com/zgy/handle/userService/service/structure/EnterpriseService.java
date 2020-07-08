@@ -96,8 +96,8 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
      * 行业百分比统计
      * @return
      */
-    public JSONObject industryStatic(){
-        JSONObject jsonObject = new JSONObject();
+    public JSONArray industryStatic(){
+        JSONArray jsonArray = new JSONArray();
         List<Enterprise> enterpriseList = enterpriseRepository.findAll()
                 .stream().filter(enterprise -> enterprise.getAuthorStatus() != null && enterprise.getAuthorStatus().equals("已授权"))
                 .collect(Collectors.toList());
@@ -105,14 +105,16 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
         Map<String,List<Enterprise>> groupByIndustry = enterpriseList.stream()
                 .collect(Collectors.groupingBy(Enterprise::getIndustry));
         for (String key : groupByIndustry.keySet()){
+            JSONObject jsonObject = new JSONObject();
             int keyCount = groupByIndustry.get(key).size();
             log.info("行业:" + key + ",对应的数量为:" + keyCount + "个");
             //Float bl = (float) keyCount / count * 100;
             //jsonObject.put(key,String.format("%.2f", bl ) + "%");
             jsonObject.put("name",key);
             jsonObject.put("value",keyCount);
+            jsonArray.add(jsonObject);
         }
-        return jsonObject;
+        return jsonArray;
     }
 
     public JSONArray getEnterpriseInfo(){
@@ -138,7 +140,9 @@ public class EnterpriseService extends SystemService<Enterprise,EnterpriseDTO> {
         for (String province : provinceMap.keySet()){
             JSONObject provinceJson = new JSONObject();
             List<Enterprise> provinceEntrpriseList = provinceMap.get(province);
-            provinceJson.put(province,provinceEntrpriseList.size());
+           //provinceJson.put(province,provinceEntrpriseList.size());
+            provinceJson.put("name",province);
+            provinceJson.put("value",provinceEntrpriseList.size());
             Map<String,List<Enterprise>> cityMap = provinceEntrpriseList.stream().filter(enterprise -> StringUtils.isNotBlank(enterprise.getCity())).collect(Collectors.groupingBy(Enterprise::getCity));
             JSONArray jsonArray = new JSONArray();
             for (String city : cityMap.keySet()){

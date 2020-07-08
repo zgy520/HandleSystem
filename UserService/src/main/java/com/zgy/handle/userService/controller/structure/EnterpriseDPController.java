@@ -23,7 +23,7 @@ public class EnterpriseDPController {
 
     @GetMapping(value = "getEnterpriseStatic")
     @ApiOperation(value = "获取行业统计信息")
-    public JSONObject getEnterpriseStatic(){
+    public JSONArray getEnterpriseStatic(){
         return enterpriseService.industryStatic();
     }
 
