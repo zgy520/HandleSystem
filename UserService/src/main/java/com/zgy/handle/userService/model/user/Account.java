@@ -11,8 +11,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Singular;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -25,6 +28,7 @@ import java.util.Set;
 @Data
 @Slf4j
 @Entity
+@Audited
 @Table(name = "system_account")
 @EqualsAndHashCode(callSuper = true, of = {"id"})
 @SQLDelete(sql = "update system_account set isDeleted = true where id = ?")

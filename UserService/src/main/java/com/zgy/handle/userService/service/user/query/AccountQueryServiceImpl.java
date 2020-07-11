@@ -15,6 +15,7 @@ import com.zgy.handle.userService.service.structure.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -50,8 +51,13 @@ public class AccountQueryServiceImpl extends QueryServiceImpl<Account, AccountQu
 
     @Transactional(readOnly = true)
     @Override
+    /*@Cacheable(value = "account", key = "#userId")*/
     public RolePostDTO fetchRolePostName(Long userId){
         Account account = this.accountQueryRepository.findById(userId).get();
+        //Account account = getAccountWithAll(userId);
+        if (account == null){
+            return null;
+        }
         List<String> roleList = account.getRoleSet().stream().map(Role::getName).map(String::valueOf).collect(Collectors.toList());
         List<String> roleIdList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getName).map(String::valueOf).collect(Collectors.toList());
@@ -72,6 +78,15 @@ public class AccountQueryServiceImpl extends QueryServiceImpl<Account, AccountQu
                                 ,Account.class);
         query.setParameter("accountId",accountId);
         Account account = query.getSingleResult();
+        return account;
+    }
+
+
+    private Account getAccountWithAll(Long accountId){
+        TypedQuery<Account> query = entityManager.createQuery(" select account from Account account left JOIN FETCH account.roleSet left JOIN FETCH account.postSet left JOIN FETCH account.departmentAccounts where account.id = :accountId"
+                ,Account.class);
+        query.setParameter("accountId",accountId);
+        Account account = query.getResultStream().findFirst().orElse(null);
         return account;
     }
 }

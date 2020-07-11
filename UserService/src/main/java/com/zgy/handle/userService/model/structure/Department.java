@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.userService.model.BaseModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "system_department")
 @Data
 @Slf4j
+@Audited
 public class Department extends BaseModel {
     private String code;
     private String name;

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -32,15 +34,20 @@ public class AccountQueryController extends QueryController<Account, AccountQuer
 
     @Override
     public void fillList(List<Account> entityList, List<AccountQueryVo> dtoList) {
+        Instant start = Instant.now();
         dtoList.stream().forEach(dto->{
             RolePostDTO rolePostDTO = accountQueryService.fetchRolePostName(Long.valueOf(dto.getId()));
-            dto.setRoleList(rolePostDTO.getRoleList());
-            dto.setPostList(rolePostDTO.getPostList());
-            dto.setRoleIdList(rolePostDTO.getRoleIdList());
-            dto.setPostIdList(rolePostDTO.getPostIdList());
-            dto.setDepartId(rolePostDTO.getDepartId());
-            dto.setDepartName(rolePostDTO.getDepartName());
+            if (rolePostDTO != null){
+                dto.setRoleList(rolePostDTO.getRoleList());
+                dto.setPostList(rolePostDTO.getPostList());
+                dto.setRoleIdList(rolePostDTO.getRoleIdList());
+                dto.setPostIdList(rolePostDTO.getPostIdList());
+                dto.setDepartId(rolePostDTO.getDepartId());
+                dto.setDepartName(rolePostDTO.getDepartName());
+            }
         });
+        Instant end = Instant.now();
+        log.info("所用时间为:" + Duration.between(start,end));
     }
 
     @Override

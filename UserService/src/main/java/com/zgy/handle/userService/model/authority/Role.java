@@ -5,6 +5,7 @@ import com.zgy.handle.userService.model.BaseModel;
 import com.zgy.handle.userService.model.user.Account;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Table(name = "system_role")
 @Data
 @Slf4j
+@Audited
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true, of = {"id"})

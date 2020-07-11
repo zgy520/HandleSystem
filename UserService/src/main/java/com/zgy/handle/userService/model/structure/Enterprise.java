@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
+@Audited
 @Table(name = "system_enterprise")
 public class Enterprise extends BaseModel {
     private String code;
