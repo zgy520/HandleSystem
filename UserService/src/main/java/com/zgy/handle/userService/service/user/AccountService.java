@@ -250,4 +250,16 @@ public class AccountService extends SystemService<Account,AccountDTO> {
         }
         return responseCode;
     }
+    public ResponseCode<String> getSessionId(){
+        ResponseCode<String> responseCode = ResponseCode.sucess();
+        Optional<Account> accountOptional = accountRepository.findById(Long.valueOf(getPersonalId()));
+        if (accountOptional.isPresent()){
+            Account account = accountOptional.get();
+            responseCode.setData(account.getSessionId());
+        }else {
+            responseCode.setMsg("用户信息不存在");
+            responseCode.setSuccess(false);
+        }
+        return responseCode;
+    }
 }

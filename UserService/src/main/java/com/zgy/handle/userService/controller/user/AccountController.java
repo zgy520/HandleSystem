@@ -152,4 +152,10 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         return accountService.recordSessionId(sessionId);
     }
 
+    @GetMapping(value = "getSessionId")
+    @ApiOperation(value = "获取用户的sessionId，需登录测试")
+    public ResponseCode<String> getSessionId(){
+        return accountService.getSessionId();
+    }
+
 }
