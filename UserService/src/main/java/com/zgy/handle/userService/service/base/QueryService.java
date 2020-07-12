@@ -2,6 +2,7 @@ package com.zgy.handle.userService.service.base;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,4 +45,10 @@ public interface QueryService<T,U> extends BaseService<T> {
      * @return
      */
     Page<T> findByDynamicQuery(Pageable pageable,U dto);
+
+    /**
+     * 获取权限的查询
+     * @return
+     */
+    Specification<T> getPermissionQuery();
 }

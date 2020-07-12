@@ -1,7 +1,9 @@
 package com.zgy.handle.userService.controller.base;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.SelectDTO;
+import com.zgy.handle.userService.model.user.query.AccountQueryVo;
 import com.zgy.handle.userService.service.base.QueryService;
 import com.zgy.handle.userService.service.base.UpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -50,6 +52,7 @@ public abstract class QueryController<T,U> extends BaseController<T>{
         responseCode.setData(dtoList);
         return responseCode;
     }
+
 
     /**
      * 获取所有的数据

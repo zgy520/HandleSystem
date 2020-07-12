@@ -33,6 +33,8 @@ public interface AccountRepository extends SystemRepository<Account> {
         return fieldContains(Account_.NAME,name);
     }
 
+
+
     static Specification<Account> fieldContains(String filed,String value){
         return (root,query,builder) -> builder.like(root.get(filed),contains(value));
     }

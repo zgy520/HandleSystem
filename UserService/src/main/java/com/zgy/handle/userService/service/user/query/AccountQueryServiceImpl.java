@@ -38,7 +38,7 @@ public class AccountQueryServiceImpl extends QueryServiceImpl<Account, AccountQu
         this.accountQueryRepository = accountQueryRepository;
     }
 
-    @Override
+   /* @Override
     public Page<Account> findByDynamicQuery(Pageable pageable, AccountQueryVo dto) {
         Specification<Account> specification = Specification
                 .where(StringUtils.isBlank(dto.getName())? null : AccountRepository.nameContains(dto.getName()))
@@ -46,7 +46,32 @@ public class AccountQueryServiceImpl extends QueryServiceImpl<Account, AccountQu
                 .and(StringUtils.isBlank(dto.getDepartName())? null : AccountRepository.departNameLike(dto.getDepartName()))
                 .and(StringUtils.isBlank(dto.getRoleName())? null : AccountRepository.roleLike(dto.getRoleName()))
                 .and(StringUtils.isNotBlank(dto.getPostName())?AccountRepository.postLike(dto.getPostName()) : null);
-        return accountQueryRepository.findAll(specification,pageable);
+
+        // 个人权限
+        Specification<Account> personalPermissionSpec = Specification
+                .where(accountQueryRepository.fieldEquals(Account_.CREATED_ID,getPersonalId()));
+        // 部门权限
+        Specification<Account> departPermissionSpec = Specification
+                .where(accountQueryRepository.fieldEquals(Account_.BELONG_ID,getDepartId()));
+
+        // 单位权限
+        Specification<Account> unitPermissionSpec = Specification
+                .where(accountQueryRepository.fieldIn(Account_.BELONG_ID,"1"));
+        Specification<Account> finalSpecification = specification.and(unitPermissionSpec);
+
+
+        return accountQueryRepository.findAll(finalSpecification,pageable);
+    }*/
+
+    @Override
+    public Specification<Account> querySpecification(Pageable pageable, AccountQueryVo dto) {
+        Specification<Account> specification = Specification
+                .where(StringUtils.isBlank(dto.getName())? null : AccountRepository.nameContains(dto.getName()))
+                .and(StringUtils.isBlank(dto.getLoginName())? null : AccountRepository.nameContains(dto.getLoginName()))
+                .and(StringUtils.isBlank(dto.getDepartName())? null : AccountRepository.departNameLike(dto.getDepartName()))
+                .and(StringUtils.isBlank(dto.getRoleName())? null : AccountRepository.roleLike(dto.getRoleName()))
+                .and(StringUtils.isNotBlank(dto.getPostName())?AccountRepository.postLike(dto.getPostName()) : null);
+        return specification;
     }
 
     @Transactional(readOnly = true)

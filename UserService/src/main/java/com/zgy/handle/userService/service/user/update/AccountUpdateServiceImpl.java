@@ -14,7 +14,6 @@ import com.zgy.handle.userService.service.structure.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +54,7 @@ public class AccountUpdateServiceImpl extends UpdateServiceImpl<Account, Account
         if (accountUpdateVo.getRoleIdList() != null && accountUpdateVo.getRoleIdList().size() > 0){
             account.setRoleSet(roleService.findByRoleIdIn(accountUpdateVo.getRoleIdList()));
         }else {
-            account.setPostSet(null);
+            account.setRoleSet(null);
         }
         if (StringUtils.isBlank(accountUpdateVo.getId()))
             account.setPassword(passwordEncoder.encode("123456"));
