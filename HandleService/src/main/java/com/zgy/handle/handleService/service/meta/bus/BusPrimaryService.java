@@ -284,6 +284,8 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         //String url = "http://114.115.215.119:8011/api/datadefine";
          String url = enterprisePre.getPrefix();
         //String url = "114.115.215.119:8011";
+        String sessionId = "qdfp2e1al1vs1nocg5tflhx13"; //entepriseFeignClient.getSessionId();
+        log.info("获取到当前用户的sessionId为:" + sessionId);
         if (type == 0){
             // 元数据标准的注册
             url += "/api/datadefine";
@@ -311,6 +313,8 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
             con.setUseCaches(false); // post方式不能使用缓存
             // 设置请求头信息
             con.setRequestProperty("charset", "UTF-8");
+            con.setRequestProperty("sessionId",sessionId);
+            con.setRequestProperty("Handle version","0");
             con.setRequestProperty("accept", "application/json");
             con.setRequestProperty("Content-length", String.valueOf(file.length()));
             // 设置边界

@@ -158,4 +158,10 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         return accountService.getSessionId();
     }
 
+    @GetMapping(value = "getSessionById")
+    public String getSessionById(@RequestBody String accountId){
+        Account account = accountService.findById(Long.valueOf(accountId)).get();
+        return account.getSessionId();
+    }
+
 }

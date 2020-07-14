@@ -11,4 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface EntepriseFeignClient {
     @RequestMapping(method = RequestMethod.GET, value = "/enterprise/getEnterprisePre")
     EnterprisePre getEnterpriseInfo(@RequestBody String enterpriseId);
+
+    @RequestMapping(method = RequestMethod.GET,value = "/account/getSessionId")
+    String getSessionId(@RequestBody String account);
 }
