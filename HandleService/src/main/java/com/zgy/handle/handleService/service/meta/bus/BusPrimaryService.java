@@ -284,7 +284,8 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         //String url = "http://114.115.215.119:8011/api/datadefine";
          String url = enterprisePre.getPrefix();
         //String url = "114.115.215.119:8011";
-        String sessionId = "qdfp2e1al1vs1nocg5tflhx13"; //entepriseFeignClient.getSessionId();
+        log.info("获取用户:" + getPersonalId() + "的sessionId");
+        String sessionId = entepriseFeignClient.getSessionId(getPersonalId());
         log.info("获取到当前用户的sessionId为:" + sessionId);
         if (type == 0){
             // 元数据标准的注册
@@ -313,7 +314,9 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
             con.setUseCaches(false); // post方式不能使用缓存
             // 设置请求头信息
             con.setRequestProperty("charset", "UTF-8");
-            con.setRequestProperty("sessionId",sessionId);
+
+            con.setRequestProperty("Cookie","JSESSIONID=" +sessionId);
+            con.setRequestProperty("Authorization","Handle version=\"0\",sessionId=\"" + sessionId + "\"");
             con.setRequestProperty("Handle version","0");
             con.setRequestProperty("accept", "application/json");
             con.setRequestProperty("Content-length", String.valueOf(file.length()));
@@ -329,6 +332,8 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
             sb.append("Content-Disposition: form-data;name=\"file\";filename=\""
                     + file.getName() + "\"\r\n");
             sb.append("Content-Type:application/octet-stream\r\n\r\n");
+            sb.append("Authorization:Handle version=\"0\",sessionId=\"" + sessionId + "\"");
+            sb.append("Cookie:JSESSIONID=" +sessionId);
             byte[] head = sb.toString().getBytes("utf-8");
             // 获得输出流
             OutputStream out = new DataOutputStream(con.getOutputStream());

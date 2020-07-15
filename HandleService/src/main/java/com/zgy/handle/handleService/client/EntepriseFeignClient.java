@@ -12,6 +12,6 @@ public interface EntepriseFeignClient {
     @RequestMapping(method = RequestMethod.GET, value = "/enterprise/getEnterprisePre")
     EnterprisePre getEnterpriseInfo(@RequestBody String enterpriseId);
 
-    @RequestMapping(method = RequestMethod.GET,value = "/account/getSessionId")
+    @RequestMapping(method = RequestMethod.POST,value = "/account/getSessionById")
     String getSessionId(@RequestBody String account);
 }

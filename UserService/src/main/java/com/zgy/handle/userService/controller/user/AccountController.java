@@ -158,8 +158,9 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         return accountService.getSessionId();
     }
 
-    @GetMapping(value = "getSessionById")
+    @RequestMapping(method = RequestMethod.GET,value = "getSessionById")
     public String getSessionById(@RequestBody String accountId){
+        log.info("获取用户:" + accountId + "的sessionId");
         Account account = accountService.findById(Long.valueOf(accountId)).get();
         return account.getSessionId();
     }

@@ -104,7 +104,9 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
         //EnterprisePre enterprisePre = entepriseFeignClient.getEnterpriseInfo(metaHeader.getEnterpriseId().toString());
         //String url = "http://114.115.215.119:8011";
         String url = enterprisePre.getPrefix();
-        String sessionId = ""; //entepriseFeignClient.getSessionId(getPersonalId());
+        log.info("获取用户:" + getPersonalId() + "的sessionId");
+        String sessionId = entepriseFeignClient.getSessionId(getPersonalId());
+        log.info("获取到当前用户的sessionId为:" + sessionId);
         log.info("获取到当前用户的sessionId为:" + sessionId);
         if (type == 0){
             // 元数据标准的注册
@@ -133,7 +135,9 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
             con.setUseCaches(false); // post方式不能使用缓存
             // 设置请求头信息
             con.setRequestProperty("charset", "UTF-8");
-            con.setRequestProperty("sessionID",sessionId);
+
+            con.setRequestProperty("Cookie","JSESSIONID=" +sessionId);
+            con.setRequestProperty("Authorization","Handle version=\"0\",sessionId=\"" + sessionId + "\"");
             con.setRequestProperty("accept", "application/json");
             con.setRequestProperty("Content-length", String.valueOf(file.length()));
             // 设置边界
@@ -148,6 +152,8 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
             sb.append("Content-Disposition: form-data;name=\"file\";filename=\""
                     + file.getName() + "\"\r\n");
             sb.append("Content-Type:application/octet-stream\r\n\r\n");
+            sb.append("Authorization:Handle version=\"0\",sessionId=\"" + sessionId + "\"");
+            sb.append("Cookie:JSESSIONID=" +sessionId);
             byte[] head = sb.toString().getBytes("utf-8");
             // 获得输出流
             OutputStream out = new DataOutputStream(con.getOutputStream());
