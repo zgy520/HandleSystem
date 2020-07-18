@@ -2,7 +2,7 @@ package com.zgy.handle.userService.controller.user;
 
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.zuul.context.UserContext;
-import com.zgy.handle.userService.model.authority.Role;
+import com.zgy.handle.userService.model.authority.role.Role;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.UserDisplayInfo;
 import com.zgy.handle.userService.service.user.AccountService;
@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

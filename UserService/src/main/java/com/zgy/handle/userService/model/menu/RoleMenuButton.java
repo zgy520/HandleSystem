@@ -1,7 +1,7 @@
 package com.zgy.handle.userService.model.menu;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zgy.handle.userService.model.authority.Role;
+import com.zgy.handle.userService.model.authority.role.Role;
 
 import javax.persistence.*;
 

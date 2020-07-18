@@ -1,6 +1,6 @@
 package com.zgy.handle.userService.repository.authority;
 
-import com.zgy.handle.userService.model.authority.Role;
+import com.zgy.handle.userService.model.authority.role.Role;
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

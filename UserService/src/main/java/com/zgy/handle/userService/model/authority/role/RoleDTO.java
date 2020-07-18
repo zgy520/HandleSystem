@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.model.authority;
+package com.zgy.handle.userService.model.authority.role;
 
 import lombok.Data;
 
@@ -11,5 +11,5 @@ public class RoleDTO {
     private String code;
     private String name;
     private String note;
-    private List<String> userList = new ArrayList<>();
+    //private List<String> userList = new ArrayList<>();
 }

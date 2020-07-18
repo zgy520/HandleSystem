@@ -6,6 +6,17 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 public interface QueryRepository<T> extends BaseRepository<T>, JpaSpecificationExecutor<T> {
+
+    /**
+     * 字段相等
+     * @param field
+     * @param value
+     * @return
+     */
+    default Specification<T> fieldLike(String field, String value){
+        return (Specification<T>) (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get(field),"%" + value + "%");
+    }
+
     /**
      * 字段相等
      * @param field

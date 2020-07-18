@@ -5,7 +5,7 @@ import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.accountVo.AccountUpdateVo;
 import com.zgy.handle.userService.repository.user.AccountRepository;
 import com.zgy.handle.userService.service.SystemService;
-import com.zgy.handle.userService.service.authority.RoleService;
+import com.zgy.handle.userService.service.authority.role.RoleService;
 import com.zgy.handle.userService.service.authority.post.PostService;
 import com.zgy.handle.userService.service.structure.DepartmentAccountService;
 import com.zgy.handle.userService.service.structure.DepartmentService;

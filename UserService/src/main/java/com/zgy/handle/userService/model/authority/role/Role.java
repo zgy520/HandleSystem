@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.model.authority;
+package com.zgy.handle.userService.model.authority.role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.userService.model.BaseModel;

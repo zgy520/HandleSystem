@@ -2,8 +2,8 @@ package com.zgy.handle.userService.repository.user;
 
 import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.Post_;
-import com.zgy.handle.userService.model.authority.Role;
-import com.zgy.handle.userService.model.authority.Role_;
+import com.zgy.handle.userService.model.authority.role.Role;
+import com.zgy.handle.userService.model.authority.role.Role_;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.structure.DepartmentAccount;
 import com.zgy.handle.userService.model.structure.Department_;

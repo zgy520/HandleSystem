@@ -1,7 +1,7 @@
-package com.zgy.handle.userService.service.authority;
+package com.zgy.handle.userService.service.authority.role;
 
-import com.zgy.handle.userService.model.authority.Role;
-import com.zgy.handle.userService.model.authority.RoleDTO;
+import com.zgy.handle.userService.model.authority.role.Role;
+import com.zgy.handle.userService.model.authority.role.RoleDTO;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.authority.RoleRepository;
 import com.zgy.handle.userService.service.SystemService;
@@ -51,16 +51,16 @@ public class RoleService extends SystemService<Role, RoleDTO> {
 
     @Transactional(readOnly = true)
     public void fetchAccountByRole(List<RoleDTO> roleDTOList){
-        roleDTOList.stream().forEach(role -> {
+        /*roleDTOList.stream().forEach(role -> {
             role.setUserList(roleRepository.findById(Long.valueOf(role.getId()))
                     .get().getAccountSet().stream().map(Account::getId).map(String::valueOf).collect(Collectors.toList()));
-        });
+        });*/
     }
 
     @Override
     public void beforeUpdate(RoleDTO roleDTO, Role role) {
-        List<Long> userIdList = StrUtils.transformList(roleDTO.getUserList(),Long::parseLong);
+        /*List<Long> userIdList = StrUtils.transformList(roleDTO.getUserList(),Long::parseLong);
         Set<Account> accountSet = accountService.findByIdIn(userIdList);
-        role.setAccountSet(accountSet);
+        role.setAccountSet(accountSet);*/
     }
 }

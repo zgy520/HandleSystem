@@ -1,22 +1,18 @@
 package com.zgy.handle.userService.service.user.query;
 
 import com.zgy.handle.userService.model.authority.Post;
-import com.zgy.handle.userService.model.authority.Role;
+import com.zgy.handle.userService.model.authority.role.Role;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.user.Account;
-import com.zgy.handle.userService.model.user.Account_;
 import com.zgy.handle.userService.model.user.cross.RolePostDTO;
 import com.zgy.handle.userService.model.user.query.AccountQueryVo;
 import com.zgy.handle.userService.repository.user.AccountRepository;
 import com.zgy.handle.userService.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userService.service.base.impl.QueryServiceImpl;
 import com.zgy.handle.userService.service.structure.DepartmentAccountService;
-import com.zgy.handle.userService.service.structure.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;

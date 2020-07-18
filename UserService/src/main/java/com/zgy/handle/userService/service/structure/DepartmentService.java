@@ -1,16 +1,12 @@
 package com.zgy.handle.userService.service.structure;
 
-import com.zgy.handle.userService.model.authority.Role;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.structure.DepartmentDTO;
 import com.zgy.handle.userService.model.structure.Enterprise;
-import com.zgy.handle.userService.model.structure.Industry;
-import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.structure.DepartmentRepository;
 import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.asm.Advice;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j

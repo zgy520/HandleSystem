@@ -1,6 +1,6 @@
-package com.zgy.handle.userService.service.authority;
+package com.zgy.handle.userService.service.authority.role;
 
-import com.zgy.handle.userService.model.authority.Role;
+import com.zgy.handle.userService.model.authority.role.Role;
 import com.zgy.handle.userService.repository.authority.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
