@@ -36,7 +36,7 @@ public abstract class UpdateController<T,U> extends BaseController<T> {
      */
     @PostMapping(value = "update")
     /*@CacheEvict(value = "account",key = "#u.id")*/
-    public ResponseCode<U> update(@RequestBody U u){
+    public ResponseCode<U> update(@RequestBody @Valid U u){
         T t = convertUtoT(u);
         ResponseCode<U> responseCode = updateService.update(u,t);
         return responseCode;

@@ -1,50 +1,52 @@
 package com.zgy.handle.userService.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.exception.ParamException;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.RollbackException;
-import javax.validation.ConstraintViolation;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 @Slf4j
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex){
-        /*ApiResponse apiResponse = new ApiResponse(HttpStatus.NOT_FOUND);
-        apiResponse.setMessage(ex.getMessage());
-        apiResponse.setDebugMessage(ex.getLocalizedMessage());
-        return buildResponseEntity(apiResponse);*/
         ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.NOT_FOUND.value());
         return buildResponse(responseCode);
     }
 
     @ExceptionHandler(ParamException.class)
     protected ResponseEntity<Object> handleParamException(ParamException ex){
-        /*ApiResponse apiResponse = new ApiResponse(HttpStatus.NOT_FOUND);
-        apiResponse.setMessage(ex.getMessage());
-        apiResponse.setDebugMessage(ex.getLocalizedMessage());
-        return buildResponseEntity(apiResponse);*/
         ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.BAD_REQUEST.value());
+        return buildResponse(responseCode);
+    }
+
+    /**
+     * hibernate 参数绑定异常
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    protected ResponseEntity<Object> handleBindException(MethodArgumentNotValidException ex) {
+        Set<String> msgSet = ex.getBindingResult().getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).collect(Collectors.toSet());
+
+
+        ResponseCode<Object> responseCode = ResponseCode.error(msgSet.stream().collect(Collectors.joining(";")),HttpStatus.BAD_REQUEST.value());
         return buildResponse(responseCode);
     }
 
@@ -54,17 +56,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         String errMessage = ex.getCause().getMessage();
 
         List<String> listErrMessage = getListErrMessage(errMessage);
-        /*StringBuilder messageBuilder = new StringBuilder();
+        StringBuilder messageBuilder = new StringBuilder();
         for (String errMsg : listErrMessage){
             //String message = listErrMessage.stream().collect(Collectors.joining(","));
-            JSONObject jsonObject = JSONObject.parseObject(errMsg);
-            log.info(jsonObject.toJSONString());
-            messageBuilder.append(jsonObject.getString("message"));
+            String message = errMsg.split(",")[0].split(":")[1];
+            messageBuilder.append(message);
+            messageBuilder.append(",");
         }
-       log.info("获取到的错误数据为:" + messageBuilder.toString());*/
+       log.info("获取到的错误数据为:" + messageBuilder.substring(0,messageBuilder.length() - 1).toString());
 
 
-        ResponseCode<Object> responseCode = ResponseCode.error(listErrMessage.stream().collect(Collectors.joining(",")),HttpStatus.BAD_REQUEST.value());
+        //ResponseCode<Object> responseCode = ResponseCode.error(listErrMessage.stream().collect(Collectors.joining(",")),HttpStatus.BAD_REQUEST.value());
+        ResponseCode<Object> responseCode = ResponseCode.error(messageBuilder.toString(),HttpStatus.BAD_REQUEST.value());
         return buildResponse(responseCode);
 
     }

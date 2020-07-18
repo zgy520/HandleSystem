@@ -28,6 +28,7 @@ public class DepartmentAccountService extends SystemService<DepartmentAccount,De
                 .personalType(DepartPersonalType.MEMBER)
                 .sortOrder(0)
                 .build();
+        departmentAccountRepository.deleteByAccountId(account.getId()); // 删除已有数据
         DepartmentAccountPK departmentAccountPK = new DepartmentAccountPK();
         departmentAccountPK.setAccountId(account.getId());
         departmentAccountPK.setDepartId(department.getId());
