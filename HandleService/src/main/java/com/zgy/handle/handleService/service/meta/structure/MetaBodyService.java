@@ -1,6 +1,7 @@
 package com.zgy.handle.handleService.service.meta.structure;
 
 import com.zgy.handle.handleService.client.EntepriseFeignClient;
+import com.zgy.handle.handleService.https.MyX509TrustManager;
 import com.zgy.handle.handleService.model.meta.dto.structure.MetaBodyDTO;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.EnterprisePre;
 import com.zgy.handle.handleService.model.meta.structure.enterprise.MetaBody;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.net.ssl.*;
 import javax.persistence.EntityNotFoundException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -22,6 +24,10 @@ import javax.xml.bind.Marshaller;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -106,7 +112,7 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
         String url = enterprisePre.getPrefix();
         log.info("获取用户:" + getPersonalId() + "的sessionId");
         String sessionId = entepriseFeignClient.getSessionId(getPersonalId());
-        log.info("获取到当前用户的sessionId为:" + sessionId);
+        //log.info("获取到当前用户的sessionId为:" + sessionId);
         log.info("获取到当前用户的sessionId为:" + sessionId);
         if (type == 0){
             // 元数据标准的注册
@@ -124,6 +130,22 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
                 throw new IOException("文件不存在");
             }
             URL urlObj = new URL(url);
+
+
+            SSLContext sslContext = SSLContext.getInstance("SSL","SunJSSE");
+            TrustManager[] tm = {new MyX509TrustManager()};
+            sslContext.init(null,tm,new SecureRandom());
+            HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+            };
+            HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);
+            HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
+
+
+
             // 连接
             HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
             /**
@@ -137,7 +159,7 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
             con.setRequestProperty("charset", "UTF-8");
 
             con.setRequestProperty("Cookie","JSESSIONID=" +sessionId);
-            con.setRequestProperty("Authorization","Handle version=\"0\",sessionId=\"" + sessionId + "\"");
+            con.setRequestProperty("Authorization","Handle version=0,sessionId=" + sessionId);
             con.setRequestProperty("accept", "application/json");
             con.setRequestProperty("Content-length", String.valueOf(file.length()));
             // 设置边界
@@ -152,8 +174,8 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
             sb.append("Content-Disposition: form-data;name=\"file\";filename=\""
                     + file.getName() + "\"\r\n");
             sb.append("Content-Type:application/octet-stream\r\n\r\n");
-            sb.append("Authorization:Handle version=\"0\",sessionId=\"" + sessionId + "\"");
-            sb.append("Cookie:JSESSIONID=" +sessionId);
+            /*sb.append("Authorization:Handle version=\"0\",sessionId=\"" + sessionId + "\"");
+            sb.append("Cookie:JSESSIONID=" +sessionId);*/
             byte[] head = sb.toString().getBytes("utf-8");
             // 获得输出流
             OutputStream out = new DataOutputStream(con.getOutputStream());
@@ -201,6 +223,12 @@ public class MetaBodyService extends SystemService<MetaBody, MetaBodyDTO> {
 			/*restResponse.setCode(HttpStatus.GONE.value());
 			restResponse.setMessage(e2.toString());
 			logger.error(e2.toString());*/
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
         }
         //return restResponse;
     }
