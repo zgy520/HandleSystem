@@ -60,7 +60,7 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
     public List<SelectDTO> convertTtoSelectDTOList(List<Enterprise> enterpriseList) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         enterpriseList.stream().forEach(enterprise -> {
-            SelectDTO selectDTO = new SelectDTO(enterprise.getId().toString(),enterprise.getName());
+            SelectDTO selectDTO = new SelectDTO(enterprise.getId().toString(),enterprise.getName(),enterprise.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
@@ -76,7 +76,7 @@ public class EnterpriseController extends SystemController<Enterprise,Enterprise
         List<Enterprise> enterpriseList = enterpriseService.findAll();
         List<SelectDTO> selectDTOList = new ArrayList<>();
         enterpriseList.stream().forEach(enterprise -> {
-            SelectDTO selectDTO = new SelectDTO(enterprise.getId().toString(),enterprise.getName());
+            SelectDTO selectDTO = new SelectDTO(enterprise.getId().toString(),enterprise.getName(),enterprise.getId().toString());
             selectDTOList.add(selectDTO);
         });
         responseCode.setData(selectDTOList);

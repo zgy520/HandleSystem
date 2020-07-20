@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,7 +53,15 @@ public class AccountQueryController extends QueryController<Account, AccountQuer
 
     @Override
     public List<SelectDTO> convertTtoSelectDTOList(List<Account> accountList) {
-        return null;
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        accountList.stream().forEach(account -> {
+            SelectDTO selectDTO = new SelectDTO();
+            selectDTO.setLabel(account.getName());
+            selectDTO.setValue(account.getId().toString());
+            selectDTO.setKey(account.getId().toString());
+            selectDTOList.add(selectDTO);
+        });
+        return selectDTOList;
     }
 
     @Override

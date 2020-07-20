@@ -97,7 +97,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
     public List<SelectDTO> convertTtoSelectDTOList(List<Account> accountList) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         accountList.stream().forEach(account -> {
-            SelectDTO selectDTO = new SelectDTO(account.getId().toString(),account.getName());
+            SelectDTO selectDTO = new SelectDTO(account.getId().toString(),account.getName(),account.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
@@ -109,7 +109,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         List<Account> accounts = accountService.findAllAccounts();
         List<SelectDTO> accountSelectDTOList = new ArrayList<>();
         accounts.stream().forEach(account -> {
-            SelectDTO accountSelectDTO = new SelectDTO(account.getId().toString(), account.getName());
+            SelectDTO accountSelectDTO = new SelectDTO(account.getId().toString(), account.getName(),account.getId().toString());
             accountSelectDTOList.add(accountSelectDTO);
         });
         responseCode.setData(accountSelectDTOList);

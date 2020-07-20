@@ -36,7 +36,7 @@ public class RoleController extends SystemController<Role, RoleDTO> {
     public List<SelectDTO> convertTtoSelectDTOList(List<Role> roleList) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         roleList.stream().forEach(role -> {
-            SelectDTO selectDTO = new SelectDTO(role.getId().toString(),role.getName());
+            SelectDTO selectDTO = new SelectDTO(role.getId().toString(),role.getName(),role.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
@@ -63,10 +63,12 @@ public class RoleController extends SystemController<Role, RoleDTO> {
         List<Role> roleList = refactorService.findAll();
         List<SelectDTO> selectDTOS = new ArrayList<>();
         roleList.stream().forEach(role -> {
-            SelectDTO selectDTO = new SelectDTO(role.getId().toString(),role.getName());
+            SelectDTO selectDTO = new SelectDTO(role.getId().toString(),role.getName(),role.getId().toString());
             selectDTOS.add(selectDTO);
         });
         responseCode.setData(selectDTOS);
         return responseCode;
     }
+
+
 }

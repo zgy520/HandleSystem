@@ -5,6 +5,8 @@ import com.zgy.handle.userService.model.BaseModel;
 import com.zgy.handle.userService.model.user.Account;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -19,6 +21,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true, of = {"id"})
+@SQLDelete(sql = "update system_role set isDeleted = true where id = ?")
+@Where(clause = BaseModel.SOFT_DELETED_CLAUSE)
 public class Role extends BaseModel {
     private String code;
     private String name;

@@ -38,7 +38,7 @@ public class PostController extends SystemController<Post,PostDTO> {
     public List<SelectDTO> convertTtoSelectDTOList(List<Post> posts) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         posts.stream().forEach(post -> {
-            SelectDTO selectDTO = new SelectDTO(post.getId().toString(),post.getName());
+            SelectDTO selectDTO = new SelectDTO(post.getId().toString(),post.getName(),post.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
@@ -65,7 +65,7 @@ public class PostController extends SystemController<Post,PostDTO> {
         List<Post> postList = postService.findAll();
         List<SelectDTO> selectDTOList = new ArrayList<>();
         postList.stream().forEach(post -> {
-            SelectDTO selectDTO = new SelectDTO(post.getId().toString(),post.getName());
+            SelectDTO selectDTO = new SelectDTO(post.getId().toString(),post.getName(),post.getId().toString());
             selectDTOList.add(selectDTO);
         });
         responseCode.setData(selectDTOList);

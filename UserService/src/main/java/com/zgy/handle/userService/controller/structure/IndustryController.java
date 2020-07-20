@@ -49,7 +49,7 @@ public class IndustryController extends SystemController<Industry,IndustryDTO> {
     public List<SelectDTO> convertTtoSelectDTOList(List<Industry> industries) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         industries.stream().forEach(industry -> {
-            SelectDTO selectDTO = new SelectDTO(industry.getId().toString(),industry.getName());
+            SelectDTO selectDTO = new SelectDTO(industry.getId().toString(),industry.getName(),industry.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
@@ -80,7 +80,7 @@ public class IndustryController extends SystemController<Industry,IndustryDTO> {
         List<Industry> industryList = industryService.findAll();
         List<SelectDTO> selectDTOList = new ArrayList<>();
         industryList.stream().forEach(industry -> {
-            SelectDTO selectDTO = new SelectDTO(industry.getId().toString(),industry.getName());
+            SelectDTO selectDTO = new SelectDTO(industry.getId().toString(),industry.getName(),industry.getId().toString());
             selectDTOList.add(selectDTO);
         });
         responseCode.setData(selectDTOList);

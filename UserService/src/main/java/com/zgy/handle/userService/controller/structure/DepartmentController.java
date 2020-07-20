@@ -61,7 +61,7 @@ public class DepartmentController extends SystemController<Department,Department
     public List<SelectDTO> convertTtoSelectDTOList(List<Department> departmentList) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         departmentList.stream().forEach(department -> {
-            SelectDTO selectDTO = new SelectDTO(department.getId().toString(),department.getName());
+            SelectDTO selectDTO = new SelectDTO(department.getId().toString(),department.getName(),department.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
@@ -77,7 +77,7 @@ public class DepartmentController extends SystemController<Department,Department
         List<Department> departmentList = departmentService.findAll();
         List<SelectDTO> selectDTOList = new ArrayList<>();
         departmentList.stream().forEach(department -> {
-            SelectDTO selectDTO = new SelectDTO(department.getId().toString(),department.getName());
+            SelectDTO selectDTO = new SelectDTO(department.getId().toString(),department.getName(),department.getId().toString());
             selectDTOList.add(selectDTO);
         });
         responseCode.setData(selectDTOList);
