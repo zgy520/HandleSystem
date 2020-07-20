@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.handleService.client.EntepriseFeignClient;
+import com.zgy.handle.handleService.https.MyX509TrustManager;
 import com.zgy.handle.handleService.model.meta.bus.BusDetails;
 import com.zgy.handle.handleService.model.meta.bus.BusPrimary;
 import com.zgy.handle.handleService.model.meta.simulate.WLData;
@@ -26,10 +27,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.net.ssl.*;
 import javax.persistence.EntityNotFoundException;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -305,6 +311,19 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
             URL urlObj = new URL(url);
             // 连接
             HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
+
+            SSLContext sslContext = SSLContext.getInstance("SSL","SunJSSE");
+            TrustManager[] tm = {new MyX509TrustManager()};
+            sslContext.init(null,tm,new SecureRandom());
+            HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+            };
+            HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);
+            HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
+
             /**
              * 设置关键值
              */
@@ -316,7 +335,7 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
             con.setRequestProperty("charset", "UTF-8");
 
             con.setRequestProperty("Cookie","JSESSIONID=" +sessionId);
-            con.setRequestProperty("Authorization","Handle version=\"0\",sessionId=\"" + sessionId + "\"");
+            con.setRequestProperty("Authorization","Handle version=0,sessionId=" + sessionId);
             con.setRequestProperty("Handle version","0");
             con.setRequestProperty("accept", "application/json");
             con.setRequestProperty("Content-length", String.valueOf(file.length()));
@@ -382,6 +401,12 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
 			/*restResponse.setCode(HttpStatus.GONE.value());
 			restResponse.setMessage(e2.toString());
 			logger.error(e2.toString());*/
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
         }
         //return restResponse;
     }
