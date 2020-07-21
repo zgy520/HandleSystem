@@ -3,15 +3,23 @@ package com.zgy.handle.userService.service.authority.role.update;
 import com.zgy.handle.userService.model.authority.role.Role;
 import com.zgy.handle.userService.model.authority.role.RoleDTO;
 import com.zgy.handle.userService.model.common.UniqueInfo;
+import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.authority.role.RoleQueryRepository;
 import com.zgy.handle.userService.repository.authority.role.RoleUpdateRepository;
+import com.zgy.handle.userService.repository.user.AccountRepository;
+import com.zgy.handle.userService.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userService.service.base.impl.UpdateServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -19,6 +27,8 @@ public class RoleUpdateServiceImpl extends UpdateServiceImpl<Role, RoleDTO> impl
     private RoleUpdateRepository roleUpdateRepository;
     @Autowired
     private RoleQueryRepository roleQueryRepository;
+    @Autowired
+    private AccountQueryRepository accountQueryRepository;
     @Autowired
     public RoleUpdateServiceImpl(RoleUpdateRepository roleUpdateRepository) {
         super(roleUpdateRepository);
@@ -41,5 +51,21 @@ public class RoleUpdateServiceImpl extends UpdateServiceImpl<Role, RoleDTO> impl
             return UniqueInfo.getUniqueInfo("角色代码或名称重复");
         }
         return super.checkUnique(roleDTO, role);
+    }
+
+    @Override
+    public String relateUser(Long roleId, String selectedUserList) {
+        String result = "成功";
+        Optional<Role> roleOptional = roleQueryRepository.findById(roleId);
+        if (roleOptional.isPresent()){
+            Role role = roleOptional.get();
+            List<Long> userIdList = Arrays.asList(selectedUserList.split(",")).stream().map(Long::valueOf).collect(Collectors.toList());
+            Set<Account> accountList = accountQueryRepository.findByIdIn(userIdList).stream().collect(Collectors.toSet());
+            role.setAccountSet(accountList);
+            roleUpdateRepository.save(role);
+            return result;
+        }else {
+            throw new EntityNotFoundException("不存在ID为：" + roleId.toString() + "的角色信息");
+        }
     }
 }

@@ -11,6 +11,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,6 +39,9 @@ public class Role extends BaseModel {
     public void addAccount(Account account){
         this.accountSet.add(account);
         //account.getRoleSet().add(this);
+    }
+    public void addAccountList(List<Account> accountList) {
+        this.accountSet.addAll(accountList);
     }
     public void removeAccount(Account account){
         this.accountSet.remove(account);
