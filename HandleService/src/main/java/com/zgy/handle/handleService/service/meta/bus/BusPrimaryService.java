@@ -351,8 +351,8 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
             sb.append("Content-Disposition: form-data;name=\"file\";filename=\""
                     + file.getName() + "\"\r\n");
             sb.append("Content-Type:application/octet-stream\r\n\r\n");
-            sb.append("Authorization:Handle version=\"0\",sessionId=\"" + sessionId + "\"");
-            sb.append("Cookie:JSESSIONID=" +sessionId);
+            //sb.append("Authorization:Handle version=\"0\",sessionId=\"" + sessionId + "\"");
+            //sb.append("Cookie:JSESSIONID=" +sessionId);
             byte[] head = sb.toString().getBytes("utf-8");
             // 获得输出流
             OutputStream out = new DataOutputStream(con.getOutputStream());
