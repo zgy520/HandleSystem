@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.userService.model.BaseModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -13,6 +15,8 @@ import javax.persistence.*;
 @Data
 @Slf4j
 @Audited
+@SQLDelete(sql = "update system_department set isDeleted = true where id = ?")
+@Where(clause = BaseModel.SOFT_DELETED_CLAUSE)
 public class Department extends BaseModel {
     private String code;
     private String name;

@@ -20,6 +20,7 @@ public class DepartQueryDTO {
     private String type;
     private String note;
     private String parentId;
+    private String enterpriseId;
     private String parentName;
     private String enterpriseName;
     private List<DepartmentDTO> children = new ArrayList<>();

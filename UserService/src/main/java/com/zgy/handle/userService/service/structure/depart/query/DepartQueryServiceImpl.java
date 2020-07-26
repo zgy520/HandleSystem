@@ -31,8 +31,10 @@ public class DepartQueryServiceImpl extends QueryServiceImpl<Department, DepartQ
     public List<DepartQueryDTO> getDepartmentDtoList(List<DepartQueryDTO> departQueryDTOList){
         departQueryDTOList.stream().forEach(departmentDTO -> {
             Enterprise enterprise = this.fetchIndustry(Long.valueOf(departmentDTO.getId()));
-            departmentDTO.setEnterpriseName(enterprise.getName());
-            departmentDTO.setEnterpriseName(enterprise.getName());
+            if (enterprise != null){
+                departmentDTO.setEnterpriseName(enterprise.getName());
+                departmentDTO.setEnterpriseId(enterprise.getId().toString());
+            }
         });
         TreeConvert treeUtils = new TreeConvert(departQueryDTOList);
         try {

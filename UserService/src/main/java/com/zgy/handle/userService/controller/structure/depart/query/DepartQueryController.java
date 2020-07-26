@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -42,7 +43,15 @@ public class DepartQueryController extends QueryController<Department, DepartQue
 
     @Override
     public List<SelectDTO> convertTtoSelectDTOList(List<Department> departments) {
-        return null;
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        departments.stream().forEach(department -> {
+            SelectDTO selectDTO = new SelectDTO();
+            selectDTO.setLabel(department.getName());
+            selectDTO.setValue(department.getId().toString());
+            selectDTO.setKey(department.getId().toString());
+            selectDTOList.add(selectDTO);
+        });
+        return selectDTOList;
     }
 
     @Override
