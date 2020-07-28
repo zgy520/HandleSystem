@@ -3,6 +3,7 @@ package com.zgy.handle.userService.controller.structure.depart.query;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.base.QueryController;
 import com.zgy.handle.userService.model.authority.depart.DepartQueryDTO;
+import com.zgy.handle.userService.model.common.TransferDTO;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.structure.DepartmentDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
@@ -11,6 +12,7 @@ import com.zgy.handle.userService.service.structure.depart.update.DepartUpdateSe
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -67,5 +69,24 @@ public class DepartQueryController extends QueryController<Department, DepartQue
     @Override
     public Department convertUtoT(DepartQueryDTO departQueryDTO) {
         return departQueryMapper.toDepartment(departQueryDTO);
+    }
+
+    @GetMapping(value = "getAccountListByDepartId")
+    public ResponseCode<List<TransferDTO>> getAccountListByDepartId(Long departId) {
+        ResponseCode<List<TransferDTO>> responseCode = ResponseCode.sucess();
+        responseCode.setData(departQueryService.getAccountListByDepartId(departId));
+        return responseCode;
+    }
+
+    /**
+     * 根据企业ID获取关联的岗位
+     * @param departId
+     * @return
+     */
+    @GetMapping(value = "getPostListByDepartId")
+    public ResponseCode<List<TransferDTO>> getPostListByDepartId(Long departId){
+        ResponseCode<List<TransferDTO>> responseCode = ResponseCode.sucess();
+        responseCode.setData(departQueryService.getPostListByDepartId(departId));
+        return responseCode;
     }
 }

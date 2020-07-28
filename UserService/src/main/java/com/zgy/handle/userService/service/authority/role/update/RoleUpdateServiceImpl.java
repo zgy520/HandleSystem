@@ -36,12 +36,11 @@ public class RoleUpdateServiceImpl extends UpdateServiceImpl<Role, RoleDTO> impl
     }
 
     @Override
-    public void beforeUpdate(RoleDTO roleDTO, Role role) {
+    public void fillRelateObj(RoleDTO roleDTO, Role role) {
         if (StringUtils.isNotBlank(roleDTO.getId())){
             Optional<Role> oldRoleOptional = roleQueryRepository.findById(Long.valueOf(roleDTO.getId()));
             role.setAccountSet(oldRoleOptional.get().getAccountSet());
         }
-
     }
 
     @Override

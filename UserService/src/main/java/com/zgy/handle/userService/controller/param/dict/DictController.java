@@ -1,12 +1,11 @@
-package com.zgy.handle.userService.controller.param;
+package com.zgy.handle.userService.controller.param.dict;
 
 import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.param.convert.DictMapper;
 import com.zgy.handle.userService.model.parameter.Dict;
 import com.zgy.handle.userService.model.parameter.DictDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
-import com.zgy.handle.userService.service.SystemService;
-import com.zgy.handle.userService.service.param.DictService;
+import com.zgy.handle.userService.service.param.dict.DictService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

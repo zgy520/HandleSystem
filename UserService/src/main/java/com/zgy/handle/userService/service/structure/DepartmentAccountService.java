@@ -10,7 +10,11 @@ import com.zgy.handle.userService.service.SystemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -49,7 +53,26 @@ public class DepartmentAccountService extends SystemService<DepartmentAccount,De
         return null;
     }
 
+    public List<Account> getAccountListByDepartmentId(Long departId){
+        List<DepartmentAccount> departmentAccountList = departmentAccountRepository.findByDepartmentId(departId);
+        if (departmentAccountList != null && departmentAccountList.size() > 0){
+            return departmentAccountList.stream().map(DepartmentAccount::getAccount).collect(Collectors.toList());
+        }
+        return null;
+    }
+
     public int deleteByAccountId(Long accountId){
         return departmentAccountRepository.deleteByAccountId(accountId);
+    }
+
+    public void relateAccountsByDepartmentId(Department department, Set<Account> accountSet){
+        this.deleteByDepartId(department.getId());
+        accountSet.stream().forEach(account -> {
+            setDepartmentAccount(account,department);
+        });
+    }
+
+    public void deleteByDepartId(Long departId){
+        departmentAccountRepository.deleteByDepartmentId(departId);
     }
 }

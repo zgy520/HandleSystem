@@ -28,7 +28,7 @@ public interface UpdateService<T,U> extends BaseService<T> {
      * @param u
      * @param t
      */
-    void beforeUpdate(U u,T t);
+    T beforeUpdate(U u,T t);
 
     /**
      * 更新之后进行的操作

@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 public abstract class BaseServiceImpl<T> extends RequestUserService implements BaseService<T> {
     @Autowired
     protected EntityManager entityManager;
-    private final BaseRepository baseRepository;
+    protected final BaseRepository baseRepository;
     @Autowired
     public BaseServiceImpl(BaseRepository baseRepository){
         this.baseRepository = baseRepository;

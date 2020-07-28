@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.service.param;
+package com.zgy.handle.userService.service.param.dict;
 
 import com.zgy.handle.userService.exception.ParamException;
 import com.zgy.handle.userService.model.common.UniqueInfo;
@@ -60,7 +60,7 @@ public class DictService extends SystemService<Dict, DictDTO> {
 
     @Override
     public UniqueInfo checkUnique(DictDTO dictDTO, Dict dict) {
-        Integer count = dictDTO.getId() == null? dictRepository.countByCode(dictDTO.getCode()) : dictRepository.countByCode(dictDTO.getCode(),dictDTO.getId());
+        Integer count = dictDTO.getId() == null? dictRepository.countByCode(dictDTO.getCode()) : dictRepository.countByCode(dictDTO.getCode(),Long.valueOf(dictDTO.getId()));
 
         if (count != null && count > 0){
             return UniqueInfo.getUniqueInfo("字典编码[" + dictDTO.getCode() + "]已存在");

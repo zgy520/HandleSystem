@@ -37,12 +37,11 @@ public class PostUpdateServiceImpl extends UpdateServiceImpl<Post, PostDTO> impl
     }
 
     @Override
-    public void beforeUpdate(PostDTO postDTO, Post post) {
+    public void fillRelateObj(PostDTO postDTO, Post post) {
         if (StringUtils.isNotBlank(postDTO.getId())){
             Optional<Post> oldPostOptional = postQueryRepository.findById(Long.valueOf(postDTO.getId()));
             post.setAccountSet(oldPostOptional.get().getAccountSet());
         }
-
     }
 
     @Override
