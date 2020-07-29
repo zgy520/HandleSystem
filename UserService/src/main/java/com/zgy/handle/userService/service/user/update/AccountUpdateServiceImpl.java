@@ -44,6 +44,16 @@ public class AccountUpdateServiceImpl extends UpdateServiceImpl<Account, Account
     }
 
     @Override
+    public Account beforeUpdate(AccountUpdateVo accountUpdateVo, Account account) {
+        Account convertedAccount = super.beforeUpdate(accountUpdateVo, account);;
+        if (account.getId() == null){
+            String pwd = StringUtils.isBlank(account.getPassword())? "123456" : account.getPassword();
+            account.setPassword(passwordEncoder.encode(pwd));
+        }
+        return convertedAccount;
+    }
+
+    @Override
     public void fillRelateObj(AccountUpdateVo accountUpdateVo, Account account) {
         if (accountUpdateVo.getPostIdList() != null && accountUpdateVo.getPostIdList().size() > 0){
             account.setPostSet(postService.findByPostIdIn(accountUpdateVo.getPostIdList()));

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ParamDTO {
-    private Long id;
+    private String id;
     private String note;
     private String code;
     private String value;

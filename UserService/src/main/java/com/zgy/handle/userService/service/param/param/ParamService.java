@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.service.param;
+package com.zgy.handle.userService.service.param.param;
 
 import com.zgy.handle.userService.exception.ParamException;
 import com.zgy.handle.userService.model.common.UniqueInfo;
@@ -35,7 +35,7 @@ public class ParamService extends SystemService<Param, ParamDTO> {
 
     @Override
     public UniqueInfo checkUnique(ParamDTO paramDTO, Param param) {
-        Integer count = paramDTO.getId() == null? paramRepository.countByCode(paramDTO.getCode()) : paramRepository.countByCode(paramDTO.getCode(),paramDTO.getId());
+        Integer count = StringUtils.isBlank(paramDTO.getId())? paramRepository.countByCode(paramDTO.getCode()) : paramRepository.countByCode(paramDTO.getCode(),Long.valueOf(paramDTO.getId()));
         if (count != null && count > 0){
             return UniqueInfo.getUniqueInfo("存在编码为:" + paramDTO.getCode() + "的参数");
         }

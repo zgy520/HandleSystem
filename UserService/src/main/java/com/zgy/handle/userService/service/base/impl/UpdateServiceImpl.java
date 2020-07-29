@@ -5,13 +5,9 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.model.BaseModel;
 import com.zgy.handle.userService.model.common.UniqueInfo;
-import com.zgy.handle.userService.model.parameter.Dict;
-import com.zgy.handle.userService.repository.base.QueryRepository;
 import com.zgy.handle.userService.repository.base.UpdateRepository;
 import com.zgy.handle.userService.service.base.UpdateService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
