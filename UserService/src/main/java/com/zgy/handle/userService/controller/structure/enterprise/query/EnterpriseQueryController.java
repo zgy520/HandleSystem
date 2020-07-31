@@ -1,13 +1,10 @@
 package com.zgy.handle.userService.controller.structure.enterprise.query;
 
-import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.base.QueryController;
+import com.zgy.handle.userService.controller.structure.enterprise.convert.EnterpriseQueryMapper;
+import com.zgy.handle.userService.model.dto.structure.EnterpriseQueryDTO;
 import com.zgy.handle.userService.model.structure.Enterprise;
-import com.zgy.handle.userService.model.structure.EnterpriseDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
-import com.zgy.handle.userService.service.SystemService;
-import com.zgy.handle.userService.service.base.QueryService;
-import com.zgy.handle.userService.service.base.UpdateService;
 import com.zgy.handle.userService.service.structure.enterprise.query.EnterpriseQueryService;
 import com.zgy.handle.userService.service.structure.enterprise.update.EnterpriseUpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +18,13 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping(value = "enterprise/query")
-public class EnterpriseQueryController extends QueryController<Enterprise, EnterpriseDTO> {
+public class EnterpriseQueryController extends QueryController<Enterprise, EnterpriseQueryDTO> {
 
+    @Autowired
+    private EnterpriseQueryMapper enterpriseQueryMapper;
     private EnterpriseQueryService enterpriseQueryService;
     private EnterpriseUpdateService enterpriseUpdateService;
+
     @Autowired
     public EnterpriseQueryController(EnterpriseUpdateService enterpriseUpdateService, EnterpriseQueryService enterpriseQueryService) {
         super(enterpriseUpdateService, enterpriseQueryService);
@@ -46,17 +46,17 @@ public class EnterpriseQueryController extends QueryController<Enterprise, Enter
     }
 
     @Override
-    public List<EnterpriseDTO> convertTtoU(List<Enterprise> enterprises) {
-        return null;
+    public List<EnterpriseQueryDTO> convertTtoU(List<Enterprise> enterprises) {
+        return enterpriseQueryMapper.toEnterpriseQueryDTOList(enterprises);
     }
 
     @Override
-    public EnterpriseDTO convertTtoU(Enterprise enterprise) {
-        return null;
+    public EnterpriseQueryDTO convertTtoU(Enterprise enterprise) {
+        return enterpriseQueryMapper.toEnterpriseQueryDTO(enterprise);
     }
 
     @Override
-    public Enterprise convertUtoT(EnterpriseDTO enterpriseDTO) {
-        return null;
+    public Enterprise convertUtoT(EnterpriseQueryDTO enterpriseDTO) {
+        return enterpriseQueryMapper.toEnterprise(enterpriseDTO);
     }
 }
