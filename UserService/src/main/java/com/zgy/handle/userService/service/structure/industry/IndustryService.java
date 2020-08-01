@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.service.structure;
+package com.zgy.handle.userService.service.structure.industry;
 
 import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.structure.IndustryDTO;

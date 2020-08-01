@@ -5,7 +5,7 @@ import com.zgy.handle.userService.model.structure.EnterpriseDTO;
 import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.repository.structure.EnterpriseRepository;
 import com.zgy.handle.userService.service.SystemService;
-import com.zgy.handle.userService.service.structure.IndustryService;
+import com.zgy.handle.userService.service.structure.industry.IndustryService;
 import com.zgy.handle.userService.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

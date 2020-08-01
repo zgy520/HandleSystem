@@ -1,4 +1,4 @@
-package com.zgy.handle.userService.controller.structure;
+package com.zgy.handle.userService.controller.structure.industry;
 
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.controller.SystemController;
@@ -6,7 +6,7 @@ import com.zgy.handle.userService.controller.structure.convert.IndustryMapper;
 import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
-import com.zgy.handle.userService.service.structure.IndustryService;
+import com.zgy.handle.userService.service.structure.industry.IndustryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
