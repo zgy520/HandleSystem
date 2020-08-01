@@ -36,16 +36,16 @@ public class IndustryQueryController extends QueryController<Industry,IndustryQu
 
     @Override
     public List<IndustryQueryDTO> convertTtoU(List<Industry> industries) {
-        return null;
+        return industryQueryMapper.toIndustryDTOList(industries);
     }
 
     @Override
     public IndustryQueryDTO convertTtoU(Industry industry) {
-        return null;
+        return industryQueryMapper.toIndustryDTO(industry);
     }
 
     @Override
     public Industry convertUtoT(IndustryQueryDTO industryQueryDTO) {
-        return null;
+        return industryQueryMapper.toIndustry(industryQueryDTO);
     }
 }
