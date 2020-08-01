@@ -1,7 +1,6 @@
-package com.zgy.handle.userService.model.dto.structure;
+package com.zgy.handle.userService.model.dto.menu;
 
 import com.zgy.handle.userService.model.dto.BaseDTO;
-import com.zgy.handle.userService.model.structure.EnterpriseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,16 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
-public class EnterpriseQueryDTO extends BaseDTO {
+@Slf4j
+public class MenuQueryDTO extends BaseDTO {
     private String code;
     private String name;
-    private String shortName;
+    private String url;
     private String note;
+    private String icon;
+    private int serial;
     private String parentId;
-    private String industryId;
-    private String industryName;
-    private List<EnterpriseDTO> children = new ArrayList<>();
+    private List<MenuQueryDTO> children = new ArrayList<>();
 }

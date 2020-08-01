@@ -39,7 +39,7 @@ public class RoleQueryServiceImpl extends QueryServiceImpl<Role, RoleDTO> implem
     }
 
     @Override
-    public Specification<Role> querySpecification(Pageable pageable, RoleDTO dto) {
+    public Specification<Role> querySpecification(RoleDTO dto) {
         Specification<Role> roleSpecification = Specification.where(StringUtils.isNotBlank(dto.getCode())?roleQueryRepository.fieldLike(Role_.CODE,dto.getCode()) : null)
                 .and(StringUtils.isNotBlank(dto.getName())?roleQueryRepository.fieldLike(Role_.NAME,dto.getName()) : null)
                 .and(StringUtils.isNotBlank(dto.getNote())?roleQueryRepository.fieldLike(Role_.NOTE,dto.getNote()):null);

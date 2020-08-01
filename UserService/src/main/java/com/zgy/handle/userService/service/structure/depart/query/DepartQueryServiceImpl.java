@@ -118,7 +118,7 @@ public class DepartQueryServiceImpl extends QueryServiceImpl<Department, DepartQ
 
 
     @Override
-    public Specification<Department> querySpecification(Pageable pageable, DepartQueryDTO dto) {
+    public Specification<Department> querySpecification(DepartQueryDTO dto) {
         return null;
     }
 

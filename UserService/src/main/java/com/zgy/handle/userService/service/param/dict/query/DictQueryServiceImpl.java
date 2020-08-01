@@ -22,7 +22,7 @@ public class DictQueryServiceImpl extends QueryServiceImpl<Dict, DictDTO> implem
     }
 
     @Override
-    public Specification<Dict> querySpecification(Pageable pageable, DictDTO dto) {
+    public Specification<Dict> querySpecification(DictDTO dto) {
         Specification<Dict> specification = Specification
                 .where(StringUtils.isNotBlank(dto.getName())?dictQueryRepository.fieldLike(Dict_.NAME,dto.getName()) : null)
                 .and(StringUtils.isNotBlank(dto.getCode())?dictQueryRepository.fieldLike(Dict_.CODE,dto.getCode()) : null)

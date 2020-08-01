@@ -3,11 +3,19 @@ package com.zgy.handle.userService.service.structure.enterprise.query;
 import com.zgy.handle.userService.model.dto.structure.EnterpriseQueryDTO;
 import com.zgy.handle.userService.model.structure.Enterprise;
 import com.zgy.handle.userService.model.structure.EnterpriseDTO;
+import com.zgy.handle.userService.model.structure.Enterprise_;
+import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.repository.structure.enterprise.EntperiseQueryRepository;
 import com.zgy.handle.userService.service.base.impl.QueryServiceImpl;
+import com.zgy.handle.userService.util.tree.TreeConvert;
+import org.apache.commons.configuration.tree.TreeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class EnterpriseQueryServiceImpl extends QueryServiceImpl<Enterprise, EnterpriseQueryDTO> implements EnterpriseQueryService {
@@ -18,7 +26,39 @@ public class EnterpriseQueryServiceImpl extends QueryServiceImpl<Enterprise, Ent
     }
 
     @Override
-    public Specification<Enterprise> querySpecification(Pageable pageable, EnterpriseQueryDTO dto) {
+    public Specification<Enterprise> querySpecification(EnterpriseQueryDTO dto) {
+        Specification<Enterprise> specification = Specification
+                .where(StringUtils.isBlank(dto.getName())?null:entperiseQueryRepository.fieldLike(Enterprise_.NAME,dto.getName()))
+                .and(StringUtils.isBlank(dto.getCode())?null:entperiseQueryRepository.fieldLike(Enterprise_.CODE,dto.getCode()))
+                .and(StringUtils.isBlank(dto.getNote())?null:entperiseQueryRepository.fieldLike(Enterprise_.NOTE,dto.getName()));
+        return specification;
+    }
+
+    @Override
+    public List<Enterprise> findBySpecification(EnterpriseQueryDTO enterpriseQueryDTO) {
+        return entperiseQueryRepository.findAll(this.querySpecification(enterpriseQueryDTO));
+    }
+
+    @Override
+    public List<EnterpriseQueryDTO> getTreeEnterpriseQueryDto(List<EnterpriseQueryDTO> enterpriseQueryDTOS) {
+        enterpriseQueryDTOS.forEach(enterpriseQueryDTO -> {
+            Industry industry = fetchIndustryByEnterpriseId(Long.valueOf(enterpriseQueryDTO.getIndustryId()));
+            enterpriseQueryDTO.setIndustryId(industry.getId().toString());
+            enterpriseQueryDTO.setIndustryName(industry.getName());
+        });
+        TreeConvert treeConvert = new TreeConvert(enterpriseQueryDTOS);
+        try {
+            return treeConvert.toJsonArray(EnterpriseQueryDTO.class);
+        }catch (Exception ex){
+
+        }
         return null;
+    }
+
+    @Transactional(readOnly = true)
+    public Industry fetchIndustryByEnterpriseId(Long enterpiseId){
+        Enterprise enterprise = this.findById(enterpiseId).get();
+        Industry industry = enterprise.getIndustry();
+        return industry;
     }
 }

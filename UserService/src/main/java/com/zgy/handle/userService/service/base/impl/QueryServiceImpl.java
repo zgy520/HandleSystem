@@ -36,17 +36,16 @@ public abstract class QueryServiceImpl<T,U> extends BaseServiceImpl<T> implement
     public Page<T> findByDynamicQuery(Pageable pageable, U dto) {
         // 单位权限
         Specification<T> permissionSpec = getPermissionQuery();
-        Specification querySpec = permissionSpec.and(querySpecification(pageable,dto));
+        Specification querySpec = permissionSpec.and(querySpecification(dto));
         return this.queryRepository.findAll(querySpec,pageable);
     }
 
     /**
      * 实现业务数据的查询
-     * @param pageable
      * @param dto
      * @return
      */
-    public abstract Specification<T> querySpecification(Pageable pageable,U dto);
+    public abstract Specification<T> querySpecification(U dto);
 
     /**
      * 实现权限的查询

@@ -60,7 +60,7 @@ public class AccountQueryServiceImpl extends QueryServiceImpl<Account, AccountQu
     }*/
 
     @Override
-    public Specification<Account> querySpecification(Pageable pageable, AccountQueryVo dto) {
+    public Specification<Account> querySpecification( AccountQueryVo dto) {
         Specification<Account> specification = Specification
                 .where(StringUtils.isBlank(dto.getName())? null : AccountRepository.nameContains(dto.getName()))
                 .and(StringUtils.isBlank(dto.getLoginName())? null : AccountRepository.nameContains(dto.getLoginName()))

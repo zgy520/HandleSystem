@@ -21,7 +21,7 @@ public class ParamQueryServiceImpl extends QueryServiceImpl<Param, ParamDTO> imp
     }
 
     @Override
-    public Specification<Param> querySpecification(Pageable pageable, ParamDTO dto) {
+    public Specification<Param> querySpecification(ParamDTO dto) {
         Specification<Param> specification = Specification.where(StringUtils.isNotBlank(dto.getCode())?paramQueryRepository.fieldLike(Param_.CODE,dto.getCode()):null)
                 .and(StringUtils.isNotBlank(dto.getValue())?paramQueryRepository.fieldLike(Param_.VALUE,dto.getValue()):null)
                 .and(StringUtils.isNotBlank(dto.getNote())?paramQueryRepository.fieldLike(Param_.NOTE,dto.getNote()):null);

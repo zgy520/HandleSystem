@@ -44,7 +44,7 @@ public class PostQueryServiceImpl extends QueryServiceImpl<Post, PostDTO> implem
     }
 
     @Override
-    public Specification<Post> querySpecification(Pageable pageable, PostDTO dto) {
+    public Specification<Post> querySpecification(PostDTO dto) {
         Specification<Post> roleSpecification = Specification.where(StringUtils.isNotBlank(dto.getCode())? postQueryRepository.fieldLike(Post_.CODE,dto.getCode()) : null)
                 .and(StringUtils.isNotBlank(dto.getName())? postQueryRepository.fieldLike(Post_.NAME,dto.getName()) : null)
                 .and(StringUtils.isNotBlank(dto.getNote())? postQueryRepository.fieldLike(Post_.NOTE,dto.getNote()):null);
