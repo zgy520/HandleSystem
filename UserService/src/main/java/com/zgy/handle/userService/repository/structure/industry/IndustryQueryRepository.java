@@ -24,6 +24,6 @@ public interface IndustryQueryRepository extends QueryRepository<Industry> {
      * @param id
      * @return
      */
-    @Query(nativeQuery = true,value = "select 1 from system_industry where (name = :name or code = :code) and id = :id limit 1")
+    @Query(nativeQuery = true,value = "select 1 from system_industry where (name = :name or code = :code) and id != :id limit 1")
     Integer countByCodeOrNameAndIdNot(@Param("name") String name, @Param("code") String code,@Param("id") Long id);
 }

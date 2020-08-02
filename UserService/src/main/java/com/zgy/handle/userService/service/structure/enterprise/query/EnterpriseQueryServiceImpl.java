@@ -7,18 +7,23 @@ import com.zgy.handle.userService.model.structure.Enterprise_;
 import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.repository.structure.enterprise.EntperiseQueryRepository;
 import com.zgy.handle.userService.service.base.impl.QueryServiceImpl;
+import com.zgy.handle.userService.service.structure.industry.query.IndustryQueryService;
 import com.zgy.handle.userService.util.tree.TreeConvert;
 import org.apache.commons.configuration.tree.TreeUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EnterpriseQueryServiceImpl extends QueryServiceImpl<Enterprise, EnterpriseQueryDTO> implements EnterpriseQueryService {
+    @Autowired
+    private IndustryQueryService industryQueryService;
     private EntperiseQueryRepository entperiseQueryRepository;
     public EnterpriseQueryServiceImpl(EntperiseQueryRepository entperiseQueryRepository) {
         super(entperiseQueryRepository);
@@ -42,9 +47,14 @@ public class EnterpriseQueryServiceImpl extends QueryServiceImpl<Enterprise, Ent
     @Override
     public List<EnterpriseQueryDTO> getTreeEnterpriseQueryDto(List<EnterpriseQueryDTO> enterpriseQueryDTOS) {
         enterpriseQueryDTOS.forEach(enterpriseQueryDTO -> {
-            Industry industry = fetchIndustryByEnterpriseId(Long.valueOf(enterpriseQueryDTO.getIndustryId()));
-            enterpriseQueryDTO.setIndustryId(industry.getId().toString());
-            enterpriseQueryDTO.setIndustryName(industry.getName());
+            if (StringUtils.isNotBlank(enterpriseQueryDTO.getIndustryId())){
+                Industry industry = fetchIndustryByEnterpriseId(Long.valueOf(enterpriseQueryDTO.getIndustryId()));
+                if (industry != null){
+                    enterpriseQueryDTO.setIndustryId(industry.getId().toString());
+                    enterpriseQueryDTO.setIndustryName(industry.getName());
+                }
+
+            }
         });
         TreeConvert treeConvert = new TreeConvert(enterpriseQueryDTOS);
         try {
@@ -56,9 +66,11 @@ public class EnterpriseQueryServiceImpl extends QueryServiceImpl<Enterprise, Ent
     }
 
     @Transactional(readOnly = true)
-    public Industry fetchIndustryByEnterpriseId(Long enterpiseId){
-        Enterprise enterprise = this.findById(enterpiseId).get();
-        Industry industry = enterprise.getIndustry();
-        return industry;
+    public Industry fetchIndustryByEnterpriseId(Long industryId){
+        Optional<Industry> industryOptional = industryQueryService.findById(industryId);
+        if (industryOptional.isPresent()){
+            return industryOptional.get();
+        }
+        return null;
     }
 }

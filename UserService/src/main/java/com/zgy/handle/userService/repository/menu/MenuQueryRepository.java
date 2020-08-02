@@ -24,6 +24,6 @@ public interface MenuQueryRepository extends QueryRepository<Menu> {
      * @param id
      * @return
      */
-    @Query(nativeQuery = true,value = "select 1 from system_menu where (name = :name or code = :code) and id = :id limit 1")
+    @Query(nativeQuery = true,value = "select 1 from system_menu where (name = :name or code = :code) and id != :id limit 1")
     Integer countByNameOrCodeAndIdNot(@Param("name") String name,@Param("code") String code,@Param("id") String id);
 }

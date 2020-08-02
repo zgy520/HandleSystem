@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-@RequestMapping(value = "enterprise/query")
+@RequestMapping(value = "enterprise/update")
 public class EnterpriseUpdateController extends UpdateController<Enterprise, EnterpriseUpdateDTO> {
 
     @Autowired

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "btn/update")
+@RequestMapping(value = "button/update")
 @Slf4j
 public class ButtonUpdateController extends UpdateController<Button, BtnDTO> {
     @Autowired

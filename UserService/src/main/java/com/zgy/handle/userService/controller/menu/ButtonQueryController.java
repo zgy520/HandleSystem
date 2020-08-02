@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping(value = "btn/query")
+@RequestMapping(value = "button/query")
 public class ButtonQueryController extends QueryController<Button, BtnDTO> {
     @Autowired
     private ButtonMapper buttonMapper;

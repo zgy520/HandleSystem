@@ -17,7 +17,7 @@ public class Industry extends BaseModel {
     private String code;
     private String name;
     private String shortName;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "parentId",referencedColumnName = "id")
     @JsonIgnore
     private Industry parent;

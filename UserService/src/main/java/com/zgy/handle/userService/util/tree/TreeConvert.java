@@ -56,6 +56,7 @@ public class TreeConvert {
             JSONObject parentJson = parentArray.getJSONObject(i);
             parentJson.put(childrenLabel,getChildArray(parentJson,childArray,classz));
         }
+
         return parentArray.toJavaList(classz);
     }
     private JSONArray getChildArray(JSONObject parentJson,JSONArray childJsonArray,Class classz){

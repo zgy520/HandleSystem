@@ -12,6 +12,7 @@ public interface EnterpriseQueryMapper {
     Enterprise toEnterprise(EnterpriseQueryDTO enterpriseQueryDTO);
 
     @Mapping(source = "parent.id", target = "parentId")
+    @Mapping(source = "industry.id", target = "industryId")
     EnterpriseQueryDTO toEnterpriseQueryDTO(Enterprise enterprise);
 
     List<EnterpriseQueryDTO> toEnterpriseQueryDTOList(List<Enterprise> enterpriseList);
