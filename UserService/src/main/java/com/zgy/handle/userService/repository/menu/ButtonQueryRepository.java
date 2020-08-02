@@ -6,8 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ButtonQueryRepository extends QueryRepository<Button> {
+
+    List<Button> findByIdIn(List<Long> buttonIdList);
+
     /**
      * 是否存在相同得编码或名称
      *

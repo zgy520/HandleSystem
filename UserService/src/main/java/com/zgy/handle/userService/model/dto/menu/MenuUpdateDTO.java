@@ -16,5 +16,6 @@ public class MenuUpdateDTO extends BaseDTO {
     private String url;
     private String icon;
     private int serial;
+    private String note;
     private String parentId;
 }

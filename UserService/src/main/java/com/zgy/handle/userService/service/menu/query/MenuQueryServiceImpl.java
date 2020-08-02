@@ -1,6 +1,9 @@
 package com.zgy.handle.userService.service.menu.query;
 
+import com.zgy.handle.userService.model.authority.role.Role;
+import com.zgy.handle.userService.model.common.TransferDTO;
 import com.zgy.handle.userService.model.dto.menu.MenuQueryDTO;
+import com.zgy.handle.userService.model.menu.Button;
 import com.zgy.handle.userService.model.menu.Menu;
 import com.zgy.handle.userService.model.menu.Menu_;
 import com.zgy.handle.userService.repository.menu.MenuQueryRepository;
@@ -8,14 +11,22 @@ import com.zgy.handle.userService.service.base.impl.QueryServiceImpl;
 import com.zgy.handle.userService.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class MenuQueryServiceImpl extends QueryServiceImpl<Menu, MenuQueryDTO> implements MenuQueryService {
+    @Autowired
+    private ButtonQueryService buttonQueryService;
     private MenuQueryRepository menuQueryRepository;
 
     public MenuQueryServiceImpl(MenuQueryRepository menuQueryRepository) {
@@ -47,5 +58,28 @@ public class MenuQueryServiceImpl extends QueryServiceImpl<Menu, MenuQueryDTO> i
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<TransferDTO> getButtonListByMenuId(Long menuId) {
+        List<TransferDTO> selectDTOList = new ArrayList<>();
+        Optional<Menu> menuOptional = menuQueryRepository.findById(menuId);
+        List<Button> buttonList = buttonQueryService.findAll();
+        buttonList.stream().forEach(button -> {
+            TransferDTO transferDTO = new TransferDTO(button.getId().toString(),button.getName(),false);
+            selectDTOList.add(transferDTO);
+        });
+        if (menuOptional.isPresent()){
+            Menu menu = menuOptional.get();
+            Set<Button> buttonSet = menu.getBtnSet();
+            List<String> buttonIdList = buttonSet.stream().map(Button::getId).map(String::valueOf).collect(Collectors.toList());
+            selectDTOList.stream().forEach(selectDto -> {
+                if (buttonIdList.contains(selectDto.getKey())){
+                    selectDto.setSelected(true);
+                }
+            });
+        }
+        return selectDTOList;
     }
 }

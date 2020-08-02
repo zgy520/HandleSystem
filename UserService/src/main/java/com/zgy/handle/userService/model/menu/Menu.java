@@ -3,6 +3,8 @@ package com.zgy.handle.userService.model.menu;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.userService.model.BaseModel;
 import lombok.Data;
+import lombok.Singular;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
@@ -31,6 +33,8 @@ public class Menu extends BaseModel {
     @JoinTable(name = "system_menu_button",
             joinColumns = @JoinColumn(name = "menuId"),
             inverseJoinColumns = @JoinColumn(name = "btnId"))
+    @Singular("btnSet")
+    @ToString.Exclude
     @JsonIgnore
     private Set<Button> btnSet = new HashSet<>();
 
