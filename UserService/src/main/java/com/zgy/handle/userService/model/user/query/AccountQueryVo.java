@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.model.user.query;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountQueryVo {
-    private String id;
+public class AccountQueryVo extends BaseDTO {
     private String name;
     private String loginName;
     private String email; // email地址

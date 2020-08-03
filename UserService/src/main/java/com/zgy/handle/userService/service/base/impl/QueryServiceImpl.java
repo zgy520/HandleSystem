@@ -1,9 +1,6 @@
 package com.zgy.handle.userService.service.base.impl;
 
 import com.zgy.handle.userService.model.BaseModel_;
-import com.zgy.handle.userService.model.user.Account;
-import com.zgy.handle.userService.model.user.Account_;
-import com.zgy.handle.userService.model.user.query.AccountQueryVo;
 import com.zgy.handle.userService.repository.base.QueryRepository;
 import com.zgy.handle.userService.service.base.QueryService;
 import lombok.extern.slf4j.Slf4j;

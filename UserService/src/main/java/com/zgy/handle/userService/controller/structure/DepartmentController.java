@@ -5,8 +5,6 @@ import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.structure.convert.DepartMapper;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.structure.DepartmentDTO;
-import com.zgy.handle.userService.model.structure.Industry;
-import com.zgy.handle.userService.model.structure.IndustryDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.DepartmentService;
 import lombok.extern.slf4j.Slf4j;

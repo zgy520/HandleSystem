@@ -2,8 +2,6 @@ package com.zgy.handle.userService.service.authority.post.update;
 
 import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.PostDTO;
-import com.zgy.handle.userService.model.authority.role.Role;
-import com.zgy.handle.userService.model.authority.role.RoleDTO;
 import com.zgy.handle.userService.model.common.UniqueInfo;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.authority.post.PostQueryRepository;

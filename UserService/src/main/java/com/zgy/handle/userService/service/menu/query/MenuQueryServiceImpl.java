@@ -1,6 +1,5 @@
 package com.zgy.handle.userService.service.menu.query;
 
-import com.zgy.handle.userService.model.authority.role.Role;
 import com.zgy.handle.userService.model.common.TransferDTO;
 import com.zgy.handle.userService.model.dto.menu.MenuQueryDTO;
 import com.zgy.handle.userService.model.menu.Button;

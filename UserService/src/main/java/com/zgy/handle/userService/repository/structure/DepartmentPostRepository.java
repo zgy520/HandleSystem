@@ -1,7 +1,6 @@
 package com.zgy.handle.userService.repository.structure;
 
 import com.zgy.handle.userService.model.authority.DepartmentPost;
-import com.zgy.handle.userService.model.structure.DepartmentAccount;
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;

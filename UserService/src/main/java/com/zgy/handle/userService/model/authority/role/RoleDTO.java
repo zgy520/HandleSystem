@@ -1,13 +1,10 @@
 package com.zgy.handle.userService.model.authority.role;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
-public class RoleDTO {
-    private String id;
+public class RoleDTO extends BaseDTO {
     private String code;
     private String name;
     private String note;

@@ -1,7 +1,6 @@
 package com.zgy.handle.userService.model.dto.structure;
 
 import com.zgy.handle.userService.model.dto.BaseDTO;
-import com.zgy.handle.userService.model.structure.EnterpriseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

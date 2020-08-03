@@ -1,7 +1,6 @@
 package com.zgy.handle.userService.model.structure;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zgy.handle.userService.model.BaseModel;
 import lombok.Data;
 
 import javax.persistence.*;

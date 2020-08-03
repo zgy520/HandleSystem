@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.model.user;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountDTO {
-    private String id;
+public class AccountDTO extends BaseDTO {
     private String name;
     private String loginName;
     //private String code; // 人员编码
@@ -23,7 +23,7 @@ public class AccountDTO {
     //private String identity; // 唯一编号
     //private int sex; // 性别
     //private String address; // 地址
-    private List<String> roleList =  new ArrayList<>(); // 角色列表
+    private List<String> roleList = new ArrayList<>(); // 角色列表
     private List<String> postList = new ArrayList<>(); // 岗位列表
     private List<String> roleIdList = new ArrayList<>();
     private List<String> postIdList = new ArrayList<>();

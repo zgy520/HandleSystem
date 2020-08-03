@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.model.user.update;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountUpdateVo {
-    private String id;
+public class AccountUpdateVo extends BaseDTO {
 
     @NotBlank(message = "名称不能为空")
     @Size(min = 2, max = 10, message = "名称必须在2到10个字符长度之间")

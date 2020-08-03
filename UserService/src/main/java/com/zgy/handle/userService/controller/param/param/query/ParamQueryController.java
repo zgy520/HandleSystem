@@ -5,8 +5,6 @@ import com.zgy.handle.userService.controller.param.convert.ParamMapper;
 import com.zgy.handle.userService.model.parameter.Param;
 import com.zgy.handle.userService.model.parameter.ParamDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
-import com.zgy.handle.userService.service.base.QueryService;
-import com.zgy.handle.userService.service.base.UpdateService;
 import com.zgy.handle.userService.service.param.param.query.ParamQueryService;
 import com.zgy.handle.userService.service.param.param.update.ParamUpdateService;
 import lombok.extern.slf4j.Slf4j;

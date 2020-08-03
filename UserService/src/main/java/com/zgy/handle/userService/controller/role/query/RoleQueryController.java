@@ -6,7 +6,6 @@ import com.zgy.handle.userService.controller.role.convert.RoleMapper;
 import com.zgy.handle.userService.model.authority.role.Role;
 import com.zgy.handle.userService.model.authority.role.RoleDTO;
 import com.zgy.handle.userService.model.common.TransferDTO;
-import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.authority.role.query.RoleQueryService;
 import com.zgy.handle.userService.service.authority.role.update.RoleUpdateService;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping(value = "role/query")

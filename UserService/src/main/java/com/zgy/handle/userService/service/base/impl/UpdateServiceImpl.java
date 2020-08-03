@@ -76,14 +76,14 @@ public abstract class UpdateServiceImpl<T, U> extends BaseServiceImpl<T> impleme
 
     @Override
     public T beforeUpdate(U u, T t) {
-        if (t instanceof BaseModel){
-            if (((BaseModel) t).getId() != null){
+        if (t instanceof BaseModel) {
+            if (((BaseModel) t).getId() != null) {
                 Optional<T> oldTOptional = baseRepository.findById(((BaseModel) t).getId());
                 if (oldTOptional.isPresent()) {
                     T oldT = oldTOptional.get();
-                    BeanUtil.copyProperties(t,oldT,CopyOptions.create().setIgnoreNullValue(true).setIgnoreError(true));
+                    BeanUtil.copyProperties(t, oldT, CopyOptions.create().setIgnoreNullValue(true).setIgnoreError(true));
                     return oldT;
-                }else {
+                } else {
                     throw new EntityNotFoundException("未发现ID为:" + ((BaseModel) t).getId().toString() + "的实体");
                 }
             }

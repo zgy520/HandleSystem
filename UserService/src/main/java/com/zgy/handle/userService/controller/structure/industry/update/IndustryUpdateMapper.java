@@ -2,7 +2,6 @@ package com.zgy.handle.userService.controller.structure.industry.update;
 
 import com.zgy.handle.userService.model.dto.structure.IndustryUpdateDTO;
 import com.zgy.handle.userService.model.structure.Industry;
-import com.zgy.handle.userService.model.structure.IndustryDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

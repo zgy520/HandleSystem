@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.model.structure;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,8 +9,7 @@ import java.util.List;
 
 @Data
 @Slf4j
-public class DepartmentDTO {
-    private String id;
+public class DepartmentDTO extends BaseDTO {
     private String name;
     private String code;
     private String type;

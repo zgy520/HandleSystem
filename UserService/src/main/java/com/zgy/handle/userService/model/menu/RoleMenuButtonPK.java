@@ -3,7 +3,6 @@ package com.zgy.handle.userService.model.menu;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 import java.io.Serializable;
 import java.util.Objects;
 

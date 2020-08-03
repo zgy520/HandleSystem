@@ -4,7 +4,6 @@ import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.model.structure.IndustryDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 import java.util.List;
 

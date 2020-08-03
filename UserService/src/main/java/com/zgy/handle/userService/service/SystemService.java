@@ -2,7 +2,6 @@ package com.zgy.handle.userService.service;
 
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.service.RequestUserService;
-import com.zgy.handle.common.zuul.context.UserContext;
 import com.zgy.handle.userService.model.common.UniqueInfo;
 import com.zgy.handle.userService.repository.SystemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 

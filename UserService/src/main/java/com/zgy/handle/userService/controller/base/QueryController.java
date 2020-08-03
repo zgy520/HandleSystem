@@ -1,9 +1,7 @@
 package com.zgy.handle.userService.controller.base;
 
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.model.user.SelectDTO;
-import com.zgy.handle.userService.model.user.query.AccountQueryVo;
 import com.zgy.handle.userService.service.base.QueryService;
 import com.zgy.handle.userService.service.base.UpdateService;
 import lombok.extern.slf4j.Slf4j;

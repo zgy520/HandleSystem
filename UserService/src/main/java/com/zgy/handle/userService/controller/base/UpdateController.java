@@ -4,7 +4,6 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userService.service.base.QueryService;
 import com.zgy.handle.userService.service.base.UpdateService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

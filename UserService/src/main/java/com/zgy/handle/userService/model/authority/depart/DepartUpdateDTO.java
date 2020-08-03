@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.model.authority.depart;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DepartUpdateDTO {
-    private String id;
+public class DepartUpdateDTO extends BaseDTO {
     private String name;
     private String code;
     private String type;

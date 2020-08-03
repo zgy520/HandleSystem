@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.model.parameter;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DictDTO {
-    private String id;
+public class DictDTO extends BaseDTO {
     private String note;
     private String code;
     private String name;

@@ -5,7 +5,6 @@ import com.zgy.handle.userService.controller.base.QueryController;
 import com.zgy.handle.userService.model.authority.depart.DepartQueryDTO;
 import com.zgy.handle.userService.model.common.TransferDTO;
 import com.zgy.handle.userService.model.structure.Department;
-import com.zgy.handle.userService.model.structure.DepartmentDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
 import com.zgy.handle.userService.service.structure.depart.query.DepartQueryService;
 import com.zgy.handle.userService.service.structure.depart.update.DepartUpdateService;

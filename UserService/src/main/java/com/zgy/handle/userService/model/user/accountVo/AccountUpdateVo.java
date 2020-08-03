@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.model.user.accountVo;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountUpdateVo {
-    private String id;
+public class AccountUpdateVo extends BaseDTO {
     private String name;
     private String loginName;
     @Email

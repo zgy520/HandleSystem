@@ -6,7 +6,6 @@ import com.zgy.handle.userService.model.common.UniqueInfo;
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.authority.role.RoleQueryRepository;
 import com.zgy.handle.userService.repository.authority.role.RoleUpdateRepository;
-import com.zgy.handle.userService.repository.user.AccountRepository;
 import com.zgy.handle.userService.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userService.service.base.impl.UpdateServiceImpl;
 import lombok.extern.slf4j.Slf4j;

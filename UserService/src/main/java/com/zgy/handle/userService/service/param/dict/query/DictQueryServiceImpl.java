@@ -6,7 +6,6 @@ import com.zgy.handle.userService.model.parameter.Dict_;
 import com.zgy.handle.userService.repository.param.dict.DictQueryRepository;
 import com.zgy.handle.userService.service.base.impl.QueryServiceImpl;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

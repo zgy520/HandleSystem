@@ -2,17 +2,14 @@ package com.zgy.handle.userService.service.structure.enterprise.query;
 
 import com.zgy.handle.userService.model.dto.structure.EnterpriseQueryDTO;
 import com.zgy.handle.userService.model.structure.Enterprise;
-import com.zgy.handle.userService.model.structure.EnterpriseDTO;
 import com.zgy.handle.userService.model.structure.Enterprise_;
 import com.zgy.handle.userService.model.structure.Industry;
 import com.zgy.handle.userService.repository.structure.enterprise.EntperiseQueryRepository;
 import com.zgy.handle.userService.service.base.impl.QueryServiceImpl;
 import com.zgy.handle.userService.service.structure.industry.query.IndustryQueryService;
 import com.zgy.handle.userService.util.tree.TreeConvert;
-import org.apache.commons.configuration.tree.TreeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

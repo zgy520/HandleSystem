@@ -5,8 +5,6 @@ import com.zgy.handle.userService.controller.param.convert.DictMapper;
 import com.zgy.handle.userService.model.parameter.Dict;
 import com.zgy.handle.userService.model.parameter.DictDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
-import com.zgy.handle.userService.service.base.QueryService;
-import com.zgy.handle.userService.service.base.UpdateService;
 import com.zgy.handle.userService.service.param.dict.query.DictQueryService;
 import com.zgy.handle.userService.service.param.dict.update.DictUpdateService;
 import lombok.extern.slf4j.Slf4j;

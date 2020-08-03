@@ -2,7 +2,6 @@ package com.zgy.handle.userService.repository.user.query;
 
 import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.base.QueryRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

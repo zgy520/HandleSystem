@@ -2,11 +2,9 @@ package com.zgy.handle.userService.service.authority.role;
 
 import com.zgy.handle.userService.model.authority.role.Role;
 import com.zgy.handle.userService.model.authority.role.RoleDTO;
-import com.zgy.handle.userService.model.user.Account;
 import com.zgy.handle.userService.repository.authority.RoleRepository;
 import com.zgy.handle.userService.service.SystemService;
 import com.zgy.handle.userService.service.user.AccountService;
-import com.zgy.handle.userService.util.Str.StrUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j

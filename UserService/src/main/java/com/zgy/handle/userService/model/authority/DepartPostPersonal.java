@@ -1,7 +1,6 @@
 package com.zgy.handle.userService.model.authority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zgy.handle.userService.model.BaseModel;
 import com.zgy.handle.userService.model.structure.Department;
 import com.zgy.handle.userService.model.user.Account;
 import lombok.Data;

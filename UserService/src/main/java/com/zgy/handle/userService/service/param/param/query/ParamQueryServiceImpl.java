@@ -7,7 +7,6 @@ import com.zgy.handle.userService.repository.param.param.ParamQueryRepository;
 import com.zgy.handle.userService.service.base.impl.QueryServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 

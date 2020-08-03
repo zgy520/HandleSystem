@@ -1,5 +1,6 @@
 package com.zgy.handle.userService.model.structure;
 
+import com.zgy.handle.userService.model.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class IndustryDTO {
-    private String id;
+public class IndustryDTO extends BaseDTO {
     private String name;
     private String code;
     private String shortName;

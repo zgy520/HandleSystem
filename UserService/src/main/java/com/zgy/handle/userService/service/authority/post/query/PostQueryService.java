@@ -2,8 +2,6 @@ package com.zgy.handle.userService.service.authority.post.query;
 
 import com.zgy.handle.userService.model.authority.Post;
 import com.zgy.handle.userService.model.authority.PostDTO;
-import com.zgy.handle.userService.model.authority.role.Role;
-import com.zgy.handle.userService.model.authority.role.RoleDTO;
 import com.zgy.handle.userService.model.common.TransferDTO;
 import com.zgy.handle.userService.service.base.QueryService;
 import org.springframework.stereotype.Repository;
