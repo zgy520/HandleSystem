@@ -25,8 +25,8 @@
         </processorPath>
         <module name="KnowledgeService" />
         <module name="GateWayService" />
-        <module name="Common" />
         <module name="EurekaServer" />
+        <module name="Common" />
       </profile>
       <profile name="Annotation profile for UserService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />

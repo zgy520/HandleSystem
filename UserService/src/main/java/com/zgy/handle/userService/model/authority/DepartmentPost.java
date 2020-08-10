@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "system_department_post")
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepartmentPost {
+public class DepartmentPost implements Serializable {
     @EmbeddedId
     private DepartmentPostPK id;
     @ManyToOne

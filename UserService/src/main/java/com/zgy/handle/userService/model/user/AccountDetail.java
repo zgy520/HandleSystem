@@ -6,17 +6,18 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "system_account_detail")
 @Data
 @Slf4j
-public class AccountDetail {
+public class AccountDetail implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid_short")
-    @GenericGenerator(name = "uuid_short",strategy = "com.zgy.handle.userService.util.hibernate.UUIDGenerator")
-    @Column(name = "id",nullable = false)
+    @GenericGenerator(name = "uuid_short", strategy = "com.zgy.handle.userService.util.hibernate.UUIDGenerator")
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @MapsId

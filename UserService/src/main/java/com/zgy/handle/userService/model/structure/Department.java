@@ -9,6 +9,7 @@ import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "system_department")
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @Audited
 @SQLDelete(sql = "update system_department set isDeleted = true where id = ?")
 @Where(clause = BaseModel.SOFT_DELETED_CLAUSE)
-public class Department extends BaseModel {
+public class Department extends BaseModel implements Serializable {
     private String code;
     private String name;
     private String type; // 部门类型

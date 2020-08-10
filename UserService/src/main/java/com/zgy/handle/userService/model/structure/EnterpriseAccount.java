@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "system_enterprise_account")
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EnterpriseAccount {
+public class EnterpriseAccount implements Serializable {
     @EmbeddedId
     private EnterpriseAccountPK id;
 

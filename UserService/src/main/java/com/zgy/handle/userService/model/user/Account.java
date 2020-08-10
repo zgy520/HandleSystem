@@ -17,6 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +30,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true, of = {"id"})
 @SQLDelete(sql = "update system_account set isDeleted = true where id = ?")
 @Where(clause = BaseModel.SOFT_DELETED_CLAUSE)
-public class Account extends BaseModel {
+public class Account extends BaseModel implements Serializable {
     /*@Size(min = 10, max = 20, message = "姓名必须在10到20个字符之间")*/
     private String name;
     private String loginName;
@@ -53,7 +54,7 @@ public class Account extends BaseModel {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "system_role_personal",
             joinColumns = {@JoinColumn(name = "accountId")},
-            inverseJoinColumns = { @JoinColumn(name = "roleId")})
+            inverseJoinColumns = {@JoinColumn(name = "roleId")})
     @ToString.Exclude
     @Singular("roleSet")
     @JsonIgnore
@@ -61,22 +62,22 @@ public class Account extends BaseModel {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "system_post_personal",
             joinColumns = {@JoinColumn(name = "accountId")},
-            inverseJoinColumns = { @JoinColumn(name = "postId")})
+            inverseJoinColumns = {@JoinColumn(name = "postId")})
     @JsonIgnore
     @ToString.Exclude
     @Singular("postSet")
     private Set<Post> postSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY,orphanRemoval = true)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private Set<DepartmentAccount> departmentAccounts = new HashSet<>();
 
-    public void addRole(Role role){
+    public void addRole(Role role) {
         this.roleSet.add(role);
         //role.getAccountSet().add(this);
     }
 
-    public void removeRole(Role role){
+    public void removeRole(Role role) {
         this.roleSet.remove(role);
         //role.getAccountSet().remove(this);
     }

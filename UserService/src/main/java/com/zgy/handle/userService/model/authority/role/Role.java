@@ -10,6 +10,7 @@ import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +25,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true, of = {"id"})
 @SQLDelete(sql = "update system_role set isDeleted = true where id = ?")
 @Where(clause = BaseModel.SOFT_DELETED_CLAUSE)
-public class Role extends BaseModel {
+public class Role extends BaseModel implements Serializable {
     private String code;
     private String name;
     @ManyToMany

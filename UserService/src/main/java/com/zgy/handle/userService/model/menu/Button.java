@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Table(name = "system_button")
 @Slf4j
 @Data
-public class Button extends BaseModel {
+public class Button extends BaseModel implements Serializable {
     private String code;
     private String name;
     private String icon;

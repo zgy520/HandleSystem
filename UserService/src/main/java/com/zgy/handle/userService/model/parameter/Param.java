@@ -6,12 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "system_param")
 @Slf4j
 @Data
-public class Param extends BaseModel {
+public class Param extends BaseModel implements Serializable {
     private String code;
     private String value;
     private boolean visible; // 可见性

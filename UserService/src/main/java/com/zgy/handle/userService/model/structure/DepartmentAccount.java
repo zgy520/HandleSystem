@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "system_department_account")
@@ -18,7 +19,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Audited
-public class DepartmentAccount {
+public class DepartmentAccount implements Serializable {
     @EmbeddedId
     private DepartmentAccountPK id;
 

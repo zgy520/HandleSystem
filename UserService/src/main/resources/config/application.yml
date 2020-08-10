@@ -35,3 +35,8 @@ spring:
     test-on-borrow: false
     test-while-idle: true
     time-between-eviction-runs-millis: 18800
+  cache:
+    type: redis
+    redis:
+      host: 192.168.31.12
+      port: 6379

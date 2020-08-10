@@ -11,6 +11,7 @@ import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -24,7 +25,7 @@ import java.util.Date;
 @Entity
 @Audited
 @Table(name = "system_enterprise")
-public class Enterprise extends BaseModel {
+public class Enterprise extends BaseModel implements Serializable {
     private String code;
     private String name;
     private String shortName; // 简称

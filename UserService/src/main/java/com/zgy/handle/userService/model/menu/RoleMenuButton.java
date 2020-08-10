@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.userService.model.authority.role.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "system_role_menuu_button")
-public class RoleMenuButton {
+public class RoleMenuButton implements Serializable {
     @EmbeddedId
     private RoleMenuButtonPK id;
     @ManyToOne

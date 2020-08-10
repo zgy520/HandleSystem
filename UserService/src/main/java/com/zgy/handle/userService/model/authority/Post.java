@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ import java.util.Set;
 @Slf4j
 @Audited
 @EqualsAndHashCode(callSuper = true, of = {"id"})
-public class Post extends BaseModel {
+public class Post extends BaseModel implements Serializable {
     private String code;
     private String name;
     @ManyToMany

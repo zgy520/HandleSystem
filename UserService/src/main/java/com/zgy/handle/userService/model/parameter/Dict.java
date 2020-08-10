@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * 字典
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "system_dict")
 @Slf4j
 @Data
-public class Dict extends BaseModel {
+public class Dict extends BaseModel implements Serializable {
     private String code;
     private String name;
     private DictType dictType;

@@ -7,12 +7,13 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "system_depart_post_personal")
 @Data
 @Slf4j
-public class DepartPostPersonal {
+public class DepartPostPersonal implements Serializable {
     @EmbeddedId
     private DepartPostfPersonalPK id;
 

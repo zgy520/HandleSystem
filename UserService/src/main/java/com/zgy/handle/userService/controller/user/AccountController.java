@@ -14,6 +14,7 @@ import com.zgy.handle.userService.service.structure.DepartmentService;
 import com.zgy.handle.userService.service.user.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 @RequestMapping(value = "account")
-public class AccountController extends SystemController<Account,AccountDTO> {
+public class AccountController extends SystemController<Account, AccountDTO> {
     private final AccountService accountService;
     @Autowired
     private AccountMapper accountMapper;
@@ -44,7 +45,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
 
     @Override
     public void fillList(List<Account> entityList, List<AccountDTO> dtoList) {
-        dtoList.stream().forEach(dto->{
+        dtoList.stream().forEach(dto -> {
             RolePostDTO rolePostDTO = accountService.fetchRolePostName(Long.valueOf(dto.getId()));
             dto.setRoleList(rolePostDTO.getRoleList());
             dto.setPostList(rolePostDTO.getPostList());
@@ -67,8 +68,8 @@ public class AccountController extends SystemController<Account,AccountDTO> {
                 .userName(account.getLoginName())
                 .pasword(account.getPassword())
                 .userId(account.getId().toString())
-                .orgId(department == null?"":department.getId().toString())
-                .enterpriseId(department == null?"":departmentService.fetchIndustry(department.getId()).getId().toString())
+                .orgId(department == null ? "" : department.getId().toString())
+                .enterpriseId(department == null ? "" : departmentService.fetchIndustry(department.getId()).getId().toString())
                 .postId(accountService.fetchPostIdListByAccountId(account.getId()))
                 .postName(accountService.fetchPostCodeListByAccountId(account.getId()).stream().collect(Collectors.joining(",")))
                 .build();
@@ -97,7 +98,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
     public List<SelectDTO> convertTtoSelectDTOList(List<Account> accountList) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         accountList.stream().forEach(account -> {
-            SelectDTO selectDTO = new SelectDTO(account.getId().toString(),account.getName(),account.getId().toString());
+            SelectDTO selectDTO = new SelectDTO(account.getId().toString(), account.getName(), account.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
@@ -109,7 +110,7 @@ public class AccountController extends SystemController<Account,AccountDTO> {
         List<Account> accounts = accountService.findAllAccounts();
         List<SelectDTO> accountSelectDTOList = new ArrayList<>();
         accounts.stream().forEach(account -> {
-            SelectDTO accountSelectDTO = new SelectDTO(account.getId().toString(), account.getName(),account.getId().toString());
+            SelectDTO accountSelectDTO = new SelectDTO(account.getId().toString(), account.getName(), account.getId().toString());
             accountSelectDTOList.add(accountSelectDTO);
         });
         responseCode.setData(accountSelectDTOList);

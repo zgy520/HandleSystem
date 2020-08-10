@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "system_industry_enterprise")
-public class IndustryEnterprise {
+public class IndustryEnterprise implements Serializable {
     @EmbeddedId
     private IndustryEnterprisePK industryEnterprisePK;
 

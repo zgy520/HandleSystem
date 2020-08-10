@@ -8,6 +8,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -16,7 +17,7 @@ import java.util.Set;
 @Table(name = "system_menu")
 @Slf4j
 @Data
-public class Menu extends BaseModel {
+public class Menu extends BaseModel implements Serializable {
     private String code;
     private String name;
     private String url;

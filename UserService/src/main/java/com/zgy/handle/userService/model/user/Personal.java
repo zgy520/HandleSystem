@@ -6,11 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 
 @Entity(name = "system_personal")
 @Data
 @Slf4j
-public class Personal extends BaseModel {
+public class Personal extends BaseModel implements Serializable {
 
     private String code; // 人员编码
     private String name; // 姓名
