@@ -13,7 +13,6 @@ import java.util.List;
 
 @SpringBootApplication
 //@EnableResourceServer
-@EnableCaching
 public class UserApplication {
 
     @Bean

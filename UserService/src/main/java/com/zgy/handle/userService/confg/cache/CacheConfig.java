@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableCaching
 public class CacheConfig {
-    @Bean
+    /*@Bean
     public CacheManager cacheManager(){
         return new ConcurrentMapCacheManager("account");
-    }
+    }*/
 }
