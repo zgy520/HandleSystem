@@ -101,13 +101,13 @@ public class HandleDailyCountService extends SystemService<HandleDailyCount, Han
             throw new EntityNotFoundException("未正确配置根节点服务器");
         }
         SecondRootInfo secondRootInfo = secondRootInfos.get(0);
-        String url = "https://" + secondRootInfo.getParentIp() + ":" + secondRootInfo.getParentPort() + "/api/datastatistics/";
+        String url = "http://" + secondRootInfo.getIp() + ":" + secondRootInfo.getPort() + "/api/datastatistics/";
 
         OkHttpClient client = new OkHttpClient();
         log.info("请求的url为:" + url);
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Authorization","Handle version=0,sessionId=i7w4ospomdu3ymb7fev2r92o")
+               // .addHeader("Authorization","Handle version=0,sessionId=i7w4ospomdu3ymb7fev2r92o")
                 .build();
         try{
             Response response = client.newCall(request).execute();
