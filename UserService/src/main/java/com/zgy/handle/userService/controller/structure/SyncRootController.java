@@ -3,6 +3,8 @@ package com.zgy.handle.userService.controller.structure;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zgy.handle.userService.model.structure.Enterprise;
+import com.zgy.handle.userService.repository.structure.EnterpriseRepository;
+import com.zgy.handle.userService.service.structure.EnterpriseService;
 import com.zgy.handle.userService.service.structure.SyncEnterpriseToRootService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class SyncRootController {
     @Autowired
     private SyncEnterpriseToRootService syncEnterpriseToRootService;
+    @Autowired
+    private EnterpriseRepository enterpriseRepository;
 
     @PostMapping(value = "enterprise")
     public String syncRoot(@RequestBody String enterpriseInfo) throws JsonProcessingException {
@@ -25,6 +29,7 @@ public class SyncRootController {
         ObjectMapper mapper = new ObjectMapper();
         Enterprise enterprise = mapper.readValue(enterpriseInfo,Enterprise.class);
         log.info(enterprise.getAuthorStatus());
+        enterpriseRepository.save(enterprise);
         return "success";
     }
 

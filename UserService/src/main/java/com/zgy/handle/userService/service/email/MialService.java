@@ -29,6 +29,7 @@ public class MialService implements IMailService{
             messageHelper.setTo(to);
             messageHelper.setSubject(subject);
             messageHelper.setText(content,true);
+            System.setProperty("https.protocols", "TLSv1");
             mailSender.send(message);
             log.info("邮件已发送");
 

@@ -8,6 +8,7 @@ import lombok.Data;
  */
 @Data
 public class ResponseCode<T> {
+    public int status;
     private boolean success; // 是否成功
     private Integer code; // 代码
     private String msg;

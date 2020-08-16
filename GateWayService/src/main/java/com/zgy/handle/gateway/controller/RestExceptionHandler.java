@@ -16,9 +16,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(UsernameNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(UsernameNotFoundException ex){
-        ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.NOT_FOUND.value());
+        ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),701);
         return buildResponse(responseCode);
     }
+
 
 
     private ResponseEntity<Object> buildResponse(ResponseCode responseCode){

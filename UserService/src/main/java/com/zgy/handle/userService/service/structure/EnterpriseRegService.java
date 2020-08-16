@@ -80,22 +80,22 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
         if (enterpriseOptional.isPresent()){
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Enterprise enterprise = enterpriseOptional.get();
-            if (statusType.equals(StatusType.SH)){
+            if (statusType.equals(StatusType.SQ)){
                 enterprise.setAuthorStatus(statusValue);
                 Date now = new Date();
                 enterprise.setAuthorDate(sdf.format(now));
-            }else if (statusType.equals(StatusType.SQ)){
+                if (statusValue.equals("授权失败")){
+                    mailService.sendSimpleMail(enterprise.getEmail(),"handles授权","授权失败：原因");
+                }else {
+                    // 将企业同步到根节点
+                    syncEnterpriseToRootService.syncEnterpriseInfo(enterpriseId);
+                }
+            }else if (statusType.equals(StatusType.SH)){
                 enterprise.setCheckStatus(statusValue);
                 Date now = new Date();
                 enterprise.setCheckDate(sdf.format(now));
                 enterprise.setCheckPerson(getPersonalName());
 
-                if (statusValue.equals("授权失败")){
-                    mailService.sendSimpleMail(enterprise.getEmail(),"handles审核","审核失败：原因");
-                }else {
-                    // 将企业同步到根节点
-                    syncEnterpriseToRootService.syncEnterpriseInfo(enterpriseId);
-                }
 
             }else {
                 throw new EntityNotFoundException("请传入正确的状态类型");

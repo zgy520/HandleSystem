@@ -57,4 +57,5 @@ public class EnterpriseDTO {
 
     private String authorDate; // 授权时间
     private String prefixDate; // 注册时间
+    private String lxdDepart; // 联系人部门
 }

@@ -11,6 +11,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,6 +31,10 @@ public class JwtAuthenticationController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
         final String token = jwtTokenUtil.generateToken(userDetails);
+        if (responseCode.status == 401){
+            responseCode.setMsg("验证失败!");
+            responseCode.setCode(701);
+        }
         responseCode.setData(token);
         return responseCode;
     }
@@ -42,7 +47,8 @@ public class JwtAuthenticationController {
         }catch (DisabledException ex){
             throw new Exception("USER_DISABLED", ex);
         }catch (BadCredentialsException ex){
-            throw new Exception("INVALID_CREDENTIALS", ex);
+            //throw new Exception("INVALID_CREDENTIALS", ex);
+            throw new UsernameNotFoundException("INVALID_CREDENTIALS");
         }
     }
 }

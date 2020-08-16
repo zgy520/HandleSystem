@@ -51,6 +51,7 @@ public class EnterpriseRegController extends SystemController<Enterprise, Enterp
     public ResponseCode<EnterpriseRegDTO> fillEnterprisePrefix(Long enterpriseId,String prefix){
         ResponseCode<EnterpriseRegDTO> regDTOResponseCode = ResponseCode.sucess();
         regDTOResponseCode.setData(enterpriseRegMapper.toEnterpriseRegDTO(enterpriseService.fillEnterprisePrefix(enterpriseId,prefix)));
+
         return regDTOResponseCode;
     }
 
