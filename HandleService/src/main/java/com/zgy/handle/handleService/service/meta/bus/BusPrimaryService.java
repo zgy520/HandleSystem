@@ -288,7 +288,8 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
 
     public void filePost(String fileName,int type,String metaHandleCode,EnterprisePre enterprisePre){
         //String url = "http://114.115.215.119:8011/api/datadefine";
-         String url = enterprisePre.getPrefix();
+        String url = enterprisePre.getPrefix();
+        //String url = "";
         //String url = "114.115.215.119:8011";
         log.info("获取用户:" + getPersonalId() + "的sessionId");
         String sessionId = entepriseFeignClient.getSessionId(getPersonalId());
@@ -299,7 +300,7 @@ public class BusPrimaryService extends SystemService<BusPrimary,BusPrimary> {
         }else if (type == 1){
             url += "/api/dataupload/" + metaHandleCode;
         }
-
+        //url = "http://localhost:6063/file/upload";
         //String fileName = "F://metatest1.xml";
 
         File file = new File(fileName);

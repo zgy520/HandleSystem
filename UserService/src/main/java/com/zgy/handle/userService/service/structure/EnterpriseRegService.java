@@ -85,7 +85,7 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
                 Date now = new Date();
                 enterprise.setAuthorDate(sdf.format(now));
                 if (statusValue.equals("授权失败")){
-                    mailService.sendSimpleMail(enterprise.getEmail(),"handles授权","授权失败：原因");
+                    mailService.sendSimpleMail(enterprise.getEmail(),"handle综合管理平台授权结果","授权失败：原因");
                 }else {
                     // 将企业同步到根节点
                     syncEnterpriseToRootService.syncEnterpriseInfo(enterpriseId);
@@ -95,7 +95,9 @@ public class EnterpriseRegService extends SystemService<Enterprise, EnterpriseRe
                 Date now = new Date();
                 enterprise.setCheckDate(sdf.format(now));
                 enterprise.setCheckPerson(getPersonalName());
-
+                if (statusValue.equals("审核不通过")){
+                    mailService.sendSimpleMail(enterprise.getEmail(),"handle综合管理平台审核结果","审核失败：原因");
+                }
 
             }else {
                 throw new EntityNotFoundException("请传入正确的状态类型");
