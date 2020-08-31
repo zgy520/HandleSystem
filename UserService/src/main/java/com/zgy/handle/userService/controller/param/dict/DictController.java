@@ -4,6 +4,7 @@ import com.zgy.handle.userService.confg.cache.CacheConfig;
 import com.zgy.handle.userService.controller.SystemController;
 import com.zgy.handle.userService.controller.param.convert.DictMapper;
 import com.zgy.handle.userService.core.cache.DictCache;
+import com.zgy.handle.userService.core.cache.ParamCache;
 import com.zgy.handle.userService.model.parameter.Dict;
 import com.zgy.handle.userService.model.parameter.DictDTO;
 import com.zgy.handle.userService.model.user.SelectDTO;
@@ -24,6 +25,10 @@ public class DictController extends SystemController<Dict, DictDTO> {
     @Autowired
     private DictMapper dictMapper;
 
+    @Autowired
+    private ParamCache paramCache;
+    @Autowired
+    private DictCache dictCache;
 
     @Autowired
     public DictController(DictService dictService) {
@@ -54,6 +59,11 @@ public class DictController extends SystemController<Dict, DictDTO> {
 
     @GetMapping(value = "test")
     public void testCache(String code){
-        DictCache.getDictList(code).stream().forEach(dict->System.out.println(dict.getName()));
+        dictCache.getValueByKey(code).stream().forEach(dict->System.out.println(((Dict)dict).getName()));
+    }
+
+    @GetMapping(value = "param")
+    public void paramCache(String code){
+        log.info(paramCache.getValueByKey("fax"));
     }
 }

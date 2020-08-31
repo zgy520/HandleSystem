@@ -16,10 +16,10 @@ public class CacheManagerFactory {
      * @param valueObj
      * @return
      */
-    public static CacheManager getCacheManager(String name,Object keyObj,Object valueObj){
+    public static CacheManager getCacheManager(String name,Class keyObj,Class valueObj){
         CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder()
-                .withCache("preConfigured",
-                        CacheConfigurationBuilder.newCacheConfigurationBuilder(Long.class,String.class, ResourcePoolsBuilder.heap(100))
+                .withCache(name,
+                        CacheConfigurationBuilder.newCacheConfigurationBuilder(keyObj,valueObj, ResourcePoolsBuilder.heap(100))
                                 .build())
                 .build(true);
         return cacheManager;
