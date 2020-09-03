@@ -34,6 +34,15 @@ public class IndustryMetaHeaderService extends SystemService<IndustryMetaHeader,
         return null;
     }
 
+    public IndustryMetaHeader findByCode(String handleCode){
+        List<IndustryMetaHeader> industryMetaHeaderList = industryMetaHeaderRepository.findByHeader_IdentityNum(handleCode);
+        if (industryMetaHeaderList.size() > 0){
+            return industryMetaHeaderList.get(0);
+        }else {
+            throw new EntityNotFoundException("handle码未找到:"+handleCode);
+        }
+    }
+
     /**
      * 根据行业id获取所有的元数据标准
      * @param industryId

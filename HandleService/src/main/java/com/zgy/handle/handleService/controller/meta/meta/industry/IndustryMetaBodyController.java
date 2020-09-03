@@ -7,6 +7,7 @@ import com.zgy.handle.handleService.model.common.SelectDTO;
 import com.zgy.handle.handleService.model.meta.dto.structure.IndustryMetaBodyDTO;
 import com.zgy.handle.handleService.model.meta.structure.industry.IndustryMetaBody;
 import com.zgy.handle.handleService.service.meta.structure.IndustryMetaBodyService;
+import com.zgy.handle.handleService.service.meta.structure.IndustryMetaHeaderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,8 @@ public class IndustryMetaBodyController extends SystemController<IndustryMetaBod
     private IndustryMetaBodyService industryMetaBodyService;
     @Autowired
     private IndustryMetaBodyMapper industryMetaBodyMapper;
+    @Autowired
+    private IndustryMetaHeaderService industryMetaHeaderService;
     public IndustryMetaBodyController(IndustryMetaBodyService industryMetaBodyService) {
         super(industryMetaBodyService);
         this.industryMetaBodyService = industryMetaBodyService;
@@ -37,7 +40,13 @@ public class IndustryMetaBodyController extends SystemController<IndustryMetaBod
         for (IndustryMetaBodyDTO metaBodyDTO : metaBodyDTOList){
             metaBodyDTOS.add(convertTtoU(industryMetaBodyService.update(metaBodyDTO,convertUtoT(metaBodyDTO)).getData()));
         }
+
         responseCode.setData(metaBodyDTOS);
+
+        // if (metaBodyDTOList.size() > 0){ // 消息体
+            industryMetaBodyService.createRegisterMetaDataXml(industryMetaHeaderService.findById(Long.valueOf(metaBodyDTOList.get(0).getHeaderId())).get(),industryMetaBodyMapper.toIndustryMetaBodS(metaBodyDTOList));
+        // }
+
         return responseCode;
     }
 

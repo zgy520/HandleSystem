@@ -34,6 +34,16 @@ public class IndustryMetaHeaderController extends SystemController<IndustryMetaH
         this.industryMetaHeaderService = industryMetaHeaderService;
     }
 
+    @GetMapping(value = "findIdByCode")
+    @ApiOperation("根据handle码查id")
+    public ResponseCode<String> findById(String handleCode){
+        ResponseCode<String> responseCode = ResponseCode.sucess();
+        IndustryMetaHeader industryMetaHeader = industryMetaHeaderService.findByCode(handleCode);
+
+        responseCode.setData(industryMetaHeader.getId().toString());
+        return responseCode;
+    }
+
     @GetMapping(value = "getHeaderByIndustryId/{industryHeaderId}")
     @ApiOperation("根据行业id获取元数据标准列表")
     public ResponseCode<List<IndustryMetaHeaderDTO>> findByIndustryHeaderIld(@PathVariable Long industryHeaderId){

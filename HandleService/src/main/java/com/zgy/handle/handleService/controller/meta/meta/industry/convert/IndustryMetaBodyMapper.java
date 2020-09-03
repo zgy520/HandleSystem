@@ -22,4 +22,6 @@ public interface IndustryMetaBodyMapper {
     @Mapping(source = "industryMetaHeader.id",target = "headerId")
     IndustryMetaBodyDTO toIndustryMetaBodyDTO(IndustryMetaBody industryMetaBody);
     List<IndustryMetaBodyDTO> toIndustryMetaBodyDTOS(List<IndustryMetaBody> industryMetaBodies);
+
+    List<IndustryMetaBody> toIndustryMetaBodS(List<IndustryMetaBodyDTO> industryMetaBodies);
 }

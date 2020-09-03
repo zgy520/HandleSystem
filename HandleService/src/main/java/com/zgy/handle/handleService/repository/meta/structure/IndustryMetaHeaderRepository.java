@@ -14,4 +14,6 @@ public interface IndustryMetaHeaderRepository extends SystemRepository<IndustryM
      * @return
      */
     List<IndustryMetaHeader> findByIndustryId(Long industryId);
+
+    List<IndustryMetaHeader> findByHeader_IdentityNum(String handleCode);
 }
