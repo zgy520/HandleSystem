@@ -84,7 +84,7 @@ public class TrackingFilter extends ZuulFilter {
             filterUtils.setCorrelationId(generateCorrelationId());
             //log.info("tmx-correlation-id generated in tracking filter: " + filterUtils.getCorrelationId());
         }
-        if (!isUserInfoPresent()){
+        if (!isUserInfoPresent() && !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getPrincipal())){
             UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             filterUtils.setUserInfo(userDetails);
             //log.info("setting user info: " + userDetails.getUsername());

@@ -1,6 +1,9 @@
 package com.zgy.handle.userservice.controller;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.userservice.core.error.ErrorNum;
+import com.zgy.handle.userservice.core.exception.BusinessException;
+import com.zgy.handle.userservice.core.exception.NotFoundException;
 import com.zgy.handle.userservice.exception.ParamException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -10,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.RollbackException;
@@ -27,6 +31,30 @@ public class RestExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex){
         ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),HttpStatus.NOT_FOUND.value());
+        return buildResponse(responseCode);
+    }
+
+    /**
+     * 根据ID无法找到数据的异常
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(NotFoundException.class)
+    protected ResponseEntity<Object> notFoundException(NotFoundException ex) {
+        ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(), ErrorNum.ERROR_NOT_FOUND_DATA.getCode());
+        return buildResponse(responseCode);
+    }
+
+    /**
+     * 业务异常
+     *
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(BusinessException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    protected ResponseEntity<Object> businessException(BusinessException ex) {
+        ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(), ex.getErrorNum().getCode());
         return buildResponse(responseCode);
     }
 

@@ -28,7 +28,8 @@ public class ParamCache extends CacheBase<String, String> {
     public void initData() {
         List<Param> paramList = paramQueryService.findAll();
         paramList.forEach(param -> {
-            getCache().put(param.getCode(), param.getValue());
+            /*getCache().put(param.getCode(), param.getValue());*/
+            addToCache(param.getCode(),param.getValue());
         });
         log.info("参数数据初始化完毕");
     }

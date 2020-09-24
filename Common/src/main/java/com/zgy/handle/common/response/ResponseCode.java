@@ -5,20 +5,22 @@ import org.springframework.data.domain.Page;
 
 /**
  * 消息的响应体
+ * @author a4423
  * @param <T>
  */
 @Data
 public class ResponseCode<T> {
-    private boolean success; // 是否成功
-    private Integer code; // 代码
+    // 是否成功
+    private boolean success;
+    // 代码
+    private Integer code;
     private String msg;
-    private T data; // 响应数据
-
-/*    private int pageSize; // 页面大小
-    private int pageNumer; // 页码*/
-    private long totalElements; // 总数量
-    private int totalPage; // 总页数
-
+    // 响应数据
+    private T data;
+    // 总数量
+    private long totalElements;
+    // 总页数
+    private int totalPage;
 
 
     public static ResponseCode sucess(){
@@ -60,5 +62,6 @@ public class ResponseCode<T> {
     }
     public ResponseCode(T data){
         this.data = data;
+        this.success = true;
     }
 }

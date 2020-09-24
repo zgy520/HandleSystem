@@ -1,5 +1,6 @@
 package com.zgy.handle.userservice.model.menu;
 
+import lombok.Data;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.EmbeddedId;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "system_role_menu_button")
 @Audited
+@Data
 public class RoleMenuButton implements Serializable {
     @EmbeddedId
     private RoleMenuButtonPK roleMenuButtonPK;

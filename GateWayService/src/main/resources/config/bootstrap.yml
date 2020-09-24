@@ -17,6 +17,13 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 zuul:
   sensitive-headers:
+  ignored-services: "*"
+  routes:
+    userservice:
+      path: /userservice/**
+    knowledgeservice:
+      path: /knowledgeservice/**
+  prefix:
 ribbon:
   ConnectTimeout: 50000
   ReadTimeout: 50000

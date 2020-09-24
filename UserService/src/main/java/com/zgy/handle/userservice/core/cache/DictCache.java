@@ -33,7 +33,8 @@ public class DictCache extends CacheBase<String, List> {
         List<Dict> rootList = dictList.stream().filter(dict -> dict.getParent() == null).collect(Collectors.toList());
         for (Dict dict : rootList) {
             List<Dict> childrenList = dictList.stream().filter(dict1 -> dict1.getParent() != null && dict1.getParent().getId().equals(dict.getId())).collect(Collectors.toList());
-            getCache().put(dict.getCode(), childrenList);
+            /*getCache().put(dict.getCode(), childrenList);*/
+            addToCache(dict.getCode(),childrenList);
         }
     }
 }

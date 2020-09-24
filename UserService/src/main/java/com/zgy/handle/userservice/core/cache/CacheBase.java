@@ -27,14 +27,14 @@ public abstract class CacheBase<K, V> {
                 .getGenericSuperclass())
                 .getActualTypeArguments()[1];
 
-        cacheManager = CacheManagerFactory.getCacheManager(cacheName, kClass, vClass);
-        preDataConfig = cacheManager.getCache(cacheName, kClass, vClass);
+        cacheManager = CacheManagerFactory.getCacheManager(this.cacheName, kClass, vClass);
+        preDataConfig = cacheManager.getCache(this.cacheName, kClass, vClass);
 
 
     }
 
-    private volatile CacheManager cacheManager;
-    protected volatile Cache preDataConfig;
+    private final  CacheManager cacheManager;
+    protected final Cache<K,V> preDataConfig;
 
 
     /**

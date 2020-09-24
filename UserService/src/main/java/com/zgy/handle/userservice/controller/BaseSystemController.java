@@ -1,9 +1,13 @@
 package com.zgy.handle.userservice.controller;
 
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.userservice.core.error.ErrorNum;
+import com.zgy.handle.userservice.core.exception.BusinessException;
+import com.zgy.handle.userservice.core.exception.NotFoundException;
 import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.BaseSystemService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -90,7 +94,8 @@ public abstract class BaseSystemController<T,U> {
         ResponseCode<U> responseCode = ResponseCode.sucess();
         Optional<T> optionalT = systemRefactorService.findById(id);
         if (!optionalT.isPresent()){
-            throw new EntityNotFoundException("实体中对应id={" + id + "}的数据不存在");
+            //throw new EntityNotFoundException("实体中对应id={" + id + "}的数据不存在");
+            throw new BusinessException(ErrorNum.ERROR_NOT_FOUND_DATA);
         }
         responseCode.setData(convertTtoU(optionalT.get()));
         return responseCode;

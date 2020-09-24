@@ -1,8 +1,11 @@
 package com.zgy.handle.userservice.service.menu.query;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.zgy.handle.userservice.model.dto.menu.BtnDTO;
 import com.zgy.handle.userservice.model.menu.Button;
 import com.zgy.handle.userservice.model.menu.Button_;
+import com.zgy.handle.userservice.model.menu.Menu;
 import com.zgy.handle.userservice.repository.menu.ButtonQueryRepository;
 import com.zgy.handle.userservice.service.base.impl.BaseQueryServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +29,7 @@ public class ButtonQueryServiceImpl extends BaseQueryServiceImpl<Button, BtnDTO>
                 .where(StringUtils.isBlank(dto.getName()) ? null : buttonQueryRepository.fieldLike(Button_.NAME, dto.getName()))
                 .and(StringUtils.isBlank(dto.getCode()) ? null : buttonQueryRepository.fieldLike(Button_.CODE, dto.getCode()))
                 .and(StringUtils.isBlank(dto.getNote()) ? null : buttonQueryRepository.fieldLike(Button_.NOTE, dto.getNote()));
+
         return specification;
     }
 }
