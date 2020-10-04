@@ -5,13 +5,17 @@ import com.zgy.handle.userservice.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.controller.role.convert.RoleMapper;
 import com.zgy.handle.userservice.model.authority.role.Role;
 import com.zgy.handle.userservice.model.authority.role.RoleDTO;
+import com.zgy.handle.userservice.service.authority.role.excel.RoleImportService;
 import com.zgy.handle.userservice.service.authority.role.query.RoleQueryService;
 import com.zgy.handle.userservice.service.authority.role.update.RoleUpdateService;
+import com.zgy.handle.userservice.service.excel.BusinessType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = "role/update")
@@ -22,6 +26,9 @@ public class RoleUpdateController extends BaseUpdateController<Role, RoleDTO> {
     private RoleMapper roleMapper;
     private RoleQueryService roleQueryService;
     private RoleUpdateService roleUpdateService;
+    @Autowired
+    private RoleImportService roleImportService;
+
     public RoleUpdateController(RoleUpdateService roleUpdateService, RoleQueryService roleQueryService) {
         super(roleUpdateService, roleQueryService);
         this.roleQueryService = roleQueryService;
@@ -35,14 +42,20 @@ public class RoleUpdateController extends BaseUpdateController<Role, RoleDTO> {
 
     /**
      * 角色关联用户
+     *
      * @param selectedUserList
      * @return
      */
     @PostMapping(value = "relateUser")
-    public ResponseCode<String> relateUser(Long roleId,String selectedUserList){
+    public ResponseCode<String> relateUser(Long roleId, String selectedUserList) {
         ResponseCode<String> responseCode = ResponseCode.sucess();
         log.info("角色ID为:" + roleId.toString() + ",选择的用户为:" + selectedUserList);
-        responseCode.setData(roleUpdateService.relateUser(roleId,selectedUserList));
+        responseCode.setData(roleUpdateService.relateUser(roleId, selectedUserList));
         return responseCode;
+    }
+
+    @PostMapping(value = "importRole")
+    public ResponseCode<String> importRole(@RequestParam(value = "file") MultipartFile file, BusinessType businessType, String attachData) {
+        return roleImportService.importExcel(file, businessType, attachData);
     }
 }

@@ -10,6 +10,9 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
 
+/**
+ * @author a4423
+ */
 @Entity(name = "system_personal")
 @Data
 @Slf4j

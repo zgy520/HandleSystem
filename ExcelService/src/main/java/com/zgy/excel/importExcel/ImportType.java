@@ -5,7 +5,8 @@ package com.zgy.excel.importExcel;
  * 即指的是哪一个业务的导入
  */
 public class ImportType {
-    final String businessType; // 业务类型
+    // 业务类型
+    final String businessType;
     final String filePath;
     final String fileName;
     final String fileExtend;

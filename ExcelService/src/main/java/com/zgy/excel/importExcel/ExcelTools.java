@@ -17,7 +17,8 @@ public class ExcelTools {
     public static int getOptionCount(JSONObject jsonObject, String option){
         Set<String> keys = jsonObject.keySet();
         int maxOption = 1;
-        keys = keys.stream().filter(key->key.contains(option)).collect(Collectors.toSet()); // 筛选所有带有Option的键
+        // 筛选所有带有Option的键
+        keys = keys.stream().filter(key->key.contains(option)).collect(Collectors.toSet());
         for (String key : keys){
             String digits = key.replaceAll("\\D+","");
             Integer iDigit = Integer.parseInt(digits);

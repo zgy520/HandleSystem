@@ -38,6 +38,7 @@ public class BaseModel {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @CreationTimestamp
+    @Column(updatable = false)
     protected Date createTime;
     @LastModifiedBy
     protected String updator;
@@ -51,7 +52,9 @@ public class BaseModel {
     protected String note;
 
 
-    private String createdId; // 创建人的id
-    private String belongId; // 归属id  部门或者企业
+    // 创建人的id
+    private String createdId;
+    // 归属id  部门或者企业
+    private String belongId;
 
 }
