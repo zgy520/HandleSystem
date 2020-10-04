@@ -1,9 +1,9 @@
 package com.zgy.handle.userservice.service.menu.query;
 
+import com.zgy.handle.common.service.base.QueryService;
 import com.zgy.handle.userservice.model.common.TransferDTO;
 import com.zgy.handle.userservice.model.dto.menu.MenuQueryDTO;
 import com.zgy.handle.userservice.model.menu.Menu;
-import com.zgy.handle.userservice.service.base.QueryService;
 
 import java.util.List;
 
@@ -26,6 +26,7 @@ public interface MenuQueryService extends QueryService<Menu, MenuQueryDTO> {
 
     /**
      * 根据菜单ID获取所有的按钮列表，包含选中和未选中的
+     *
      * @param menuId
      * @return
      */
@@ -33,6 +34,7 @@ public interface MenuQueryService extends QueryService<Menu, MenuQueryDTO> {
 
     /**
      * 根据ID列表获取所有的菜单
+     *
      * @param menuIdList
      * @return
      */

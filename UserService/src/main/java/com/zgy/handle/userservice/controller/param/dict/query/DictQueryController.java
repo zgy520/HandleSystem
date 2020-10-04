@@ -1,10 +1,10 @@
 package com.zgy.handle.userservice.controller.param.dict.query;
 
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.userservice.controller.param.convert.DictMapper;
 import com.zgy.handle.userservice.model.parameter.Dict;
 import com.zgy.handle.userservice.model.parameter.DictDTO;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.param.dict.query.DictQueryService;
 import com.zgy.handle.userservice.service.param.dict.update.DictUpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +23,7 @@ public class DictQueryController extends BaseQueryController<Dict, DictDTO> {
     private DictMapper dictMapper;
     private DictQueryService dictQueryService;
     private DictUpdateService dictUpdateService;
+
     @Autowired
     public DictQueryController(DictUpdateService dictUpdateService, DictQueryService dictQueryService) {
         super(dictUpdateService, dictQueryService);
@@ -41,7 +42,7 @@ public class DictQueryController extends BaseQueryController<Dict, DictDTO> {
     public List<SelectDTO> convertTtoSelectDTOList(List<Dict> dictList) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         dictList.stream().filter(dict -> dict.getParent() == null).forEach(dict -> {
-            SelectDTO selectDTO = new SelectDTO(dict.getId().toString(),dict.getName(),dict.getId().toString());
+            SelectDTO selectDTO = new SelectDTO(dict.getId().toString(), dict.getName(), dict.getId().toString());
             selectDTOList.add(selectDTO);
 
         });

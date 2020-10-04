@@ -1,12 +1,12 @@
 package com.zgy.handle.userservice.controller.role.query;
 
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
 import com.zgy.handle.userservice.controller.role.convert.RoleMapper;
 import com.zgy.handle.userservice.model.authority.role.Role;
 import com.zgy.handle.userservice.model.authority.role.RoleDTO;
 import com.zgy.handle.userservice.model.common.TransferDTO;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.authority.role.query.RoleQueryService;
 import com.zgy.handle.userservice.service.authority.role.update.RoleUpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +26,7 @@ public class RoleQueryController extends BaseQueryController<Role, RoleDTO> {
     private RoleMapper roleMapper;
     private RoleQueryService roleQueryService;
     private RoleUpdateService roleUpdateService;
+
     public RoleQueryController(RoleUpdateService roleUpdateService, RoleQueryService roleQueryService) {
         super(roleUpdateService, roleQueryService);
         this.roleQueryService = roleQueryService;

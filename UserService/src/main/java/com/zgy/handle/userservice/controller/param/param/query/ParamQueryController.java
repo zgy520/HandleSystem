@@ -1,10 +1,10 @@
 package com.zgy.handle.userservice.controller.param.param.query;
 
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.userservice.controller.param.convert.ParamMapper;
 import com.zgy.handle.userservice.model.parameter.Param;
 import com.zgy.handle.userservice.model.parameter.ParamDTO;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.param.param.query.ParamQueryService;
 import com.zgy.handle.userservice.service.param.param.update.ParamUpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +22,7 @@ public class ParamQueryController extends BaseQueryController<Param, ParamDTO> {
     private ParamMapper paramMapper;
     private ParamQueryService paramQueryService;
     private ParamUpdateService paramUpdateService;
+
     public ParamQueryController(ParamUpdateService paramUpdateService, ParamQueryService paramQueryService) {
         super(paramUpdateService, paramQueryService);
         this.paramQueryService = paramQueryService;

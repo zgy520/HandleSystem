@@ -1,10 +1,10 @@
 package com.zgy.handle.userservice.service.structure.industry.query;
 
+import com.zgy.handle.common.service.base.impl.BaseQueryServiceImpl;
 import com.zgy.handle.userservice.model.dto.structure.IndustryQueryDTO;
 import com.zgy.handle.userservice.model.structure.Industry;
 import com.zgy.handle.userservice.model.structure.Industry_;
 import com.zgy.handle.userservice.repository.structure.industry.IndustryQueryRepository;
-import com.zgy.handle.userservice.service.base.impl.BaseQueryServiceImpl;
 import com.zgy.handle.userservice.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

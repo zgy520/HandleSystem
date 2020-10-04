@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.service.menu.update;
 
+import com.zgy.handle.common.service.base.UpdateService;
 import com.zgy.handle.userservice.model.menu.RoleMenu;
-import com.zgy.handle.userservice.service.base.UpdateService;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import java.util.List;
 public interface RoleMenuUpdateService extends UpdateService<RoleMenu, RoleMenu> {
     /**
      * 更新角色和菜单的关系
+     *
      * @param roleId
      * @param menuIdList
      */

@@ -1,11 +1,11 @@
 package com.zgy.handle.userservice.service.structure.industry.update;
 
-import com.zgy.handle.userservice.model.common.UniqueInfo;
+import com.zgy.handle.common.model.common.UniqueInfo;
+import com.zgy.handle.common.service.base.impl.BaseUpdateServiceImpl;
 import com.zgy.handle.userservice.model.dto.structure.IndustryUpdateDTO;
 import com.zgy.handle.userservice.model.structure.Industry;
 import com.zgy.handle.userservice.repository.structure.industry.IndustryQueryRepository;
 import com.zgy.handle.userservice.repository.structure.industry.IndustryUpdateRepository;
-import com.zgy.handle.userservice.service.base.impl.BaseUpdateServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

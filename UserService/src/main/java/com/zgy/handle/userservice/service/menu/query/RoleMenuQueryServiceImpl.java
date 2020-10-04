@@ -1,9 +1,9 @@
 package com.zgy.handle.userservice.service.menu.query;
 
+import com.zgy.handle.common.service.base.impl.BaseQueryServiceImpl;
 import com.zgy.handle.userservice.model.menu.RoleMenu;
 import com.zgy.handle.userservice.model.menu.RoleMenuPK;
 import com.zgy.handle.userservice.repository.menu.RoleMenuQueryRepository;
-import com.zgy.handle.userservice.service.base.impl.BaseQueryServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;

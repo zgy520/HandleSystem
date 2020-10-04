@@ -1,6 +1,6 @@
 package com.zgy.handle.userservice.controller.user.update;
 
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.model.user.update.AccountUpdateVo;
 import com.zgy.handle.userservice.service.user.query.AccountQueryService;
@@ -18,6 +18,7 @@ public class AccountUpdateRefactoryController extends BaseUpdateController<Accou
     private AccountUpdateMapper accountUpdateMapper;
     private final AccountQueryService accountQueryService;
     private final AccountUpdateService accountUpdateService;
+
     public AccountUpdateRefactoryController(AccountUpdateService accountUpdateService, AccountQueryService accountQueryService) {
         super(accountUpdateService, accountQueryService);
         this.accountQueryService = accountQueryService;

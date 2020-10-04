@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.controller.role.update;
 
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.controller.role.convert.RoleMapper;
 import com.zgy.handle.userservice.model.authority.role.Role;
 import com.zgy.handle.userservice.model.authority.role.RoleDTO;

@@ -1,10 +1,10 @@
 package com.zgy.handle.userservice.controller.menu;
 
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.userservice.controller.menu.convert.ButtonMapper;
 import com.zgy.handle.userservice.model.dto.menu.BtnDTO;
 import com.zgy.handle.userservice.model.menu.Button;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.menu.query.ButtonQueryService;
 import com.zgy.handle.userservice.service.menu.update.ButtonUpdateService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package com.zgy.handle.userservice.controller.param.param.update;
 
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.controller.param.convert.ParamMapper;
 import com.zgy.handle.userservice.model.parameter.Param;
 import com.zgy.handle.userservice.model.parameter.ParamDTO;
@@ -19,6 +19,7 @@ public class ParamUpdateController extends BaseUpdateController<Param, ParamDTO>
     private ParamMapper paramMapper;
     private ParamQueryService paramQueryService;
     private ParamUpdateService paramUpdateService;
+
     public ParamUpdateController(ParamUpdateService paramUpdateService, ParamQueryService paramQueryService) {
         super(paramUpdateService, paramQueryService);
         this.paramQueryService = paramQueryService;

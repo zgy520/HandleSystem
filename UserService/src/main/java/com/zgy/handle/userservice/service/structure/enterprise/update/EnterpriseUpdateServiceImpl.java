@@ -1,12 +1,12 @@
 package com.zgy.handle.userservice.service.structure.enterprise.update;
 
-import com.zgy.handle.userservice.model.common.UniqueInfo;
+import com.zgy.handle.common.model.common.UniqueInfo;
+import com.zgy.handle.common.service.base.impl.BaseUpdateServiceImpl;
 import com.zgy.handle.userservice.model.dto.structure.EnterpriseUpdateDTO;
 import com.zgy.handle.userservice.model.structure.Enterprise;
 import com.zgy.handle.userservice.model.structure.Industry;
 import com.zgy.handle.userservice.repository.structure.enterprise.EnterpriseUpdateRepository;
 import com.zgy.handle.userservice.repository.structure.enterprise.EntperiseQueryRepository;
-import com.zgy.handle.userservice.service.base.impl.BaseUpdateServiceImpl;
 import com.zgy.handle.userservice.service.structure.industry.query.IndustryQueryService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -33,19 +33,19 @@ public class EnterpriseUpdateServiceImpl extends BaseUpdateServiceImpl<Enterpris
     public void fillRelateObj(EnterpriseUpdateDTO enterpriseUpdateDTO, Enterprise enterprise) {
         if (StringUtils.isNotBlank(enterpriseUpdateDTO.getParentId())) {
             Optional<Enterprise> enterpriseOptional = baseRepository.findById(Long.valueOf(enterpriseUpdateDTO.getParentId()));
-            if (enterpriseOptional.isPresent()){
+            if (enterpriseOptional.isPresent()) {
                 enterprise.setParent(enterpriseOptional.get());
-            }else {
-                log.error("找不到ID为：" + enterpriseUpdateDTO.getParentId()+ "的企业");
+            } else {
+                log.error("找不到ID为：" + enterpriseUpdateDTO.getParentId() + "的企业");
             }
 
         }
 
         if (StringUtils.isNotBlank(enterpriseUpdateDTO.getIndustryId())) {
             Optional<Industry> industryOptional = industryQueryService.findById(Long.valueOf(enterpriseUpdateDTO.getIndustryId()));
-            if (industryOptional.isPresent()){
+            if (industryOptional.isPresent()) {
                 enterprise.setIndustry(industryOptional.get());
-            }else {
+            } else {
                 log.error("不能找到ID为: " + enterpriseUpdateDTO.getIndustryId() + "的行业");
             }
         }

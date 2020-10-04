@@ -1,12 +1,12 @@
 package com.zgy.handle.userservice.controller.menu;
 
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
 import com.zgy.handle.userservice.controller.menu.convert.MenuQueryMapper;
 import com.zgy.handle.userservice.model.common.TransferDTO;
 import com.zgy.handle.userservice.model.dto.menu.MenuQueryDTO;
 import com.zgy.handle.userservice.model.menu.Menu;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.menu.query.MenuQueryService;
 import com.zgy.handle.userservice.service.menu.query.RoleMenuQueryService;
 import com.zgy.handle.userservice.service.menu.update.MenuUpdateService;
@@ -58,14 +58,14 @@ public class MenuQueryController extends BaseQueryController<Menu, MenuQueryDTO>
     }
 
     @GetMapping(value = "getButtonListByMenuId")
-    public ResponseCode<List<TransferDTO>> getButtonListByMenuId(Long menuId){
+    public ResponseCode<List<TransferDTO>> getButtonListByMenuId(Long menuId) {
         ResponseCode<List<TransferDTO>> responseCode = ResponseCode.sucess();
         responseCode.setData(menuQueryService.getButtonListByMenuId(menuId));
         return responseCode;
     }
 
     @GetMapping(value = "getMenuListByRoleId/{roleId}")
-    public ResponseCode<List<MenuQueryDTO>> getMenuListByRoleId(@PathVariable Long roleId){
+    public ResponseCode<List<MenuQueryDTO>> getMenuListByRoleId(@PathVariable Long roleId) {
         ResponseCode<List<MenuQueryDTO>> responseCode = ResponseCode.sucess();
         responseCode.setData(menuQueryService.getTreeMenuQueryDto(menuQueryMapper.toMenuQueryDtoList(menuQueryService.findAllByIdIn(roleMenuQueryService.getMenuIdListByRoleId(roleId)))));
         return responseCode;

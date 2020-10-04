@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.core.cache;
 
 import com.zgy.handle.userservice.model.parameter.Dict;
-import com.zgy.handle.userservice.service.param.dict.DictServiceBase;
+import com.zgy.handle.userservice.service.param.dict.query.DictQueryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class DictCache extends CacheBase<String, List> {
     private static final String CACHE_NAME = "dictCache";
     @Autowired
-    private DictServiceBase dictService;
+    private DictQueryService dictQueryService;
 
 
     public DictCache() {
@@ -29,12 +29,12 @@ public class DictCache extends CacheBase<String, List> {
     @Override
     @PostConstruct
     public void initData() {
-        List<Dict> dictList = dictService.findAll();
+        List<Dict> dictList = dictQueryService.findAll();
         List<Dict> rootList = dictList.stream().filter(dict -> dict.getParent() == null).collect(Collectors.toList());
         for (Dict dict : rootList) {
             List<Dict> childrenList = dictList.stream().filter(dict1 -> dict1.getParent() != null && dict1.getParent().getId().equals(dict.getId())).collect(Collectors.toList());
             /*getCache().put(dict.getCode(), childrenList);*/
-            addToCache(dict.getCode(),childrenList);
+            addToCache(dict.getCode(), childrenList);
         }
     }
 }

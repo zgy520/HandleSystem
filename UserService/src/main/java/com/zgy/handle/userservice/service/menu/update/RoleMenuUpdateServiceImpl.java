@@ -1,11 +1,11 @@
 package com.zgy.handle.userservice.service.menu.update;
 
+import com.zgy.handle.common.service.base.impl.BaseUpdateServiceImpl;
 import com.zgy.handle.userservice.model.menu.RoleMenu;
 import com.zgy.handle.userservice.model.menu.RoleMenuPK;
 import com.zgy.handle.userservice.repository.authority.role.RoleQueryRepository;
 import com.zgy.handle.userservice.repository.menu.MenuQueryRepository;
 import com.zgy.handle.userservice.repository.menu.RoleMenuUpdateRepository;
-import com.zgy.handle.userservice.service.base.impl.BaseUpdateServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

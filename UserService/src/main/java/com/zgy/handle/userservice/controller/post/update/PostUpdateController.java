@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.controller.post.update;
 
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.controller.post.convert.PostMapper;
 import com.zgy.handle.userservice.model.authority.Post;
 import com.zgy.handle.userservice.model.authority.PostDTO;
@@ -22,6 +22,7 @@ public class PostUpdateController extends BaseUpdateController<Post, PostDTO> {
     private PostMapper postMapper;
     private PostQueryService postQueryService;
     private PostUpdateService postUpdateService;
+
     public PostUpdateController(PostUpdateService postUpdateService, PostQueryService postQueryService) {
         super(postUpdateService, postQueryService);
         this.postQueryService = postQueryService;
@@ -35,14 +36,15 @@ public class PostUpdateController extends BaseUpdateController<Post, PostDTO> {
 
     /**
      * 角色关联用户
+     *
      * @param selectedUserList
      * @return
      */
     @PostMapping(value = "relateUser")
-    public ResponseCode<String> relateUser(Long postId, String selectedUserList){
+    public ResponseCode<String> relateUser(Long postId, String selectedUserList) {
         ResponseCode<String> responseCode = ResponseCode.sucess();
         log.info("角色ID为:" + postId.toString() + ",选择的用户为:" + selectedUserList);
-        responseCode.setData(postUpdateService.relateUser(postId,selectedUserList));
+        responseCode.setData(postUpdateService.relateUser(postId, selectedUserList));
         return responseCode;
     }
 }

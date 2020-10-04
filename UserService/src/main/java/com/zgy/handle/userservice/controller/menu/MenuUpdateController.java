@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.controller.menu;
 
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.controller.menu.convert.MenuUpdateMapper;
 import com.zgy.handle.userservice.model.dto.menu.MenuUpdateDTO;
 import com.zgy.handle.userservice.model.menu.Menu;

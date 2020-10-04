@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.controller.structure.depart.update;
 
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.model.authority.depart.DepartUpdateDTO;
 import com.zgy.handle.userservice.model.structure.Department;
 import com.zgy.handle.userservice.service.structure.depart.query.DepartQueryService;
@@ -20,6 +20,7 @@ public class DepartUpdateController extends BaseUpdateController<Department, Dep
     private DepartUpdateMapper departUpdateMapper;
     private DepartUpdateService departUpdateService;
     private DepartQueryService departQueryService;
+
     @Autowired
     public DepartUpdateController(DepartUpdateService departUpdateService, DepartQueryService departQueryService) {
         super(departUpdateService, departQueryService);
@@ -34,27 +35,29 @@ public class DepartUpdateController extends BaseUpdateController<Department, Dep
 
     /**
      * 部门关联用户
+     *
      * @param selectedUserList
      * @return
      */
     @PostMapping(value = "relateUser")
-    public ResponseCode<String> relateUser(Long departId, String selectedUserList){
+    public ResponseCode<String> relateUser(Long departId, String selectedUserList) {
         ResponseCode<String> responseCode = ResponseCode.sucess();
         log.info("角色ID为:" + departId.toString() + ",选择的用户为:" + selectedUserList);
-        responseCode.setData(departUpdateService.relateUser(departId,selectedUserList));
+        responseCode.setData(departUpdateService.relateUser(departId, selectedUserList));
         return responseCode;
     }
 
     /**
      * 部门关联岗位
+     *
      * @param selectedPostList
      * @return
      */
     @PostMapping(value = "relatePost")
-    public ResponseCode<String> relatePost(Long departId, String selectedPostList){
+    public ResponseCode<String> relatePost(Long departId, String selectedPostList) {
         ResponseCode<String> responseCode = ResponseCode.sucess();
         log.info("角色ID为:" + departId.toString() + ",选择的岗位为:" + selectedPostList);
-        responseCode.setData(departUpdateService.relatePost(departId,selectedPostList));
+        responseCode.setData(departUpdateService.relatePost(departId, selectedPostList));
         return responseCode;
     }
 }

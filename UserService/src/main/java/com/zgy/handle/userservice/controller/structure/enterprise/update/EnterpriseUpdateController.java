@@ -1,6 +1,6 @@
 package com.zgy.handle.userservice.controller.structure.enterprise.update;
 
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.controller.structure.enterprise.convert.EnterpriseUpdateMapper;
 import com.zgy.handle.userservice.model.dto.structure.EnterpriseUpdateDTO;
 import com.zgy.handle.userservice.model.structure.Enterprise;

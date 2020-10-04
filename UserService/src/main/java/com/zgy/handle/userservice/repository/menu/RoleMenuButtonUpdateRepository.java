@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.repository.menu;
 
+import com.zgy.handle.common.repository.base.UpdateRepository;
 import com.zgy.handle.userservice.model.menu.RoleMenuButton;
-import com.zgy.handle.userservice.repository.base.UpdateRepository;
 import org.springframework.stereotype.Repository;
 
 /**

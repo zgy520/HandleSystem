@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.repository.menu;
 
+import com.zgy.handle.common.repository.base.QueryRepository;
 import com.zgy.handle.userservice.model.menu.RoleMenu;
-import com.zgy.handle.userservice.repository.base.QueryRepository;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import java.util.List;
 public interface RoleMenuQueryRepository extends QueryRepository<RoleMenu> {
     /**
      * 根据角色ID获取菜单其下的所有菜单
+     *
      * @param roleId
      * @return
      */
@@ -18,6 +19,7 @@ public interface RoleMenuQueryRepository extends QueryRepository<RoleMenu> {
 
     /**
      * 根据菜单ID获取其对应的所有按钮的信息
+     *
      * @param menuId
      * @return
      */

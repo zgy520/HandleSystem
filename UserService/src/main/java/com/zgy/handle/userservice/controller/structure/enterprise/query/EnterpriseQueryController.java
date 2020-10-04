@@ -1,11 +1,11 @@
 package com.zgy.handle.userservice.controller.structure.enterprise.query;
 
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
 import com.zgy.handle.userservice.controller.structure.enterprise.convert.EnterpriseQueryMapper;
 import com.zgy.handle.userservice.model.dto.structure.EnterpriseQueryDTO;
 import com.zgy.handle.userservice.model.structure.Enterprise;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.structure.enterprise.query.EnterpriseQueryService;
 import com.zgy.handle.userservice.service.structure.enterprise.update.EnterpriseUpdateService;
 import lombok.extern.slf4j.Slf4j;

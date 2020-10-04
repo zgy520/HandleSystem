@@ -1,13 +1,13 @@
 package com.zgy.handle.userservice.controller.post.query;
 
 
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
 import com.zgy.handle.userservice.controller.post.convert.PostMapper;
 import com.zgy.handle.userservice.model.authority.Post;
 import com.zgy.handle.userservice.model.authority.PostDTO;
 import com.zgy.handle.userservice.model.common.TransferDTO;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.authority.post.query.PostQueryService;
 import com.zgy.handle.userservice.service.authority.post.update.PostUpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +26,7 @@ public class PostQueryController extends BaseQueryController<Post, PostDTO> {
     private PostMapper postMapper;
     private PostQueryService postQueryService;
     private PostUpdateService postUpdateService;
+
     public PostQueryController(PostUpdateService postUpdateService, PostQueryService postQueryService) {
         super(postUpdateService, postQueryService);
         this.postQueryService = postQueryService;

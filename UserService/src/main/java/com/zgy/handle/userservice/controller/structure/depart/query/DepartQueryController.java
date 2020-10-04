@@ -1,11 +1,11 @@
 package com.zgy.handle.userservice.controller.structure.depart.query;
 
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
 import com.zgy.handle.userservice.model.authority.depart.DepartQueryDTO;
 import com.zgy.handle.userservice.model.common.TransferDTO;
 import com.zgy.handle.userservice.model.structure.Department;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.structure.depart.query.DepartQueryService;
 import com.zgy.handle.userservice.service.structure.depart.update.DepartUpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +26,7 @@ public class DepartQueryController extends BaseQueryController<Department, Depar
     private DepartQueryMapper departQueryMapper;
     private DepartUpdateService departUpdateService;
     private DepartQueryService departQueryService;
+
     @Autowired
     public DepartQueryController(DepartUpdateService departUpdateService, DepartQueryService departQueryService) {
         super(departUpdateService, departQueryService);
@@ -79,11 +80,12 @@ public class DepartQueryController extends BaseQueryController<Department, Depar
 
     /**
      * 根据企业ID获取关联的岗位
+     *
      * @param departId
      * @return
      */
     @GetMapping(value = "getPostListByDepartId")
-    public ResponseCode<List<TransferDTO>> getPostListByDepartId(Long departId){
+    public ResponseCode<List<TransferDTO>> getPostListByDepartId(Long departId) {
         ResponseCode<List<TransferDTO>> responseCode = ResponseCode.sucess();
         responseCode.setData(departQueryService.getPostListByDepartId(departId));
         return responseCode;

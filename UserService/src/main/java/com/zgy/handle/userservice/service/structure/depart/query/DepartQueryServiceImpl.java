@@ -1,5 +1,6 @@
 package com.zgy.handle.userservice.service.structure.depart.query;
 
+import com.zgy.handle.common.service.base.impl.BaseQueryServiceImpl;
 import com.zgy.handle.userservice.model.authority.Post;
 import com.zgy.handle.userservice.model.authority.depart.DepartQueryDTO;
 import com.zgy.handle.userservice.model.common.TransferDTO;
@@ -9,9 +10,6 @@ import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.repository.authority.post.PostQueryRepository;
 import com.zgy.handle.userservice.repository.structure.depart.DepartQueryRepository;
 import com.zgy.handle.userservice.repository.user.query.AccountQueryRepository;
-import com.zgy.handle.userservice.service.base.impl.BaseQueryServiceImpl;
-import com.zgy.handle.userservice.service.structure.DepartmentAccountServiceBase;
-import com.zgy.handle.userservice.service.structure.DepartmentPostServiceBase;
 import com.zgy.handle.userservice.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +31,12 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
     private AccountQueryRepository accountQueryRepository;
     @Autowired
     private PostQueryRepository postQueryRepository;
-    @Autowired
+    /*@Autowired
     private DepartmentAccountServiceBase departmentAccountService;
     @Autowired
-    private DepartmentPostServiceBase departmentPostService;
+    private DepartmentPostServiceBase departmentPostService;*/
     private DepartQueryRepository departQueryRepository;
+
     @Autowired
     public DepartQueryServiceImpl(DepartQueryRepository departQueryRepository) {
         super(departQueryRepository);
@@ -45,10 +44,10 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
     }
 
     @Override
-    public List<DepartQueryDTO> getDepartmentDtoList(List<DepartQueryDTO> departQueryDTOList){
+    public List<DepartQueryDTO> getDepartmentDtoList(List<DepartQueryDTO> departQueryDTOList) {
         departQueryDTOList.stream().forEach(departmentDTO -> {
             Enterprise enterprise = this.fetchIndustry(Long.valueOf(departmentDTO.getId()));
-            if (enterprise != null){
+            if (enterprise != null) {
                 departmentDTO.setEnterpriseName(enterprise.getName());
                 departmentDTO.setEnterpriseId(enterprise.getId().toString());
             }
@@ -70,16 +69,16 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
         Optional<Department> departmentOptional = departQueryRepository.findById(departId);
         List<Account> accountList = accountQueryRepository.findAll();
         accountList.stream().forEach(account -> {
-            TransferDTO transferDTO = new TransferDTO(account.getId().toString(),account.getName(),false);
+            TransferDTO transferDTO = new TransferDTO(account.getId().toString(), account.getName(), false);
             selectDTOList.add(transferDTO);
         });
-        if (departmentOptional.isPresent()){
+        if (departmentOptional.isPresent()) {
             //Department department = departmentOptional.get();
-            List<Account> accountSet = departmentAccountService.getAccountListByDepartmentId(departId);
+            List<Account> accountSet = null; //departmentAccountService.getAccountListByDepartmentId(departId);
             if (accountSet != null) {
                 Set<String> accountIdSet = accountSet.stream().map(Account::getId).map(String::valueOf).collect(Collectors.toSet());
                 selectDTOList.stream().forEach(transferDTO -> {
-                    if (accountIdSet.contains(transferDTO.getKey())){
+                    if (accountIdSet.contains(transferDTO.getKey())) {
                         transferDTO.setSelected(true);
                     }
                 });
@@ -95,16 +94,16 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
         Optional<Department> departmentOptional = departQueryRepository.findById(departId);
         List<Post> postList = postQueryRepository.findAll();
         postList.stream().forEach(account -> {
-            TransferDTO transferDTO = new TransferDTO(account.getId().toString(),account.getName(),false);
+            TransferDTO transferDTO = new TransferDTO(account.getId().toString(), account.getName(), false);
             selectDTOList.add(transferDTO);
         });
-        if (departmentOptional.isPresent()){
+        if (departmentOptional.isPresent()) {
             //Department department = departmentOptional.get();
-            List<Post> postSet = departmentPostService.getPostListByDepartmentId(departId);
+            List<Post> postSet = null; //departmentPostService.getPostListByDepartmentId(departId);
             if (postSet != null) {
                 Set<String> postIdSet = postSet.stream().map(Post::getId).map(String::valueOf).collect(Collectors.toSet());
                 selectDTOList.stream().forEach(transferDTO -> {
-                    if (postIdSet.contains(transferDTO.getKey())){
+                    if (postIdSet.contains(transferDTO.getKey())) {
                         transferDTO.setSelected(true);
                     }
                 });
@@ -123,14 +122,15 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
 
     /**
      * 根据部门id获取部门对应的企业信息
+     *
      * @param departId
      * @return
      */
     @Transactional(readOnly = true)
-    public Enterprise fetchIndustry(Long departId){
+    public Enterprise fetchIndustry(Long departId) {
         Enterprise enterprise = null;
         Optional<Department> departmentOptional = this.findById(departId);
-        if (departmentOptional.isPresent()){
+        if (departmentOptional.isPresent()) {
             enterprise = departmentOptional.get().getEnterprise();
         }
         return enterprise;

@@ -1,13 +1,13 @@
 package com.zgy.handle.userservice.service.menu.update;
 
-import com.zgy.handle.userservice.model.common.UniqueInfo;
+import com.zgy.handle.common.model.common.UniqueInfo;
+import com.zgy.handle.common.service.base.impl.BaseUpdateServiceImpl;
 import com.zgy.handle.userservice.model.dto.menu.MenuUpdateDTO;
 import com.zgy.handle.userservice.model.menu.Button;
 import com.zgy.handle.userservice.model.menu.Menu;
 import com.zgy.handle.userservice.repository.menu.ButtonQueryRepository;
 import com.zgy.handle.userservice.repository.menu.MenuQueryRepository;
 import com.zgy.handle.userservice.repository.menu.MenuUpdateRepository;
-import com.zgy.handle.userservice.service.base.impl.BaseUpdateServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,14 +60,14 @@ public class MenuUpdateServiceImpl extends BaseUpdateServiceImpl<Menu, MenuUpdat
     public String relateButton(Long menuId, String selectedButtonList) {
         String result = "成功";
         Optional<Menu> optionalMenu = menuQueryRepository.findById(menuId);
-        if (optionalMenu.isPresent()){
+        if (optionalMenu.isPresent()) {
             Menu menu = optionalMenu.get();
             List<Long> buttonIdList = Arrays.asList(selectedButtonList.split(",")).stream().map(Long::valueOf).collect(Collectors.toList());
             Set<Button> buttonSet = buttonQueryRepository.findByIdIn(buttonIdList).stream().collect(Collectors.toSet());
             menu.setBtnSet(buttonSet);
             menuUpdateRepository.save(menu);
             return result;
-        }else {
+        } else {
             throw new EntityNotFoundException("不存在ID为：" + menuId.toString() + "的角色信息");
         }
     }

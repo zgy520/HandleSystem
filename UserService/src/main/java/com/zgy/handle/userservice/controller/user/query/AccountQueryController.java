@@ -1,8 +1,8 @@
 package com.zgy.handle.userservice.controller.user.query;
 
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.userservice.model.user.Account;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.model.user.cross.RolePostDTO;
 import com.zgy.handle.userservice.model.user.query.AccountQueryVo;
 import com.zgy.handle.userservice.service.user.query.AccountQueryService;
@@ -26,6 +26,7 @@ public class AccountQueryController extends BaseQueryController<Account, Account
 
     private final AccountQueryService accountQueryService;
     private final AccountUpdateService accountUpdateService;
+
     @Autowired
     public AccountQueryController(AccountQueryService accountQueryService, AccountUpdateService accountUpdateService) {
         super(accountUpdateService, accountQueryService);
@@ -36,9 +37,9 @@ public class AccountQueryController extends BaseQueryController<Account, Account
     @Override
     public void fillList(List<Account> entityList, List<AccountQueryVo> dtoList) {
         Instant start = Instant.now();
-        dtoList.stream().forEach(dto->{
+        dtoList.stream().forEach(dto -> {
             RolePostDTO rolePostDTO = accountQueryService.fetchRolePostName(Long.valueOf(dto.getId()));
-            if (rolePostDTO != null){
+            if (rolePostDTO != null) {
                 dto.setRoleList(rolePostDTO.getRoleList());
                 dto.setPostList(rolePostDTO.getPostList());
                 dto.setRoleIdList(rolePostDTO.getRoleIdList());
@@ -48,7 +49,7 @@ public class AccountQueryController extends BaseQueryController<Account, Account
             }
         });
         Instant end = Instant.now();
-        log.info("所用时间为:" + Duration.between(start,end));
+        log.info("所用时间为:" + Duration.between(start, end));
     }
 
     @Override

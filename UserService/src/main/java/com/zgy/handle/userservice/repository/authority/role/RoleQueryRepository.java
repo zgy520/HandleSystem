@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.repository.authority.role;
 
+import com.zgy.handle.common.repository.base.QueryRepository;
 import com.zgy.handle.userservice.model.authority.role.Role;
-import com.zgy.handle.userservice.repository.base.QueryRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

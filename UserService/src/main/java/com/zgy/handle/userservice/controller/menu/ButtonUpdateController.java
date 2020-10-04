@@ -1,6 +1,6 @@
 package com.zgy.handle.userservice.controller.menu;
 
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.controller.menu.convert.ButtonMapper;
 import com.zgy.handle.userservice.model.dto.menu.BtnDTO;
 import com.zgy.handle.userservice.model.menu.Button;

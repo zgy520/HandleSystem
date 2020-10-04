@@ -1,6 +1,6 @@
 package com.zgy.handle.userservice.controller.structure.industry.update;
 
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.model.dto.structure.IndustryUpdateDTO;
 import com.zgy.handle.userservice.model.structure.Industry;
 import com.zgy.handle.userservice.service.structure.industry.query.IndustryQueryService;

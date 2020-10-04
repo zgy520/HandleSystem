@@ -1,15 +1,19 @@
 package com.zgy.handle.userservice.repository.user.query;
 
+import com.zgy.handle.common.repository.base.QueryRepository;
 import com.zgy.handle.userservice.model.user.Account;
-import com.zgy.handle.userservice.repository.base.QueryRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author a4423
+ */
 @Repository
 public interface AccountQueryRepository extends QueryRepository<Account> {
     /**
      * 根据登录名称获取账号
+     *
      * @param loginName
      * @return
      */
@@ -18,6 +22,7 @@ public interface AccountQueryRepository extends QueryRepository<Account> {
 
     /**
      * 根据登录名称获取对应的数量
+     *
      * @param loginName
      * @return
      */
@@ -25,11 +30,12 @@ public interface AccountQueryRepository extends QueryRepository<Account> {
 
     /**
      * 获取特定id之外的对于登录名称的数量
+     *
      * @param loginName
      * @param id
      * @return
      */
-    Long countByLoginNameAndIdNot(String loginName,Long id);
+    Long countByLoginNameAndIdNot(String loginName, Long id);
 
     List<Account> findByIdIn(List<Long> accountIdList);
 

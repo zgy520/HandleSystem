@@ -1,6 +1,6 @@
 package com.zgy.handle.userservice.controller.param.dict.update;
 
-import com.zgy.handle.userservice.controller.base.BaseUpdateController;
+import com.zgy.handle.common.controller.base.BaseUpdateController;
 import com.zgy.handle.userservice.controller.param.convert.DictMapper;
 import com.zgy.handle.userservice.model.parameter.Dict;
 import com.zgy.handle.userservice.model.parameter.DictDTO;
@@ -19,6 +19,7 @@ public class DictUpdateController extends BaseUpdateController<Dict, DictDTO> {
     private DictMapper dictMapper;
     private DictQueryService dictQueryService;
     private DictUpdateService dictUpdateService;
+
     @Autowired
     public DictUpdateController(DictUpdateService dictUpdateService, DictQueryService dictQueryService) {
         super(dictUpdateService, dictQueryService);

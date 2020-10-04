@@ -1,12 +1,12 @@
 package com.zgy.handle.userservice.service.menu.query;
 
+import com.zgy.handle.common.service.base.impl.BaseQueryServiceImpl;
 import com.zgy.handle.userservice.model.common.TransferDTO;
 import com.zgy.handle.userservice.model.dto.menu.MenuQueryDTO;
 import com.zgy.handle.userservice.model.menu.Button;
 import com.zgy.handle.userservice.model.menu.Menu;
 import com.zgy.handle.userservice.model.menu.Menu_;
 import com.zgy.handle.userservice.repository.menu.MenuQueryRepository;
-import com.zgy.handle.userservice.service.base.impl.BaseQueryServiceImpl;
 import com.zgy.handle.userservice.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

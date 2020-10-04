@@ -1,10 +1,10 @@
 package com.zgy.handle.userservice.controller.structure.industry.query;
 
+import com.zgy.handle.common.controller.base.BaseQueryController;
+import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
-import com.zgy.handle.userservice.controller.base.BaseQueryController;
 import com.zgy.handle.userservice.model.dto.structure.IndustryQueryDTO;
 import com.zgy.handle.userservice.model.structure.Industry;
-import com.zgy.handle.userservice.model.user.SelectDTO;
 import com.zgy.handle.userservice.service.structure.industry.query.IndustryQueryService;
 import com.zgy.handle.userservice.service.structure.industry.update.IndustryUpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +44,7 @@ public class IndustryQueryController extends BaseQueryController<Industry, Indus
     public List<SelectDTO> convertTtoSelectDTOList(List<Industry> industries) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         industries.stream().forEach(industry -> {
-            SelectDTO selectDTO = new SelectDTO(industry.getId().toString(),industry.getName(),industry.getId().toString());
+            SelectDTO selectDTO = new SelectDTO(industry.getId().toString(), industry.getName(), industry.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;

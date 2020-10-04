@@ -1,13 +1,16 @@
 package com.zgy.handle.userservice.repository.menu;
 
+import com.zgy.handle.common.repository.base.QueryRepository;
 import com.zgy.handle.userservice.model.menu.Button;
-import com.zgy.handle.userservice.repository.base.QueryRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author a4423
+ */
 @Repository
 public interface ButtonQueryRepository extends QueryRepository<Button> {
 

@@ -1,11 +1,14 @@
 package com.zgy.handle.userservice.repository.authority.post;
 
+import com.zgy.handle.common.repository.base.QueryRepository;
 import com.zgy.handle.userservice.model.authority.Post;
-import com.zgy.handle.userservice.repository.base.QueryRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author a4423
+ */
 @Repository
 public interface PostQueryRepository extends QueryRepository<Post> {
 
