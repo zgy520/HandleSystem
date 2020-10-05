@@ -15,6 +15,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author a4423
+ */
 @Entity
 @Table(name = "system_role")
 @Data

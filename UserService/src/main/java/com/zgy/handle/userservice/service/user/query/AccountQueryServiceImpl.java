@@ -8,8 +8,10 @@ import com.zgy.handle.userservice.model.authority.role.Role;
 import com.zgy.handle.userservice.model.structure.Department;
 import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.model.user.Account_;
+import com.zgy.handle.userservice.model.user.RoleAccountDTO;
 import com.zgy.handle.userservice.model.user.cross.RolePostDepartDTO;
 import com.zgy.handle.userservice.model.user.query.AccountQueryVo;
+import com.zgy.handle.userservice.repository.authority.role.RoleQueryRepository;
 import com.zgy.handle.userservice.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userservice.service.structure.depart.query.DepartAccountQueryService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,14 +21,24 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author a4423
+ */
 @Service
 @Slf4j
 public class AccountQueryServiceImpl extends BaseQueryServiceImpl<Account, AccountQueryVo> implements AccountQueryService {
+    @PersistenceContext
+    private EntityManager entityManager;
+
+
      @Autowired
      private DepartAccountQueryService departAccountQueryService;
     private final AccountQueryRepository accountQueryRepository;
@@ -83,6 +95,16 @@ public class AccountQueryServiceImpl extends BaseQueryServiceImpl<Account, Accou
     @Override
     public Account findByLoginName(String loginName) {
         return accountQueryRepository.findByLoginName(loginName);
+    }
+
+    @Override
+    public List<Account> findAllAccountByXml() {
+        Query query = entityManager.createNamedQuery("findAccountByNativeSql");
+        List<RoleAccountDTO> accountList = query.getResultList();
+        //List<Account> accountNativeList = accountQueryRepository.findAccountByNativeSql();
+       // List<Role> roleList = roleQueryRepository.findRoleList();
+        log.info("获取到的账号的数量为:" + accountList.size() + "个");
+        return null;
     }
 
 

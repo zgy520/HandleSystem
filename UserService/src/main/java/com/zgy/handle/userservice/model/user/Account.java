@@ -22,6 +22,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author a4423
+ */
 @Data
 @Slf4j
 @Entity
@@ -30,6 +33,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true, of = {"id"})
 @SQLDelete(sql = "update system_account set isDeleted = true where id = ?")
 @Where(clause = BaseModel.SOFT_DELETED_CLAUSE)
+
 public class Account extends BaseModel implements Serializable {
     /*@Size(min = 10, max = 20, message = "姓名必须在10到20个字符之间")*/
     private String name;

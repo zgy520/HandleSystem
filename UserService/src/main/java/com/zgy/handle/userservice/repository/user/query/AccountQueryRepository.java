@@ -10,9 +10,11 @@ import com.zgy.handle.userservice.model.structure.DepartmentAccount;
 import com.zgy.handle.userservice.model.structure.Department_;
 import com.zgy.handle.userservice.model.user.Account;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.*;
+import java.lang.annotation.Native;
 import java.util.List;
 
 /**

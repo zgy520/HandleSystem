@@ -17,4 +17,6 @@ public interface DepartAccountQueryService extends QueryService<DepartmentAccoun
      * @return 部门信息
      */
     Department getByAccountId(Long accountId);
+
+
 }

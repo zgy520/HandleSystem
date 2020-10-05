@@ -27,7 +27,7 @@ public class Post extends BaseModel implements Serializable {
     @ManyToMany
     @JoinTable(name = "system_post_personal",
             joinColumns = {@JoinColumn(name = "postId")},
-            inverseJoinColumns = { @JoinColumn(name = "accountId")})
+            inverseJoinColumns = {@JoinColumn(name = "accountId")})
     @JsonIgnore
     @Singular("accountSet")
     @ToString.Exclude

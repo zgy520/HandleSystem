@@ -4,8 +4,11 @@ import com.zgy.handle.common.repository.base.QueryRepository;
 import com.zgy.handle.userservice.model.authority.role.Role;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RoleQueryRepository extends QueryRepository<Role> {
+
 
     /**
      * 根据代码或名称获取数量

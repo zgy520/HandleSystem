@@ -2,6 +2,7 @@ package com.zgy.handle.userservice.controller.user.query;
 
 import com.zgy.handle.common.controller.base.BaseQueryController;
 import com.zgy.handle.common.model.common.SelectDTO;
+import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.model.user.cross.RolePostDepartDTO;
 import com.zgy.handle.userservice.model.user.query.AccountQueryVo;
@@ -9,6 +10,7 @@ import com.zgy.handle.userservice.service.user.query.AccountQueryService;
 import com.zgy.handle.userservice.service.user.update.AccountUpdateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,5 +80,12 @@ public class AccountQueryController extends BaseQueryController<Account, Account
     @Override
     public Account convertUtoT(AccountQueryVo accountQueryVo) {
         return accountQueryMapper.toAccount(accountQueryVo);
+    }
+
+    @GetMapping(value = "getAllAccount")
+    public ResponseCode<List<Account>> getAllAccount(){
+        ResponseCode<List<Account>> responseCode = ResponseCode.sucess();
+        responseCode.setData(accountQueryService.findAllAccountByXml());
+        return responseCode;
     }
 }

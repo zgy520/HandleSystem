@@ -1,0 +1,35 @@
+<entity-mappings
+        version="2.1"
+        xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+            http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+
+    <named-query name="findAccountList">
+        <query>
+            <![CDATA[
+                SELECT account from Account account
+            ]]>
+        </query>
+    </named-query>
+    <named-query name="findRoleList">
+        <query>
+            <![CDATA[
+                SELECT role from Role role
+            ]]>
+        </query>
+    </named-query>
+
+    <named-native-query name="findAccountByNativeSql">
+        <query>
+            <![CDATA[
+            SELECT account.name as accountName,account.loginName as loginName,role.name as roleName, role.code as roleCode from system_account account
+            LEFT JOIN system_role_personal rolePersonal on rolePersonal.accountId = account.id
+            INNER JOIN system_role role on role.id = rolePersonal.roleId
+            ]]>
+
+        </query>
+    </named-native-query>
+
+
+</entity-mappings>

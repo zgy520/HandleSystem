@@ -5,6 +5,8 @@ import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.model.user.cross.RolePostDepartDTO;
 import com.zgy.handle.userservice.model.user.query.AccountQueryVo;
 
+import java.util.List;
+
 public interface AccountQueryService extends QueryService<Account, AccountQueryVo> {
     /**
      * 根据用户id获取对应的角色和岗位信息
@@ -22,6 +24,12 @@ public interface AccountQueryService extends QueryService<Account, AccountQueryV
      * @return
      */
     Account findByLoginName(String loginName);
+
+    /**
+     * 通过xml外部的sql获取所有的用户信息
+     * @return
+     */
+    List<Account> findAllAccountByXml();
 
 
 }
