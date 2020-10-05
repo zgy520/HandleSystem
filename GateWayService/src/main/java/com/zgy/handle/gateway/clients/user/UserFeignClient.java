@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient("userservice")
 public interface UserFeignClient {
-    @RequestMapping(method = RequestMethod.POST,value = "/account/findAccountByLoginName")
+    @RequestMapping(method = RequestMethod.GET,value = "/account/findAccountByLoginName")
     UserInfo getUserInfo(@RequestBody String loginName);
 }

@@ -12,7 +12,10 @@ import lombok.Getter;
 public enum ErrorNum {
     // 异常信息列表，需要根据不同的需要进行分类
     ERROR_SYSTEM(1, "系统异常"),
-    ERROR_NOT_FOUND_DATA(100, "未找到指定的数据");
+    ERROR_NOT_FOUND_DATA(100, "未找到指定的数据"),
+
+    // 登录异常
+    ERROR_LOGIN_LOGINNAME_NOT_FOUNT(101,"登录名不存在");
     private final Integer code;
     private final String message;
 

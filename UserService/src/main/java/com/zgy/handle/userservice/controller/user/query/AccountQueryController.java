@@ -3,7 +3,7 @@ package com.zgy.handle.userservice.controller.user.query;
 import com.zgy.handle.common.controller.base.BaseQueryController;
 import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.userservice.model.user.Account;
-import com.zgy.handle.userservice.model.user.cross.RolePostDTO;
+import com.zgy.handle.userservice.model.user.cross.RolePostDepartDTO;
 import com.zgy.handle.userservice.model.user.query.AccountQueryVo;
 import com.zgy.handle.userservice.service.user.query.AccountQueryService;
 import com.zgy.handle.userservice.service.user.update.AccountUpdateService;
@@ -38,14 +38,14 @@ public class AccountQueryController extends BaseQueryController<Account, Account
     public void fillList(List<Account> entityList, List<AccountQueryVo> dtoList) {
         Instant start = Instant.now();
         dtoList.stream().forEach(dto -> {
-            RolePostDTO rolePostDTO = accountQueryService.fetchRolePostName(Long.valueOf(dto.getId()));
-            if (rolePostDTO != null) {
-                dto.setRoleList(rolePostDTO.getRoleList());
-                dto.setPostList(rolePostDTO.getPostList());
-                dto.setRoleIdList(rolePostDTO.getRoleIdList());
-                dto.setPostIdList(rolePostDTO.getPostIdList());
-                dto.setDepartId(rolePostDTO.getDepartId());
-                dto.setDepartName(rolePostDTO.getDepartName());
+            RolePostDepartDTO rolePostDepartDTO = accountQueryService.fetchRolePostName(Long.valueOf(dto.getId()));
+            if (rolePostDepartDTO != null) {
+                dto.setRoleList(rolePostDepartDTO.getRoleList());
+                dto.setPostList(rolePostDepartDTO.getPostList());
+                dto.setRoleIdList(rolePostDepartDTO.getRoleIdList());
+                dto.setPostIdList(rolePostDepartDTO.getPostIdList());
+                dto.setDepartId(rolePostDepartDTO.getDepartId());
+                dto.setDepartName(rolePostDepartDTO.getDepartName());
             }
         });
         Instant end = Instant.now();

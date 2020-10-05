@@ -7,14 +7,17 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author a4423
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RolePostDTO {
-    private List<String> roleList = new ArrayList<>();
-    private List<String> roleIdList = new ArrayList<>();
-    private List<String> postList = new ArrayList<>();
-    private List<String> postIdList = new ArrayList<>();
+public class RolePostDepartDTO {
+    private List<String> roleList;
+    private List<String> roleIdList;
+    private List<String> postList;
+    private List<String> postIdList;
     private String departId;
     private String departName;
 }

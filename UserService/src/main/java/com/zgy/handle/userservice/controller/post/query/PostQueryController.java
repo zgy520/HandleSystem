@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,12 @@ public class PostQueryController extends BaseQueryController<Post, PostDTO> {
 
     @Override
     public List<SelectDTO> convertTtoSelectDTOList(List<Post> posts) {
-        return null;
+        List<SelectDTO> selectDTOList = new ArrayList<>();
+        posts.forEach(post -> {
+            SelectDTO selectDTO = new SelectDTO(post.getId().toString(),post.getName(),post.getId().toString());
+            selectDTOList.add(selectDTO);
+        });
+        return selectDTOList;
     }
 
     @Override

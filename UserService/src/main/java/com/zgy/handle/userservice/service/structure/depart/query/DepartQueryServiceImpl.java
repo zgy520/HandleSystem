@@ -126,6 +126,7 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
      * @param departId
      * @return
      */
+    @Override
     @Transactional(readOnly = true)
     public Enterprise fetchIndustry(Long departId) {
         Enterprise enterprise = null;
