@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
 
 /**
  * excel上传的处理类
@@ -77,7 +78,7 @@ public abstract class TemplateUploadService<T> extends RequestUserService {
                     importResult.addSaveFailArray(handleData(jsonArray, attachData));
                 }
                 Path errorPath = excelBase.writeErrorDataToExcel(importResult, importType);
-                if (errorPath != null && importResult.getValidateFailArray().size() > 0 || importResult.getSaveFailArray().size() > 0) {
+                if (errorPath != null && (importResult.getValidateFailArray().size() > 0 || importResult.getSaveFailArray().size() > 0)) {
                     log.info("错误路径为:" + errorPath.toString());
                     log.info("有错误的数据，需要提示导出");
                     responseCode.setSuccess(false);
@@ -91,7 +92,7 @@ public abstract class TemplateUploadService<T> extends RequestUserService {
     }
 
     private File convertMultiPartToFile(MultipartFile file) throws IOException {
-        File convFile = new File(file.getOriginalFilename());
+        File convFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
         FileOutputStream fos = new FileOutputStream(convFile);
         fos.write(file.getBytes());
         fos.close();
