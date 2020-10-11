@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -32,13 +34,14 @@ public abstract class ExcelImpl implements ExcelBase {
     private int totalRows;
     // 列数
     private int totalColumns;
-    // excel的所在路径
-    private final String excelPath;
+
+    // 所上传的Excel文件
+    private final File file;
     // 存放文件的导入结果
     private final ImportResult importResult;
 
-    public ExcelImpl(final String excelPath) {
-        this.excelPath = excelPath;
+    public ExcelImpl(final File file) {
+        this.file = file;
         this.importResult = new ImportResult();
         // 初始化相关的变量
         initWorkbookInfo();
@@ -49,13 +52,10 @@ public abstract class ExcelImpl implements ExcelBase {
      */
     private void initWorkbookInfo() {
         try {
-            if (Files.notExists(Paths.get(excelPath))) {
-                this.workbook = new HSSFWorkbook();
-            } else {
-                this.workbook = WorkbookFactory.create(new File(excelPath));
-                setActiveSheet(0);
-            }
-        } catch (IOException e) {
+            this.workbook = new XSSFWorkbook(this.file);
+            setActiveSheet(0);
+
+        } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
     }
@@ -312,6 +312,10 @@ public abstract class ExcelImpl implements ExcelBase {
         JSONArray finalArray = new JSONArray();
         finalArray.addAll(validateArray);
         finalArray.addAll(saveArray);
+
+        if (finalArray.size() == 0){
+            return null;
+        }
 
         String errorPath = ExcelFileUtils.getExcelErrorPath(importExcelType);
         Workbook errorWorkBook = new HSSFWorkbook();

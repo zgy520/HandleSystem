@@ -27,7 +27,7 @@ public class ImportTemplateFactory {
         }
         switch (businessType) {
             case ROLE:
-                return new RoleImportImpl(templatePath);
+                return new RoleImportImpl(null);
             default:
                 return null;
         }

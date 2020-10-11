@@ -3,16 +3,19 @@ package com.zgy.handle.userservice.service.excel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.zgy.excel.importExcel.ExcelBase;
-import com.zgy.excel.importExcel.ExcelFileUtils;
 import com.zgy.excel.importExcel.ImportResult;
 import com.zgy.excel.importExcel.ImportType;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.service.RequestUserService;
 import com.zgy.handle.userservice.core.error.ErrorNum;
 import com.zgy.handle.userservice.core.exception.BusinessException;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Path;
 
 /**
@@ -46,10 +49,10 @@ public abstract class TemplateUploadService<T> extends RequestUserService {
     /**
      * 获取Excel导入的处理模板
      *
-     * @param excelPath
+     * @param file 上传的文件
      * @return
      */
-    public abstract ExcelBase getExcelBase(String excelPath);
+    public abstract ExcelBase getExcelBase(File file);
 
     /**
      * 导入excel的具体实现类
@@ -57,14 +60,14 @@ public abstract class TemplateUploadService<T> extends RequestUserService {
      * @param file 上传的文件
      * @return 处理结果
      */
+    @SneakyThrows
     public ResponseCode<String> importExcel(MultipartFile file, String attachData) {
         ResponseCode<String> responseCode = ResponseCode.sucess();
         if (file.isEmpty()) {
             throw new BusinessException(ErrorNum.FILE_UPLOAD_NOT_FILE);
         } else {
             ImportType importType = new ImportType(businessType);
-            String excelPath = ExcelFileUtils.getExcelPath(file);
-            ExcelBase excelBase = this.getExcelBase(excelPath);
+            ExcelBase excelBase = this.getExcelBase(convertMultiPartToFile(file));
             if (excelBase.judgeTemplateEffective()) {
                 // 合法模板
                 JSONArray jsonArray = excelBase.readExcelData();
@@ -74,8 +77,8 @@ public abstract class TemplateUploadService<T> extends RequestUserService {
                     importResult.addSaveFailArray(handleData(jsonArray, attachData));
                 }
                 Path errorPath = excelBase.writeErrorDataToExcel(importResult, importType);
-                log.info("错误路径为:" + errorPath.toString());
-                if (importResult.getValidateFailArray().size() > 0 || importResult.getSaveFailArray().size() > 0) {
+                if (errorPath != null && importResult.getValidateFailArray().size() > 0 || importResult.getSaveFailArray().size() > 0) {
+                    log.info("错误路径为:" + errorPath.toString());
                     log.info("有错误的数据，需要提示导出");
                     responseCode.setSuccess(false);
                     responseCode.setMsg(errorPath.getFileName().toString());
@@ -85,5 +88,13 @@ public abstract class TemplateUploadService<T> extends RequestUserService {
             }
         }
         return responseCode;
+    }
+
+    private File convertMultiPartToFile(MultipartFile file) throws IOException {
+        File convFile = new File(file.getOriginalFilename());
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
+        return convFile;
     }
 }

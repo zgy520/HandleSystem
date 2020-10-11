@@ -3,16 +3,14 @@ package com.zgy.handle.userservice.service.authority.role.excel;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zgy.excel.importExcel.ExcelBase;
-import com.zgy.excel.importExcel.ExcelFileUtils;
-import com.zgy.excel.importExcel.ImportType;
 import com.zgy.handle.userservice.model.authority.role.Role;
 import com.zgy.handle.userservice.repository.authority.role.RoleUpdateRepository;
-import com.zgy.handle.userservice.service.excel.BusinessType;
 import com.zgy.handle.userservice.service.excel.TemplateUploadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +52,7 @@ public class RoleImportService extends TemplateUploadService<RoleImportImpl> {
     }
 
     @Override
-    public ExcelBase getExcelBase(String excelPath) {
-        return new RoleImportImpl(excelPath);
+    public ExcelBase getExcelBase(File file) {
+        return new RoleImportImpl(file);
     }
 }
