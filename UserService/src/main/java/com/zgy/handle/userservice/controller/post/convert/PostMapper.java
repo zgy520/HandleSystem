@@ -6,6 +6,9 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
+/**
+ * @author a4423
+ */
 @Mapper(componentModel = "spring")
 public interface PostMapper {
     PostDTO toPostDTO(Post post);

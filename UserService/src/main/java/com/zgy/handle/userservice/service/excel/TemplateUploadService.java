@@ -8,6 +8,8 @@ import com.zgy.excel.importExcel.ImportResult;
 import com.zgy.excel.importExcel.ImportType;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.service.RequestUserService;
+import com.zgy.handle.userservice.core.error.ErrorNum;
+import com.zgy.handle.userservice.core.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +25,16 @@ import java.nio.file.Path;
 public abstract class TemplateUploadService<T> extends RequestUserService {
 
     /**
+     * 业务类型，对应文件名
+     * 该值 有各个业务模块自己定义，自由定义，可区分即可
+     */
+    private String businessType;
+
+    public TemplateUploadService(String businessType) {
+        this.businessType = businessType;
+    }
+
+    /**
      * 对经过验证的数据进行处理，包括进行关联表的验证、数据的保持等
      *
      * @param jsonArray  已验证通过的数据
@@ -32,21 +44,27 @@ public abstract class TemplateUploadService<T> extends RequestUserService {
     public abstract JSONArray handleData(JSONArray jsonArray, String attachData);
 
     /**
+     * 获取Excel导入的处理模板
+     *
+     * @param excelPath
+     * @return
+     */
+    public abstract ExcelBase getExcelBase(String excelPath);
+
+    /**
      * 导入excel的具体实现类
      *
      * @param file 上传的文件
-     * @param businessType 业务类型
      * @return 处理结果
      */
-    public ResponseCode<String> importExcel(MultipartFile file, BusinessType businessType, String attachData) {
+    public ResponseCode<String> importExcel(MultipartFile file, String attachData) {
         ResponseCode<String> responseCode = ResponseCode.sucess();
         if (file.isEmpty()) {
-            responseCode.setSuccess(false);
-            responseCode.setMsg("请先上传文件!");
+            throw new BusinessException(ErrorNum.FILE_UPLOAD_NOT_FILE);
         } else {
-            ImportType importType = new ImportType(businessType.name(), businessType.name());
+            ImportType importType = new ImportType(businessType);
             String excelPath = ExcelFileUtils.getExcelPath(file);
-            ExcelBase excelBase = ImportTemplateFactory.getExcelImpl(businessType, importType, excelPath);
+            ExcelBase excelBase = this.getExcelBase(excelPath);
             if (excelBase.judgeTemplateEffective()) {
                 // 合法模板
                 JSONArray jsonArray = excelBase.readExcelData();
@@ -63,8 +81,7 @@ public abstract class TemplateUploadService<T> extends RequestUserService {
                     responseCode.setMsg(errorPath.getFileName().toString());
                 }
             } else {
-                responseCode.setSuccess(false);
-                responseCode.setMsg("请传入正确的模板");
+                throw new BusinessException(ErrorNum.FILE_UPLOAD_TEMPLATE_ERROR);
             }
         }
         return responseCode;

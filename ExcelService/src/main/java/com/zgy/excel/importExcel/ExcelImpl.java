@@ -26,16 +26,22 @@ public abstract class ExcelImpl implements ExcelBase {
     public final static String FAIL_REASON = "failReason";
     public final static String ATTACH_OPTION = "option:";
     private Workbook workbook;
-    private Sheet activeSheet; // 当前活跃的工作部
-    private int totalRows;  // 行数
-    private int totalColumns; // 列数
-    private final String excelPath; // excel的所在路径
-    private final ImportResult importResult; // 存放文件的导入结果
+    // 当前活跃的工作部
+    private Sheet activeSheet;
+    // 行数
+    private int totalRows;
+    // 列数
+    private int totalColumns;
+    // excel的所在路径
+    private final String excelPath;
+    // 存放文件的导入结果
+    private final ImportResult importResult;
 
     public ExcelImpl(final String excelPath) {
         this.excelPath = excelPath;
         this.importResult = new ImportResult();
-        initWorkbookInfo(); // 初始化相关的变量
+        // 初始化相关的变量
+        initWorkbookInfo();
     }
 
     /**
@@ -58,10 +64,11 @@ public abstract class ExcelImpl implements ExcelBase {
     public String[] getHeaders() {
         String[] headers = new String[this.totalColumns];
         if (totalRows > 0 && totalColumns > 0) {
+            DataFormatter formatter = new DataFormatter();
             // 获取第一行（header)的值
             Row headerRow = this.activeSheet.getRow(0);
             for (int i = 0; i < totalColumns; i++) {
-                headers[i] = headerRow.getCell(i).getStringCellValue();
+                headers[i] = formatter.formatCellValue(headerRow.getCell(i));
             }
         }
         LOGGER.info("获取到的标题为:" + String.join(",", headers));
@@ -298,8 +305,10 @@ public abstract class ExcelImpl implements ExcelBase {
     @Override
     public Path writeErrorDataToExcel(final ImportResult importResult, ImportType importExcelType) {
         LOGGER.info("开始写入验证失败的数据");
-        JSONArray validateArray = importResult.getValidateFailArray(); // 验证失败的数组
-        JSONArray saveArray = importResult.getSaveFailArray(); // 保存失败的数组
+        // 验证失败的数组
+        JSONArray validateArray = importResult.getValidateFailArray();
+        // 保存失败的数组
+        JSONArray saveArray = importResult.getSaveFailArray();
         JSONArray finalArray = new JSONArray();
         finalArray.addAll(validateArray);
         finalArray.addAll(saveArray);

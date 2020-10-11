@@ -2,8 +2,12 @@ package com.zgy.handle.userservice.service.authority.role.excel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zgy.excel.importExcel.ExcelBase;
+import com.zgy.excel.importExcel.ExcelFileUtils;
+import com.zgy.excel.importExcel.ImportType;
 import com.zgy.handle.userservice.model.authority.role.Role;
 import com.zgy.handle.userservice.repository.authority.role.RoleUpdateRepository;
+import com.zgy.handle.userservice.service.excel.BusinessType;
 import com.zgy.handle.userservice.service.excel.TemplateUploadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +22,14 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class RoleImportService extends TemplateUploadService<Role> {
+public class RoleImportService extends TemplateUploadService<RoleImportImpl> {
     @Autowired
     private RoleUpdateRepository roleUpdateRepository;
+
+    public RoleImportService() {
+        super("ROLE");
+    }
+
 
     @Override
     public JSONArray handleData(JSONArray jsonArray, String attachData) {
@@ -42,5 +51,10 @@ public class RoleImportService extends TemplateUploadService<Role> {
         }
         roleUpdateRepository.saveAll(roleList);
         return failArray;
+    }
+
+    @Override
+    public ExcelBase getExcelBase(String excelPath) {
+        return new RoleImportImpl(excelPath);
     }
 }

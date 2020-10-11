@@ -13,6 +13,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author a4423
+ */
 @SpringBootApplication
 //@EnableResourceServer
 public class UserApplication {
@@ -23,13 +26,8 @@ public class UserApplication {
         RestTemplate template = new RestTemplate();
 
         List interceptors = template.getInterceptors();
-        if (interceptors == null){
-            template.setInterceptors(Collections.singletonList(new UserContextInterceptor()));
-        }else {
-            interceptors.add(new UserContextInterceptor());
-            template.setInterceptors(interceptors);
-        }
-
+        interceptors.add(new UserContextInterceptor());
+        template.setInterceptors(interceptors);
         return template;
     }
 

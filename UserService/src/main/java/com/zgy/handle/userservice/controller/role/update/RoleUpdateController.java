@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * @author a4423
+ */
 @RestController
 @RequestMapping(value = "role/update")
 @Slf4j
@@ -55,7 +58,8 @@ public class RoleUpdateController extends BaseUpdateController<Role, RoleDTO> {
     }
 
     @PostMapping(value = "importRole")
-    public ResponseCode<String> importRole(@RequestParam(value = "file") MultipartFile file, BusinessType businessType, String attachData) {
-        return roleImportService.importExcel(file, businessType, attachData);
+    public ResponseCode<String> importRole(@RequestParam(value = "file") MultipartFile file,String attachData) {
+        log.info("attachData: " + attachData);
+        return roleImportService.importExcel(file, attachData);
     }
 }

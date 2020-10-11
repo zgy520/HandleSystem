@@ -10,19 +10,24 @@ public class ImportType {
     final String filePath;
     final String fileName;
     final String fileExtend;
-    public ImportType(String businessType,String filePath, String fileName, String fileExtend){
+
+    public ImportType(String businessType, String filePath, String fileName, String fileExtend) {
         this.businessType = businessType;
         this.filePath = filePath;
         this.fileName = fileName;
         this.fileExtend = fileExtend;
     }
 
-    public ImportType(String businessType,String filePath, String fileName){
-        this(businessType,filePath,fileName,".xlsx");
+    public ImportType(String businessType, String filePath, String fileName) {
+        this(businessType, filePath, fileName, ".xlsx");
     }
 
-    public ImportType(String businessType, String fileName){
-        this(businessType,businessType,fileName,".xlsx");
+    public ImportType(String businessType) {
+        this(businessType, businessType, businessType, ".xlsx");
+    }
+
+    public ImportType(String businessType, String fileName) {
+        this(businessType, businessType, fileName, ".xlsx");
     }
 
     public String getFilePath() {
