@@ -1,5 +1,7 @@
 package com.zgy.handle.userservice.controller.role.query;
 
+import com.zgy.excel.export.ExportTools;
+import com.zgy.excel.export.config.ExcelExportConfig;
 import com.zgy.handle.common.controller.base.BaseQueryController;
 import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
@@ -38,7 +40,7 @@ public class RoleQueryController extends BaseQueryController<Role, RoleDTO> {
     public List<SelectDTO> convertTtoSelectDTOList(List<Role> roles) {
         List<SelectDTO> selectDTOList = new ArrayList<>();
         roles.stream().forEach(role -> {
-            SelectDTO selectDTO = new SelectDTO(role.getId().toString(),role.getName(),role.getId().toString());
+            SelectDTO selectDTO = new SelectDTO(role.getId().toString(), role.getName(), role.getId().toString());
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
@@ -69,6 +71,16 @@ public class RoleQueryController extends BaseQueryController<Role, RoleDTO> {
         });*/
         responseCode.setData(roleQueryService.getAccountListByRoleId(roleId));
         return responseCode;
+    }
+
+    @GetMapping(value = "exportRole")
+    public void exportRole() throws Exception {
+        ExportTools<RoleDTO> exportTools = new ExportTools<>();
+        List<Role> roleList = roleQueryService.findAll();
+        String downloadFilePath = exportTools.generateExcel("",roleMapper.toRoleDTOs(roleList),RoleDTO.class);
+
+
+
     }
 
 

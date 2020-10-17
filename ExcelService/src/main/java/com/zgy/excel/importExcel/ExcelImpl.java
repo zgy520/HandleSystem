@@ -23,6 +23,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+/**
+ * @author a4423
+ * Excel导入的基础实现类
+ * 仅支持2007及以后版本的导入
+ */
 public abstract class ExcelImpl implements ExcelBase {
     protected final static Logger LOGGER = LoggerFactory.getLogger(ExcelImpl.class);
     public final static String FAIL_REASON = "failReason";
@@ -184,7 +189,8 @@ public abstract class ExcelImpl implements ExcelBase {
      * 设置行和列的数量
      */
     private void setTotalCount() {
-        this.totalRows = this.activeSheet.getLastRowNum() + 1; // 设置总行数
+        // 设置总行数
+        this.totalRows = this.activeSheet.getLastRowNum() + 1;
         if (this.totalRows > 0) {
             this.totalColumns = this.activeSheet.getRow(0).getLastCellNum();
         } else {
@@ -313,7 +319,7 @@ public abstract class ExcelImpl implements ExcelBase {
         finalArray.addAll(validateArray);
         finalArray.addAll(saveArray);
 
-        if (finalArray.size() == 0){
+        if (finalArray.size() == 0) {
             return null;
         }
 
