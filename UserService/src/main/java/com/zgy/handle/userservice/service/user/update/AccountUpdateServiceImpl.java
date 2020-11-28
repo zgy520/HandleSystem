@@ -2,17 +2,28 @@ package com.zgy.handle.userservice.service.user.update;
 
 import com.zgy.handle.common.model.common.UniqueInfo;
 import com.zgy.handle.common.service.base.impl.BaseUpdateServiceImpl;
+import com.zgy.handle.userservice.core.error.ErrorNum;
+import com.zgy.handle.userservice.core.exception.BusinessException;
+import com.zgy.handle.userservice.model.structure.DepartPersonalType;
 import com.zgy.handle.userservice.model.structure.Department;
+import com.zgy.handle.userservice.model.structure.DepartmentAccount;
+import com.zgy.handle.userservice.model.structure.DepartmentAccountPK;
 import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.model.user.update.AccountUpdateVo;
+import com.zgy.handle.userservice.repository.structure.depart.DepartAccountUpdateRepository;
+import com.zgy.handle.userservice.repository.structure.depart.DepartQueryRepository;
 import com.zgy.handle.userservice.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userservice.repository.user.update.AccountUpdateRepository;
+import com.zgy.handle.userservice.service.structure.depart.query.DepartQueryService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -31,6 +42,12 @@ public class AccountUpdateServiceImpl extends BaseUpdateServiceImpl<Account, Acc
     private DepartmentAccountServiceBase departmentAccountService;*/
     @Autowired
     private AccountQueryRepository accountQueryRepository;
+    @Autowired
+    private DepartQueryService departQueryService;
+    @Autowired
+    private DepartQueryRepository departQueryRepository;
+    @Autowired
+    private DepartAccountUpdateRepository departAccountUpdateRepository;
 
     private final AccountUpdateRepository accountUpdateRepository;
 
@@ -67,9 +84,11 @@ public class AccountUpdateServiceImpl extends BaseUpdateServiceImpl<Account, Acc
     @Override
     public void postUpdate(Account account, AccountUpdateVo accountUpdateVo) {
         if (accountUpdateVo.getDepartId() != null) {
-            Optional<Department> departmentOptional = null; //departmentService.findById(accountUpdateVo.getDepartId());
+
+            Optional<Department> departmentOptional = getDepartmentById(accountUpdateVo.getDepartId());
             if (departmentOptional.isPresent()) {
-                //departmentAccountService.setDepartmentAccount(account, departmentOptional.get());
+                Department department = departmentOptional.get();
+                department.addAccount(account);
             }
         }
     }
@@ -81,5 +100,26 @@ public class AccountUpdateServiceImpl extends BaseUpdateServiceImpl<Account, Acc
             return UniqueInfo.getUniqueInfo("登录名称重复");
         }
         return super.checkUnique(accountUpdateVo, account);
+    }
+
+    private Optional<Department> getDepartmentById(Long departId) {
+        return departQueryRepository.findById(departId);
+    }
+
+    @Transactional(rollbackFor = {BusinessException.class, EntityNotFoundException.class})
+    @Override
+    public void updateAccountWithDepart(Long userId, Long departId) {
+        Account account = accountQueryRepository.getOne(userId);
+        if (account == null) {
+            throw new BusinessException(ErrorNum.ERROR_NOT_FOUND_DATA);
+        }
+        Department department = departQueryRepository.getOne(departId);
+        if (department == null) {
+            throw new BusinessException(ErrorNum.ERROR_NOT_FOUND_DATA);
+        }
+//        Department referenceDepart = entityManager.getReference(Department.class,departId);
+
+        department.addAccount(account);
+
     }
 }

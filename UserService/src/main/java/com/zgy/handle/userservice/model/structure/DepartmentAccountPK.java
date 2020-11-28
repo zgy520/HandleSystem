@@ -1,6 +1,8 @@
 package com.zgy.handle.userservice.model.structure;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -11,6 +13,8 @@ import java.util.Objects;
  */
 @Embeddable
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class DepartmentAccountPK implements Serializable {
     private Long departId;
     private Long accountId;

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,6 +17,7 @@ public class AccountQueryVo extends BaseDTO {
     private String loginName;
     private String email; // email地址
     private String note;
+    private Date expiredDate;
     private List<String> roleList =  new ArrayList<>(); // 角色列表
     private List<String> postList = new ArrayList<>(); // 岗位列表
     private String departName;

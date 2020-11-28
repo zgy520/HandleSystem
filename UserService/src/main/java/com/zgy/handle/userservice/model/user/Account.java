@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.userservice.model.BaseModel;
 import com.zgy.handle.userservice.model.authority.Post;
 import com.zgy.handle.userservice.model.authority.role.Role;
+import com.zgy.handle.userservice.model.structure.Department;
 import com.zgy.handle.userservice.model.structure.DepartmentAccount;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,6 +21,7 @@ import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -55,7 +57,7 @@ public class Account extends BaseModel implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date expiredDate;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "system_role_personal",
             joinColumns = {@JoinColumn(name = "accountId")},
             inverseJoinColumns = {@JoinColumn(name = "roleId")})
@@ -63,7 +65,7 @@ public class Account extends BaseModel implements Serializable {
     @Singular("roleSet")
     @JsonIgnore
     private Set<Role> roleSet = new HashSet<>();
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "system_post_personal",
             joinColumns = {@JoinColumn(name = "accountId")},
             inverseJoinColumns = {@JoinColumn(name = "postId")})
@@ -72,9 +74,13 @@ public class Account extends BaseModel implements Serializable {
     @Singular("postSet")
     private Set<Post> postSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, orphanRemoval = true)
+    @ManyToMany(mappedBy = "accountSet")
+    @ToString.Exclude
+    private Set<Department> departmentSet= new HashSet<>();
+
+    /*@OneToMany(mappedBy = "account", fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
-    private Set<DepartmentAccount> departmentAccounts = new HashSet<>();
+    private Set<DepartmentAccount> departmentAccounts = new HashSet<>();*/
 
     public void addRole(Role role) {
         this.roleSet.add(role);
@@ -85,4 +91,5 @@ public class Account extends BaseModel implements Serializable {
         this.roleSet.remove(role);
         //role.getAccountSet().remove(this);
     }
+
 }

@@ -17,6 +17,7 @@
         <module>KnowledgeService</module>
         <module>ExcelService</module>
         <module>CardService</module>
+        <module>StockService</module>
     </modules>
 
     <parent>

@@ -54,8 +54,10 @@ public class AccountQueryServiceImpl extends BaseQueryServiceImpl<Account, Accou
         Specification<Account> specification = Specification
                 .where(StringUtils.isBlank(dto.getName()) ? null : accountQueryRepository.fieldLike(Account_.NAME, dto.getName()))
                 .and(StringUtils.isBlank(dto.getLoginName()) ? null : accountQueryRepository.fieldLike(Account_.LOGIN_NAME,dto.getLoginName()))
-                .and(StringUtils.isBlank(dto.getDepartName()) ? null : AccountQueryRepository.departNameLike(dto.getDepartName()))
+                .and(StringUtils.isBlank(dto.getEmail()) ? null : accountQueryRepository.fieldLike(Account_.EMAIL,dto.getEmail()))
+//                .and(StringUtils.isBlank(dto.getDepartName()) ? null : AccountQueryRepository.departNameLike(dto.getDepartName()))
                 .and(StringUtils.isBlank(dto.getRoleName()) ? null : AccountQueryRepository.roleNameLike(dto.getRoleName()))
+                .and(StringUtils.isBlank(dto.getNote()) ? null : accountQueryRepository.fieldLike(Account_.NOTE,dto.getNote()))
                 .and(StringUtils.isNotBlank(dto.getPostName()) ? AccountQueryRepository.postNameLike(dto.getPostName()) : null);
         return specification;
     }

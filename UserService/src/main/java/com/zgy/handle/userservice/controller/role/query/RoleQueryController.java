@@ -66,6 +66,7 @@ public class RoleQueryController extends BaseQueryController<Role, RoleDTO> {
         ResponseCode<List<TransferDTO>> responseCode = ResponseCode.sucess();
         /*Set<Account> accountSet = roleQueryService.getAccountListByRoleId(roleId);
         accountSet.stream().forEach(account -> {
+
             SelectDTO selectDTO = new SelectDTO(account.getId().toString(),account.getName(),account.getId().toString());
             selectDTOList.add(selectDTO);
         });*/

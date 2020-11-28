@@ -1,6 +1,7 @@
 package com.zgy.handle.common.controller.base;
 
 import com.zgy.handle.common.model.common.SelectDTO;
+import com.zgy.handle.common.model.page.PageInfo;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.service.base.QueryService;
 import com.zgy.handle.common.service.base.UpdateService;
@@ -39,9 +40,29 @@ public abstract class BaseQueryController<T,U> extends BaseController<T> {
      * @return
      */
     @GetMapping(value = "list")
-    public ResponseCode<List<U>> list(@PageableDefault(page = 1,size = 10) Pageable pageable, U dto){
+    public ResponseCode<List<U>> list(Pageable pageable, U dto){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
-        pageable = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), pageable.getSort());
+        pageable = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
+        log.info(pageable.getSort().toString());
+        Page<T> page = queryService.findByDynamicQuery(pageable,dto);
+        List<T> contentList = page.getContent();
+        List<U> dtoList = convertTtoU(contentList);
+        responseCode.setPageInfo(page);
+        fillList(contentList,dtoList);
+        responseCode.setData(dtoList);
+        return responseCode;
+    }
+
+    /**
+     * 获取列表
+     * @param pageInfo
+     * @param dto
+     * @return
+     */
+    @GetMapping(value = "page")
+    public ResponseCode<List<U>> list(PageInfo pageInfo, U dto){
+        ResponseCode<List<U>> responseCode = ResponseCode.sucess();
+        Pageable pageable = PageRequest.of(pageInfo.getCurrent() - 1, pageInfo.getPageSize());
         log.info(pageable.getSort().toString());
         Page<T> page = queryService.findByDynamicQuery(pageable,dto);
         List<T> contentList = page.getContent();

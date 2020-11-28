@@ -25,7 +25,7 @@ public class BaseModel {
 
     @Id
     @GeneratedValue(generator = "uuid_short")
-    @GenericGenerator(name = "uuid_short",strategy = "com.zgy.handle.userservice.model.hibernate.UUIDGenerator")
+    @GenericGenerator(name = "uuid_short",strategy = "com.zgy.handle.common.hibernate.UUIDGenerator")
     @Column(name = "id",nullable = false)
     @JSONField(serializeUsing = ToStringSerializer.class)
     protected Long id;

@@ -26,14 +26,14 @@ public class DepartmentAccount implements Serializable {
     @EmbeddedId
     private DepartmentAccountPK id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("departId")
-    @JoinColumn(name = "departId")
+    @JoinColumn(name = "departId",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     private Department department;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("accountId")
-    @JoinColumn(name = "accountId")
+    @JoinColumn(name = "accountId",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     private Account account;
 
     // 部门人员级别

@@ -18,30 +18,54 @@ import java.io.Serializable;
 @Slf4j
 public class Personal extends BaseModel implements Serializable {
 
-    // 人员编码
+    /**
+     * 人员编码
+     */
     private String code;
-    // 姓名
+    /**
+     * 姓名
+     */
     private String name;
-    // 昵称
+    /**
+     * 昵称
+     */
     private String nickName;
-    // 邮箱
+    /**
+     * 邮箱
+     */
     private String phoneNumber;
-    // 人员状态（在校、离校）
+    /**
+     * 人员状态（在校、离校）
+     */
     private String personalStatus;
-    // email地址
+    /**
+     * email地址
+     */
     @Email
     private String email;
-    // 唯一编号
+    /**
+     * 唯一编号
+     */
     private String identity;
-    // 性别
+    /**
+     * 性别
+     */
     private int sex;
-    // 地址
+    /**
+     * 地址
+     */
     private String address;
-    // 关联账号的ID
+    /**
+     * 关联账号的ID
+     */
     private Long accountId;
-    // 卡号
+    /**
+     *  卡号
+     */
     private String cardNum;
-    // 用户卡的状态
+    /**+
+     * 用户卡的状态
+     */
     @Enumerated(EnumType.STRING)
     private CardStatusEnum cardStatusEnum;
 }

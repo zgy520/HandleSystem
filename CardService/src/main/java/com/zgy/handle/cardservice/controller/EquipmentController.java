@@ -24,4 +24,5 @@ public class EquipmentController {
     public void listById(Long equipmentId){
         equipmentService.findById(equipmentId);
     }
+
 }

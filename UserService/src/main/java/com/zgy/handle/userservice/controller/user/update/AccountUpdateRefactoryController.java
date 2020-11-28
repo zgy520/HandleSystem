@@ -1,15 +1,20 @@
 package com.zgy.handle.userservice.controller.user.update;
 
 import com.zgy.handle.common.controller.base.BaseUpdateController;
+import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.model.user.update.AccountUpdateVo;
 import com.zgy.handle.userservice.service.user.query.AccountQueryService;
 import com.zgy.handle.userservice.service.user.update.AccountUpdateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author a4423
+ */
 @RestController
 @RequestMapping(value = "account/update")
 @Slf4j
@@ -30,4 +35,11 @@ public class AccountUpdateRefactoryController extends BaseUpdateController<Accou
     public Account convertUtoT(AccountUpdateVo accountUpdateVo) {
         return accountUpdateMapper.toAccount(accountUpdateVo);
     }
+
+    @PostMapping(value = "updateAccountWithDepart")
+    public ResponseCode<String> updateAccountWithDepart(Long userId, Long departId) {
+        accountUpdateService.updateAccountWithDepart(userId, departId);
+        return ResponseCode.sucess();
+    }
+
 }

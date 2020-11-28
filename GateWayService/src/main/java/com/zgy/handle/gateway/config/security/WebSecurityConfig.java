@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/authenticate","/fileUpdataApi/upload","/v2/**",
                 "/swagger-resources/**",
-                "/swagger-ui.html/**", "/webjars/**","/userservice/v2/api-docs","/knowledgeservice/v2/api-docs","/cardservice/v2/api-docs").permitAll()
+                "/swagger-ui.html/**", "/webjars/**","/userservice/v2/api-docs","/knowledgeservice/v2/api-docs","/cardservice/v2/api-docs","/cardservice/v2/api-docs","/stockservice/v2/api-docs").permitAll()
                 .anyRequest().authenticated().and().
                 exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and().sessionManagement()

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -29,6 +30,7 @@ public class BaseModel {
     @GenericGenerator(name = "uuid_short",strategy = "com.zgy.handle.userservice.model.hibernate.UUIDGenerator")
     @Column(name = "id",nullable = false)
     @JSONField(serializeUsing = ToStringSerializer.class)
+    @EqualsAndHashCode.Include
     protected Long id;
 
     @JsonIgnore

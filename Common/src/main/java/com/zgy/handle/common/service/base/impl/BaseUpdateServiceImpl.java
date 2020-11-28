@@ -9,6 +9,7 @@ import com.zgy.handle.common.response.ResponseCode;
 
 import com.zgy.handle.common.service.base.UpdateService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public abstract class BaseUpdateServiceImpl<T, U> extends BaseServiceImpl<T> imp
 
 
     @Override
+    @Transactional
     public ResponseCode<T> update(U u, T t) {
         ResponseCode<T> responseCode = ResponseCode.sucess();
         UniqueInfo uniqueInfo = checkUnique(u, t);

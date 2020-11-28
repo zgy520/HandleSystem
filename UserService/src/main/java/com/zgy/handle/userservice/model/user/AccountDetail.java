@@ -8,6 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
 
+/**
+ * @author a4423
+ */
 @Entity
 @Table(name = "system_account_detail")
 @Data
@@ -25,13 +28,37 @@ public class AccountDetail implements Serializable {
     @JoinColumn(name = "id")
     private Account account;
 
-    private String code; // 人员编码
-    private String name; // 姓名
-    private String nickName; // 昵称
-    private String phoneNumber; // 手机号
+    /**
+     * 人员编码
+     */
+    private String code;
+    /**
+     * 姓名
+     */
+    private String name;
+    /**
+     * 昵称
+     */
+    private String nickName;
+    /**
+     * 手机号
+     */
+    private String phoneNumber;
+    /**
+     * email地址
+     */
     @Email
-    private String email; // email地址
-    private String identity; // 唯一编号
-    private int sex; // 性别
-    private String address; // 地址
+    private String email;
+    /**
+     * 唯一编号
+     */
+    private String identity;
+    /**
+     * 性别
+     */
+    private int sex;
+    /**
+     * 地址
+     */
+    private String address;
 }
