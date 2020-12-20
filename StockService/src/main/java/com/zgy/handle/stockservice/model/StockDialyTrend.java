@@ -1,12 +1,17 @@
 package com.zgy.handle.stockservice.model;
 
 import com.zgy.handle.common.model.BaseModel;
+import com.zgy.handle.stockservice.enums.ChangeStatus;
+import com.zgy.handle.stockservice.enums.CloseStatus;
+import com.zgy.handle.stockservice.enums.OpeningStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
 /**
@@ -48,4 +53,36 @@ public class StockDialyTrend extends BaseModel {
      * 整体走势
      */
     private String trend;
+
+    /**
+     * 开盘状态
+     */
+    @Enumerated(EnumType.STRING)
+    private OpeningStatus openingStatus;
+    /**
+     * 尾盘状态
+     */
+    @Enumerated(EnumType.STRING)
+    private CloseStatus closeStatus;
+
+    /**
+     * 当天重要事件
+     */
+    private String importantEvent;
+
+
+    /**
+     * 变动情况
+     */
+    @Enumerated(EnumType.STRING)
+    private ChangeStatus changeStatus;
+    /**
+     * 持续天数
+     */
+    private Integer continueDays;
+
+//    /**
+//     * 评论情感：积极还是消极
+//     */
+//    private String commentFelling;
 }

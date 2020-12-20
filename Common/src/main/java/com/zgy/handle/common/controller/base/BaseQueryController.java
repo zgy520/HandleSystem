@@ -62,6 +62,14 @@ public abstract class BaseQueryController<T,U> extends BaseController<T> {
     @GetMapping(value = "page")
     public ResponseCode<List<U>> list(PageInfo pageInfo, U dto){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
+        if (pageInfo.getCurrent() == null){
+            // 默认第一页
+            pageInfo.setCurrent(1);
+        }
+        if (pageInfo.getPageSize() == null){
+            // 默认10条
+            pageInfo.setPageSize(10);
+        }
         Pageable pageable = PageRequest.of(pageInfo.getCurrent() - 1, pageInfo.getPageSize());
         log.info(pageable.getSort().toString());
         Page<T> page = queryService.findByDynamicQuery(pageable,dto);

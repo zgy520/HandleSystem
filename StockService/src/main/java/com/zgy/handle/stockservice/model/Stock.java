@@ -20,5 +20,10 @@ import javax.persistence.Table;
 public class Stock extends BaseModel {
     private String name;
     private String code;
+    /**
+     *
+     * 类型： 海上（sh）还是深圳(sz)
+     */
+    private String type;
 
 }

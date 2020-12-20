@@ -42,16 +42,7 @@ public class StockDaily extends BaseModel {
      * 成交量
      */
     private Integer tradingVolume;
-    /**
-     * 开盘状态
-     */
-    @Enumerated(EnumType.STRING)
-    private OpeningStatus openingStatus;
-    /**
-     * 尾盘状态
-     */
-    @Enumerated(EnumType.STRING)
-    private CloseStatus closeStatus;
+
 
     /**
      * 大盘涨幅
@@ -62,13 +53,5 @@ public class StockDaily extends BaseModel {
      */
     private Double zdEndPrice;
 
-    /**
-     * 当天重要事件
-     */
-    private String importantEvent;
 
-    /**
-     * 评论情感：积极还是消极
-     */
-    private String commentFelling;
 }
