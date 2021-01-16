@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +44,6 @@ public abstract class BaseQueryController<T,U> extends BaseController<T> {
     public ResponseCode<List<U>> list(Pageable pageable, U dto){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
         pageable = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
-        log.info(pageable.getSort().toString());
         Page<T> page = queryService.findByDynamicQuery(pageable,dto);
         List<T> contentList = page.getContent();
         List<U> dtoList = convertTtoU(contentList);
@@ -70,8 +70,10 @@ public abstract class BaseQueryController<T,U> extends BaseController<T> {
             // 默认10条
             pageInfo.setPageSize(10);
         }
-        Pageable pageable = PageRequest.of(pageInfo.getCurrent() - 1, pageInfo.getPageSize());
-        log.info(pageable.getSort().toString());
+        Pageable pageable = pageable = PageRequest.of(pageInfo.getCurrent() - 1, pageInfo.getPageSize());
+        if (pageable.getSort()== Sort.unsorted()){
+            pageable = PageRequest.of(pageInfo.getCurrent() - 1, pageInfo.getPageSize(),Sort.by(Sort.Direction.DESC,"createTime"));
+        }
         Page<T> page = queryService.findByDynamicQuery(pageable,dto);
         List<T> contentList = page.getContent();
         List<U> dtoList = convertTtoU(contentList);

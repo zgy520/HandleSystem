@@ -12,9 +12,11 @@ import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.model.user.update.AccountUpdateVo;
 import com.zgy.handle.userservice.repository.structure.depart.DepartAccountUpdateRepository;
 import com.zgy.handle.userservice.repository.structure.depart.DepartQueryRepository;
+import com.zgy.handle.userservice.repository.structure.depart.DepartUpdateRepository;
 import com.zgy.handle.userservice.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userservice.repository.user.update.AccountUpdateRepository;
 import com.zgy.handle.userservice.service.structure.depart.query.DepartQueryService;
+import com.zgy.handle.userservice.service.structure.depart.update.DepartUpdateService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +38,9 @@ public class AccountUpdateServiceImpl extends BaseUpdateServiceImpl<Account, Acc
      private RoleServiceBase roleService;*/
     @Autowired
     private PasswordEncoder passwordEncoder;
-    /*@Autowired
-    private DepartmentServiceBase departmentService;
+    @Autowired
+    private DepartUpdateRepository departUpdateRepository;
+    /*
     @Autowired
     private DepartmentAccountServiceBase departmentAccountService;*/
     @Autowired

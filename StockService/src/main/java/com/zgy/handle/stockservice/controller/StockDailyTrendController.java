@@ -4,6 +4,7 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.stockservice.model.StockDialyTrend;
 import com.zgy.handle.stockservice.service.dailytrend.StockDailyTrenderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +34,13 @@ public class StockDailyTrendController {
         stockDialyTrend.setCreator("WX");
         stockDailyTrenderService.addStockDailyTrend(stockDialyTrend);
         return ResponseCode.sucess();
+    }
+
+    @GetMapping(value = "getDetails")
+    private ResponseCode<StockDialyTrend> getDetails(String curDate){
+        ResponseCode<StockDialyTrend> responseCode = ResponseCode.sucess();
+        StockDialyTrend stockDialyTrend = stockDailyTrenderService.getDetails("601100",curDate);
+        responseCode.setData(stockDialyTrend);
+        return responseCode;
     }
 }

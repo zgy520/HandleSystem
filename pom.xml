@@ -37,6 +37,7 @@
         <hibernate-jpamodelgen.version>5.4.18.Final</hibernate-jpamodelgen.version>
         <hibernate-version>5.4.9.Final</hibernate-version>
         <org.apache.commons.version>3.11</org.apache.commons.version>
+        <jpython.version>2.7.2</jpython.version>
     </properties>
     <dependencyManagement>
         <dependencies>

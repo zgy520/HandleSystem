@@ -12,4 +12,12 @@ public interface StockDailyTrenderService {
      * @param stockDialyTrend 趋势信息
      */
     void addStockDailyTrend(StockDialyTrend stockDialyTrend);
+
+    /**
+     * 获取某天的趋势记录
+     * @param code 股票代码
+     * @param trendDate 记录日期
+     * @return 记录详情
+     */
+    StockDialyTrend getDetails(String code,String trendDate);
 }

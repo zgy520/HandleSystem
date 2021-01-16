@@ -11,7 +11,20 @@ logging:
     org.hibernate.SQL: TRACE
     org.hibernate.type.description.sql: TRACE
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+transactiontype:
+  bigCount: 100
+  mediuCount: 40
+  smallCount: 10
 spring:
+  quartz:
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+          threadPool:
+            threadCount: 5
   jpa:
     properties:
       hibernate:

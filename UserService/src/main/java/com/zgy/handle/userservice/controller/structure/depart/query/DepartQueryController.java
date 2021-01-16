@@ -1,5 +1,7 @@
 package com.zgy.handle.userservice.controller.structure.depart.query;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import com.zgy.handle.common.controller.base.BaseQueryController;
 import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
@@ -88,6 +90,20 @@ public class DepartQueryController extends BaseQueryController<Department, Depar
     public ResponseCode<List<TransferDTO>> getPostListByDepartId(Long departId) {
         ResponseCode<List<TransferDTO>> responseCode = ResponseCode.sucess();
         responseCode.setData(departQueryService.getPostListByDepartId(departId));
+        return responseCode;
+    }
+
+    @GetMapping(value = "getSelectDto")
+    public ResponseCode<JSONObject> getSelectDto(){
+        ResponseCode<JSONObject> responseCode = ResponseCode.sucess();
+        List<Department> departmentList = departQueryService.findAll();
+        JSONObject jsonObject = new JSONObject();
+        departmentList.forEach(department -> {
+            JSONObject textJson = new JSONObject();
+            textJson.putOnce("text",department.getName());
+            jsonObject.putOnce(department.getId().toString(),textJson);
+        });
+        responseCode.setData(jsonObject);
         return responseCode;
     }
 }

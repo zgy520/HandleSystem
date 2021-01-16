@@ -20,4 +20,9 @@ public class StockMovingController {
     public void initMovie(){
         stockMovingService.initStockMoving();
     }
+
+    @RequestMapping(value = "dailyMovie",method = RequestMethod.POST)
+    public void dailyMovie(){
+        stockMovingService.calStockMoving();
+    }
 }

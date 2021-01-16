@@ -7,7 +7,10 @@ import com.zgy.handle.stockservice.model.StockDialyTrend;
 import com.zgy.handle.stockservice.util.SpingUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 /**
  * @author: a4423
@@ -33,5 +36,12 @@ public class StockDailyTrendServiceImpl implements StockDailyTrenderService{
             BeanUtil.copyProperties(stockDialyTrend, oldTrend, SpingUtils.getNullPropertyNames(stockDialyTrend));
             stockDailyTrendRepository.save(oldTrend);
         }
+    }
+
+    @Override
+    public StockDialyTrend getDetails(String code, String trendDate) {
+        StockDialyTrend stockDialyTrend = stockDailyTrendRepository.findByCurDateAndCode(LocalDate.parse(trendDate),code);
+
+        return stockDialyTrend;
     }
 }
