@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface DepartQueryMapper {
+
     Department toDepartment(DepartQueryDTO departQueryDTO);
     @Mapping(source = "parent.name",target = "parentName")
     @Mapping(source = "parent.id",target = "parentId")

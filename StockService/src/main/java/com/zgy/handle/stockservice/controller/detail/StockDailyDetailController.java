@@ -4,6 +4,7 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.stockservice.dto.detail.BaseDetailDTO;
 import com.zgy.handle.stockservice.dto.detail.TransactionTypeDTO;
 import com.zgy.handle.stockservice.service.detail.StockDailyDetailService;
+import com.zgy.handle.stockservice.service.detail.volume.StockVolumeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +24,9 @@ import java.util.List;
 @RequestMapping(value = "stock/daily/detail")
 public class StockDailyDetailController {
     private StockDailyDetailService stockDailyDetailService;
+
+    @Autowired
+    private StockVolumeService stockVolumeService;
 
     @Autowired
     public StockDailyDetailController(StockDailyDetailService stockDailyDetailService) {
@@ -59,5 +63,57 @@ public class StockDailyDetailController {
         }
         responseCode.setData(stockDailyDetailService.transactionInfo(code, convertDate));
         return responseCode;
+    }
+
+    @GetMapping(value = "continueBry")
+    public ResponseCode continueBry(String code, String localDate) {
+        ResponseCode responseCode = ResponseCode.sucess();
+        LocalDate convertDate = LocalDate.now();
+        if (StringUtils.isEmpty(code)) {
+            code = "601100";
+        }
+        if (StringUtils.isEmpty(localDate)) {
+//            convertDate = convertDate.minusDays(5);
+        } else {
+            convertDate = LocalDate.parse(localDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+        stockDailyDetailService.dailyAnalysis(code, convertDate);
+        return responseCode;
+    }
+    @GetMapping(value = "biddingAnalysis")
+    public ResponseCode biddingAnalysis(String code, String localDate) {
+        ResponseCode responseCode = ResponseCode.sucess();
+        LocalDate convertDate = LocalDate.now();
+        if (StringUtils.isEmpty(code)) {
+            code = "601100";
+        }
+        if (StringUtils.isEmpty(localDate)) {
+//            convertDate = convertDate.minusDays(5);
+        } else {
+            convertDate = LocalDate.parse(localDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+        stockDailyDetailService.dailyBiddingAnalysis(code, convertDate);
+        return responseCode;
+    }
+
+    @GetMapping(value = "test")
+    private ResponseCode test(){
+        stockDailyDetailService.performanceTest();
+        return ResponseCode.sucess();
+    }
+
+    @GetMapping(value = "volume")
+    private ResponseCode volume(String code, String localDate){
+        LocalDate convertDate = LocalDate.now();
+        if (StringUtils.isEmpty(code)) {
+            code = "601100";
+        }
+        if (StringUtils.isEmpty(localDate)) {
+//            convertDate = convertDate.minusDays(5);
+        } else {
+            convertDate = LocalDate.parse(localDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+        stockVolumeService.pre15Volume(convertDate,code);
+        return ResponseCode.sucess();
     }
 }

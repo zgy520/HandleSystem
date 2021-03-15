@@ -72,6 +72,12 @@ public abstract class BaseUpdateServiceImpl<T, U> extends BaseServiceImpl<T> imp
     }
 
     @Override
+    public ResponseCode<T> batchDelete(String idList) {
+        throw new EntityNotFoundException("未发现异常");
+
+    }
+
+    @Override
     public UniqueInfo checkUnique(U u, T t) {
         return UniqueInfo.getDefaultUnique();
     }

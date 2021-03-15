@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 
@@ -62,15 +63,8 @@ public abstract class BaseUpdateController<T,U> extends BaseController<T> {
         return responseCode;
     }
 
-    @DeleteMapping(value = "deleteList/{idList}")
-    public ResponseCode<String> deleteList(@PathVariable(value = "idList") String idList){
-        ResponseCode<String> responseCode = ResponseCode.sucess();
-        String[] ids = idList.split(",");
-        for (String id : ids){
-            updateService.delete(Long.valueOf(id));
-        }
-        return responseCode;
-    }
+
+
 
     /**
      * 将dto转为实体

@@ -18,7 +18,7 @@ public class ResponseCode<T> {
     // 响应数据
     private T data;
     // 总数量
-    private long total;
+    private long totalElements;
     // 总页数
     private int totalPage;
 
@@ -45,14 +45,14 @@ public class ResponseCode<T> {
     }
 
     public ResponseCode setPageInfo(Page pageInfo){
-        this.total = pageInfo.getTotalElements();
+        this.totalElements = pageInfo.getTotalElements();
         this.totalPage= pageInfo.getTotalPages();
         return this;
     }
 
     public ResponseCode setDataInfo(Page page){
         this.totalPage = page.getTotalPages();
-        this.total = page.getTotalElements();
+        this.totalElements = page.getTotalElements();
         this.data = (T) page.getContent();
         return this;
     }

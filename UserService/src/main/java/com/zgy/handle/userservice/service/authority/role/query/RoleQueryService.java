@@ -1,6 +1,7 @@
 package com.zgy.handle.userservice.service.authority.role.query;
 
 import com.zgy.handle.common.service.base.QueryService;
+import com.zgy.handle.userservice.dto.RoleMenuBtnDTO;
 import com.zgy.handle.userservice.model.authority.role.Role;
 import com.zgy.handle.userservice.model.authority.role.RoleDTO;
 import com.zgy.handle.userservice.model.common.TransferDTO;
@@ -17,4 +18,6 @@ public interface RoleQueryService extends QueryService<Role, RoleDTO> {
      * @return
      */
     List<TransferDTO> getAccountListByRoleId(Long roleId);
+
+    List<RoleMenuBtnDTO> getPowerByRoleIdIn(List<Long> roleIdList);
 }

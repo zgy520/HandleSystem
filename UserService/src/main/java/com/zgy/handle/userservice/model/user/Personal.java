@@ -1,6 +1,6 @@
 package com.zgy.handle.userservice.model.user;
 
-import com.zgy.handle.userservice.model.BaseModel;
+import com.zgy.handle.common.model.BaseModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

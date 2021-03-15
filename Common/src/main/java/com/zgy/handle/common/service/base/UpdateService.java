@@ -43,4 +43,11 @@ public interface UpdateService<T,U> extends BaseService<T> {
      * @return
      */
     ResponseCode<T> delete(Long id);
+
+    /**
+     * 批量删除
+     * @param idList 删除ID列表
+     * @return
+     */
+    ResponseCode<T> batchDelete(String idList);
 }

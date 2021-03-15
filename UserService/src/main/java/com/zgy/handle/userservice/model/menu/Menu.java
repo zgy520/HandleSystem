@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.model.menu;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zgy.handle.userservice.model.BaseModel;
+import com.zgy.handle.common.model.BaseModel;
 import lombok.Data;
 import lombok.Singular;
 import lombok.ToString;
@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name = "system_menu")
 @Slf4j
 @Data
-@Audited
+//@Audited
 public class Menu extends BaseModel implements Serializable {
     private String code;
     private String name;

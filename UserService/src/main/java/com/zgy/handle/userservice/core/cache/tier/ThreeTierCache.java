@@ -24,7 +24,7 @@ public class ThreeTierCache {
     public void initThreeTier() {
         log.info("开始进行分层初始化");
         PersistentCacheManager persistentCacheManager = CacheManagerBuilder.newCacheManagerBuilder()
-                .with(CacheManagerBuilder.persistence(new File("e:\\", "mydata")))
+                .with(CacheManagerBuilder.persistence(new File("/usr/project/java/stock/cache", "mydata")))
                 .withCache("threeTieredCache", CacheConfigurationBuilder.newCacheConfigurationBuilder(Long.class, String.class,
                         ResourcePoolsBuilder.newResourcePoolsBuilder()
                                 .heap(10, EntryUnit.ENTRIES)

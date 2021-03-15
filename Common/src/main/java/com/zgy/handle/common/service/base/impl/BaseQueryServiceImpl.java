@@ -81,6 +81,11 @@ public abstract class BaseQueryServiceImpl<T,U> extends BaseServiceImpl<T> imple
     }
 
     @Override
+    public List<T> findAllByIdList(List<String> idList) {
+        return queryRepository.findAllById(idList);
+    }
+
+    @Override
     public Object getOne(Long id) {
         return queryRepository.getOne(id);
     }

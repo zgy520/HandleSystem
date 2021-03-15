@@ -25,4 +25,25 @@ public interface StockDailyDetailService {
     List<TransactionTypeDTO> transactionInfo(String code,LocalDate localDate);
 
 
+    /**
+     * 分析某天的交易情况
+     * @param code 股票
+     * @param localDate 分析日期
+     */
+    void dailyAnalysis(String code,LocalDate localDate);
+
+    /**
+     * 竞价分析
+     * @param code 股票代码
+     * @param localDate 日期
+     */
+    void dailyBiddingAnalysis(String code,LocalDate localDate);
+
+
+    /**
+     * 性能测试
+     */
+    void performanceTest();
+
+
 }

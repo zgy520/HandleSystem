@@ -8,9 +8,9 @@ logging:
     path: "./logs/"
   file.max-size: 10MB
   level:
-    org.hibernate.SQL: TRACE
-    org.hibernate.type.description.sql: TRACE
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.SQL: debug
+    org.hibernate.type.description.sql: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: debug
 spring:
   jpa:
     properties:

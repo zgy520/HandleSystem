@@ -14,6 +14,6 @@ public class BtnDTO extends BaseDTO {
     private String code;
     private String name;
     private String icon;
-    private int serial;
+//    private Integer serial;
     private String note;
 }

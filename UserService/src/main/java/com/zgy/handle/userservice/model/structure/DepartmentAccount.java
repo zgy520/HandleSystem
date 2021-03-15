@@ -15,13 +15,13 @@ import java.io.Serializable;
  * @author a4423
  */
 @Entity
-@Table(name = "system_department_account")
+@Table(name = "system_department_account_test")
 @Data
 @Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Audited
+//@Audited
 public class DepartmentAccount implements Serializable {
     @EmbeddedId
     private DepartmentAccountPK id;

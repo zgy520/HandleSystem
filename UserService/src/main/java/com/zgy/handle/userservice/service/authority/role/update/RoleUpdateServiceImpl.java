@@ -1,5 +1,6 @@
 package com.zgy.handle.userservice.service.authority.role.update;
 
+import cn.hutool.core.date.StopWatch;
 import com.zgy.handle.common.model.common.UniqueInfo;
 import com.zgy.handle.common.service.base.impl.BaseUpdateServiceImpl;
 import com.zgy.handle.userservice.model.authority.role.Role;
@@ -55,13 +56,21 @@ public class RoleUpdateServiceImpl extends BaseUpdateServiceImpl<Role, RoleDTO> 
     @Override
     public String relateUser(Long roleId, String selectedUserList) {
         String result = "成功";
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         Optional<Role> roleOptional = roleQueryRepository.findById(roleId);
         if (roleOptional.isPresent()) {
             Role role = roleOptional.get();
-            List<Long> userIdList = Arrays.asList(selectedUserList.split(",")).stream().map(Long::valueOf).collect(Collectors.toList());
-            Set<Account> accountList = accountQueryRepository.findByIdIn(userIdList).stream().collect(Collectors.toSet());
-            role.setAccountSet(accountList);
+            if (StringUtils.isEmpty(selectedUserList)){
+                role.setAccountSet(null);
+            }else {
+                List<Long> userIdList = Arrays.asList(selectedUserList.split(",")).stream().map(Long::valueOf).collect(Collectors.toList());
+                Set<Account> accountList = accountQueryRepository.findByIdIn(userIdList).stream().collect(Collectors.toSet());
+                role.setAccountSet(accountList);
+            }
             roleUpdateRepository.save(role);
+            stopWatch.stop();
+            log.info("用时为:" + stopWatch.getTotalTimeMillis() + "毫秒");
             return result;
         } else {
             throw new EntityNotFoundException("不存在ID为：" + roleId.toString() + "的角色信息");

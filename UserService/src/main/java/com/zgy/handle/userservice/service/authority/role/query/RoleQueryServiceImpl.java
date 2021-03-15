@@ -2,12 +2,17 @@ package com.zgy.handle.userservice.service.authority.role.query;
 
 import com.zgy.handle.common.repository.base.QueryRepository;
 import com.zgy.handle.common.service.base.impl.BaseQueryServiceImpl;
+import com.zgy.handle.userservice.dto.RoleMenuBtnDTO;
 import com.zgy.handle.userservice.model.authority.role.Role;
 import com.zgy.handle.userservice.model.authority.role.RoleDTO;
 import com.zgy.handle.userservice.model.authority.role.Role_;
 import com.zgy.handle.userservice.model.common.TransferDTO;
+import com.zgy.handle.userservice.model.menu.Menu;
+import com.zgy.handle.userservice.model.menu.RoleMenuButton;
 import com.zgy.handle.userservice.model.user.Account;
+import com.zgy.handle.userservice.repository.authority.role.RoleMenuBtnQueryRepository;
 import com.zgy.handle.userservice.repository.authority.role.RoleQueryRepository;
+import com.zgy.handle.userservice.repository.menu.MenuQueryRepository;
 import com.zgy.handle.userservice.repository.user.query.AccountQueryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -28,6 +33,10 @@ public class RoleQueryServiceImpl extends BaseQueryServiceImpl<Role, RoleDTO> im
     private RoleQueryRepository roleQueryRepository;
     @Autowired
     private AccountQueryRepository accountQueryRepository;
+    @Autowired
+    private RoleMenuBtnQueryRepository roleMenuBtnQueryRepository;
+    @Autowired
+    private MenuQueryRepository menuQueryRepository;
 
     @Autowired
     public RoleQueryServiceImpl(RoleQueryRepository roleQueryRepository) {
@@ -67,6 +76,25 @@ public class RoleQueryServiceImpl extends BaseQueryServiceImpl<Role, RoleDTO> im
                 }
             });
             return selectDTOList;
+        }
+        return selectDTOList;
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<RoleMenuBtnDTO> getPowerByRoleIdIn(List<Long> roleIdList) {
+        List<RoleMenuBtnDTO> selectDTOList = new ArrayList<>();
+        List<RoleMenuButton> roleMenuButtonByRoleIdIn = new ArrayList<>(); //roleMenuBtnQueryRepository.findByRoleIdIn(roleIdList); // 根据角色ID查RoleMenuBtnList
+        List<Long> menuIDList = new ArrayList<>();
+        for (int i = 0 ; i < roleMenuButtonByRoleIdIn.size() ; i++){
+//            menuIDList.add(roleMenuButtonByRoleIdIn.get(i).getMenu().getId());
+        }
+        List uniqueMenu = menuIDList.stream().distinct().collect(Collectors.toList()); // 去重后的页面id
+        List<Menu> roleMenuButtonByMenuIdList = menuQueryRepository.findByIdIn(uniqueMenu); // 根据页面id查所有的页面信息
+
+        for (int i = 0 ; i < roleMenuButtonByMenuIdList.size() ; i++){
+            RoleMenuBtnDTO roleMenuBtnDTO = new RoleMenuBtnDTO(roleMenuButtonByMenuIdList.get(i).getId(),roleMenuButtonByMenuIdList.get(i).getUrl(),null,roleMenuButtonByMenuIdList.get(i).getName());
+            selectDTOList.add(roleMenuBtnDTO);
         }
         return selectDTOList;
     }

@@ -1,5 +1,6 @@
 package com.zgy.handle.userservice.model.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zgy.handle.common.model.BaseModel;
 import com.zgy.handle.userservice.model.authority.Post;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -30,7 +32,7 @@ import java.util.Set;
 @Data
 @Slf4j
 @Entity
-@Audited
+//@Audited
 @Table(name = "system_account")
 @EqualsAndHashCode(callSuper = true, of = {"id"})
 @SQLDelete(sql = "update system_account set isDeleted = true where id = ?")
@@ -76,6 +78,7 @@ public class Account extends BaseModel implements Serializable {
 
     @ManyToMany(mappedBy = "accountSet")
     @ToString.Exclude
+    @JsonBackReference
     private Set<Department> departmentSet= new HashSet<>();
 
     /*@OneToMany(mappedBy = "account", fetch = FetchType.LAZY, orphanRemoval = true)
@@ -91,5 +94,12 @@ public class Account extends BaseModel implements Serializable {
         this.roleSet.remove(role);
         //role.getAccountSet().remove(this);
     }
-
+    public void removeAllDepart(){
+        Iterator<Department> iterator = this.departmentSet.iterator();
+        while (iterator.hasNext()){
+            Department department = iterator.next();
+            department.getAccountSet().remove(this);
+            iterator.remove();
+        }
+    }
 }

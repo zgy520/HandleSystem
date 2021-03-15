@@ -1,5 +1,6 @@
 package com.zgy.handle.common.controller.base;
 
+import cn.hutool.core.date.StopWatch;
 import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.model.page.PageInfo;
 import com.zgy.handle.common.response.ResponseCode;
@@ -44,7 +45,11 @@ public abstract class BaseQueryController<T,U> extends BaseController<T> {
     public ResponseCode<List<U>> list(Pageable pageable, U dto){
         ResponseCode<List<U>> responseCode = ResponseCode.sucess();
         pageable = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         Page<T> page = queryService.findByDynamicQuery(pageable,dto);
+        stopWatch.stop();
+        log.info("获取列表所用的时间为:" + stopWatch.getTotalTimeMillis() / 1000);
         List<T> contentList = page.getContent();
         List<U> dtoList = convertTtoU(contentList);
         responseCode.setPageInfo(page);
@@ -74,7 +79,11 @@ public abstract class BaseQueryController<T,U> extends BaseController<T> {
         if (pageable.getSort()== Sort.unsorted()){
             pageable = PageRequest.of(pageInfo.getCurrent() - 1, pageInfo.getPageSize(),Sort.by(Sort.Direction.DESC,"createTime"));
         }
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         Page<T> page = queryService.findByDynamicQuery(pageable,dto);
+        stopWatch.stop();
+        log.info("获取列表所用的时间为:" + stopWatch.getTotalTimeMillis());
         List<T> contentList = page.getContent();
         List<U> dtoList = convertTtoU(contentList);
         responseCode.setPageInfo(page);

@@ -53,5 +53,9 @@ public class StockDaily extends BaseModel {
      */
     private Double zdEndPrice;
 
+    /**
+     * 上一个交易日的收盘价
+     */
+    private Double preClosePrice;
 
 }

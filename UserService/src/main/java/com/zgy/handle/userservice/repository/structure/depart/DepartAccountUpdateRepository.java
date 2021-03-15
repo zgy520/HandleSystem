@@ -10,4 +10,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DepartAccountUpdateRepository extends UpdateRepository<DepartmentAccount> {
+    /**
+     * 根据用户ID删除对应的用户下的所有关联部门
+     * @param accountId
+     */
+    void deleteByAccountId(Long accountId);
 }

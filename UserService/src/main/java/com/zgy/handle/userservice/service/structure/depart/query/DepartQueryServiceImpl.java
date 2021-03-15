@@ -1,6 +1,7 @@
 package com.zgy.handle.userservice.service.structure.depart.query;
 
 import com.zgy.handle.common.service.base.impl.BaseQueryServiceImpl;
+import com.zgy.handle.userservice.controller.structure.enterprise.convert.EnterpriseQueryMapper;
 import com.zgy.handle.userservice.model.authority.Post;
 import com.zgy.handle.userservice.model.authority.depart.DepartQueryDTO;
 import com.zgy.handle.userservice.model.common.TransferDTO;
@@ -9,9 +10,11 @@ import com.zgy.handle.userservice.model.structure.Enterprise;
 import com.zgy.handle.userservice.model.user.Account;
 import com.zgy.handle.userservice.repository.authority.post.PostQueryRepository;
 import com.zgy.handle.userservice.repository.structure.depart.DepartQueryRepository;
+import com.zgy.handle.userservice.repository.structure.enterprise.EntperiseQueryRepository;
 import com.zgy.handle.userservice.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userservice.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -36,6 +39,8 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
     @Autowired
     private DepartmentPostServiceBase departmentPostService;*/
     private DepartQueryRepository departQueryRepository;
+    @Autowired
+    private EntperiseQueryRepository entperiseQueryRepository;
 
     @Autowired
     public DepartQueryServiceImpl(DepartQueryRepository departQueryRepository) {
@@ -46,10 +51,12 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
     @Override
     public List<DepartQueryDTO> getDepartmentDtoList(List<DepartQueryDTO> departQueryDTOList) {
         departQueryDTOList.stream().forEach(departmentDTO -> {
-            Enterprise enterprise = this.fetchIndustry(Long.valueOf(departmentDTO.getId()));
-            if (enterprise != null) {
-                departmentDTO.setEnterpriseName(enterprise.getName());
-                departmentDTO.setEnterpriseId(enterprise.getId().toString());
+            if (StringUtils.isNotBlank(departmentDTO.getId())){
+                Enterprise enterprise = this.fetchIndustry(Long.valueOf(departmentDTO.getId()));
+                if (enterprise != null) {
+                    departmentDTO.setEnterpriseName(enterprise.getName());
+                    departmentDTO.setEnterpriseId(enterprise.getId().toString());
+                }
             }
         });
         TreeConvert treeUtils = new TreeConvert(departQueryDTOList);
@@ -132,7 +139,13 @@ public class DepartQueryServiceImpl extends BaseQueryServiceImpl<Department, Dep
         Enterprise enterprise = null;
         Optional<Department> departmentOptional = this.findById(departId);
         if (departmentOptional.isPresent()) {
-            enterprise = departmentOptional.get().getEnterprise();
+            Department department = departmentOptional.get();
+            if (department.getEnterprise() != null){
+                Optional<Enterprise> enterpriseOptional = entperiseQueryRepository.findById(department.getEnterprise().getId());
+                if(enterpriseOptional.isPresent()){
+                    enterprise = enterpriseOptional.get();
+                }
+            }
         }
         return enterprise;
     }

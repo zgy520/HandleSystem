@@ -25,6 +25,13 @@ public interface QueryService<T,U> extends BaseService<T> {
     Optional<T> findById(Long id);
 
     /**
+     * 根据id列表获取多个实体
+     * @param idList
+     * @return
+     */
+    List<T> findAllByIdList(List<String> idList);
+
+    /**
      * 根据id获取对象
      * @param id
      * @return

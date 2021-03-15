@@ -4,11 +4,15 @@ import com.zgy.handle.userservice.model.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,4 +36,8 @@ public class AccountUpdateVo extends BaseDTO {
     private List<Long> roleIdList = new ArrayList<>();
     private List<Long> postIdList = new ArrayList<>();
     private Long departId; // 所属部门的id
+    // 到期日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    private Date expiredDate;
 }

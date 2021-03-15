@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.model.structure;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zgy.handle.userservice.model.BaseModel;
+import com.zgy.handle.common.model.BaseModel;
 import com.zgy.handle.userservice.model.user.Account;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +20,7 @@ import java.util.Set;
 @Table(name = "system_department")
 @Data
 @Slf4j
-@Audited
+//@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
 @SQLDelete(sql = "update system_department set isDeleted = true where id = ?")
 @Where(clause = BaseModel.SOFT_DELETED_CLAUSE)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)

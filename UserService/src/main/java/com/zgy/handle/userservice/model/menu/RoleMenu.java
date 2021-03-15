@@ -12,7 +12,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "system_role_menu")
-@Audited
+//@Audited
 @Data
 public class RoleMenu {
     @EmbeddedId

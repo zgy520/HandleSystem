@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.model.authority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zgy.handle.userservice.model.BaseModel;
+import com.zgy.handle.common.model.BaseModel;
 import com.zgy.handle.userservice.model.user.Account;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,7 +19,7 @@ import java.util.Set;
 @Table(name = "system_post")
 @Data
 @Slf4j
-@Audited
+//@Audited
 @EqualsAndHashCode(callSuper = true, of = {"id"})
 public class Post extends BaseModel implements Serializable {
     private String code;

@@ -91,6 +91,7 @@ public class AccountUpdateServiceImpl extends BaseUpdateServiceImpl<Account, Acc
             Optional<Department> departmentOptional = getDepartmentById(accountUpdateVo.getDepartId());
             if (departmentOptional.isPresent()) {
                 Department department = departmentOptional.get();
+                departAccountUpdateRepository.deleteByAccountId(account.getId());
                 department.addAccount(account);
             }
         }
@@ -100,7 +101,8 @@ public class AccountUpdateServiceImpl extends BaseUpdateServiceImpl<Account, Acc
     public UniqueInfo checkUnique(AccountUpdateVo accountUpdateVo, Account account) {
         Long count = StringUtils.isBlank(accountUpdateVo.getId()) ? accountQueryRepository.countByLoginName(accountUpdateVo.getLoginName()) : accountQueryRepository.countByLoginNameAndIdNot(accountUpdateVo.getLoginName(), Long.valueOf(accountUpdateVo.getId()));
         if (count > 0) {
-            return UniqueInfo.getUniqueInfo("登录名称重复");
+            throw new BusinessException(ErrorNum.USER_ADD_UNQIURE_ERROR);
+//            return UniqueInfo.getUniqueInfo("登录名称重复");
         }
         return super.checkUnique(accountUpdateVo, account);
     }
@@ -108,6 +110,8 @@ public class AccountUpdateServiceImpl extends BaseUpdateServiceImpl<Account, Acc
     private Optional<Department> getDepartmentById(Long departId) {
         return departQueryRepository.findById(departId);
     }
+
+
 
     @Transactional(rollbackFor = {BusinessException.class, EntityNotFoundException.class})
     @Override

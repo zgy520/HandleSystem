@@ -1,22 +1,30 @@
 package com.zgy.handle.stockservice.service.detail;
 
+import cn.hutool.core.date.StopWatch;
 import com.zgy.handle.stockservice.config.property.TransactionTypeSplit;
+import com.zgy.handle.stockservice.constant.FixTimeConstant;
+import com.zgy.handle.stockservice.dao.StockDailyRepository;
 import com.zgy.handle.stockservice.dao.detail.StockDailyDetailRepository;
 import com.zgy.handle.stockservice.dto.detail.BaseDetailDTO;
+import com.zgy.handle.stockservice.dto.detail.ContinueInfo;
 import com.zgy.handle.stockservice.dto.detail.TransactionTypeDTO;
+import com.zgy.handle.stockservice.dto.detail.bidding.BiddingDTO;
+import com.zgy.handle.stockservice.dto.detail.test.StockDailyBase;
+import com.zgy.handle.stockservice.dto.detail.test.StockDailyInterfaceBase;
+import com.zgy.handle.stockservice.model.StockDaily;
 import com.zgy.handle.stockservice.model.detail.StockDailyDetail;
+import com.zgy.handle.stockservice.service.util.StockUtilService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -29,6 +37,10 @@ public class StockDailyDetailServiceImpl implements StockDailyDetailService {
 
     @Autowired
     private TransactionTypeSplit tansactionTypeSplit;
+    @Autowired
+    private StockUtilService stockUtilService;
+    @Autowired
+    private StockDailyRepository stockDailyRepository;
 
     private StockDailyDetailRepository stockDailyDetailRepository;
 
@@ -98,7 +110,122 @@ public class StockDailyDetailServiceImpl implements StockDailyDetailService {
         return result;
     }
 
-    private List<TransactionTypeDTO> getTransactionType(List<StockDailyDetail> detailList){
+    /**
+     * 分析某天的交易情况
+     *
+     * @param localDate 分析日期
+     */
+    @Override
+    public void dailyAnalysis(String code, LocalDate localDate) {
+        if (localDate == null) {
+            localDate = LocalDate.now();
+        }
+        if (StringUtils.isEmpty(code)) {
+            code = "601100";
+        }
+        List<StockDailyDetail> list = stockDailyDetailRepository.findByCodeAndCurDate(code, localDate)
+                .stream().sorted(Comparator.comparing(StockDailyDetail::getCurTime))
+                .collect(Collectors.toList());
+        // 持续买入情况
+        continueBuy(list);
+    }
+
+    /**
+     * 竞价分析
+     *
+     * @param code      股票代码
+     * @param localDate 日期
+     */
+    @Override
+    public void dailyBiddingAnalysis(String code, LocalDate localDate) {
+        List<LocalDate> dealDateList = stockUtilService.getDealDateAndSortDesc(code);
+        List<StockDaily> stockDailyList = stockDailyRepository.findByCodeAndCurDateIn(code,dealDateList);
+        List<BiddingDTO> biddingList = new ArrayList<>();
+
+        dealDateList.forEach(dealDate -> {
+            List<StockDailyDetail> list = stockDailyDetailRepository.findByCodeAndCurDateAndCurTimeLessThan(code, dealDate, FixTimeConstant.getBiddingTime())
+                    .stream().sorted(Comparator.comparing(StockDailyDetail::getCurTime))
+                    .collect(Collectors.toList());
+            Optional<StockDaily> stockDailyOptional = stockDailyList.stream().filter(stockDaily -> stockDaily.getCurDate().equals(dealDate)).findFirst();
+            Double zdf = 0d;
+            if (stockDailyOptional.isPresent()){
+             zdf = stockDailyOptional.get().getZdf() * 100;
+            }
+            biddingList.add(new BiddingDTO(dealDate,list.size(),zdf));
+        });
+        biddingList.forEach(biddingDTO -> log.info("交易日期:" + biddingDTO.getDealDate() + ":" + biddingDTO.getCount() + ":" + biddingDTO.getZdf()));
+
+    }
+
+    /**
+     * 性能测试
+     */
+    @Override
+    public void performanceTest() {
+        String code = "601100";
+        log.info("获取所有数据");
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        List<StockDailyDetail> list = stockDailyDetailRepository.findAllByCode(code);
+        stopWatch.stop();
+        log.info("获取实体所需的时间为:" + stopWatch.getTotalTimeMillis() + "毫秒");
+        log.info("基于接口获取所有数据");
+        StopWatch interfaceWatch = new StopWatch();
+        interfaceWatch.start();
+        List<StockDailyBase> baseList = stockDailyDetailRepository.findByXCode(code);
+        interfaceWatch.stop();
+        log.info("基于dto获取所有数据的时间为:" + interfaceWatch.getTotalTimeMillis() + "毫秒");
+        StopWatch lastWatch = new StopWatch();
+        lastWatch.start();
+        List<StockDailyInterfaceBase> interfaceList = stockDailyDetailRepository.findByCode(code);
+        lastWatch.stop();
+        log.info("基于接口获取所有数据的时间为:" + lastWatch.getTotalTimeMillis() + "毫秒");
+
+    }
+
+    private void continueBuy(List<StockDailyDetail> list) {
+        List<ContinueInfo> continueInfoList = new ArrayList<>();
+        int count = 0;
+        int total = 0;
+        LocalTime startTime = null;
+        LocalTime endTime = null;
+        for (int i = 0; i < list.size(); i++) {
+            StockDailyDetail detail = list.get(i);
+            if (detail.getResult() != -1) {
+                // 买入
+                count++;
+                if (startTime == null) {
+                    startTime = detail.getCurTime();
+                }
+                total += detail.getTradingCount();
+            } else {
+                // 相反发展
+                if (i > 0) {
+                    endTime = list.get(i - 1).getCurTime();
+                }
+
+                if (total > 200) {
+                    ContinueInfo continueInfo = new ContinueInfo();
+                    continueInfo.setCount(count);
+                    continueInfo.setStartTime(startTime);
+                    continueInfo.setEndTime(endTime);
+                    continueInfo.setType("买入");
+                    continueInfo.setTotal(total);
+                    continueInfoList.add(continueInfo);
+                }
+                count = 0;
+                total = 0;
+                startTime = null;
+                endTime = null;
+            }
+        }
+        log.info("连续超过10次买入的数量为:" + continueInfoList.size());
+        continueInfoList.stream().forEach(continueInfo -> {
+            log.info(continueInfo.toString());
+        });
+    }
+
+    private List<TransactionTypeDTO> getTransactionType(List<StockDailyDetail> detailList) {
         List<TransactionTypeDTO> list = new ArrayList<>();
         /**
          * 小散， 10收一下的
@@ -158,8 +285,6 @@ public class StockDailyDetailServiceImpl implements StockDailyDetailService {
         bigerDTO.setSaleVolume(detailList.stream().filter(detail -> detail.getTradingCount() >= tansactionTypeSplit.getBigCount() && detail.getType() == -1).collect(Collectors.summingInt(StockDailyDetail::getTradingCount)));
 
 
-
-
         list.add(smallDTO);
         list.add(bigerDTO);
         list.add(smallMediuDTO);
@@ -189,7 +314,6 @@ public class StockDailyDetailServiceImpl implements StockDailyDetailService {
         }
         return sum.divide(new BigDecimal(100000000)).setScale(2, RoundingMode.HALF_UP);
     }
-
 
 
 }

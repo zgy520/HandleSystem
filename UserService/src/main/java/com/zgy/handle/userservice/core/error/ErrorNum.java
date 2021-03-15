@@ -17,6 +17,9 @@ public enum ErrorNum {
     // 登录异常
     ERROR_LOGIN_LOGINNAME_NOT_FOUNT(101,"登录名不存在"),
 
+    // 用户部分
+    USER_ADD_UNQIURE_ERROR(1000,"登录名重复"),
+
     // 文件上传异常
     FILE_UPLOAD_NOT_FILE(4000,"请选择需要上传的文件"),
     FILE_UPLOAD_TEMPLATE_ERROR(4001,"导入的excel模板错误");

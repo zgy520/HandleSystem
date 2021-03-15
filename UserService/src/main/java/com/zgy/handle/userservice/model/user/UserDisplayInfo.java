@@ -1,9 +1,10 @@
 package com.zgy.handle.userservice.model.user;
 
+import com.zgy.handle.userservice.model.authority.role.Role;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,5 +16,9 @@ public class UserDisplayInfo {
     private String name;
     private String introduction;
     private String avatar;
-    private Set<String> roles = new HashSet<>();
+    private List roleID;
+    private String roleIDString;
+    private Set<Role> roles;
+    private List<com.zgy.handle.userservice.dto.RoleMenuBtnDTO> RoleMenuBtnDTO;
+
 }

@@ -87,7 +87,7 @@ public class AccountQueryServiceImpl extends BaseQueryServiceImpl<Account, Accou
      */
     @Override
     public Account getAccountWithRole(Long accountId) {
-        TypedQuery<Account> query = entityManager.createQuery(" select account from Account account JOIN FETCH account.roleSet where account.id = :accountId"
+        TypedQuery<Account> query = entityManager.createQuery(" select account from Account account LEFT JOIN FETCH account.roleSet where account.id = :accountId"
                 , Account.class);
         query.setParameter("accountId", accountId);
         Account account = query.getSingleResult();

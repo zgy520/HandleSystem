@@ -2,8 +2,10 @@ package com.zgy.handle.stockservice.dao;
 
 import com.zgy.handle.stockservice.model.StockDaily;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -36,4 +38,13 @@ public interface StockDailyRepository extends JpaRepository<StockDaily,Long> {
      * @return
      */
     List<StockDaily> findAllByCodeAndCurDateAfter(String code, LocalDate date);
+
+    /**
+     * 根据代码和时间列表获取信息
+     * @param code 代码
+     * @param localDateList 日期列表
+     * @return
+     */
+    List<StockDaily> findByCodeAndCurDateIn(String code,List<LocalDate> localDateList);
+
 }

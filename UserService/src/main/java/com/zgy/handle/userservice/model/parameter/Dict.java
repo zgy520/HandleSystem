@@ -1,7 +1,7 @@
 package com.zgy.handle.userservice.model.parameter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zgy.handle.userservice.model.BaseModel;
+import com.zgy.handle.common.model.BaseModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

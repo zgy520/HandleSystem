@@ -1,6 +1,6 @@
 package com.zgy.handle.userservice.model.menu;
 
-import com.zgy.handle.userservice.model.BaseModel;
+import com.zgy.handle.common.model.BaseModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.envers.Audited;
@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "system_button")
 @Slf4j
 @Data
-@Audited
+//@Audited
 public class Button extends BaseModel implements Serializable {
     private String code;
     private String name;

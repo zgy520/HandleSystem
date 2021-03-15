@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.RollbackException;
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +49,12 @@ public class RestExceptionHandler {
         return buildResponse(responseCode);
     }
 
+    @ExceptionHandler(NoResultException.class)
+    protected ResponseEntity<Object> noResultException(NoResultException ex){
+        ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(),ErrorNum.ERROR_NOT_FOUND_DATA.getCode());
+        return buildResponse(responseCode);
+    }
+
     /**
      * 业务异常
      *
@@ -57,6 +64,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected ResponseEntity<Object> businessException(BusinessException ex) {
+        ex.printStackTrace();
         ResponseCode<Object> responseCode = ResponseCode.error(ex.getMessage(), ex.getErrorNum().getCode());
         return buildResponse(responseCode);
     }
