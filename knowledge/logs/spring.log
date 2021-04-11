@@ -1,0 +1,57 @@
+2021-04-06 21:59:47.719 [main] INFO  com.zgy.handle.knowledge.KnowledgeApplication - No active profile set, falling back to default profiles: default
+2021-04-06 21:59:48.893 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-06 21:59:48.972 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 73ms. Found 6 JPA repository interfaces.
+2021-04-06 21:59:49.107 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=52294b4d-b513-3fe6-9524-6d8cbf354060
+2021-04-06 21:59:49.190 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-06 21:59:49.403 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7072 (http)
+2021-04-06 21:59:49.411 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-04-06 21:59:49.412 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021-04-06 21:59:49.535 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-04-06 21:59:49.536 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1801 ms
+2021-04-06 21:59:49.704 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-06 21:59:49.757 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+2021-04-06 21:59:49.839 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-04-06 21:59:49.910 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-04-06 21:59:50.157 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2021-04-06 21:59:50.168 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-04-06 21:59:50.213 [main] INFO  o.hibernate.envers.boot.internal.EnversServiceImpl - Envers integration enabled? : true
+2021-04-06 21:59:50.699 [main] INFO  org.hibernate.tuple.entity.EntityMetamodel - HHH000157: Lazy property fetching available for: com.zgy.handle.knowledge.model.file.File
+2021-04-06 21:59:51.616 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-06 21:59:51.620 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-06 21:59:52.198 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-04-06 21:59:52.211 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-04-06 21:59:52.211 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-04-06 21:59:52.214 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-04-06 21:59:52.214 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-04-06 21:59:52.293 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-06 21:59:52.800 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2021-04-06 21:59:53.543 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-04-06 21:59:53.560 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-04-06 21:59:53.589 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-04-06 21:59:53.799 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_1
+2021-04-06 21:59:53.804 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+2021-04-06 21:59:53.805 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+2021-04-06 21:59:53.807 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_1
+2021-04-06 21:59:53.814 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_1
+2021-04-06 21:59:53.818 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+2021-04-06 21:59:53.857 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_2
+2021-04-06 21:59:53.860 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+2021-04-06 21:59:53.862 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_2
+2021-04-06 21:59:53.863 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_2
+2021-04-06 21:59:53.867 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_2
+2021-04-06 21:59:53.870 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+2021-04-06 21:59:53.876 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_3
+2021-04-06 21:59:53.879 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+2021-04-06 21:59:53.880 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_3
+2021-04-06 21:59:53.881 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_3
+2021-04-06 21:59:53.886 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_3
+2021-04-06 21:59:53.889 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_3
+2021-04-06 21:59:53.894 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_4
+2021-04-06 21:59:53.897 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+2021-04-06 21:59:53.898 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_4
+2021-04-06 21:59:53.899 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_4
+2021-04-06 21:59:53.903 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_4
+2021-04-06 21:59:53.906 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_4
+2021-04-06 21:59:53.950 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7072 (http) with context path ''
+2021-04-06 21:59:53.961 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, knowledgeservice 192.168.31.150:7072 register finished
+2021-04-06 21:59:54.524 [main] INFO  com.zgy.handle.knowledge.KnowledgeApplication - Started KnowledgeApplication in 8.741 seconds (JVM running for 10.668)

@@ -1,6 +1,8 @@
 package com.zgy.handle.knowledge.service;
 
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
+import com.zgy.handle.common.util.tree.TreeConvert;
 import com.zgy.handle.common.zuul.context.UserContext;
 import com.zgy.handle.knowledge.repository.KnowledgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,5 +141,20 @@ public abstract class KnowledgeService<T,U> {
         }
 
         return responseCode;
+    }
+
+    /**
+     * 获取树形下拉列表
+     * @param selectDTOList
+     * @return
+     */
+    public List<TreeSelectDTO> getTreeSelectDTOList(List<TreeSelectDTO> selectDTOList){
+        TreeConvert treeConvert = new TreeConvert(selectDTOList);
+        try {
+            return treeConvert.toJsonArray(TreeSelectDTO.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

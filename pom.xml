@@ -18,6 +18,8 @@
         <module>ExcelService</module>
         <module>CardService</module>
         <module>StockService</module>
+        <module>ReplayService</module>
+        <module>TradingService</module>
     </modules>
 
     <parent>
@@ -33,11 +35,13 @@
         <alibaba.json.version>1.2.62</alibaba.json.version>
         <spring.cloud.version>Hoxton.SR2</spring.cloud.version>
         <swagger.version>2.9.2</swagger.version>
-        <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
+        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <hibernate-jpamodelgen.version>5.4.18.Final</hibernate-jpamodelgen.version>
         <hibernate-version>5.4.9.Final</hibernate-version>
         <org.apache.commons.version>3.11</org.apache.commons.version>
         <jpython.version>2.7.2</jpython.version>
+        <spring-cloud-starter-alibaba-nacos-discovery.version>0.9.0.RELEASE</spring-cloud-starter-alibaba-nacos-discovery.version>
+        <spring-cloud-starter-alibaba-nacos-config.version>2.2.5.RELEASE</spring-cloud-starter-alibaba-nacos-config.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -95,6 +99,17 @@
                 <version>${commons-lang3.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${spring-cloud-starter-alibaba-nacos-discovery.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-config -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${spring-cloud-starter-alibaba-nacos-config.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -142,12 +157,12 @@
         <repository>
             <id>maven-releases</id>
             <name>Nexus Release Repository</name>
-            <url>http://zhanggy.top:8081/repository/maven-releases/</url>
+            <url>http://www.zhaojx.top:8081/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>maven-snapshots</id>
             <name>Nexus Snapshots Repository</name>
-            <url>http://zhanggy.top:8081/repository/maven-snapshots/</url>
+            <url>http://www.zhaojx.top:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
     <build>
@@ -183,7 +198,7 @@
         <repository>
             <id>maven-releases</id>
             <name>Nexus Release Repository</name>
-            <url>http://zhanggy.top:8081/repository/maven-releases/</url>
+            <url>http://www.zhaojx.top:8081/repository/maven-releases/</url>
         </repository>
         <repository>
             <id>spring-milestones</id>

@@ -1,5 +1,6 @@
 package com.zgy.handle.common.service.base;
 
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -53,9 +54,17 @@ public interface QueryService<T,U> extends BaseService<T> {
      */
     Page<T> findByDynamicQuery(Pageable pageable,U dto);
 
+
     /**
      * 获取权限的查询
      * @return
      */
     Specification<T> getPermissionQuery();
+
+    /**
+     * 获取树形下拉列表
+     * @param selectDTOList
+     * @return
+     */
+    List<TreeSelectDTO> getTreeSelectDTOList(List<TreeSelectDTO> selectDTOList);
 }

@@ -2,6 +2,7 @@ package com.zgy.handle.common.controller.base;
 
 import cn.hutool.core.date.StopWatch;
 import com.zgy.handle.common.model.common.SelectDTO;
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.model.page.PageInfo;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.common.service.base.QueryService;
@@ -144,11 +145,34 @@ public abstract class BaseQueryController<T,U> extends BaseController<T> {
     }
 
     /**
+     * 获取下拉框的列表信息
+     * 即：id和text
+     * @return
+     */
+    @GetMapping(value = "treeSelectList")
+    public ResponseCode<List<TreeSelectDTO>> getTreeList(){
+        ResponseCode<List<TreeSelectDTO>> responseCode = ResponseCode.sucess();
+        List<T> tList = queryService.findAll();
+        List<TreeSelectDTO> treeSelectDTOList = convertTtoTreeSelectDTOList(tList);
+        responseCode.setData(queryService.getTreeSelectDTOList(treeSelectDTOList));
+        return responseCode;
+    }
+
+    /**
      * 将实体列表转化为id和text列表
      * @param tList
      * @return
      */
     public abstract List<SelectDTO> convertTtoSelectDTOList(List<T> tList);
+
+    /**
+     * 将实体转换为树形的dto
+     * @param list
+     * @return
+     */
+    public List<TreeSelectDTO> convertTtoTreeSelectDTOList(List<T> list){
+        return null;
+    }
 
     /**
      * 实体列表转化为dto列表

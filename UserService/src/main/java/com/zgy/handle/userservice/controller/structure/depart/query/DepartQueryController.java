@@ -4,6 +4,7 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import com.zgy.handle.common.controller.base.BaseQueryController;
 import com.zgy.handle.common.model.common.SelectDTO;
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userservice.model.authority.depart.DepartQueryDTO;
 import com.zgy.handle.userservice.model.common.TransferDTO;
@@ -43,6 +44,11 @@ public class DepartQueryController extends BaseQueryController<Department, Depar
         List<DepartQueryDTO> departmentDTOList = departQueryMapper.toDepartQueryDTOs(departmentList);
         responseCode.setData(departQueryService.getDepartmentDtoList(departmentDTOList));
         return responseCode;
+    }
+
+    @Override
+    public List<TreeSelectDTO> convertTtoTreeSelectDTOList(List<Department> list) {
+        return departQueryMapper.toTreeSelectDTOList(list);
     }
 
     @Override

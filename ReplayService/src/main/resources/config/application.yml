@@ -1,0 +1,42 @@
+server:
+  port: 1001
+logging:
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  file:
+    path: "./stock/logs/"
+  file.max-size: 10MB
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.description.sql: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: debug
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: false
+        order_inserts: true
+        dialect: com.zgy.handle.replayservice.config.hibernate.CustomMySqlDialect
+        jdbc:
+          batch_size: 8
+        #integrator_provider: com.zgy.handle.userService.service.auto.InsertEventIntegratorProvider
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: com.zgy.handle.replayservice.config.hibernate.ReplayNamingStrategy
+    open-in-view: false
+  datasource:
+    url: jdbc:mysql://rm-2zen9dnoix990kl44fo.mysql.rds.aliyuncs.com:3306/replay?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: zgy
+    password: zgy@1234
+    driver-class-name: com.mysql.jdbc.Driver
+    max-idle: 5
+    max-wait: 10000
+    min-idle: 2
+    initial-size: 2
+    validation-query: SELECT 1
+    test-on-borrow: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 18800

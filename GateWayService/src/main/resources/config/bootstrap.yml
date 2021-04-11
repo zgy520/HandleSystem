@@ -1,20 +1,16 @@
 spring:
   application:
     name: zuulservice
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
   servlet:
     multipart:
       enabled: true
       file-size-threshold: 2KB
       max-file-size: 500MB
       max-request-size: 520MB
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
 zuul:
   sensitive-headers:
   ignored-services: "*"
@@ -23,6 +19,10 @@ zuul:
       path: /userservice/**
     knowledgeservice:
       path: /knowledgeservice/**
+    tradingservice:
+      path: /tradingservice/**
+    stockservice:
+      path: /stockservice/**
   prefix:
 ribbon:
   ConnectTimeout: 50000

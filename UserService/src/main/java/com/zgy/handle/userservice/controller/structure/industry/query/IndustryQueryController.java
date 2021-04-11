@@ -2,6 +2,7 @@ package com.zgy.handle.userservice.controller.structure.industry.query;
 
 import com.zgy.handle.common.controller.base.BaseQueryController;
 import com.zgy.handle.common.model.common.SelectDTO;
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userservice.model.dto.structure.IndustryQueryDTO;
 import com.zgy.handle.userservice.model.structure.Industry;
@@ -10,12 +11,16 @@ import com.zgy.handle.userservice.service.structure.industry.update.IndustryUpda
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author a4423
+ */
 @RestController
 @RequestMapping(value = "industry/query")
 @Slf4j
@@ -38,6 +43,12 @@ public class IndustryQueryController extends BaseQueryController<Industry, Indus
         List<IndustryQueryDTO> industryQueryDTOList = industryQueryMapper.toIndustryDTOList(industryList);
         responseCode.setData(industryQueryService.getTreeIndustryList(industryQueryDTOList, dto));
         return responseCode;
+    }
+
+    @Override
+    public List<TreeSelectDTO> convertTtoTreeSelectDTOList(List<Industry> list) {
+        List<TreeSelectDTO> industryQueryDTOList = industryQueryMapper.toTreeSelectDTOList(list);
+        return industryQueryDTOList;
     }
 
     @Override

@@ -5,7 +5,7 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
   file:
-    path: "./logs/"
+    path: "./user/logs/"
   file.max-size: 10MB
   level:
     org.hibernate.SQL: debug

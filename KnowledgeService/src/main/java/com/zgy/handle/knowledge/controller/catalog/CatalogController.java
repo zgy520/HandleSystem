@@ -1,5 +1,6 @@
 package com.zgy.handle.knowledge.controller.catalog;
 
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.knowledge.controller.KnowledgeController;
 import com.zgy.handle.knowledge.controller.catalog.convert.CatalogMapper;
@@ -10,6 +11,7 @@ import com.zgy.handle.knowledge.service.catalog.CatalogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -49,6 +51,16 @@ public class CatalogController extends KnowledgeController<Catalog, CatalogDTO> 
             selectDTOList.add(selectDTO);
         });
         return selectDTOList;
+    }
+
+
+    @GetMapping(value = "treeSelectList")
+    public ResponseCode<List<TreeSelectDTO>> treeSelectList(){
+        ResponseCode<List<TreeSelectDTO>> responseCode = ResponseCode.sucess();
+        List<Catalog> tList = catalogService.findAll();
+        List<TreeSelectDTO> selectDTOS = catalogMapper.toTreeSelectDTOList(tList);
+        responseCode.setData(catalogService.getTreeSelectDTOList(selectDTOS));
+        return responseCode;
     }
 
     @Override

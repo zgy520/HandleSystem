@@ -2,8 +2,10 @@ package com.zgy.handle.common.service.base.impl;
 
 
 import com.zgy.handle.common.model.BaseModel_;
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.repository.base.QueryRepository;
 import com.zgy.handle.common.service.base.QueryService;
+import com.zgy.handle.common.util.tree.TreeConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -68,7 +70,16 @@ public abstract class BaseQueryServiceImpl<T,U> extends BaseServiceImpl<T> imple
         return personalPermissionSpec;
     }
 
-
+    @Override
+    public List<TreeSelectDTO> getTreeSelectDTOList(List<TreeSelectDTO> selectDTOList) {
+        TreeConvert treeConvert = new TreeConvert(selectDTOList);
+        try {
+            return treeConvert.toJsonArray(TreeSelectDTO.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public List<T> findAll() {

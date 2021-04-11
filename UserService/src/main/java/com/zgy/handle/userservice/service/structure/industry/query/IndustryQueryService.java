@@ -1,5 +1,6 @@
 package com.zgy.handle.userservice.service.structure.industry.query;
 
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.service.base.QueryService;
 import com.zgy.handle.userservice.model.dto.structure.IndustryQueryDTO;
 import com.zgy.handle.userservice.model.structure.Industry;
@@ -14,6 +15,7 @@ public interface IndustryQueryService extends QueryService<Industry, IndustryQue
      * @return
      */
     List<IndustryQueryDTO> getTreeIndustryList(List<IndustryQueryDTO> industryQueryDTOS, IndustryQueryDTO dto);
+
 
     /**
      * 动态查询企业

@@ -1,11 +1,9 @@
 package com.zgy.handle.knowledge.service.linkpage;
 
-import com.netflix.discovery.converters.Auto;
 import com.zgy.handle.knowledge.model.catalog.Catalog;
 import com.zgy.handle.knowledge.model.common.ResourceType;
 import com.zgy.handle.knowledge.model.linkpage.LinkPage;
 import com.zgy.handle.knowledge.model.linkpage.LinkPageDTO;
-import com.zgy.handle.knowledge.repository.KnowledgeRepository;
 import com.zgy.handle.knowledge.repository.linkpage.LinkPageRepository;
 import com.zgy.handle.knowledge.service.KnowledgeService;
 import com.zgy.handle.knowledge.service.catalog.CatalogService;

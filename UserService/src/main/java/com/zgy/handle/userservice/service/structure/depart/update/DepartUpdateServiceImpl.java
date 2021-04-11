@@ -55,8 +55,8 @@ public class DepartUpdateServiceImpl extends BaseUpdateServiceImpl<Department, D
             }
         }
         if (StringUtils.isNotBlank(departUpdateDTO.getEnterpriseId())) {
-            Optional<Enterprise> enterpriseOptional = null; //enterpriseQueryService.findById(Long.valueOf(departUpdateDTO.getEnterpriseId()));
-            department.setEnterprise(enterpriseOptional.get());
+           /* Optional<Enterprise> enterpriseOptional = null; //enterpriseQueryService.findById(Long.valueOf(departUpdateDTO.getEnterpriseId()));
+            department.setEnterprise(enterpriseOptional.get());*/
         }
     }
 

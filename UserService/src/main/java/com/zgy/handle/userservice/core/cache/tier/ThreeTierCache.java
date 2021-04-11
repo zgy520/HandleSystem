@@ -17,14 +17,14 @@ import java.io.File;
  * @author: a4423
  * @date: 2020/9/19 16:27
  */
-@Component
+//@Component
 @Slf4j
 public class ThreeTierCache {
-    @PostConstruct
+//    @PostConstruct
     public void initThreeTier() {
         log.info("开始进行分层初始化");
         PersistentCacheManager persistentCacheManager = CacheManagerBuilder.newCacheManagerBuilder()
-                .with(CacheManagerBuilder.persistence(new File("/usr/project/java/stock/cache", "mydata")))
+                .with(CacheManagerBuilder.persistence(new File("/opt/deploy/user", "mydata")))
                 .withCache("threeTieredCache", CacheConfigurationBuilder.newCacheConfigurationBuilder(Long.class, String.class,
                         ResourcePoolsBuilder.newResourcePoolsBuilder()
                                 .heap(10, EntryUnit.ENTRIES)

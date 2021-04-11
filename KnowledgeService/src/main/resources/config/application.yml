@@ -1,11 +1,11 @@
 server:
-  port: 7071
+  port: 7072
 logging:
   pattern:
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
   file:
-    path: "./logs/"
+    path: "./knowledge/logs/"
   file.max-size: 10MB
   level:
     org.hibernate.SQL: debug
@@ -27,7 +27,7 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     open-in-view: false
   datasource:
-    url: jdbc:mysql://rm-2zen9dnoix990kl44fo.mysql.rds.aliyuncs.com:3306/handlesystem?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false&&maxAllowedPacket=1073741824
+    url: jdbc:mysql://rm-2zen9dnoix990kl44fo.mysql.rds.aliyuncs.com:3306/system?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false&&maxAllowedPacket=1073741824
     username: zgy
     password: zgy@1234
     driver-class-name: com.mysql.jdbc.Driver
@@ -40,5 +40,5 @@ spring:
     test-while-idle: true
     time-between-eviction-runs-millis: 18800
 fastDFS:
-  url: http://114.115.169.188
+  url: http://www.zhaojx.top
   port: 8888

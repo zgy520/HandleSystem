@@ -11,12 +11,13 @@ import com.zgy.handle.userservice.model.user.Account_;
 import com.zgy.handle.userservice.model.user.RoleAccountDTO;
 import com.zgy.handle.userservice.model.user.cross.RolePostDepartDTO;
 import com.zgy.handle.userservice.model.user.query.AccountQueryVo;
-import com.zgy.handle.userservice.repository.authority.role.RoleQueryRepository;
 import com.zgy.handle.userservice.repository.user.query.AccountQueryRepository;
 import com.zgy.handle.userservice.service.structure.depart.query.DepartAccountQueryService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,8 +40,8 @@ public class AccountQueryServiceImpl extends BaseQueryServiceImpl<Account, Accou
     private EntityManager entityManager;
 
 
-     @Autowired
-     private DepartAccountQueryService departAccountQueryService;
+    @Autowired
+    private DepartAccountQueryService departAccountQueryService;
     private final AccountQueryRepository accountQueryRepository;
 
     @Autowired
@@ -53,11 +54,11 @@ public class AccountQueryServiceImpl extends BaseQueryServiceImpl<Account, Accou
     public Specification<Account> querySpecification(AccountQueryVo dto) {
         Specification<Account> specification = Specification
                 .where(StringUtils.isBlank(dto.getName()) ? null : accountQueryRepository.fieldLike(Account_.NAME, dto.getName()))
-                .and(StringUtils.isBlank(dto.getLoginName()) ? null : accountQueryRepository.fieldLike(Account_.LOGIN_NAME,dto.getLoginName()))
-                .and(StringUtils.isBlank(dto.getEmail()) ? null : accountQueryRepository.fieldLike(Account_.EMAIL,dto.getEmail()))
+                .and(StringUtils.isBlank(dto.getLoginName()) ? null : accountQueryRepository.fieldLike(Account_.LOGIN_NAME, dto.getLoginName()))
+                .and(StringUtils.isBlank(dto.getEmail()) ? null : accountQueryRepository.fieldLike(Account_.EMAIL, dto.getEmail()))
 //                .and(StringUtils.isBlank(dto.getDepartName()) ? null : AccountQueryRepository.departNameLike(dto.getDepartName()))
                 .and(StringUtils.isBlank(dto.getRoleName()) ? null : AccountQueryRepository.roleNameLike(dto.getRoleName()))
-                .and(StringUtils.isBlank(dto.getNote()) ? null : accountQueryRepository.fieldLike(Account_.NOTE,dto.getNote()))
+                .and(StringUtils.isBlank(dto.getNote()) ? null : accountQueryRepository.fieldLike(Account_.NOTE, dto.getNote()))
                 .and(StringUtils.isNotBlank(dto.getPostName()) ? AccountQueryRepository.postNameLike(dto.getPostName()) : null);
         return specification;
     }
@@ -74,7 +75,7 @@ public class AccountQueryServiceImpl extends BaseQueryServiceImpl<Account, Accou
         List<String> roleIdList = account.getRoleSet().stream().map(Role::getId).map(String::valueOf).collect(Collectors.toList());
         List<String> postList = account.getPostSet().stream().map(Post::getName).map(String::valueOf).collect(Collectors.toList());
         List<String> postIdList = account.getPostSet().stream().map(Post::getId).map(String::valueOf).collect(Collectors.toList());
-        Department department =departAccountQueryService.getByAccountId(userId);
+        Department department = departAccountQueryService.getByAccountId(userId);
         RolePostDepartDTO rolePostDepartDTO = new RolePostDepartDTO(roleList, roleIdList, postList, postIdList, department == null ? "" : department.getId().toString(), department == null ? "" : department.getName());
         return rolePostDepartDTO;
     }
@@ -104,7 +105,7 @@ public class AccountQueryServiceImpl extends BaseQueryServiceImpl<Account, Accou
         Query query = entityManager.createNamedQuery("findAccountByNativeSql");
         List<RoleAccountDTO> accountList = query.getResultList();
         //List<Account> accountNativeList = accountQueryRepository.findAccountByNativeSql();
-       // List<Role> roleList = roleQueryRepository.findRoleList();
+        // List<Role> roleList = roleQueryRepository.findRoleList();
         log.info("获取到的账号的数量为:" + accountList.size() + "个");
         return null;
     }

@@ -1,5 +1,6 @@
 package com.zgy.handle.knowledge.service.catalog;
 
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.util.tree.TreeConvert;
 import com.zgy.handle.knowledge.model.PostList;
 import com.zgy.handle.knowledge.model.catalog.Catalog;
@@ -48,10 +49,13 @@ public class CatalogService extends KnowledgeService<Catalog, CatalogDTO> {
                 catalog.setParent(catalogOptional.get());
             }
         }
+        catalog.setNote(catalogDTO.getNote());
     }
 
     @Override
     public void postUpdate(Catalog catalog, CatalogDTO catalogDTO) {
         resourceDispatchService.addResourceDispatch(catalog.getId(), ResourceType.CATALOG);
     }
+
+
 }

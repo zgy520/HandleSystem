@@ -1,5 +1,6 @@
 package com.zgy.handle.userservice.service.structure.industry.query;
 
+import com.zgy.handle.common.model.common.TreeSelectDTO;
 import com.zgy.handle.common.service.base.impl.BaseQueryServiceImpl;
 import com.zgy.handle.userservice.model.dto.structure.IndustryQueryDTO;
 import com.zgy.handle.userservice.model.structure.Industry;

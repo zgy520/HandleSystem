@@ -20,6 +20,7 @@ public interface AccountQueryService extends QueryService<Account, AccountQueryV
 
     /**
      * 根据登录名获取用户信息
+     *
      * @param loginName
      * @return
      */
@@ -27,9 +28,9 @@ public interface AccountQueryService extends QueryService<Account, AccountQueryV
 
     /**
      * 通过xml外部的sql获取所有的用户信息
+     *
      * @return
      */
     List<Account> findAllAccountByXml();
-
 
 }

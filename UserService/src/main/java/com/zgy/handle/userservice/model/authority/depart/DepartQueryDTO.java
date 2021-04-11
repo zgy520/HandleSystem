@@ -13,7 +13,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class DepartQueryDTO extends BaseDTO {
     private String name;
     private String code;

@@ -9,7 +9,9 @@
       <module fileurl="file://$PROJECT_DIR$/GateWayService/GateWayService.iml" filepath="$PROJECT_DIR$/GateWayService/GateWayService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/HandleSystem.iml" filepath="$PROJECT_DIR$/.idea/HandleSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/KnowledgeService/KnowledgeService.iml" filepath="$PROJECT_DIR$/KnowledgeService/KnowledgeService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ReplayService/ReplayService.iml" filepath="$PROJECT_DIR$/ReplayService/ReplayService.iml" />
       <module fileurl="file://$PROJECT_DIR$/StockService/StockService.iml" filepath="$PROJECT_DIR$/StockService/StockService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TradingService/TradingService.iml" filepath="$PROJECT_DIR$/TradingService/TradingService.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserService/UserService.iml" filepath="$PROJECT_DIR$/UserService/UserService.iml" />
     </modules>
   </component>

@@ -5,7 +5,6 @@ import com.zgy.handle.common.controller.base.BaseQueryController;
 import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.userservice.model.user.Account;
-import com.zgy.handle.userservice.model.user.cross.RolePostDepartDTO;
 import com.zgy.handle.userservice.model.user.query.AccountQueryVo;
 import com.zgy.handle.userservice.service.user.query.AccountQueryService;
 import com.zgy.handle.userservice.service.user.update.AccountUpdateService;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +41,26 @@ public class AccountQueryController extends BaseQueryController<Account, Account
     }
 
 
+    @Override
+    public ResponseCode<List<AccountQueryVo>> list(Pageable pageable, AccountQueryVo dto) {
+        ResponseCode<List<AccountQueryVo>> responseCode = ResponseCode.sucess();
+        pageable = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        Page<Account> page = accountQueryService.findByDynamicQuery(pageable, dto);
+        stopWatch.stop();
+        log.info("获取列表所用的时间为:" + stopWatch.getTotalTimeMillis() / 1000);
+        List<Account> contentList = page.getContent();
+        List<AccountQueryVo> dtoList = convertTtoU(contentList);
+        responseCode.setPageInfo(page);
+        fillList(contentList, dtoList);
+        responseCode.setData(dtoList);
+        return responseCode;
+    }
 
     @Override
     public void fillList(List<Account> entityList, List<AccountQueryVo> dtoList) {
-        Instant start = Instant.now();
+        /*Instant start = Instant.now();
         dtoList.stream().forEach(dto -> {
             RolePostDepartDTO rolePostDepartDTO = accountQueryService.fetchRolePostName(Long.valueOf(dto.getId()));
             if (rolePostDepartDTO != null) {
@@ -60,7 +73,7 @@ public class AccountQueryController extends BaseQueryController<Account, Account
             }
         });
         Instant end = Instant.now();
-        log.info("所用时间为:" + Duration.between(start, end));
+        log.info("所用时间为:" + Duration.between(start, end));*/
     }
 
     @Override
@@ -92,7 +105,7 @@ public class AccountQueryController extends BaseQueryController<Account, Account
     }
 
     @GetMapping(value = "getAllAccount")
-    public ResponseCode<List<Account>> getAllAccount(){
+    public ResponseCode<List<Account>> getAllAccount() {
         ResponseCode<List<Account>> responseCode = ResponseCode.sucess();
         responseCode.setData(accountQueryService.findAllAccountByXml());
         return responseCode;
