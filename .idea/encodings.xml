@@ -10,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/KnowledgeService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ReplayService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/StockService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TimeTradingService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TradingService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserService/src/main/java" charset="UTF-8" />
   </component>

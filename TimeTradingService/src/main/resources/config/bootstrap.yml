@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: timetradingservice
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8080/user
+      preferTokenInfo: false

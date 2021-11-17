@@ -22,6 +22,5 @@ public class UserInfo {
     private String postName;
     private Set<String> roles = new HashSet<>();
     public UserInfo(){
-
     }
 }

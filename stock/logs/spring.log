@@ -1,0 +1,172 @@
+2021-04-14 21:57:18.744 [main] INFO  c.zgy.handle.stockservice.StockServiceApplication - No active profile set, falling back to default profiles: default
+2021-04-14 21:57:20.869 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-14 21:57:21.114 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 221ms. Found 6 JPA repository interfaces.
+2021-04-14 21:57:21.409 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=55455652-bc42-3d5d-af29-f2344138c440
+2021-04-14 21:57:21.614 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-14 21:57:22.183 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8070 (http)
+2021-04-14 21:57:22.205 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-04-14 21:57:22.206 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021-04-14 21:57:22.418 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-04-14 21:57:22.418 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3649 ms
+2021-04-14 21:57:22.792 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-14 21:57:22.965 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+2021-04-14 21:57:23.277 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-04-14 21:57:23.522 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-04-14 21:57:23.524 [main] WARN  com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-04-14 21:57:25.106 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2021-04-14 21:57:25.227 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: com.zgy.handle.stockservice.config.hibernate.CustomMySqlDialect
+2021-04-14 21:57:25.447 [main] INFO  o.hibernate.envers.boot.internal.EnversServiceImpl - Envers integration enabled? : true
+2021-04-14 21:57:27.589 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-14 21:57:27.597 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-14 21:57:28.940 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-04-14 21:57:29.043 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-04-14 21:57:29.043 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-04-14 21:57:29.056 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-04-14 21:57:29.057 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-04-14 21:57:29.216 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-14 21:57:29.465 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2021-04-14 21:57:29.477 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-04-14 21:57:29.477 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2021-04-14 21:57:29.481 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Using db table-based data access locking (synchronization).
+2021-04-14 21:57:29.483 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - JobStoreCMT initialized.
+2021-04-14 21:57:29.484 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 5 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is not clustered.
+
+2021-04-14 21:57:29.484 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-04-14 21:57:29.484 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2021-04-14 21:57:29.484 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@4434eb51
+2021-04-14 21:57:30.282 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2021-04-14 21:57:31.809 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-04-14 21:57:31.854 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-04-14 21:57:31.886 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-04-14 21:57:32.320 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getDetailsUsingGET_1
+2021-04-14 21:57:32.337 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2021-04-14 21:57:32.413 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Freed 0 triggers from 'acquired' / 'blocked' state.
+2021-04-14 21:57:32.432 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Handling 1 trigger(s) that missed their scheduled fire-time.
+2021-04-14 21:57:32.570 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Recovering 0 jobs that were in-progress at the time of the last shut-down.
+2021-04-14 21:57:32.570 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Recovery complete.
+2021-04-14 21:57:32.579 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Removed 0 'complete' triggers.
+2021-04-14 21:57:32.587 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Removed 0 stale fired job entries.
+2021-04-14 21:57:32.607 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-04-14 21:57:32.697 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8070 (http) with context path ''
+2021-04-14 21:57:32.794 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, stockservice 192.168.31.150:8070 register finished
+2021-04-14 21:57:32.945 [quartzScheduler_Worker-1] DEBUG org.hibernate.SQL - 
+    select
+        stockdaily0_.id as id1_1_,
+        stockdaily0_.isDeleted as isDelete2_1_,
+        stockdaily0_.creator as creator3_1_,
+        stockdaily0_.createTime as createTi4_1_,
+        stockdaily0_.updator as updator5_1_,
+        stockdaily0_.updateTime as updateTi6_1_,
+        stockdaily0_.note as note7_1_,
+        stockdaily0_.createdId as createdI8_1_,
+        stockdaily0_.belongId as belongId9_1_,
+        stockdaily0_.name as name10_1_,
+        stockdaily0_.code as code11_1_,
+        stockdaily0_.curDate as curDate12_1_,
+        stockdaily0_.startPrice as startPr13_1_,
+        stockdaily0_.endPrice as endPric14_1_,
+        stockdaily0_.highPrice as highPri15_1_,
+        stockdaily0_.minPrice as minPric16_1_,
+        stockdaily0_.turnOverRate as turnOve17_1_,
+        stockdaily0_.zdf as zdf18_1_,
+        stockdaily0_.tradingVolume as trading19_1_,
+        stockdaily0_.szZdf as szZdf20_1_,
+        stockdaily0_.zdEndPrice as zdEndPr21_1_,
+        stockdaily0_.preClosePrice as preClos22_1_ 
+    from
+        stock_daily stockdaily0_ 
+    where
+        stockdaily0_.code=?
+2021-04-14 21:57:32.951 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [VARCHAR] - [601100]
+2021-04-14 21:57:33.138 [quartzScheduler_Worker-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        stock_moving
+        (isDeleted, creator, createTime, updator, updateTime, note, createdId, belongId, name, code, curDate, price, price3, price5, price7, price10, price15, price20, price30, price45, price60, price75, price100, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2021-04-14 21:57:33.140 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [BOOLEAN] - [false]
+2021-04-14 21:57:33.141 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [VARCHAR] - [null]
+2021-04-14 21:57:33.142 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [TIMESTAMP] - [Wed Apr 14 21:57:33 CST 2021]
+2021-04-14 21:57:33.144 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [null]
+2021-04-14 21:57:33.145 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [TIMESTAMP] - [Wed Apr 14 21:57:33 CST 2021]
+2021-04-14 21:57:33.145 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [null]
+2021-04-14 21:57:33.145 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [null]
+2021-04-14 21:57:33.145 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [VARCHAR] - [null]
+2021-04-14 21:57:33.145 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [9] as [VARCHAR] - [恒立液压]
+2021-04-14 21:57:33.146 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [10] as [VARCHAR] - [601100]
+2021-04-14 21:57:33.147 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [11] as [DATE] - [2021-04-14]
+2021-04-14 21:57:33.148 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [12] as [DOUBLE] - [83.25]
+2021-04-14 21:57:33.148 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [13] as [DOUBLE] - [89.99000000000001]
+2021-04-14 21:57:33.149 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [14] as [DOUBLE] - [101.538]
+2021-04-14 21:57:33.149 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [15] as [DOUBLE] - [108.76571428571428]
+2021-04-14 21:57:33.149 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [16] as [DOUBLE] - [113.056]
+2021-04-14 21:57:33.149 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [17] as [DOUBLE] - [114.90266666666666]
+2021-04-14 21:57:33.149 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [18] as [DOUBLE] - [116.56800000000001]
+2021-04-14 21:57:33.150 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [19] as [DOUBLE] - [119.40833333333333]
+2021-04-14 21:57:33.150 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [20] as [DOUBLE] - [118.50588235294117]
+2021-04-14 21:57:33.150 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [21] as [DOUBLE] - [118.50588235294117]
+2021-04-14 21:57:33.150 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [22] as [DOUBLE] - [118.50588235294117]
+2021-04-14 21:57:33.151 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [23] as [DOUBLE] - [118.50588235294117]
+2021-04-14 21:57:33.152 [quartzScheduler_Worker-1] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [24] as [BIGINT] - [1828332043411393576]
+2021-04-14 21:57:33.495 [main] INFO  c.zgy.handle.stockservice.StockServiceApplication - Started StockServiceApplication in 17.272 seconds (JVM running for 20.705)
+2021-04-14 21:57:49.644 [http-nio-8070-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-14 21:57:49.644 [http-nio-8070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-04-14 21:57:49.655 [http-nio-8070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+2021-04-14 21:58:05.738 [http-nio-8070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        stockdaily0_.id as id1_3_,
+        stockdaily0_.isDeleted as isDelete2_3_,
+        stockdaily0_.creator as creator3_3_,
+        stockdaily0_.createTime as createTi4_3_,
+        stockdaily0_.updator as updator5_3_,
+        stockdaily0_.updateTime as updateTi6_3_,
+        stockdaily0_.note as note7_3_,
+        stockdaily0_.createdId as createdI8_3_,
+        stockdaily0_.belongId as belongId9_3_,
+        stockdaily0_.name as name10_3_,
+        stockdaily0_.code as code11_3_,
+        stockdaily0_.curDate as curDate12_3_,
+        stockdaily0_.curTime as curTime13_3_,
+        stockdaily0_.price as price14_3_,
+        stockdaily0_.tradingCount as trading15_3_,
+        stockdaily0_.type as type16_3_,
+        stockdaily0_.result as result17_3_ 
+    from
+        stock_daily_detail stockdaily0_ 
+    where
+        stockdaily0_.code=? 
+        and stockdaily0_.curDate>=?
+2021-04-14 21:58:05.748 [http-nio-8070-exec-10] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [VARCHAR] - [601100]
+2021-04-14 21:58:05.748 [http-nio-8070-exec-10] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [DATE] - [2021-04-09]
+2021-04-14 21:58:06.708 [http-nio-8070-exec-10] INFO  c.z.h.s.service.detail.StockDailyDetailServiceImpl - 日期:2021-04-09总的交易次数为:4410:60835,买入次数为:2147:26253买入金额为:2.31，卖出次数为:2263:34582卖出金额为:3.04，净流入:-0.73
+2021-04-14 21:58:06.723 [http-nio-8070-exec-10] INFO  c.z.h.s.service.detail.StockDailyDetailServiceImpl - 日期:2021-04-12总的交易次数为:4533:73467,买入次数为:2073:29876买入金额为:2.53，卖出次数为:2460:43591卖出金额为:3.69，净流入:-1.16
+2021-04-14 21:58:06.731 [http-nio-8070-exec-10] INFO  c.z.h.s.service.detail.StockDailyDetailServiceImpl - 日期:2021-04-13总的交易次数为:4377:52202,买入次数为:2173:24543买入金额为:2.06，卖出次数为:2204:27659卖出金额为:2.32，净流入:-0.26
+2021-04-14 21:58:06.741 [http-nio-8070-exec-10] INFO  c.z.h.s.service.detail.StockDailyDetailServiceImpl - 日期:2021-04-14总的交易次数为:4385:76653,买入次数为:2017:35844买入金额为:2.96，卖出次数为:2368:40809卖出金额为:3.37，净流入:-0.41
+2021-04-14 22:19:31.052 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@707824d7 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.054 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@26c38602 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.057 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@172c4091 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.059 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6715864d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.060 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2d8d7b8 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.061 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3811a277 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.062 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@4dcc552c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.063 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6209536 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.064 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@4201f75d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:19:31.065 [QuartzScheduler_quartzScheduler-NON_CLUSTERED_MisfireHandler] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7736f770 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-04-14 22:37:38.736 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-04-14 22:37:38.739 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2021-04-14 22:37:38.745 [SpringContextShutdownHook] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - De-registration finished.
+2021-04-14 22:37:38.745 [SpringContextShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2021-04-14 22:37:38.746 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-04-14 22:37:38.746 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-04-14 22:37:38.747 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-04-14 22:37:38.748 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-14 22:37:38.757 [SpringContextShutdownHook] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-04-14 22:37:38.771 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2021-04-14 22:37:38.782 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

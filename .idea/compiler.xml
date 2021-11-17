@@ -93,8 +93,8 @@
           <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
         </processorPath>
         <module name="EurekaServer" />
-        <module name="KnowledgeService" />
         <module name="ExcelService" />
+        <module name="KnowledgeService" />
         <module name="GateWayService" />
       </profile>
       <profile name="Annotation profile for ReplayService" enabled="true">
@@ -137,6 +137,26 @@
         </processorPath>
         <module name="TradingService" />
       </profile>
+      <profile name="Annotation profile for TimeTradingService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/hibernate/hibernate-jpamodelgen/5.4.18.Final/hibernate-jpamodelgen-5.4.18.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/glassfish/jaxb/jaxb-runtime/2.3.1/jaxb-runtime-2.3.1.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/glassfish/jaxb/txw2/2.3.1/txw2-2.3.1.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/com/sun/istack/istack-commons-runtime/3.0.7/istack-commons-runtime-3.0.7.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/jvnet/staxex/stax-ex/1.8/stax-ex-1.8.jar" />
+          <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/com/sun/xml/fastinfoset/FastInfoset/1.2.15/FastInfoset-1.2.15.jar" />
+        </processorPath>
+        <module name="TimeTradingService" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AuthServer" target="1.11" />
@@ -151,6 +171,7 @@
       <module name="OrgServer" target="1.11" />
       <module name="ReplayService" target="11" />
       <module name="StockService" target="11" />
+      <module name="TimeTradingService" target="11" />
       <module name="TradingService" target="11" />
       <module name="UserServer" target="1.11" />
       <module name="UserService" target="11" />
@@ -170,6 +191,7 @@
       <module name="OrgServer" options="-parameters" />
       <module name="ReplayService" options="-parameters" />
       <module name="StockService" options="-parameters" />
+      <module name="TimeTradingService" options="-parameters" />
       <module name="TradingService" options="-parameters" />
       <module name="UserServer" options="-parameters" />
       <module name="UserService" options="-parameters" />
