@@ -1,0 +1,355 @@
+2021-11-18 19:43:56.813 [main] INFO  com.zgy.handle.userservice.UserApplication - No active profile set, falling back to default profiles: default
+2021-11-18 19:43:59.120 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-18 19:43:59.570 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 434ms. Found 27 JPA repository interfaces.
+2021-11-18 19:43:59.980 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=09dbb897-5c0c-3c9b-b988-97686e6acd3d
+2021-11-18 19:44:00.292 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-18 19:44:01.531 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7070 (http)
+2021-11-18 19:44:01.547 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-11-18 19:44:01.548 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021-11-18 19:44:01.860 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-11-18 19:44:01.860 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5011 ms
+2021-11-18 19:44:02.603 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-18 19:44:02.868 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+2021-11-18 19:44:03.317 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-11-18 19:44:03.998 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-11-18 19:44:04.002 [main] WARN  com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-11-18 19:44:04.622 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2021-11-18 19:44:04.674 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-18 19:44:04.948 [main] INFO  o.hibernate.envers.boot.internal.EnversServiceImpl - Envers integration enabled? : true
+2021-11-18 19:44:34.837 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-18 19:44:35.005 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-18 19:44:38.284 [main] INFO  com.zgy.handle.userservice.core.aop.ExportAspect - init exportAspect!
+2021-11-18 19:44:38.719 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'dictCache' created in EhcacheManager.
+2021-11-18 19:44:38.898 [main] DEBUG org.hibernate.SQL - 
+    select
+        dict0_.id as id1_8_,
+        dict0_.isDeleted as isDelete2_8_,
+        dict0_.creator as creator3_8_,
+        dict0_.createTime as createTi4_8_,
+        dict0_.updator as updator5_8_,
+        dict0_.updateTime as updateTi6_8_,
+        dict0_.note as note7_8_,
+        dict0_.createdId as createdI8_8_,
+        dict0_.belongId as belongId9_8_,
+        dict0_.code as code10_8_,
+        dict0_.name as name11_8_,
+        dict0_.dictType as dictTyp12_8_,
+        dict0_.parentId as parentI13_8_ 
+    from
+        system_dict dict0_
+2021-11-18 19:44:41.421 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'paramCache' created in EhcacheManager.
+2021-11-18 19:44:41.523 [main] DEBUG org.hibernate.SQL - 
+    select
+        param0_.id as id1_17_,
+        param0_.isDeleted as isDelete2_17_,
+        param0_.creator as creator3_17_,
+        param0_.createTime as createTi4_17_,
+        param0_.updator as updator5_17_,
+        param0_.updateTime as updateTi6_17_,
+        param0_.note as note7_17_,
+        param0_.createdId as createdI8_17_,
+        param0_.belongId as belongId9_17_,
+        param0_.code as code10_17_,
+        param0_.value as value11_17_,
+        param0_.visible as visible12_17_,
+        param0_.paramType as paramTy13_17_ 
+    from
+        system_param param0_
+2021-11-18 19:44:41.726 [main] INFO  com.zgy.handle.userservice.core.cache.ParamCache - 参数数据初始化完毕
+2021-11-18 19:44:42.502 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-18 19:44:42.602 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-18 19:44:42.602 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-18 19:44:42.607 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-18 19:44:42.608 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-18 19:44:43.460 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2021-11-18 19:44:44.219 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-11-18 19:44:44.280 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-11-18 19:44:44.308 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-11-18 19:44:44.526 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_1
+2021-11-18 19:44:44.572 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_1
+2021-11-18 19:44:44.575 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+2021-11-18 19:44:44.576 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_1
+2021-11-18 19:44:44.577 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_1
+2021-11-18 19:44:44.580 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_2
+2021-11-18 19:44:44.582 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_3
+2021-11-18 19:44:44.584 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+2021-11-18 19:44:44.586 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+2021-11-18 19:44:44.592 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_2
+2021-11-18 19:44:44.595 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_2
+2021-11-18 19:44:44.662 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_2
+2021-11-18 19:44:44.663 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_2
+2021-11-18 19:44:44.669 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_4
+2021-11-18 19:44:44.672 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_5
+2021-11-18 19:44:44.676 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+2021-11-18 19:44:44.680 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+2021-11-18 19:44:44.684 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_3
+2021-11-18 19:44:44.686 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_3
+2021-11-18 19:44:44.687 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_3
+2021-11-18 19:44:44.687 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_3
+2021-11-18 19:44:44.691 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_6
+2021-11-18 19:44:44.693 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_7
+2021-11-18 19:44:44.694 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+2021-11-18 19:44:44.697 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_3
+2021-11-18 19:44:44.702 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_4
+2021-11-18 19:44:44.704 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_4
+2021-11-18 19:44:44.705 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_4
+2021-11-18 19:44:44.705 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_4
+2021-11-18 19:44:44.710 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_8
+2021-11-18 19:44:44.711 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_9
+2021-11-18 19:44:44.715 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+2021-11-18 19:44:44.718 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_4
+2021-11-18 19:44:44.722 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_5
+2021-11-18 19:44:44.724 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_5
+2021-11-18 19:44:44.725 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_5
+2021-11-18 19:44:44.726 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_5
+2021-11-18 19:44:44.732 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_10
+2021-11-18 19:44:44.734 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_11
+2021-11-18 19:44:44.737 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_5
+2021-11-18 19:44:44.739 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_5
+2021-11-18 19:44:44.743 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_6
+2021-11-18 19:44:44.745 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_6
+2021-11-18 19:44:44.748 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_6
+2021-11-18 19:44:44.749 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_6
+2021-11-18 19:44:44.752 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_12
+2021-11-18 19:44:44.754 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_13
+2021-11-18 19:44:44.758 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_6
+2021-11-18 19:44:44.762 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_6
+2021-11-18 19:44:44.769 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_7
+2021-11-18 19:44:44.771 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_7
+2021-11-18 19:44:44.771 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_7
+2021-11-18 19:44:44.772 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_7
+2021-11-18 19:44:44.775 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_14
+2021-11-18 19:44:44.777 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_15
+2021-11-18 19:44:44.778 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_7
+2021-11-18 19:44:44.781 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_7
+2021-11-18 19:44:44.783 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_8
+2021-11-18 19:44:44.785 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_8
+2021-11-18 19:44:44.786 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_8
+2021-11-18 19:44:44.787 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_8
+2021-11-18 19:44:44.790 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_16
+2021-11-18 19:44:44.792 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_17
+2021-11-18 19:44:44.794 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_8
+2021-11-18 19:44:44.795 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_1
+2021-11-18 19:44:44.797 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_8
+2021-11-18 19:44:44.803 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_9
+2021-11-18 19:44:44.805 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_9
+2021-11-18 19:44:44.806 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getAccountListByRoleIdUsingGET_1
+2021-11-18 19:44:44.807 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_9
+2021-11-18 19:44:44.808 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_9
+2021-11-18 19:44:44.811 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_18
+2021-11-18 19:44:44.813 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_19
+2021-11-18 19:44:44.815 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_9
+2021-11-18 19:44:44.817 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_2
+2021-11-18 19:44:44.818 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_9
+2021-11-18 19:44:44.844 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_10
+2021-11-18 19:44:44.845 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_10
+2021-11-18 19:44:44.939 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7070 (http) with context path ''
+2021-11-18 19:44:47.246 [ThreadPoolTaskScheduler-1] ERROR o.s.cloud.alibaba.nacos.discovery.NacosWatch - Error watching Nacos Service change
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/service/list after all servers([192.168.31.112:8848]) tried: failed to req API:http://192.168.31.112:8848/nacos/v1/ns/service/list. code:500 msg: java.net.SocketTimeoutException: connect timed out
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:346) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:294) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:276) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:252) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.getServicesOfServer(NacosNamingService.java:525) ~[nacos-client-1.0.0.jar:na]
+	at org.springframework.cloud.alibaba.nacos.discovery.NacosWatch.nacosServicesWatch(NacosWatch.java:127) ~[spring-cloud-alibaba-nacos-discovery-0.9.0.RELEASE.jar:0.9.0.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+2021-11-18 19:44:48.091 [main] ERROR o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, userservice register failed...NacosRegistration{nacosDiscoveryProperties=NacosDiscoveryProperties{serverAddr='192.168.31.112:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='userservice', weight=1.0, clusterName='DEFAULT', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='192.168.31.150', networkInterface='', port=7070, secure=false, accessKey='', secretKey=''}},
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/instance after all servers([192.168.31.112:8848]) tried: failed to req API:http://192.168.31.112:8848/nacos/v1/ns/instance. code:500 msg: java.net.SocketTimeoutException: connect timed out
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.registerService(NamingProxy.java:186) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.registerInstance(NacosNamingService.java:298) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.registerInstance(NacosNamingService.java:279) ~[nacos-client-1.0.0.jar:na]
+	at org.springframework.cloud.alibaba.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:63) ~[spring-cloud-alibaba-nacos-discovery-0.9.0.RELEASE.jar:0.9.0.RELEASE]
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.register(AbstractAutoServiceRegistration.java:239) ~[spring-cloud-commons-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.cloud.alibaba.nacos.registry.NacosAutoServiceRegistration.register(NacosAutoServiceRegistration.java:74) ~[spring-cloud-alibaba-nacos-discovery-0.9.0.RELEASE.jar:0.9.0.RELEASE]
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.start(AbstractAutoServiceRegistration.java:138) ~[spring-cloud-commons-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.bind(AbstractAutoServiceRegistration.java:101) ~[spring-cloud-commons-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:88) ~[spring-cloud-commons-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:47) ~[spring-cloud-commons-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:403) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:360) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:553) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) ~[spring-boot-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747) ~[spring-boot-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) ~[spring-boot-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) ~[spring-boot-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) ~[spring-boot-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at com.zgy.handle.userservice.UserApplication.main(UserApplication.java:42) ~[classes/:na]
+2021-11-18 19:44:48.328 [main] INFO  com.zgy.handle.userservice.UserApplication - Started UserApplication in 54.747 seconds (JVM running for 58.537)
+2021-11-18 19:45:20.269 [ThreadPoolTaskScheduler-1] ERROR o.s.cloud.alibaba.nacos.discovery.NacosWatch - Error watching Nacos Service change
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/service/list after all servers([192.168.31.112:8848]) tried: failed to req API:http://192.168.31.112:8848/nacos/v1/ns/service/list. code:500 msg: java.net.SocketTimeoutException: connect timed out
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:346) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:294) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:276) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:252) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.getServicesOfServer(NacosNamingService.java:525) ~[nacos-client-1.0.0.jar:na]
+	at org.springframework.cloud.alibaba.nacos.discovery.NacosWatch.nacosServicesWatch(NacosWatch.java:127) ~[spring-cloud-alibaba-nacos-discovery-0.9.0.RELEASE.jar:0.9.0.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+2021-11-18 19:45:39.586 [main] INFO  com.zgy.handle.userservice.UserApplication - No active profile set, falling back to default profiles: default
+2021-11-18 19:45:40.461 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-18 19:45:40.718 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 251ms. Found 27 JPA repository interfaces.
+2021-11-18 19:45:40.896 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=09dbb897-5c0c-3c9b-b988-97686e6acd3d
+2021-11-18 19:45:41.032 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-18 19:45:41.354 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7070 (http)
+2021-11-18 19:45:41.363 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-11-18 19:45:41.363 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021-11-18 19:45:41.499 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-11-18 19:45:41.499 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1896 ms
+2021-11-18 19:45:41.726 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-18 19:45:41.801 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+2021-11-18 19:45:41.913 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-11-18 19:45:42.179 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-11-18 19:45:42.181 [main] WARN  com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-11-18 19:45:42.868 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2021-11-18 19:45:42.882 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-18 19:45:42.946 [main] INFO  o.hibernate.envers.boot.internal.EnversServiceImpl - Envers integration enabled? : true
+2021-11-18 19:45:47.967 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-18 19:45:48.024 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-18 19:45:49.019 [main] INFO  com.zgy.handle.userservice.core.aop.ExportAspect - init exportAspect!
+2021-11-18 19:45:49.168 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'dictCache' created in EhcacheManager.
+2021-11-18 19:45:49.260 [main] DEBUG org.hibernate.SQL - 
+    select
+        dict0_.id as id1_8_,
+        dict0_.isDeleted as isDelete2_8_,
+        dict0_.creator as creator3_8_,
+        dict0_.createTime as createTi4_8_,
+        dict0_.updator as updator5_8_,
+        dict0_.updateTime as updateTi6_8_,
+        dict0_.note as note7_8_,
+        dict0_.createdId as createdI8_8_,
+        dict0_.belongId as belongId9_8_,
+        dict0_.code as code10_8_,
+        dict0_.name as name11_8_,
+        dict0_.dictType as dictTyp12_8_,
+        dict0_.parentId as parentI13_8_ 
+    from
+        system_dict dict0_
+2021-11-18 19:45:49.328 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'paramCache' created in EhcacheManager.
+2021-11-18 19:45:49.347 [main] DEBUG org.hibernate.SQL - 
+    select
+        param0_.id as id1_17_,
+        param0_.isDeleted as isDelete2_17_,
+        param0_.creator as creator3_17_,
+        param0_.createTime as createTi4_17_,
+        param0_.updator as updator5_17_,
+        param0_.updateTime as updateTi6_17_,
+        param0_.note as note7_17_,
+        param0_.createdId as createdI8_17_,
+        param0_.belongId as belongId9_17_,
+        param0_.code as code10_17_,
+        param0_.value as value11_17_,
+        param0_.visible as visible12_17_,
+        param0_.paramType as paramTy13_17_ 
+    from
+        system_param param0_
+2021-11-18 19:45:49.423 [main] INFO  com.zgy.handle.userservice.core.cache.ParamCache - 参数数据初始化完毕
+2021-11-18 19:45:49.798 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-18 19:45:49.858 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-18 19:45:49.858 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-18 19:45:49.861 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-18 19:45:49.862 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-18 19:45:50.463 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2021-11-18 19:45:51.126 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-11-18 19:45:51.142 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-11-18 19:45:51.169 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-11-18 19:45:51.332 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_1
+2021-11-18 19:45:51.392 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_1
+2021-11-18 19:45:51.395 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+2021-11-18 19:45:51.396 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_1
+2021-11-18 19:45:51.397 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_1
+2021-11-18 19:45:51.401 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_2
+2021-11-18 19:45:51.403 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_3
+2021-11-18 19:45:51.405 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+2021-11-18 19:45:51.408 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+2021-11-18 19:45:51.415 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_2
+2021-11-18 19:45:51.419 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_2
+2021-11-18 19:45:51.434 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_2
+2021-11-18 19:45:51.435 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_2
+2021-11-18 19:45:51.443 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_4
+2021-11-18 19:45:51.448 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_5
+2021-11-18 19:45:51.453 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+2021-11-18 19:45:51.458 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+2021-11-18 19:45:51.464 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_3
+2021-11-18 19:45:51.467 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_3
+2021-11-18 19:45:51.468 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_3
+2021-11-18 19:45:51.469 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_3
+2021-11-18 19:45:51.474 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_6
+2021-11-18 19:45:51.476 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_7
+2021-11-18 19:45:51.478 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+2021-11-18 19:45:51.482 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_3
+2021-11-18 19:45:51.487 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_4
+2021-11-18 19:45:51.490 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_4
+2021-11-18 19:45:51.491 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_4
+2021-11-18 19:45:51.492 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_4
+2021-11-18 19:45:51.498 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_8
+2021-11-18 19:45:51.500 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_9
+2021-11-18 19:45:51.505 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+2021-11-18 19:45:51.508 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_4
+2021-11-18 19:45:51.513 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_5
+2021-11-18 19:45:51.517 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_5
+2021-11-18 19:45:51.518 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_5
+2021-11-18 19:45:51.520 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_5
+2021-11-18 19:45:51.526 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_10
+2021-11-18 19:45:51.529 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_11
+2021-11-18 19:45:51.532 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_5
+2021-11-18 19:45:51.534 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_5
+2021-11-18 19:45:51.540 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_6
+2021-11-18 19:45:51.543 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_6
+2021-11-18 19:45:51.546 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_6
+2021-11-18 19:45:51.547 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_6
+2021-11-18 19:45:51.552 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_12
+2021-11-18 19:45:51.554 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_13
+2021-11-18 19:45:51.560 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_6
+2021-11-18 19:45:51.564 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_6
+2021-11-18 19:45:51.572 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_7
+2021-11-18 19:45:51.575 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_7
+2021-11-18 19:45:51.576 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_7
+2021-11-18 19:45:51.577 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_7
+2021-11-18 19:45:51.581 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_14
+2021-11-18 19:45:51.583 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_15
+2021-11-18 19:45:51.585 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_7
+2021-11-18 19:45:51.587 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_7
+2021-11-18 19:45:51.591 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_8
+2021-11-18 19:45:51.593 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_8
+2021-11-18 19:45:51.595 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_8
+2021-11-18 19:45:51.596 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_8
+2021-11-18 19:45:51.600 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_16
+2021-11-18 19:45:51.602 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_17
+2021-11-18 19:45:51.604 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_8
+2021-11-18 19:45:51.605 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_1
+2021-11-18 19:45:51.622 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_8
+2021-11-18 19:45:51.627 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_9
+2021-11-18 19:45:51.631 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_9
+2021-11-18 19:45:51.632 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getAccountListByRoleIdUsingGET_1
+2021-11-18 19:45:51.633 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_9
+2021-11-18 19:45:51.634 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_9
+2021-11-18 19:45:51.637 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_18
+2021-11-18 19:45:51.639 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_19
+2021-11-18 19:45:51.641 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_9
+2021-11-18 19:45:51.644 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_2
+2021-11-18 19:45:51.645 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_9
+2021-11-18 19:45:51.675 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_10
+2021-11-18 19:45:51.676 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_10
+2021-11-18 19:45:51.749 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7070 (http) with context path ''
+2021-11-18 19:45:51.822 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, userservice 192.168.31.150:7070 register finished
+2021-11-18 19:45:52.130 [main] INFO  com.zgy.handle.userservice.UserApplication - Started UserApplication in 14.522 seconds (JVM running for 15.837)
