@@ -353,3 +353,1972 @@ java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/service/list aft
 2021-11-18 19:45:51.749 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7070 (http) with context path ''
 2021-11-18 19:45:51.822 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, userservice 192.168.31.150:7070 register finished
 2021-11-18 19:45:52.130 [main] INFO  com.zgy.handle.userservice.UserApplication - Started UserApplication in 14.522 seconds (JVM running for 15.837)
+2021-11-19 10:49:54.312 [main] INFO  com.zgy.handle.userservice.UserApplication - No active profile set, falling back to default profiles: default
+2021-11-19 10:49:56.300 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-19 10:49:56.779 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 466ms. Found 27 JPA repository interfaces.
+2021-11-19 10:49:57.215 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=09dbb897-5c0c-3c9b-b988-97686e6acd3d
+2021-11-19 10:49:57.573 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-19 10:49:58.161 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7070 (http)
+2021-11-19 10:49:58.176 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-11-19 10:49:58.176 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021-11-19 10:49:58.382 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-11-19 10:49:58.383 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4033 ms
+2021-11-19 10:49:58.988 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-19 10:50:00.339 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+2021-11-19 10:50:03.746 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-11-19 10:50:04.248 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-11-19 10:50:04.251 [main] WARN  com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-11-19 10:50:04.687 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2021-11-19 10:50:04.736 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-19 10:50:05.110 [main] INFO  o.hibernate.envers.boot.internal.EnversServiceImpl - Envers integration enabled? : true
+2021-11-19 10:50:10.121 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-19 10:50:10.290 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-19 10:50:11.914 [main] INFO  com.zgy.handle.userservice.core.aop.ExportAspect - init exportAspect!
+2021-11-19 10:50:12.269 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'dictCache' created in EhcacheManager.
+2021-11-19 10:50:12.433 [main] DEBUG org.hibernate.SQL - 
+    select
+        dict0_.id as id1_8_,
+        dict0_.isDeleted as isDelete2_8_,
+        dict0_.creator as creator3_8_,
+        dict0_.createTime as createTi4_8_,
+        dict0_.updator as updator5_8_,
+        dict0_.updateTime as updateTi6_8_,
+        dict0_.note as note7_8_,
+        dict0_.createdId as createdI8_8_,
+        dict0_.belongId as belongId9_8_,
+        dict0_.code as code10_8_,
+        dict0_.name as name11_8_,
+        dict0_.dictType as dictTyp12_8_,
+        dict0_.parentId as parentI13_8_ 
+    from
+        system_dict dict0_
+2021-11-19 10:50:12.525 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'paramCache' created in EhcacheManager.
+2021-11-19 10:50:12.559 [main] DEBUG org.hibernate.SQL - 
+    select
+        param0_.id as id1_17_,
+        param0_.isDeleted as isDelete2_17_,
+        param0_.creator as creator3_17_,
+        param0_.createTime as createTi4_17_,
+        param0_.updator as updator5_17_,
+        param0_.updateTime as updateTi6_17_,
+        param0_.note as note7_17_,
+        param0_.createdId as createdI8_17_,
+        param0_.belongId as belongId9_17_,
+        param0_.code as code10_17_,
+        param0_.value as value11_17_,
+        param0_.visible as visible12_17_,
+        param0_.paramType as paramTy13_17_ 
+    from
+        system_param param0_
+2021-11-19 10:50:12.610 [main] INFO  com.zgy.handle.userservice.core.cache.ParamCache - 参数数据初始化完毕
+2021-11-19 10:50:13.111 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-19 10:50:13.209 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-19 10:50:13.209 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-19 10:50:13.214 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-19 10:50:13.214 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-19 10:50:14.068 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2021-11-19 10:50:15.180 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-11-19 10:50:15.203 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-11-19 10:50:15.251 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-11-19 10:50:15.535 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_1
+2021-11-19 10:50:15.630 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_1
+2021-11-19 10:50:15.635 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+2021-11-19 10:50:15.636 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_1
+2021-11-19 10:50:15.639 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_1
+2021-11-19 10:50:15.645 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_2
+2021-11-19 10:50:15.650 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_3
+2021-11-19 10:50:15.655 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+2021-11-19 10:50:15.659 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+2021-11-19 10:50:15.672 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_2
+2021-11-19 10:50:15.677 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_2
+2021-11-19 10:50:15.715 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_2
+2021-11-19 10:50:15.717 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_2
+2021-11-19 10:50:15.729 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_4
+2021-11-19 10:50:15.733 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_5
+2021-11-19 10:50:15.740 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+2021-11-19 10:50:15.757 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+2021-11-19 10:50:15.776 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_3
+2021-11-19 10:50:15.784 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_3
+2021-11-19 10:50:15.785 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_3
+2021-11-19 10:50:15.786 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_3
+2021-11-19 10:50:15.799 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_6
+2021-11-19 10:50:15.802 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_7
+2021-11-19 10:50:15.805 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+2021-11-19 10:50:15.816 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_3
+2021-11-19 10:50:15.832 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_4
+2021-11-19 10:50:15.845 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_4
+2021-11-19 10:50:15.848 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_4
+2021-11-19 10:50:15.852 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_4
+2021-11-19 10:50:15.865 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_8
+2021-11-19 10:50:15.870 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_9
+2021-11-19 10:50:15.881 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+2021-11-19 10:50:15.887 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_4
+2021-11-19 10:50:15.896 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_5
+2021-11-19 10:50:15.901 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_5
+2021-11-19 10:50:15.903 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_5
+2021-11-19 10:50:15.905 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_5
+2021-11-19 10:50:15.923 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_10
+2021-11-19 10:50:15.929 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_11
+2021-11-19 10:50:15.939 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_5
+2021-11-19 10:50:15.944 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_5
+2021-11-19 10:50:15.952 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_6
+2021-11-19 10:50:15.956 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_6
+2021-11-19 10:50:15.961 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_6
+2021-11-19 10:50:15.963 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_6
+2021-11-19 10:50:15.969 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_12
+2021-11-19 10:50:15.973 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_13
+2021-11-19 10:50:15.983 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_6
+2021-11-19 10:50:15.994 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_6
+2021-11-19 10:50:16.011 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_7
+2021-11-19 10:50:16.018 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_7
+2021-11-19 10:50:16.021 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_7
+2021-11-19 10:50:16.023 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_7
+2021-11-19 10:50:16.032 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_14
+2021-11-19 10:50:16.035 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_15
+2021-11-19 10:50:16.038 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_7
+2021-11-19 10:50:16.045 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_7
+2021-11-19 10:50:16.051 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_8
+2021-11-19 10:50:16.054 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_8
+2021-11-19 10:50:16.058 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_8
+2021-11-19 10:50:16.062 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_8
+2021-11-19 10:50:16.071 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_16
+2021-11-19 10:50:16.077 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_17
+2021-11-19 10:50:16.082 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_8
+2021-11-19 10:50:16.086 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_1
+2021-11-19 10:50:16.092 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_8
+2021-11-19 10:50:16.119 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_9
+2021-11-19 10:50:16.129 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_9
+2021-11-19 10:50:16.133 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getAccountListByRoleIdUsingGET_1
+2021-11-19 10:50:16.135 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_9
+2021-11-19 10:50:16.137 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_9
+2021-11-19 10:50:16.147 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_18
+2021-11-19 10:50:16.151 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_19
+2021-11-19 10:50:16.158 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_9
+2021-11-19 10:50:16.167 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_2
+2021-11-19 10:50:16.171 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_9
+2021-11-19 10:50:16.252 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_10
+2021-11-19 10:50:16.254 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_10
+2021-11-19 10:50:16.385 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7070 (http) with context path ''
+2021-11-19 10:50:16.418 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, userservice 192.168.31.150:7070 register finished
+2021-11-19 10:50:17.048 [main] INFO  com.zgy.handle.userservice.UserApplication - Started UserApplication in 25.812 seconds (JVM running for 29.207)
+2021-11-19 10:52:10.402 [http-nio-7070-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-19 10:52:10.404 [http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-11-19 10:52:10.415 [http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+2021-11-19 10:52:10.500 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_,
+        account0_.isDeleted as isDelete2_1_,
+        account0_.creator as creator3_1_,
+        account0_.createTime as createTi4_1_,
+        account0_.updator as updator5_1_,
+        account0_.updateTime as updateTi6_1_,
+        account0_.note as note7_1_,
+        account0_.createdId as createdI8_1_,
+        account0_.belongId as belongId9_1_,
+        account0_.name as name10_1_,
+        account0_.loginName as loginNa11_1_,
+        account0_.password as passwor12_1_,
+        account0_.salt as salt13_1_,
+        account0_.email as email14_1_,
+        account0_.isExpired as isExpir15_1_,
+        account0_.isLocked as isLocke16_1_,
+        account0_.isEnabled as isEnabl17_1_,
+        account0_.expiredDate as expired18_1_ 
+    from
+        system_account account0_ 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.loginName=?
+2021-11-19 10:52:10.571 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_ 
+    from
+        system_account account0_ 
+    where
+        account0_.id=? 
+        and (
+            account0_.isDeleted = 0
+        )
+2021-11-19 10:52:10.593 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        roleset0_.accountId as accountI2_24_0_,
+        roleset0_.roleId as roleId1_24_0_,
+        role1_.id as id1_21_1_,
+        role1_.isDeleted as isDelete2_21_1_,
+        role1_.creator as creator3_21_1_,
+        role1_.createTime as createTi4_21_1_,
+        role1_.updator as updator5_21_1_,
+        role1_.updateTime as updateTi6_21_1_,
+        role1_.note as note7_21_1_,
+        role1_.createdId as createdI8_21_1_,
+        role1_.belongId as belongId9_21_1_,
+        role1_.code as code10_21_1_,
+        role1_.name as name11_21_1_ 
+    from
+        system_role_personal roleset0_ 
+    inner join
+        system_role role1_ 
+            on roleset0_.roleId=role1_.id 
+            and (
+                role1_.isDeleted = 0
+            ) 
+    where
+        roleset0_.accountId=?
+2021-11-19 10:52:10.609 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        postset0_.accountId as accountI1_20_0_,
+        postset0_.postId as postId2_20_0_,
+        post1_.id as id1_19_1_,
+        post1_.isDeleted as isDelete2_19_1_,
+        post1_.creator as creator3_19_1_,
+        post1_.createTime as createTi4_19_1_,
+        post1_.updator as updator5_19_1_,
+        post1_.updateTime as updateTi6_19_1_,
+        post1_.note as note7_19_1_,
+        post1_.createdId as createdI8_19_1_,
+        post1_.belongId as belongId9_19_1_,
+        post1_.code as code10_19_1_,
+        post1_.name as name11_19_1_ 
+    from
+        system_post_personal postset0_ 
+    inner join
+        system_post post1_ 
+            on postset0_.postId=post1_.id 
+    where
+        postset0_.accountId=?
+2021-11-19 10:52:10.636 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        department0_.departId as departId1_6_,
+        department0_.accountId as accountI2_6_,
+        department0_.personalType as personal3_6_,
+        department0_.sortOrder as sortOrde4_6_ 
+    from
+        system_department_account_test department0_ 
+    left outer join
+        system_account account1_ 
+            on department0_.accountId=account1_.id 
+    where
+        account1_.id=?
+2021-11-19 10:52:11.577 [http-nio-7070-exec-2] INFO  c.z.h.u.controller.user.UserDisplayController - 获取的userId的值为:1828103813010030635,postId为: 1828007341719552008,机构id为:
+2021-11-19 10:52:11.593 [http-nio-7070-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        role2_.id as id1_21_1_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_,
+        role2_.isDeleted as isDelete2_21_1_,
+        role2_.creator as creator3_21_1_,
+        role2_.createTime as createTi4_21_1_,
+        role2_.updator as updator5_21_1_,
+        role2_.updateTime as updateTi6_21_1_,
+        role2_.note as note7_21_1_,
+        role2_.createdId as createdI8_21_1_,
+        role2_.belongId as belongId9_21_1_,
+        role2_.code as code10_21_1_,
+        role2_.name as name11_21_1_,
+        roleset1_.accountId as accountI2_24_0__,
+        roleset1_.roleId as roleId1_24_0__ 
+    from
+        system_account account0_ 
+    left outer join
+        system_role_personal roleset1_ 
+            on account0_.id=roleset1_.accountId 
+    left outer join
+        system_role role2_ 
+            on roleset1_.roleId=role2_.id 
+            and (
+                role2_.isDeleted = 0
+            ) 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.id=?
+2021-11-19 15:09:33.185 [main] INFO  com.zgy.handle.userservice.UserApplication - No active profile set, falling back to default profiles: default
+2021-11-19 15:09:34.122 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-19 15:09:34.388 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 259ms. Found 27 JPA repository interfaces.
+2021-11-19 15:09:34.606 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=09dbb897-5c0c-3c9b-b988-97686e6acd3d
+2021-11-19 15:09:34.755 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-19 15:09:35.122 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7070 (http)
+2021-11-19 15:09:35.133 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-11-19 15:09:35.134 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021-11-19 15:09:35.281 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-11-19 15:09:35.281 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2079 ms
+2021-11-19 15:09:35.540 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-19 15:09:35.624 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+2021-11-19 15:09:35.749 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-11-19 15:09:36.037 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-11-19 15:09:36.039 [main] WARN  com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-11-19 15:09:36.332 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2021-11-19 15:09:36.354 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-19 15:09:36.444 [main] INFO  o.hibernate.envers.boot.internal.EnversServiceImpl - Envers integration enabled? : true
+2021-11-19 15:09:40.640 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-19 15:09:40.701 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-19 15:09:41.873 [main] INFO  com.zgy.handle.userservice.core.aop.ExportAspect - init exportAspect!
+2021-11-19 15:09:42.038 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'dictCache' created in EhcacheManager.
+2021-11-19 15:09:42.126 [main] DEBUG org.hibernate.SQL - 
+    select
+        dict0_.id as id1_8_,
+        dict0_.isDeleted as isDelete2_8_,
+        dict0_.creator as creator3_8_,
+        dict0_.createTime as createTi4_8_,
+        dict0_.updator as updator5_8_,
+        dict0_.updateTime as updateTi6_8_,
+        dict0_.note as note7_8_,
+        dict0_.createdId as createdI8_8_,
+        dict0_.belongId as belongId9_8_,
+        dict0_.code as code10_8_,
+        dict0_.name as name11_8_,
+        dict0_.dictType as dictTyp12_8_,
+        dict0_.parentId as parentI13_8_ 
+    from
+        system_dict dict0_
+2021-11-19 15:09:42.237 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'paramCache' created in EhcacheManager.
+2021-11-19 15:09:42.258 [main] DEBUG org.hibernate.SQL - 
+    select
+        param0_.id as id1_17_,
+        param0_.isDeleted as isDelete2_17_,
+        param0_.creator as creator3_17_,
+        param0_.createTime as createTi4_17_,
+        param0_.updator as updator5_17_,
+        param0_.updateTime as updateTi6_17_,
+        param0_.note as note7_17_,
+        param0_.createdId as createdI8_17_,
+        param0_.belongId as belongId9_17_,
+        param0_.code as code10_17_,
+        param0_.value as value11_17_,
+        param0_.visible as visible12_17_,
+        param0_.paramType as paramTy13_17_ 
+    from
+        system_param param0_
+2021-11-19 15:09:42.294 [main] INFO  com.zgy.handle.userservice.core.cache.ParamCache - 参数数据初始化完毕
+2021-11-19 15:09:42.689 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-19 15:09:42.747 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-19 15:09:42.748 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-19 15:09:42.752 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-19 15:09:42.752 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-19 15:09:43.354 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2021-11-19 15:09:44.021 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-11-19 15:09:44.038 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-11-19 15:09:44.068 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-11-19 15:09:44.230 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_1
+2021-11-19 15:09:44.295 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_1
+2021-11-19 15:09:44.299 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+2021-11-19 15:09:44.300 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_1
+2021-11-19 15:09:44.301 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_1
+2021-11-19 15:09:44.306 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_2
+2021-11-19 15:09:44.308 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_3
+2021-11-19 15:09:44.310 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+2021-11-19 15:09:44.312 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+2021-11-19 15:09:44.320 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_2
+2021-11-19 15:09:44.324 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_2
+2021-11-19 15:09:44.342 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_2
+2021-11-19 15:09:44.343 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_2
+2021-11-19 15:09:44.353 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_4
+2021-11-19 15:09:44.357 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_5
+2021-11-19 15:09:44.363 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+2021-11-19 15:09:44.368 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+2021-11-19 15:09:44.372 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_3
+2021-11-19 15:09:44.375 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_3
+2021-11-19 15:09:44.377 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_3
+2021-11-19 15:09:44.378 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_3
+2021-11-19 15:09:44.384 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_6
+2021-11-19 15:09:44.386 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_7
+2021-11-19 15:09:44.388 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+2021-11-19 15:09:44.393 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_3
+2021-11-19 15:09:44.400 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_4
+2021-11-19 15:09:44.403 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_4
+2021-11-19 15:09:44.404 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_4
+2021-11-19 15:09:44.405 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_4
+2021-11-19 15:09:44.410 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_8
+2021-11-19 15:09:44.412 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_9
+2021-11-19 15:09:44.416 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+2021-11-19 15:09:44.419 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_4
+2021-11-19 15:09:44.424 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_5
+2021-11-19 15:09:44.427 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_5
+2021-11-19 15:09:44.429 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_5
+2021-11-19 15:09:44.430 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_5
+2021-11-19 15:09:44.437 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_10
+2021-11-19 15:09:44.440 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_11
+2021-11-19 15:09:44.444 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_5
+2021-11-19 15:09:44.446 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_5
+2021-11-19 15:09:44.450 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_6
+2021-11-19 15:09:44.452 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_6
+2021-11-19 15:09:44.454 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_6
+2021-11-19 15:09:44.455 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_6
+2021-11-19 15:09:44.460 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_12
+2021-11-19 15:09:44.461 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_13
+2021-11-19 15:09:44.466 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_6
+2021-11-19 15:09:44.470 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_6
+2021-11-19 15:09:44.479 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_7
+2021-11-19 15:09:44.482 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_7
+2021-11-19 15:09:44.484 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_7
+2021-11-19 15:09:44.485 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_7
+2021-11-19 15:09:44.489 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_14
+2021-11-19 15:09:44.491 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_15
+2021-11-19 15:09:44.492 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_7
+2021-11-19 15:09:44.495 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_7
+2021-11-19 15:09:44.498 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_8
+2021-11-19 15:09:44.500 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_8
+2021-11-19 15:09:44.502 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_8
+2021-11-19 15:09:44.503 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_8
+2021-11-19 15:09:44.507 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_16
+2021-11-19 15:09:44.510 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_17
+2021-11-19 15:09:44.512 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_8
+2021-11-19 15:09:44.515 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_1
+2021-11-19 15:09:44.519 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_8
+2021-11-19 15:09:44.547 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_9
+2021-11-19 15:09:44.551 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_9
+2021-11-19 15:09:44.553 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getAccountListByRoleIdUsingGET_1
+2021-11-19 15:09:44.554 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_9
+2021-11-19 15:09:44.555 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_9
+2021-11-19 15:09:44.559 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_18
+2021-11-19 15:09:44.561 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_19
+2021-11-19 15:09:44.564 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_9
+2021-11-19 15:09:44.569 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_2
+2021-11-19 15:09:44.571 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_9
+2021-11-19 15:09:44.614 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_10
+2021-11-19 15:09:44.617 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_10
+2021-11-19 15:09:44.702 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7070 (http) with context path ''
+2021-11-19 15:09:44.727 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, userservice 192.168.31.150:7070 register finished
+2021-11-19 15:09:45.064 [main] INFO  com.zgy.handle.userservice.UserApplication - Started UserApplication in 13.729 seconds (JVM running for 15.221)
+2021-11-19 15:12:43.230 [http-nio-7070-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-19 15:12:43.231 [http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-11-19 15:12:43.248 [http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 17 ms
+2021-11-19 15:12:43.338 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_,
+        account0_.isDeleted as isDelete2_1_,
+        account0_.creator as creator3_1_,
+        account0_.createTime as createTi4_1_,
+        account0_.updator as updator5_1_,
+        account0_.updateTime as updateTi6_1_,
+        account0_.note as note7_1_,
+        account0_.createdId as createdI8_1_,
+        account0_.belongId as belongId9_1_,
+        account0_.name as name10_1_,
+        account0_.loginName as loginNa11_1_,
+        account0_.password as passwor12_1_,
+        account0_.salt as salt13_1_,
+        account0_.email as email14_1_,
+        account0_.isExpired as isExpir15_1_,
+        account0_.isLocked as isLocke16_1_,
+        account0_.isEnabled as isEnabl17_1_,
+        account0_.expiredDate as expired18_1_ 
+    from
+        system_account account0_ 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.loginName=?
+2021-11-19 15:13:16.876 [http-nio-7070-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_,
+        account0_.isDeleted as isDelete2_1_,
+        account0_.creator as creator3_1_,
+        account0_.createTime as createTi4_1_,
+        account0_.updator as updator5_1_,
+        account0_.updateTime as updateTi6_1_,
+        account0_.note as note7_1_,
+        account0_.createdId as createdI8_1_,
+        account0_.belongId as belongId9_1_,
+        account0_.name as name10_1_,
+        account0_.loginName as loginNa11_1_,
+        account0_.password as passwor12_1_,
+        account0_.salt as salt13_1_,
+        account0_.email as email14_1_,
+        account0_.isExpired as isExpir15_1_,
+        account0_.isLocked as isLocke16_1_,
+        account0_.isEnabled as isEnabl17_1_,
+        account0_.expiredDate as expired18_1_ 
+    from
+        system_account account0_ 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.loginName=?
+2021-11-19 15:13:16.923 [http-nio-7070-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_ 
+    from
+        system_account account0_ 
+    where
+        account0_.id=? 
+        and (
+            account0_.isDeleted = 0
+        )
+2021-11-19 15:13:16.945 [http-nio-7070-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        roleset0_.accountId as accountI2_24_0_,
+        roleset0_.roleId as roleId1_24_0_,
+        role1_.id as id1_21_1_,
+        role1_.isDeleted as isDelete2_21_1_,
+        role1_.creator as creator3_21_1_,
+        role1_.createTime as createTi4_21_1_,
+        role1_.updator as updator5_21_1_,
+        role1_.updateTime as updateTi6_21_1_,
+        role1_.note as note7_21_1_,
+        role1_.createdId as createdI8_21_1_,
+        role1_.belongId as belongId9_21_1_,
+        role1_.code as code10_21_1_,
+        role1_.name as name11_21_1_ 
+    from
+        system_role_personal roleset0_ 
+    inner join
+        system_role role1_ 
+            on roleset0_.roleId=role1_.id 
+            and (
+                role1_.isDeleted = 0
+            ) 
+    where
+        roleset0_.accountId=?
+2021-11-19 15:13:16.958 [http-nio-7070-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        postset0_.accountId as accountI1_20_0_,
+        postset0_.postId as postId2_20_0_,
+        post1_.id as id1_19_1_,
+        post1_.isDeleted as isDelete2_19_1_,
+        post1_.creator as creator3_19_1_,
+        post1_.createTime as createTi4_19_1_,
+        post1_.updator as updator5_19_1_,
+        post1_.updateTime as updateTi6_19_1_,
+        post1_.note as note7_19_1_,
+        post1_.createdId as createdI8_19_1_,
+        post1_.belongId as belongId9_19_1_,
+        post1_.code as code10_19_1_,
+        post1_.name as name11_19_1_ 
+    from
+        system_post_personal postset0_ 
+    inner join
+        system_post post1_ 
+            on postset0_.postId=post1_.id 
+    where
+        postset0_.accountId=?
+2021-11-19 15:13:16.980 [http-nio-7070-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        department0_.departId as departId1_6_,
+        department0_.accountId as accountI2_6_,
+        department0_.personalType as personal3_6_,
+        department0_.sortOrder as sortOrde4_6_ 
+    from
+        system_department_account_test department0_ 
+    left outer join
+        system_account account1_ 
+            on department0_.accountId=account1_.id 
+    where
+        account1_.id=?
+2021-11-19 15:14:18.014 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_,
+        account0_.isDeleted as isDelete2_1_,
+        account0_.creator as creator3_1_,
+        account0_.createTime as createTi4_1_,
+        account0_.updator as updator5_1_,
+        account0_.updateTime as updateTi6_1_,
+        account0_.note as note7_1_,
+        account0_.createdId as createdI8_1_,
+        account0_.belongId as belongId9_1_,
+        account0_.name as name10_1_,
+        account0_.loginName as loginNa11_1_,
+        account0_.password as passwor12_1_,
+        account0_.salt as salt13_1_,
+        account0_.email as email14_1_,
+        account0_.isExpired as isExpir15_1_,
+        account0_.isLocked as isLocke16_1_,
+        account0_.isEnabled as isEnabl17_1_,
+        account0_.expiredDate as expired18_1_ 
+    from
+        system_account account0_ 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.loginName=?
+2021-11-19 15:14:18.048 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_ 
+    from
+        system_account account0_ 
+    where
+        account0_.id=? 
+        and (
+            account0_.isDeleted = 0
+        )
+2021-11-19 15:14:18.059 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        roleset0_.accountId as accountI2_24_0_,
+        roleset0_.roleId as roleId1_24_0_,
+        role1_.id as id1_21_1_,
+        role1_.isDeleted as isDelete2_21_1_,
+        role1_.creator as creator3_21_1_,
+        role1_.createTime as createTi4_21_1_,
+        role1_.updator as updator5_21_1_,
+        role1_.updateTime as updateTi6_21_1_,
+        role1_.note as note7_21_1_,
+        role1_.createdId as createdI8_21_1_,
+        role1_.belongId as belongId9_21_1_,
+        role1_.code as code10_21_1_,
+        role1_.name as name11_21_1_ 
+    from
+        system_role_personal roleset0_ 
+    inner join
+        system_role role1_ 
+            on roleset0_.roleId=role1_.id 
+            and (
+                role1_.isDeleted = 0
+            ) 
+    where
+        roleset0_.accountId=?
+2021-11-19 15:14:18.082 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        postset0_.accountId as accountI1_20_0_,
+        postset0_.postId as postId2_20_0_,
+        post1_.id as id1_19_1_,
+        post1_.isDeleted as isDelete2_19_1_,
+        post1_.creator as creator3_19_1_,
+        post1_.createTime as createTi4_19_1_,
+        post1_.updator as updator5_19_1_,
+        post1_.updateTime as updateTi6_19_1_,
+        post1_.note as note7_19_1_,
+        post1_.createdId as createdI8_19_1_,
+        post1_.belongId as belongId9_19_1_,
+        post1_.code as code10_19_1_,
+        post1_.name as name11_19_1_ 
+    from
+        system_post_personal postset0_ 
+    inner join
+        system_post post1_ 
+            on postset0_.postId=post1_.id 
+    where
+        postset0_.accountId=?
+2021-11-19 15:14:18.097 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        department0_.departId as departId1_6_,
+        department0_.accountId as accountI2_6_,
+        department0_.personalType as personal3_6_,
+        department0_.sortOrder as sortOrde4_6_ 
+    from
+        system_department_account_test department0_ 
+    left outer join
+        system_account account1_ 
+            on department0_.accountId=account1_.id 
+    where
+        account1_.id=?
+2021-11-19 15:14:18.113 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 15:14:18.182 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 15:14:18.195 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        enterprise0_.id as id1_9_0_,
+        enterprise0_.isDeleted as isDelete2_9_0_,
+        enterprise0_.creator as creator3_9_0_,
+        enterprise0_.createTime as createTi4_9_0_,
+        enterprise0_.updator as updator5_9_0_,
+        enterprise0_.updateTime as updateTi6_9_0_,
+        enterprise0_.note as note7_9_0_,
+        enterprise0_.createdId as createdI8_9_0_,
+        enterprise0_.belongId as belongId9_9_0_,
+        enterprise0_.code as code10_9_0_,
+        enterprise0_.name as name11_9_0_,
+        enterprise0_.shortName as shortNa12_9_0_,
+        enterprise0_.phonePerson as phonePe13_9_0_,
+        enterprise0_.phoneNumber as phoneNu14_9_0_,
+        enterprise0_.phoneEmail as phoneEm15_9_0_,
+        enterprise0_.registerPerson as registe16_9_0_,
+        enterprise0_.identity as identit17_9_0_,
+        enterprise0_.initorDate as initorD18_9_0_,
+        enterprise0_.address as address19_9_0_,
+        enterprise0_.paretnId as paretnI20_9_0_,
+        enterprise0_.industryId as industr21_9_0_ 
+    from
+        system_enterprise enterprise0_ 
+    where
+        enterprise0_.id=?
+2021-11-19 15:15:06.912 [http-nio-7070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_,
+        account0_.isDeleted as isDelete2_1_,
+        account0_.creator as creator3_1_,
+        account0_.createTime as createTi4_1_,
+        account0_.updator as updator5_1_,
+        account0_.updateTime as updateTi6_1_,
+        account0_.note as note7_1_,
+        account0_.createdId as createdI8_1_,
+        account0_.belongId as belongId9_1_,
+        account0_.name as name10_1_,
+        account0_.loginName as loginNa11_1_,
+        account0_.password as passwor12_1_,
+        account0_.salt as salt13_1_,
+        account0_.email as email14_1_,
+        account0_.isExpired as isExpir15_1_,
+        account0_.isLocked as isLocke16_1_,
+        account0_.isEnabled as isEnabl17_1_,
+        account0_.expiredDate as expired18_1_ 
+    from
+        system_account account0_ 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.loginName=?
+2021-11-19 15:15:06.958 [http-nio-7070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_ 
+    from
+        system_account account0_ 
+    where
+        account0_.id=? 
+        and (
+            account0_.isDeleted = 0
+        )
+2021-11-19 15:15:06.977 [http-nio-7070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        roleset0_.accountId as accountI2_24_0_,
+        roleset0_.roleId as roleId1_24_0_,
+        role1_.id as id1_21_1_,
+        role1_.isDeleted as isDelete2_21_1_,
+        role1_.creator as creator3_21_1_,
+        role1_.createTime as createTi4_21_1_,
+        role1_.updator as updator5_21_1_,
+        role1_.updateTime as updateTi6_21_1_,
+        role1_.note as note7_21_1_,
+        role1_.createdId as createdI8_21_1_,
+        role1_.belongId as belongId9_21_1_,
+        role1_.code as code10_21_1_,
+        role1_.name as name11_21_1_ 
+    from
+        system_role_personal roleset0_ 
+    inner join
+        system_role role1_ 
+            on roleset0_.roleId=role1_.id 
+            and (
+                role1_.isDeleted = 0
+            ) 
+    where
+        roleset0_.accountId=?
+2021-11-19 15:15:06.990 [http-nio-7070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        postset0_.accountId as accountI1_20_0_,
+        postset0_.postId as postId2_20_0_,
+        post1_.id as id1_19_1_,
+        post1_.isDeleted as isDelete2_19_1_,
+        post1_.creator as creator3_19_1_,
+        post1_.createTime as createTi4_19_1_,
+        post1_.updator as updator5_19_1_,
+        post1_.updateTime as updateTi6_19_1_,
+        post1_.note as note7_19_1_,
+        post1_.createdId as createdI8_19_1_,
+        post1_.belongId as belongId9_19_1_,
+        post1_.code as code10_19_1_,
+        post1_.name as name11_19_1_ 
+    from
+        system_post_personal postset0_ 
+    inner join
+        system_post post1_ 
+            on postset0_.postId=post1_.id 
+    where
+        postset0_.accountId=?
+2021-11-19 15:15:07.001 [http-nio-7070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        department0_.departId as departId1_6_,
+        department0_.accountId as accountI2_6_,
+        department0_.personalType as personal3_6_,
+        department0_.sortOrder as sortOrde4_6_ 
+    from
+        system_department_account_test department0_ 
+    left outer join
+        system_account account1_ 
+            on department0_.accountId=account1_.id 
+    where
+        account1_.id=?
+2021-11-19 15:15:07.035 [http-nio-7070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 15:15:07.085 [http-nio-7070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 15:15:07.096 [http-nio-7070-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        enterprise0_.id as id1_9_0_,
+        enterprise0_.isDeleted as isDelete2_9_0_,
+        enterprise0_.creator as creator3_9_0_,
+        enterprise0_.createTime as createTi4_9_0_,
+        enterprise0_.updator as updator5_9_0_,
+        enterprise0_.updateTime as updateTi6_9_0_,
+        enterprise0_.note as note7_9_0_,
+        enterprise0_.createdId as createdI8_9_0_,
+        enterprise0_.belongId as belongId9_9_0_,
+        enterprise0_.code as code10_9_0_,
+        enterprise0_.name as name11_9_0_,
+        enterprise0_.shortName as shortNa12_9_0_,
+        enterprise0_.phonePerson as phonePe13_9_0_,
+        enterprise0_.phoneNumber as phoneNu14_9_0_,
+        enterprise0_.phoneEmail as phoneEm15_9_0_,
+        enterprise0_.registerPerson as registe16_9_0_,
+        enterprise0_.identity as identit17_9_0_,
+        enterprise0_.initorDate as initorD18_9_0_,
+        enterprise0_.address as address19_9_0_,
+        enterprise0_.paretnId as paretnI20_9_0_,
+        enterprise0_.industryId as industr21_9_0_ 
+    from
+        system_enterprise enterprise0_ 
+    where
+        enterprise0_.id=?
+2021-11-19 15:20:24.694 [http-nio-7070-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_,
+        account0_.isDeleted as isDelete2_1_,
+        account0_.creator as creator3_1_,
+        account0_.createTime as createTi4_1_,
+        account0_.updator as updator5_1_,
+        account0_.updateTime as updateTi6_1_,
+        account0_.note as note7_1_,
+        account0_.createdId as createdI8_1_,
+        account0_.belongId as belongId9_1_,
+        account0_.name as name10_1_,
+        account0_.loginName as loginNa11_1_,
+        account0_.password as passwor12_1_,
+        account0_.salt as salt13_1_,
+        account0_.email as email14_1_,
+        account0_.isExpired as isExpir15_1_,
+        account0_.isLocked as isLocke16_1_,
+        account0_.isEnabled as isEnabl17_1_,
+        account0_.expiredDate as expired18_1_ 
+    from
+        system_account account0_ 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.loginName=?
+2021-11-19 15:20:24.734 [http-nio-7070-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_ 
+    from
+        system_account account0_ 
+    where
+        account0_.id=? 
+        and (
+            account0_.isDeleted = 0
+        )
+2021-11-19 15:20:24.747 [http-nio-7070-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        roleset0_.accountId as accountI2_24_0_,
+        roleset0_.roleId as roleId1_24_0_,
+        role1_.id as id1_21_1_,
+        role1_.isDeleted as isDelete2_21_1_,
+        role1_.creator as creator3_21_1_,
+        role1_.createTime as createTi4_21_1_,
+        role1_.updator as updator5_21_1_,
+        role1_.updateTime as updateTi6_21_1_,
+        role1_.note as note7_21_1_,
+        role1_.createdId as createdI8_21_1_,
+        role1_.belongId as belongId9_21_1_,
+        role1_.code as code10_21_1_,
+        role1_.name as name11_21_1_ 
+    from
+        system_role_personal roleset0_ 
+    inner join
+        system_role role1_ 
+            on roleset0_.roleId=role1_.id 
+            and (
+                role1_.isDeleted = 0
+            ) 
+    where
+        roleset0_.accountId=?
+2021-11-19 15:20:24.763 [http-nio-7070-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        postset0_.accountId as accountI1_20_0_,
+        postset0_.postId as postId2_20_0_,
+        post1_.id as id1_19_1_,
+        post1_.isDeleted as isDelete2_19_1_,
+        post1_.creator as creator3_19_1_,
+        post1_.createTime as createTi4_19_1_,
+        post1_.updator as updator5_19_1_,
+        post1_.updateTime as updateTi6_19_1_,
+        post1_.note as note7_19_1_,
+        post1_.createdId as createdI8_19_1_,
+        post1_.belongId as belongId9_19_1_,
+        post1_.code as code10_19_1_,
+        post1_.name as name11_19_1_ 
+    from
+        system_post_personal postset0_ 
+    inner join
+        system_post post1_ 
+            on postset0_.postId=post1_.id 
+    where
+        postset0_.accountId=?
+2021-11-19 15:20:24.776 [http-nio-7070-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        department0_.departId as departId1_6_,
+        department0_.accountId as accountI2_6_,
+        department0_.personalType as personal3_6_,
+        department0_.sortOrder as sortOrde4_6_ 
+    from
+        system_department_account_test department0_ 
+    left outer join
+        system_account account1_ 
+            on department0_.accountId=account1_.id 
+    where
+        account1_.id=?
+2021-11-19 15:20:24.785 [http-nio-7070-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 15:20:24.846 [http-nio-7070-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 15:20:24.856 [http-nio-7070-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        enterprise0_.id as id1_9_0_,
+        enterprise0_.isDeleted as isDelete2_9_0_,
+        enterprise0_.creator as creator3_9_0_,
+        enterprise0_.createTime as createTi4_9_0_,
+        enterprise0_.updator as updator5_9_0_,
+        enterprise0_.updateTime as updateTi6_9_0_,
+        enterprise0_.note as note7_9_0_,
+        enterprise0_.createdId as createdI8_9_0_,
+        enterprise0_.belongId as belongId9_9_0_,
+        enterprise0_.code as code10_9_0_,
+        enterprise0_.name as name11_9_0_,
+        enterprise0_.shortName as shortNa12_9_0_,
+        enterprise0_.phonePerson as phonePe13_9_0_,
+        enterprise0_.phoneNumber as phoneNu14_9_0_,
+        enterprise0_.phoneEmail as phoneEm15_9_0_,
+        enterprise0_.registerPerson as registe16_9_0_,
+        enterprise0_.identity as identit17_9_0_,
+        enterprise0_.initorDate as initorD18_9_0_,
+        enterprise0_.address as address19_9_0_,
+        enterprise0_.paretnId as paretnI20_9_0_,
+        enterprise0_.industryId as industr21_9_0_ 
+    from
+        system_enterprise enterprise0_ 
+    where
+        enterprise0_.id=?
+2021-11-19 15:25:40.405 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_,
+        account0_.isDeleted as isDelete2_1_,
+        account0_.creator as creator3_1_,
+        account0_.createTime as createTi4_1_,
+        account0_.updator as updator5_1_,
+        account0_.updateTime as updateTi6_1_,
+        account0_.note as note7_1_,
+        account0_.createdId as createdI8_1_,
+        account0_.belongId as belongId9_1_,
+        account0_.name as name10_1_,
+        account0_.loginName as loginNa11_1_,
+        account0_.password as passwor12_1_,
+        account0_.salt as salt13_1_,
+        account0_.email as email14_1_,
+        account0_.isExpired as isExpir15_1_,
+        account0_.isLocked as isLocke16_1_,
+        account0_.isEnabled as isEnabl17_1_,
+        account0_.expiredDate as expired18_1_ 
+    from
+        system_account account0_ 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.loginName=?
+2021-11-19 15:25:40.453 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_ 
+    from
+        system_account account0_ 
+    where
+        account0_.id=? 
+        and (
+            account0_.isDeleted = 0
+        )
+2021-11-19 15:25:40.467 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        roleset0_.accountId as accountI2_24_0_,
+        roleset0_.roleId as roleId1_24_0_,
+        role1_.id as id1_21_1_,
+        role1_.isDeleted as isDelete2_21_1_,
+        role1_.creator as creator3_21_1_,
+        role1_.createTime as createTi4_21_1_,
+        role1_.updator as updator5_21_1_,
+        role1_.updateTime as updateTi6_21_1_,
+        role1_.note as note7_21_1_,
+        role1_.createdId as createdI8_21_1_,
+        role1_.belongId as belongId9_21_1_,
+        role1_.code as code10_21_1_,
+        role1_.name as name11_21_1_ 
+    from
+        system_role_personal roleset0_ 
+    inner join
+        system_role role1_ 
+            on roleset0_.roleId=role1_.id 
+            and (
+                role1_.isDeleted = 0
+            ) 
+    where
+        roleset0_.accountId=?
+2021-11-19 15:25:40.478 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        postset0_.accountId as accountI1_20_0_,
+        postset0_.postId as postId2_20_0_,
+        post1_.id as id1_19_1_,
+        post1_.isDeleted as isDelete2_19_1_,
+        post1_.creator as creator3_19_1_,
+        post1_.createTime as createTi4_19_1_,
+        post1_.updator as updator5_19_1_,
+        post1_.updateTime as updateTi6_19_1_,
+        post1_.note as note7_19_1_,
+        post1_.createdId as createdI8_19_1_,
+        post1_.belongId as belongId9_19_1_,
+        post1_.code as code10_19_1_,
+        post1_.name as name11_19_1_ 
+    from
+        system_post_personal postset0_ 
+    inner join
+        system_post post1_ 
+            on postset0_.postId=post1_.id 
+    where
+        postset0_.accountId=?
+2021-11-19 15:25:40.489 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        department0_.departId as departId1_6_,
+        department0_.accountId as accountI2_6_,
+        department0_.personalType as personal3_6_,
+        department0_.sortOrder as sortOrde4_6_ 
+    from
+        system_department_account_test department0_ 
+    left outer join
+        system_account account1_ 
+            on department0_.accountId=account1_.id 
+    where
+        account1_.id=?
+2021-11-19 15:25:40.498 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 15:25:40.562 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 15:25:40.572 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        enterprise0_.id as id1_9_0_,
+        enterprise0_.isDeleted as isDelete2_9_0_,
+        enterprise0_.creator as creator3_9_0_,
+        enterprise0_.createTime as createTi4_9_0_,
+        enterprise0_.updator as updator5_9_0_,
+        enterprise0_.updateTime as updateTi6_9_0_,
+        enterprise0_.note as note7_9_0_,
+        enterprise0_.createdId as createdI8_9_0_,
+        enterprise0_.belongId as belongId9_9_0_,
+        enterprise0_.code as code10_9_0_,
+        enterprise0_.name as name11_9_0_,
+        enterprise0_.shortName as shortNa12_9_0_,
+        enterprise0_.phonePerson as phonePe13_9_0_,
+        enterprise0_.phoneNumber as phoneNu14_9_0_,
+        enterprise0_.phoneEmail as phoneEm15_9_0_,
+        enterprise0_.registerPerson as registe16_9_0_,
+        enterprise0_.identity as identit17_9_0_,
+        enterprise0_.initorDate as initorD18_9_0_,
+        enterprise0_.address as address19_9_0_,
+        enterprise0_.paretnId as paretnI20_9_0_,
+        enterprise0_.industryId as industr21_9_0_ 
+    from
+        system_enterprise enterprise0_ 
+    where
+        enterprise0_.id=?
+2021-11-19 22:46:22.697 [main] INFO  com.zgy.handle.userservice.UserApplication - No active profile set, falling back to default profiles: default
+2021-11-19 22:46:25.126 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-19 22:46:25.464 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 329ms. Found 27 JPA repository interfaces.
+2021-11-19 22:46:25.666 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=09dbb897-5c0c-3c9b-b988-97686e6acd3d
+2021-11-19 22:46:25.830 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-19 22:46:26.185 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7070 (http)
+2021-11-19 22:46:26.196 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-11-19 22:46:26.196 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021-11-19 22:46:26.350 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-11-19 22:46:26.351 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3630 ms
+2021-11-19 22:46:26.707 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-19 22:46:26.834 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+2021-11-19 22:46:27.079 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-11-19 22:46:27.510 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-11-19 22:46:27.512 [main] WARN  com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-11-19 22:46:27.986 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2021-11-19 22:46:28.010 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-19 22:46:28.118 [main] INFO  o.hibernate.envers.boot.internal.EnversServiceImpl - Envers integration enabled? : true
+2021-11-19 22:46:41.670 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-19 22:46:41.832 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-19 22:46:43.469 [main] INFO  com.zgy.handle.userservice.core.aop.ExportAspect - init exportAspect!
+2021-11-19 22:46:43.792 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'dictCache' created in EhcacheManager.
+2021-11-19 22:46:45.001 [main] DEBUG org.hibernate.SQL - 
+    select
+        dict0_.id as id1_8_,
+        dict0_.isDeleted as isDelete2_8_,
+        dict0_.creator as creator3_8_,
+        dict0_.createTime as createTi4_8_,
+        dict0_.updator as updator5_8_,
+        dict0_.updateTime as updateTi6_8_,
+        dict0_.note as note7_8_,
+        dict0_.createdId as createdI8_8_,
+        dict0_.belongId as belongId9_8_,
+        dict0_.code as code10_8_,
+        dict0_.name as name11_8_,
+        dict0_.dictType as dictTyp12_8_,
+        dict0_.parentId as parentI13_8_ 
+    from
+        system_dict dict0_
+2021-11-19 22:46:45.257 [main] INFO  org.ehcache.core.EhcacheManager - Cache 'paramCache' created in EhcacheManager.
+2021-11-19 22:46:45.360 [main] DEBUG org.hibernate.SQL - 
+    select
+        param0_.id as id1_17_,
+        param0_.isDeleted as isDelete2_17_,
+        param0_.creator as creator3_17_,
+        param0_.createTime as createTi4_17_,
+        param0_.updator as updator5_17_,
+        param0_.updateTime as updateTi6_17_,
+        param0_.note as note7_17_,
+        param0_.createdId as createdI8_17_,
+        param0_.belongId as belongId9_17_,
+        param0_.code as code10_17_,
+        param0_.value as value11_17_,
+        param0_.visible as visible12_17_,
+        param0_.paramType as paramTy13_17_ 
+    from
+        system_param param0_
+2021-11-19 22:46:45.537 [main] INFO  com.zgy.handle.userservice.core.cache.ParamCache - 参数数据初始化完毕
+2021-11-19 22:46:45.876 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-11-19 22:46:45.971 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-19 22:46:45.972 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-19 22:46:45.975 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-11-19 22:46:45.975 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-11-19 22:46:46.683 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2021-11-19 22:46:47.404 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-11-19 22:46:47.420 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-11-19 22:46:47.448 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-11-19 22:46:47.628 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_1
+2021-11-19 22:46:47.687 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_1
+2021-11-19 22:46:47.689 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+2021-11-19 22:46:47.691 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_1
+2021-11-19 22:46:47.692 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_1
+2021-11-19 22:46:47.696 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_2
+2021-11-19 22:46:47.698 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_3
+2021-11-19 22:46:47.701 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+2021-11-19 22:46:47.703 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+2021-11-19 22:46:47.710 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_2
+2021-11-19 22:46:47.714 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_2
+2021-11-19 22:46:47.770 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_2
+2021-11-19 22:46:47.771 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_2
+2021-11-19 22:46:47.779 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_4
+2021-11-19 22:46:47.782 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_5
+2021-11-19 22:46:47.787 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+2021-11-19 22:46:47.792 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+2021-11-19 22:46:47.796 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_3
+2021-11-19 22:46:47.799 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_3
+2021-11-19 22:46:47.800 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_3
+2021-11-19 22:46:47.801 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_3
+2021-11-19 22:46:47.806 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_6
+2021-11-19 22:46:47.808 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_7
+2021-11-19 22:46:47.810 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+2021-11-19 22:46:47.813 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_3
+2021-11-19 22:46:47.819 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_4
+2021-11-19 22:46:47.822 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_4
+2021-11-19 22:46:47.823 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_4
+2021-11-19 22:46:47.824 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_4
+2021-11-19 22:46:47.829 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_8
+2021-11-19 22:46:47.831 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_9
+2021-11-19 22:46:47.836 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+2021-11-19 22:46:47.839 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_4
+2021-11-19 22:46:47.844 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_5
+2021-11-19 22:46:47.846 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_5
+2021-11-19 22:46:47.847 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_5
+2021-11-19 22:46:47.848 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_5
+2021-11-19 22:46:47.855 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_10
+2021-11-19 22:46:47.857 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_11
+2021-11-19 22:46:47.861 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_5
+2021-11-19 22:46:47.876 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_5
+2021-11-19 22:46:47.882 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_6
+2021-11-19 22:46:47.885 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_6
+2021-11-19 22:46:47.888 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_6
+2021-11-19 22:46:47.889 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_6
+2021-11-19 22:46:47.894 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_12
+2021-11-19 22:46:47.896 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_13
+2021-11-19 22:46:47.903 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_6
+2021-11-19 22:46:47.907 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_6
+2021-11-19 22:46:47.915 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_7
+2021-11-19 22:46:47.917 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_7
+2021-11-19 22:46:47.919 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_7
+2021-11-19 22:46:47.920 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_7
+2021-11-19 22:46:47.923 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_14
+2021-11-19 22:46:47.925 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_15
+2021-11-19 22:46:47.927 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_7
+2021-11-19 22:46:47.929 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_7
+2021-11-19 22:46:47.935 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_8
+2021-11-19 22:46:47.937 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_8
+2021-11-19 22:46:47.940 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_8
+2021-11-19 22:46:47.941 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_8
+2021-11-19 22:46:47.945 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_16
+2021-11-19 22:46:47.947 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_17
+2021-11-19 22:46:47.949 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_8
+2021-11-19 22:46:47.951 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_1
+2021-11-19 22:46:47.952 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_8
+2021-11-19 22:46:47.958 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: allUsingGET_9
+2021-11-19 22:46:47.961 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_9
+2021-11-19 22:46:47.962 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getAccountListByRoleIdUsingGET_1
+2021-11-19 22:46:47.963 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getSelectListUsingGET_9
+2021-11-19 22:46:47.964 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getTreeListUsingGET_9
+2021-11-19 22:46:47.968 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_18
+2021-11-19 22:46:47.969 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_19
+2021-11-19 22:46:47.971 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_9
+2021-11-19 22:46:47.974 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: relateUserUsingPOST_2
+2021-11-19 22:46:47.976 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_9
+2021-11-19 22:46:48.006 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_10
+2021-11-19 22:46:48.008 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_10
+2021-11-19 22:46:48.078 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7070 (http) with context path ''
+2021-11-19 22:46:48.121 [main] INFO  o.s.c.alibaba.nacos.registry.NacosServiceRegistry - nacos registry, userservice 192.168.31.150:7070 register finished
+2021-11-19 22:46:48.451 [main] INFO  com.zgy.handle.userservice.UserApplication - Started UserApplication in 27.785 seconds (JVM running for 29.524)
+2021-11-19 22:59:41.816 [http-nio-7070-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-19 22:59:41.817 [http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-11-19 22:59:41.830 [http-nio-7070-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 13 ms
+2021-11-19 22:59:41.906 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_,
+        account0_.isDeleted as isDelete2_1_,
+        account0_.creator as creator3_1_,
+        account0_.createTime as createTi4_1_,
+        account0_.updator as updator5_1_,
+        account0_.updateTime as updateTi6_1_,
+        account0_.note as note7_1_,
+        account0_.createdId as createdI8_1_,
+        account0_.belongId as belongId9_1_,
+        account0_.name as name10_1_,
+        account0_.loginName as loginNa11_1_,
+        account0_.password as passwor12_1_,
+        account0_.salt as salt13_1_,
+        account0_.email as email14_1_,
+        account0_.isExpired as isExpir15_1_,
+        account0_.isLocked as isLocke16_1_,
+        account0_.isEnabled as isEnabl17_1_,
+        account0_.expiredDate as expired18_1_ 
+    from
+        system_account account0_ 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.loginName=?
+2021-11-19 22:59:41.971 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_ 
+    from
+        system_account account0_ 
+    where
+        account0_.id=? 
+        and (
+            account0_.isDeleted = 0
+        )
+2021-11-19 22:59:41.990 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        roleset0_.accountId as accountI2_24_0_,
+        roleset0_.roleId as roleId1_24_0_,
+        role1_.id as id1_21_1_,
+        role1_.isDeleted as isDelete2_21_1_,
+        role1_.creator as creator3_21_1_,
+        role1_.createTime as createTi4_21_1_,
+        role1_.updator as updator5_21_1_,
+        role1_.updateTime as updateTi6_21_1_,
+        role1_.note as note7_21_1_,
+        role1_.createdId as createdI8_21_1_,
+        role1_.belongId as belongId9_21_1_,
+        role1_.code as code10_21_1_,
+        role1_.name as name11_21_1_ 
+    from
+        system_role_personal roleset0_ 
+    inner join
+        system_role role1_ 
+            on roleset0_.roleId=role1_.id 
+            and (
+                role1_.isDeleted = 0
+            ) 
+    where
+        roleset0_.accountId=?
+2021-11-19 22:59:42.009 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        postset0_.accountId as accountI1_20_0_,
+        postset0_.postId as postId2_20_0_,
+        post1_.id as id1_19_1_,
+        post1_.isDeleted as isDelete2_19_1_,
+        post1_.creator as creator3_19_1_,
+        post1_.createTime as createTi4_19_1_,
+        post1_.updator as updator5_19_1_,
+        post1_.updateTime as updateTi6_19_1_,
+        post1_.note as note7_19_1_,
+        post1_.createdId as createdI8_19_1_,
+        post1_.belongId as belongId9_19_1_,
+        post1_.code as code10_19_1_,
+        post1_.name as name11_19_1_ 
+    from
+        system_post_personal postset0_ 
+    inner join
+        system_post post1_ 
+            on postset0_.postId=post1_.id 
+    where
+        postset0_.accountId=?
+2021-11-19 22:59:42.034 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        department0_.departId as departId1_6_,
+        department0_.accountId as accountI2_6_,
+        department0_.personalType as personal3_6_,
+        department0_.sortOrder as sortOrde4_6_ 
+    from
+        system_department_account_test department0_ 
+    left outer join
+        system_account account1_ 
+            on department0_.accountId=account1_.id 
+    where
+        account1_.id=?
+2021-11-19 22:59:42.051 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 22:59:42.122 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        department0_.id as id1_5_0_,
+        department0_.isDeleted as isDelete2_5_0_,
+        department0_.creator as creator3_5_0_,
+        department0_.createTime as createTi4_5_0_,
+        department0_.updator as updator5_5_0_,
+        department0_.updateTime as updateTi6_5_0_,
+        department0_.note as note7_5_0_,
+        department0_.createdId as createdI8_5_0_,
+        department0_.belongId as belongId9_5_0_,
+        department0_.code as code10_5_0_,
+        department0_.name as name11_5_0_,
+        department0_.type as type12_5_0_,
+        department0_.sortOrder as sortOrd13_5_0_,
+        department0_.parentId as parentI14_5_0_,
+        department0_.enterpriseId as enterpr15_5_0_ 
+    from
+        system_department department0_ 
+    where
+        department0_.id=? 
+        and (
+            department0_.isDeleted = 0
+        )
+2021-11-19 22:59:42.353 [http-nio-7070-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        enterprise0_.id as id1_9_0_,
+        enterprise0_.isDeleted as isDelete2_9_0_,
+        enterprise0_.creator as creator3_9_0_,
+        enterprise0_.createTime as createTi4_9_0_,
+        enterprise0_.updator as updator5_9_0_,
+        enterprise0_.updateTime as updateTi6_9_0_,
+        enterprise0_.note as note7_9_0_,
+        enterprise0_.createdId as createdI8_9_0_,
+        enterprise0_.belongId as belongId9_9_0_,
+        enterprise0_.code as code10_9_0_,
+        enterprise0_.name as name11_9_0_,
+        enterprise0_.shortName as shortNa12_9_0_,
+        enterprise0_.phonePerson as phonePe13_9_0_,
+        enterprise0_.phoneNumber as phoneNu14_9_0_,
+        enterprise0_.phoneEmail as phoneEm15_9_0_,
+        enterprise0_.registerPerson as registe16_9_0_,
+        enterprise0_.identity as identit17_9_0_,
+        enterprise0_.initorDate as initorD18_9_0_,
+        enterprise0_.address as address19_9_0_,
+        enterprise0_.paretnId as paretnI20_9_0_,
+        enterprise0_.industryId as industr21_9_0_ 
+    from
+        system_enterprise enterprise0_ 
+    where
+        enterprise0_.id=?
+2021-11-19 22:59:43.353 [http-nio-7070-exec-3] INFO  c.z.h.u.controller.user.UserDisplayController - 获取的userId的值为:1828007341719552083,postId为: 1828103813010030743,1828103813010030750,1828007341719552008,机构id为:1828103813010030749
+2021-11-19 22:59:43.368 [http-nio-7070-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        role2_.id as id1_21_1_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_,
+        role2_.isDeleted as isDelete2_21_1_,
+        role2_.creator as creator3_21_1_,
+        role2_.createTime as createTi4_21_1_,
+        role2_.updator as updator5_21_1_,
+        role2_.updateTime as updateTi6_21_1_,
+        role2_.note as note7_21_1_,
+        role2_.createdId as createdI8_21_1_,
+        role2_.belongId as belongId9_21_1_,
+        role2_.code as code10_21_1_,
+        role2_.name as name11_21_1_,
+        roleset1_.accountId as accountI2_24_0__,
+        roleset1_.roleId as roleId1_24_0__ 
+    from
+        system_account account0_ 
+    left outer join
+        system_role_personal roleset1_ 
+            on account0_.id=roleset1_.accountId 
+    left outer join
+        system_role role2_ 
+            on roleset1_.roleId=role2_.id 
+            and (
+                role2_.isDeleted = 0
+            ) 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.id=?
+2021-11-19 23:01:02.254 [http-nio-7070-exec-9] INFO  c.z.h.u.controller.user.UserDisplayController - 获取的userId的值为:1828007341719552083,postId为: 1828103813010030743,1828103813010030750,1828007341719552008,机构id为:1828103813010030749
+2021-11-19 23:01:02.256 [http-nio-7070-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        role2_.id as id1_21_1_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_,
+        role2_.isDeleted as isDelete2_21_1_,
+        role2_.creator as creator3_21_1_,
+        role2_.createTime as createTi4_21_1_,
+        role2_.updator as updator5_21_1_,
+        role2_.updateTime as updateTi6_21_1_,
+        role2_.note as note7_21_1_,
+        role2_.createdId as createdI8_21_1_,
+        role2_.belongId as belongId9_21_1_,
+        role2_.code as code10_21_1_,
+        role2_.name as name11_21_1_,
+        roleset1_.accountId as accountI2_24_0__,
+        roleset1_.roleId as roleId1_24_0__ 
+    from
+        system_account account0_ 
+    left outer join
+        system_role_personal roleset1_ 
+            on account0_.id=roleset1_.accountId 
+    left outer join
+        system_role role2_ 
+            on roleset1_.roleId=role2_.id 
+            and (
+                role2_.isDeleted = 0
+            ) 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.id=?
+2021-11-19 23:01:02.445 [http-nio-7070-exec-6] INFO  c.z.h.u.controller.user.UserDisplayController - 获取的userId的值为:1828007341719552083,postId为: 1828103813010030743,1828103813010030750,1828007341719552008,机构id为:1828103813010030749
+2021-11-19 23:01:02.447 [http-nio-7070-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        role2_.id as id1_21_1_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_,
+        role2_.isDeleted as isDelete2_21_1_,
+        role2_.creator as creator3_21_1_,
+        role2_.createTime as createTi4_21_1_,
+        role2_.updator as updator5_21_1_,
+        role2_.updateTime as updateTi6_21_1_,
+        role2_.note as note7_21_1_,
+        role2_.createdId as createdI8_21_1_,
+        role2_.belongId as belongId9_21_1_,
+        role2_.code as code10_21_1_,
+        role2_.name as name11_21_1_,
+        roleset1_.accountId as accountI2_24_0__,
+        roleset1_.roleId as roleId1_24_0__ 
+    from
+        system_account account0_ 
+    left outer join
+        system_role_personal roleset1_ 
+            on account0_.id=roleset1_.accountId 
+    left outer join
+        system_role role2_ 
+            on roleset1_.roleId=role2_.id 
+            and (
+                role2_.isDeleted = 0
+            ) 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.id=?
+2021-11-19 23:04:25.556 [http-nio-7070-exec-8] INFO  c.z.h.u.controller.user.UserDisplayController - 获取的userId的值为:1828007341719552083,postId为: 1828103813010030743,1828103813010030750,1828007341719552008,机构id为:1828103813010030749
+2021-11-19 23:04:25.558 [http-nio-7070-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        role2_.id as id1_21_1_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_,
+        role2_.isDeleted as isDelete2_21_1_,
+        role2_.creator as creator3_21_1_,
+        role2_.createTime as createTi4_21_1_,
+        role2_.updator as updator5_21_1_,
+        role2_.updateTime as updateTi6_21_1_,
+        role2_.note as note7_21_1_,
+        role2_.createdId as createdI8_21_1_,
+        role2_.belongId as belongId9_21_1_,
+        role2_.code as code10_21_1_,
+        role2_.name as name11_21_1_,
+        roleset1_.accountId as accountI2_24_0__,
+        roleset1_.roleId as roleId1_24_0__ 
+    from
+        system_account account0_ 
+    left outer join
+        system_role_personal roleset1_ 
+            on account0_.id=roleset1_.accountId 
+    left outer join
+        system_role role2_ 
+            on roleset1_.roleId=role2_.id 
+            and (
+                role2_.isDeleted = 0
+            ) 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.id=?
+2021-11-19 23:04:46.580 [http-nio-7070-exec-2] INFO  c.z.h.u.controller.user.UserDisplayController - 获取的userId的值为:1828007341719552083,postId为: 1828103813010030743,1828103813010030750,1828007341719552008,机构id为:1828103813010030749
+2021-11-19 23:04:46.581 [http-nio-7070-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        account0_.id as id1_1_0_,
+        role2_.id as id1_21_1_,
+        account0_.isDeleted as isDelete2_1_0_,
+        account0_.creator as creator3_1_0_,
+        account0_.createTime as createTi4_1_0_,
+        account0_.updator as updator5_1_0_,
+        account0_.updateTime as updateTi6_1_0_,
+        account0_.note as note7_1_0_,
+        account0_.createdId as createdI8_1_0_,
+        account0_.belongId as belongId9_1_0_,
+        account0_.name as name10_1_0_,
+        account0_.loginName as loginNa11_1_0_,
+        account0_.password as passwor12_1_0_,
+        account0_.salt as salt13_1_0_,
+        account0_.email as email14_1_0_,
+        account0_.isExpired as isExpir15_1_0_,
+        account0_.isLocked as isLocke16_1_0_,
+        account0_.isEnabled as isEnabl17_1_0_,
+        account0_.expiredDate as expired18_1_0_,
+        role2_.isDeleted as isDelete2_21_1_,
+        role2_.creator as creator3_21_1_,
+        role2_.createTime as createTi4_21_1_,
+        role2_.updator as updator5_21_1_,
+        role2_.updateTime as updateTi6_21_1_,
+        role2_.note as note7_21_1_,
+        role2_.createdId as createdI8_21_1_,
+        role2_.belongId as belongId9_21_1_,
+        role2_.code as code10_21_1_,
+        role2_.name as name11_21_1_,
+        roleset1_.accountId as accountI2_24_0__,
+        roleset1_.roleId as roleId1_24_0__ 
+    from
+        system_account account0_ 
+    left outer join
+        system_role_personal roleset1_ 
+            on account0_.id=roleset1_.accountId 
+    left outer join
+        system_role role2_ 
+            on roleset1_.roleId=role2_.id 
+            and (
+                role2_.isDeleted = 0
+            ) 
+    where
+        (
+            account0_.isDeleted = 0
+        ) 
+        and account0_.id=?
+2021-11-19 23:05:53.190 [ThreadPoolTaskScheduler-1] ERROR o.s.cloud.alibaba.nacos.discovery.NacosWatch - Error watching Nacos Service change
+java.lang.IllegalStateException: failed to req API:/nacos/v1/ns/service/list after all servers([192.168.31.12:8848]) tried: failed to req API:http://192.168.31.12:8848/nacos/v1/ns/service/list. code:500 msg: java.net.SocketTimeoutException: connect timed out
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:380) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:346) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:294) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:276) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.net.NamingProxy.getServiceList(NamingProxy.java:252) ~[nacos-client-1.0.0.jar:na]
+	at com.alibaba.nacos.client.naming.NacosNamingService.getServicesOfServer(NacosNamingService.java:525) ~[nacos-client-1.0.0.jar:na]
+	at org.springframework.cloud.alibaba.nacos.discovery.NacosWatch.nacosServicesWatch(NacosWatch.java:127) ~[spring-cloud-alibaba-nacos-discovery-0.9.0.RELEASE.jar:0.9.0.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]

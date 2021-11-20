@@ -13,7 +13,7 @@ spring:
       max-request-size: 520MB
 zuul:
   sensitive-headers:
-  ignored-services: "*"
+#  ignored-services: "*"
   routes:
     userservice:
       path: /userservice/**
@@ -23,6 +23,8 @@ zuul:
       path: /tradingservice/**
     stockservice:
       path: /stockservice/**
+#    stock-base:
+#      path: /stock-base/**
   prefix:
 ribbon:
   ConnectTimeout: 50000

@@ -93,8 +93,8 @@
           <entry name="$PROJECT_DIR$/../../../DataWarehouse/mavenrepository/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
         </processorPath>
         <module name="EurekaServer" />
-        <module name="ExcelService" />
         <module name="KnowledgeService" />
+        <module name="ExcelService" />
         <module name="GateWayService" />
       </profile>
       <profile name="Annotation profile for ReplayService" enabled="true">
