@@ -36,4 +36,15 @@ public class TrackingQueryServiceImpl extends BaseQueryServiceImpl<Tracking, Tra
                 .where(dto.getPlanId() == null ? null : trackingQueryRepository.fieldEquals(Tracking_.PLAN_ID, dto.getPlanId().toString()));
         return specification;
     }
+
+    /**
+     * 根据planId计算总的收益
+     *
+     * @param planId
+     * @return
+     */
+    @Override
+    public Double sumByPlanId(Long planId) {
+        return trackingQueryRepository.sumByPlanId(planId);
+    }
 }

@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @Slf4j
 public class SummaryDTO extends BaseDTO {
-    private Long planId;
+    private String planId;
     /**
      * 总的收益率
      */

@@ -16,11 +16,28 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Slf4j
 public class TrackingDTO extends BaseDTO {
-    private Long planId;
+    private String planId;
     /**
      * 跟踪日期
      */
     private LocalDate trackDate;
+
+    private LocalDate endDate;
+
+    /**
+     * 买出价格
+     */
+    private Double sellPrice;
+    /**
+     * 卖出价格
+     */
+    private Double buyPrice;
+
+    /**
+     * 差价
+     */
+    private Double priceDiff;
+
     /**
      * 收益率
      */
@@ -30,4 +47,9 @@ public class TrackingDTO extends BaseDTO {
      * 规则后续应该对其进行维护，为选择项
      */
     private String rule;
+
+    /**
+     * 数量
+     */
+    private Integer count;
 }

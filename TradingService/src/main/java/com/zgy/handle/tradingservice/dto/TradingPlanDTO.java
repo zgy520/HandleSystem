@@ -54,4 +54,14 @@ public class TradingPlanDTO extends BaseDTO {
      * 交易规则
      */
     private String rule;
+
+    /**
+     * 成本价
+     */
+    private Double costPrice;
+
+    /**
+     * 已转出金额
+     */
+    private Double transferMoney;
 }

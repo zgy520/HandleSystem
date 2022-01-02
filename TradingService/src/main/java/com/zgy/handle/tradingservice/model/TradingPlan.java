@@ -37,6 +37,17 @@ public class TradingPlan extends BaseModel {
      * 成交价格
      */
     private Double transactionPrice;
+
+    /**
+     * 成本价
+     */
+    private Double costPrice;
+
+    /**
+     * 已转出金额
+     */
+    private Double transferMoney;
+
     /**
      * 计划收益
      */

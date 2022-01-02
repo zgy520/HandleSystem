@@ -24,6 +24,23 @@ public class Tracking extends BaseModel {
      * 跟踪日期
      */
     private LocalDate trackDate;
+
+    /**
+     * 买出价格
+     */
+    private Double sellPrice;
+    /**
+     * 买入价格
+     */
+    private Double buyPrice;
+
+
+    /**
+     * 差价
+     */
+    private Double priceDiff;
+
+
     /**
      * 收益率
      */
@@ -33,4 +50,9 @@ public class Tracking extends BaseModel {
      * 规则后续应该对其进行维护，为选择项
      */
     private String rule;
+
+    /**
+     * 数量
+     */
+    private Integer count;
 }

@@ -38,9 +38,9 @@ public abstract class BaseQueryServiceImpl<T,U> extends BaseServiceImpl<T> imple
     @Override
     public Page<T> findByDynamicQuery(Pageable pageable, U dto) {
         // 单位权限
-        Specification<T> permissionSpec = getPermissionQuery();
-        Specification querySpec = permissionSpec.and(querySpecification(dto));
-        return this.queryRepository.findAll(querySpec,pageable);
+//        Specification<T> permissionSpec = getPermissionQuery();
+//        Specification querySpec = permissionSpec.and(querySpecification(dto));
+        return this.queryRepository.findAll(querySpecification(dto),pageable);
     }
 
     /**

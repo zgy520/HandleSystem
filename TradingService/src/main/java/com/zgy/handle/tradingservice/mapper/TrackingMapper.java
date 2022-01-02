@@ -3,6 +3,7 @@ package com.zgy.handle.tradingservice.mapper;
 import com.zgy.handle.tradingservice.dto.TrackingDTO;
 import com.zgy.handle.tradingservice.model.Tracking;
 import org.mapstruct.Mapper;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

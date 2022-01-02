@@ -7,6 +7,8 @@ import com.zgy.handle.tradingservice.model.Tracking;
 import com.zgy.handle.tradingservice.service.TrackingQueryService;
 import com.zgy.handle.tradingservice.service.TrackingUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,4 +39,6 @@ public class TrackingUpdateController extends BaseUpdateController<Tracking, Tra
     public Tracking convertUtoT(TrackingDTO trackingDTO) {
         return trackingMapper.toTracking(trackingDTO);
     }
+
+
 }

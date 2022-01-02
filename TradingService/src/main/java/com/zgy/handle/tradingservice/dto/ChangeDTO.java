@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Slf4j
 public class ChangeDTO extends BaseDTO{
-    private Long planId;
+    private String planId;
     /**
      * 跟踪日期
      */

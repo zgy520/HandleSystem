@@ -42,6 +42,10 @@ public class TrackingQueryController extends BaseQueryController<Tracking, Track
         return null;
     }
 
+    @Override
+    public void fillList(List<Tracking> entityList, List<TrackingDTO> dtoList) {
+    }
+
     /**
      * 实体列表转化为dto列表
      *

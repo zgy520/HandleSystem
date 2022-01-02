@@ -5,6 +5,7 @@ import com.zgy.handle.common.model.common.SelectDTO;
 import com.zgy.handle.tradingservice.dto.TradingPlanDTO;
 import com.zgy.handle.tradingservice.mapper.TradingPlanMapper;
 import com.zgy.handle.tradingservice.model.TradingPlan;
+import com.zgy.handle.tradingservice.service.TrackingQueryService;
 import com.zgy.handle.tradingservice.service.TradingPlanQueryService;
 import com.zgy.handle.tradingservice.service.TradingPlanUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class TradingPlanQueryController extends BaseQueryController<TradingPlan,
     private TradingPlanMapper tradingPlanMapper;
     private TradingPlanQueryService tradingPlanQueryService;
     private TradingPlanUpdateService tradingPlanUpdateService;
+    @Autowired
+    private TrackingQueryService trackingQueryService;
+
     public TradingPlanQueryController(TradingPlanUpdateService tradingPlanUpdateService, TradingPlanQueryService tradingPlanQueryService) {
         super(tradingPlanUpdateService, tradingPlanQueryService);
         this.tradingPlanUpdateService = tradingPlanUpdateService;
@@ -39,6 +43,16 @@ public class TradingPlanQueryController extends BaseQueryController<TradingPlan,
     @Override
     public List<SelectDTO> convertTtoSelectDTOList(List<TradingPlan> tradingPlans) {
         return null;
+    }
+
+    @Override
+    public void fillList(List<TradingPlan> entityList, List<TradingPlanDTO> dtoList) {
+        dtoList.stream().forEach(dto -> {
+            if (dto.getCostPrice() == null) {
+                dto.setCostPrice(0d);
+            }
+            dto.setTransferMoney(trackingQueryService.sumByPlanId(Long.valueOf(dto.getId())));
+        });
     }
 
     /**
