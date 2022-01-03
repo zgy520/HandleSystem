@@ -16,4 +16,11 @@ public interface TrackingQueryService extends QueryService<Tracking, TrackingDTO
      * @return
      */
     Double sumByPlanId(Long planId);
+
+    /**
+     * 根据计划id获取已提取的金额
+     * @param planId
+     * @return
+     */
+    Double sumExtractMoneyByPlanId(Long planId);
 }

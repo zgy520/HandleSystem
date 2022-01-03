@@ -40,6 +40,11 @@ public class Tracking extends BaseModel {
      */
     private Double priceDiff;
 
+    /**
+     * 提取金额
+     */
+    private Double extractMoney;
+
 
     /**
      * 收益率

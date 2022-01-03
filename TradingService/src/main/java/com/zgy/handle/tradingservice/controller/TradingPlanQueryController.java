@@ -52,6 +52,7 @@ public class TradingPlanQueryController extends BaseQueryController<TradingPlan,
                 dto.setCostPrice(0d);
             }
             dto.setTransferMoney(trackingQueryService.sumByPlanId(Long.valueOf(dto.getId())));
+            dto.setExtractMoney(trackingQueryService.sumExtractMoneyByPlanId(Long.valueOf(dto.getId())));
         });
     }
 

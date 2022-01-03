@@ -39,6 +39,11 @@ public class TrackingDTO extends BaseDTO {
     private Double priceDiff;
 
     /**
+     * 提取金额
+     */
+    private Double extractMoney;
+
+    /**
      * 收益率
      */
     private Double yieldRate;

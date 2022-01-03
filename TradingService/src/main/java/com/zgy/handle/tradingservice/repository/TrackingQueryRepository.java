@@ -18,4 +18,12 @@ public interface TrackingQueryRepository extends QueryRepository<Tracking> {
      */
     @Query(nativeQuery = true, value = "select sum(priceDiff) from trading_track where planId = :planId")
     Double sumByPlanId(Long planId);
+
+    /**
+     * 提取收益
+     * @param planId
+     * @return
+     */
+    @Query(nativeQuery = true, value = "select sum(extractMoney) from trading_track where planId = :planId")
+    Double sumExtractByPlanId(Long planId);
 }

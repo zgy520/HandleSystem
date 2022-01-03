@@ -64,4 +64,9 @@ public class TradingPlanDTO extends BaseDTO {
      * 已转出金额
      */
     private Double transferMoney;
+
+    /**
+     * 提取金额
+     */
+    private Double extractMoney;
 }

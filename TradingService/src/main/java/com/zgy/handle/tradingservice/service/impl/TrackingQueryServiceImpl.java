@@ -47,4 +47,15 @@ public class TrackingQueryServiceImpl extends BaseQueryServiceImpl<Tracking, Tra
     public Double sumByPlanId(Long planId) {
         return trackingQueryRepository.sumByPlanId(planId);
     }
+
+    /**
+     * 根据计划id获取已提取的金额
+     *
+     * @param planId
+     * @return
+     */
+    @Override
+    public Double sumExtractMoneyByPlanId(Long planId) {
+        return trackingQueryRepository.sumExtractByPlanId(planId);
+    }
 }
