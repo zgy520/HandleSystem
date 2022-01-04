@@ -5,7 +5,9 @@ import com.zgy.handle.common.response.ResponseCode;
 import com.zgy.handle.tradingservice.dto.CostPriceDTO;
 import com.zgy.handle.tradingservice.dto.TradingPlanDTO;
 import com.zgy.handle.tradingservice.mapper.TradingPlanMapper;
+import com.zgy.handle.tradingservice.model.CostPrice;
 import com.zgy.handle.tradingservice.model.TradingPlan;
+import com.zgy.handle.tradingservice.service.CostPriceService;
 import com.zgy.handle.tradingservice.service.TradingPlanQueryService;
 import com.zgy.handle.tradingservice.service.TradingPlanUpdateService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class TradingPlanUpdateController extends BaseUpdateController<TradingPlan, TradingPlanDTO> {
     @Autowired
     private TradingPlanMapper tradingPlanMapper;
+
     private TradingPlanQueryService tradingPlanQueryService;
     private TradingPlanUpdateService tradingPlanUpdateService;
 
@@ -43,6 +46,8 @@ public class TradingPlanUpdateController extends BaseUpdateController<TradingPla
         ResponseCode<TradingPlan> responseCode = ResponseCode.sucess();
         log.info(costPriceDTO.toString());
         tradingPlanUpdateService.updateCostPrice(costPriceDTO);
+
+
         return responseCode;
     }
 
